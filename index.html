@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CONVENTIONAL | The Waiting Room</title>
+
+    <!-- FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            /* COLOR PALETTE */
+            --paper: #F2F0E9;
+            --ink: #111111;
+            --highlight: #FF4400;
+            --bureaucracy: #E8E6DF;
+            --stamp: #D32F2F;
+
+            /* TYPOGRAPHY */
+            --font-display: 'Instrument Serif', serif;
+            --font-body: 'Inter', sans-serif;
+            --font-data: 'Space Mono', monospace;
+
+            /* LAYOUT & BORDERS */
+            --margin: 1.5rem;
+            --border-thick: 3px solid var(--ink);
+            --border-thin: 1px solid var(--ink);
+            --shadow-hard: 6px 6px 0 var(--ink);
+        }
+
+        /* RESET & BASE */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--paper);
+            color: var(--ink);
+            font-family: var(--font-body);
+            overflow-x: hidden;
+            width: 100%;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            cursor: default;
+        }
+
+        /* --- TYPOGRAPHY --- */
+        .mono {
+            font-family: var(--font-data);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .serif {
+            font-family: var(--font-display);
+            font-weight: 400;
+        }
+
+        /* --- HEADER Burocratico --- */
+        .status-bar {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 10px var(--margin);
+            border-bottom: var(--border-thin);
+            background: var(--paper);
+            position: fixed;
+            top: 0;
+            z-index: 1000;
+        }
+
+        /* --- MAIN CONTAINER --- */
+        main {
+            margin-top: 40px; /* Offset per header */
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* --- HERO & TICKET MACHINE --- */
+        .hero-section {
+            padding: 4rem var(--margin);
+            border-bottom: var(--border-thick);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            background: #fff;
+            position: relative;
+            overflow: hidden;
+            transition: min-height 0.5s ease;
+        }
+
+        .project-label {
+            display: inline-block;
+            border: var(--border-thin);
+            padding: 5px 10px;
+            margin-bottom: 2rem;
+            background: var(--paper);
+        }
+
+        .main-title {
+            font-size: clamp(3.5rem, 15vw, 8rem);
+            line-height: 0.85;
+            letter-spacing: -0.03em;
+            margin-bottom: 1.5rem;
+        }
+
+        .main-title em {
+            font-style: italic;
+            color: var(--highlight);
+        }
+
+        .subtitle {
+            font-size: clamp(1rem, 4vw, 1.25rem);
+            max-width: 600px;
+            line-height: 1.5;
+            color: #444;
+            margin-bottom: 3rem;
+        }
+
+        /* Bottone Stampa Biglietto */
+        .btn-massive {
+            background: var(--highlight);
+            color: #fff;
+            border: var(--border-thick);
+            padding: 20px 40px;
+            font-family: var(--font-data);
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            cursor: pointer;
+            box-shadow: var(--shadow-hard);
+            transition: all 0.1s ease;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .btn-massive:active {
+            transform: translate(4px, 4px);
+            box-shadow: 2px 2px 0 var(--ink);
+        }
+
+        /* Il Biglietto Stampato */
+        .ticket-stub {
+            background: #fff;
+            border: 2px dashed #ccc;
+            border-top: var(--border-thick);
+            width: 100%;
+            max-width: 300px;
+            margin: 2rem auto 0;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            display: none;
+            transform: translateY(-20px);
+            opacity: 0;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .ticket-stub.visible {
+            display: block;
+            transform: translateY(0);
+            opacity: 1;
+            animation: slideDownTicket 0.6s forwards;
+        }
+
+        @keyframes slideDownTicket {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .ticket-number {
+            font-size: 4rem;
+            color: var(--ink);
+            font-weight: bold;
+            font-family: var(--font-data);
+            margin: 1rem 0;
+            line-height: 1;
+        }
+
+        /* --- DASHBOARD (Sbloccata dopo il biglietto) --- */
+        #dashboard {
+            display: none;
+            flex-direction: column;
+        }
+
+        #dashboard.visible {
+            display: flex;
+            animation: fadeIn 1s forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* --- SUBSTACK SECTION --- */
+        .substack-section {
+            background: var(--bureaucracy);
+            padding: 4rem var(--margin);
+            border-bottom: var(--border-thick);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .iframe-wrapper {
+            width: 100%;
+            max-width: 480px;
+            background: #fff;
+            border: var(--border-thick);
+            box-shadow: var(--shadow-hard);
+            margin-top: 2rem;
+            overflow: hidden;
+        }
+
+        .iframe-wrapper iframe {
+            width: 100% !important;
+            max-width: 100%;
+        }
+
+        /* --- DISTRACTIONS SECTION --- */
+        .distractions-section {
+            padding: 4rem var(--margin);
+            background: var(--paper);
+        }
+
+        .grid-layout {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        @media (min-width: 768px) {
+            --margin: 3rem;
+        }
+
+        .card {
+            background: #fff;
+            border: var(--border-thin);
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* =========================================
+           1. LA PENNA A SCATTO (Meccanica Reale e Proporzioni Corrette)
+           ========================================= */
+        .pen-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 2rem auto;
+            width: 60px;
+            cursor: pointer;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+            touch-action: none; /* FIX: Blocca in modo aggressivo lo zoom su mobile */
+        }
+
+        .pen-button {
+            width: 18px;
+            height: 25px;
+            background: var(--highlight);
+            border: var(--border-thick);
+            border-radius: 4px 4px 0 0;
+            margin-bottom: -3px; 
+            transition: transform 0.05s ease-out;
+            z-index: 1;
+        }
+
+        .pen-body {
+            width: 32px;
+            height: 100px;
+            background: #ddd;
+            border: var(--border-thick);
+            border-radius: 3px;
+            z-index: 3;
+            position: relative;
+        }
+
+        .pen-tip-wrapper {
+            width: 32px;
+            height: 28px;
+            overflow: hidden; 
+            margin-top: -3px;
+            display: flex;
+            justify-content: center;
+            z-index: 1;
+        }
+
+        .pen-tip {
+            width: 24px; /* Punta sensibilmente allargata (il corpo è 32px) */
+            height: 24px;
+            background: linear-gradient(to bottom, #b0b0b0 0%, #888 70%, #222 70%, #222 100%);
+            /* Clipping path per dare l'effetto a punta triangolare, ma partendo da una base larga */
+            clip-path: polygon(10% 0%, 90% 0%, 60% 85%, 55% 100%, 45% 100%, 40% 85%);
+            transition: transform 0.05s ease-out;
+            transform: translateY(-16px); /* Stato base: sporge appena un pochino */
+        }
+
+        /* STATI DELLA PENNA GESTITI DA JS */
+        /* Stato 0 Pressed: Si sta premendo per aprire (la punta esce del tutto) */
+        .pen-container.state-0.pressed .pen-button { transform: translateY(12px); }
+        .pen-container.state-0.pressed .pen-tip { transform: translateY(0); } 
+
+        /* Stato 1: Estesa (Punta molto fuori) */
+        .pen-container.state-1 .pen-button { transform: translateY(0); }
+        .pen-container.state-1 .pen-tip { transform: translateY(-5px); } 
+
+        /* Stato 1 Pressed: Si sta premendo per chiudere */
+        .pen-container.state-1.pressed .pen-button { transform: translateY(12px); }
+        .pen-container.state-1.pressed .pen-tip { transform: translateY(0); }
+
+
+        /* =========================================
+           2. MODULO BUROCRATICO
+           ========================================= */
+        .fake-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .fake-form input {
+            padding: 10px;
+            font-family: var(--font-data);
+            border: 1px solid var(--ink);
+            background: var(--paper);
+            font-size: 0.8rem;
+        }
+
+        .btn-form {
+            background: var(--ink);
+            color: #fff;
+            border: none;
+            padding: 10px;
+            font-family: var(--font-data);
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .stamp-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-15deg) scale(2);
+            color: var(--stamp);
+            border: 4px solid var(--stamp);
+            padding: 10px 20px;
+            font-family: var(--font-data);
+            font-size: 2rem;
+            font-weight: bold;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            z-index: 10;
+        }
+
+        .stamp-overlay.stamped {
+            opacity: 0.9;
+            transform: translate(-50%, -50%) rotate(-15deg) scale(1);
+        }
+
+        /* =========================================
+           3. SNEAK PEEK (Adattato per mobile)
+           ========================================= */
+        .blurred-content {
+            margin-top: 1.5rem;
+            color: transparent;
+            text-shadow: 0 0 8px rgba(17,17,17,0.8);
+            user-select: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            font-size: 1.1rem;
+            line-height: 1.5;
+        }
+
+        .blurred-content:hover,
+        .blurred-content.revealed {
+            color: var(--ink);
+            text-shadow: none;
+        }
+
+        /* =========================================
+           4. LA PIANTA (Annaffiatoio visivo)
+           ========================================= */
+        .plant-container {
+            width: 100%;
+            height: 150px;
+            margin: 1rem auto;
+            position: relative;
+            cursor: pointer;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+            touch-action: none; /* FIX: Blocca lo zoom anche qui per sicurezza */
+        }
+
+        .plant-pot {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 45px;
+            background: var(--highlight);
+            border: var(--border-thick);
+            border-radius: 0 0 8px 8px;
+            z-index: 2;
+            overflow: hidden; 
+        }
+
+        /* Bordo superiore del vaso */
+        .plant-pot-lip {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 10px;
+            background: var(--highlight);
+            border: var(--border-thick);
+            border-radius: 3px;
+            z-index: 4;
+        }
+
+        /* Il livello dell'acqua dentro il vaso */
+        .water-level {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 0%; 
+            background: rgba(33, 150, 243, 0.7);
+            transition: height 0.3s ease-out;
+            z-index: 3;
+        }
+
+        .plant-leaves {
+            position: absolute;
+            bottom: 45px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 70px;
+            z-index: 1;
+        }
+
+        .leaf {
+            position: absolute;
+            background: #4CAF50;
+            border: var(--border-thick);
+            border-radius: 0 20px 0 20px;
+            transition: all 1s ease;
+            transform-origin: bottom center;
+        }
+
+        .leaf-1 { width: 30px; height: 30px; bottom: 5px; left: -5px; transform: rotate(-35deg); background: #388E3C; }
+        .leaf-2 { width: 40px; height: 40px; bottom: 10px; left: 10px; transform: rotate(10deg); }
+        .leaf-3 { width: 25px; height: 25px; bottom: 5px; right: -5px; transform: rotate(50deg); background: #81C784; }
+
+        /* Stato: Pianta Morta */
+        .plant-leaves.dead .leaf {
+            background: #8D6E63 !important; /* Diventa marrone */
+        }
+        .plant-leaves.dead .leaf-1 { transform: rotate(-70deg) scale(0.9); }
+        .plant-leaves.dead .leaf-2 { transform: rotate(60deg) scale(0.8); }
+        .plant-leaves.dead .leaf-3 { transform: rotate(100deg) scale(0.9); }
+
+        /* Goccia d'acqua animata */
+        .water-drop {
+            position: absolute;
+            width: 16px;
+            height: 24px;
+            background: #2196F3;
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            transform: translate(-50%, -50%);
+            animation: dropFall 0.4s ease-in forwards;
+            pointer-events: none;
+            z-index: 5;
+            box-shadow: inset -3px -3px 5px rgba(0,0,0,0.2); 
+        }
+
+        @keyframes dropFall {
+            0% { transform: translate(-50%, -10px) scale(1); opacity: 1; }
+            100% { transform: translate(-50%, 60px) scale(0.6); opacity: 0; }
+        }
+
+
+        /* --- FOOTER --- */
+        footer {
+            padding: 2rem var(--margin);
+            border-top: var(--border-thin);
+            text-align: center;
+            background: #fff;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header class="status-bar mono">
+        <div>CONVENTIONAL MAG</div>
+        <div id="clock">00:00:00</div>
+    </header>
+
+    <main>
+        <!-- HERO / DISTRIBUTORE BIGLIETTI -->
+        <section class="hero-section" id="hero">
+            <div class="mono project-label">NUMERO 0</div>
+            <h1 class="main-title serif">The <em>waiting</em><br> room</h1>
+            <p class="subtitle serif">
+                La rivista digitale sulle attese della quotidianità che non ci interessano, ma che sono interessanti.
+            </p>
+
+            <button class="btn-massive" id="take-ticket-btn" onclick="issueTicket()">Prendi il tuo numero</button>
+
+            <!-- IL BIGLIETTO -->
+            <div class="ticket-stub" id="ticket-stub">
+                <div class="mono">IL TUO TURNO</div>
+                <div class="ticket-number" id="display-number">...</div>
+                <div class="mono" style="color: #666; font-size: 0.7rem; line-height: 1.4;">
+                    PERSONE IN ATTESA PRIMA DI TE:<br>
+                    <span id="queue-counter" style="color: var(--highlight); font-size: 1.2rem; font-weight: bold;">Calcolo...</span>
+                </div>
+                <div class="mono" style="margin-top: 15px; font-size: 0.6rem; border-top: 1px dashed #ccc; padding-top: 10px;">
+                    *Il numero indica le visite reali di questo sito.
+                </div>
+            </div>
+        </section>
+
+        <!-- DASHBOARD (SBLOCCATA DOPO IL BIGLIETTO) -->
+        <div id="dashboard">
+            
+            <!-- SUBSTACK: LA CHIAMATA ALL'AZIONE -->
+            <section class="substack-section">
+                <span class="mono" style="background: var(--ink); color: #fff; padding: 4px 8px;">AVVISO AI CITTADINI</span>
+                <h2 class="serif" style="font-size: 2.5rem; margin-top: 1rem; max-width: 500px;">
+                    La coda è lunga. Mettiti comodo.
+                </h2>
+                <p style="margin-top: 1rem; max-width: 400px; color: #555;">
+                    Non ha senso fissare lo schermo. Lascia qui la tua email: conserveremo il tuo posto in fila e ti avviseremo noi all'apertura ufficiale del Numero 0.
+                </p>
+
+                <div class="iframe-wrapper">
+                    <iframe src="https://conventionalmagazine.substack.com/embed" width="100%" height="320" style="border: none; background: white" frameborder="0" scrolling="no"></iframe>
+                </div>
+            </section>
+
+            <!-- DISTRAZIONI -->
+            <section class="distractions-section">
+                <div class="mono" style="text-align: center; color: #666; margin-bottom: 2rem;">AMMAZZA IL TEMPO</div>
+                
+                <div class="grid-layout">
+                    
+                    <!-- 1. LA PENNA -->
+                    <div class="card">
+                        <h3 class="serif" style="font-size: 1.8rem;">La penna nervosa</h3>
+                        <p class="mono" style="margin-top: 5px; color: #666;">Clicca per scaricare la tensione.</p>
+                        
+                        <div class="pen-container state-0" id="pen-toy">
+                            <div class="pen-button"></div>
+                            <div class="pen-body"></div>
+                            <div class="pen-tip-wrapper">
+                                <div class="pen-tip"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="mono" style="text-align: center;">
+                            CLICK: <span id="pen-count" style="color: var(--highlight); font-weight: bold;">0</span>
+                        </div>
+                        <p id="pen-warning" class="serif" style="font-style: italic; color: var(--highlight); text-align: center; margin-top: 10px; opacity: 0; font-size: 0.9rem;">
+                            "Smetta di fare quel rumore, per favore."
+                        </p>
+                    </div>
+
+                    <!-- 2. IL MODULO -->
+                    <div class="card">
+                        <h3 class="serif" style="font-size: 1.8rem;">Autocertificazione</h3>
+                        <p class="mono" style="margin-top: 5px; color: #666;">Modulo inutile B-42.</p>
+                        
+                        <form class="fake-form" onsubmit="submitFakeForm(event)">
+                            <input type="text" placeholder="Motivo dell'attesa (Sii vago)" required>
+                            <input type="text" placeholder="Quanti sospiri hai fatto finora?" required>
+                            <button type="submit" class="btn-form">INVIA PRATICA</button>
+                        </form>
+
+                        <div class="stamp-overlay" id="form-stamp">RESPINTO</div>
+                    </div>
+
+                    <!-- 3. LO SNEAK PEEK -->
+                    <div class="card">
+                        <h3 class="serif" style="font-size: 1.8rem;">Rivista stropicciata</h3>
+                        <p class="mono" style="margin-top: 5px; color: #666;">Clicca (o tieni premuto) per leggere in controluce.</p>
+                        
+                        <div class="blurred-content serif" onclick="toggleBlur(this)">
+                            "Hai mai notato come i minuti scorrano più lentamente quando fissi il tabellone dei treni? La teoria della relatività si applica perfettamente alla banchina del binario 3. Il ritardo non è un errore di sistema, è una pausa imposta."
+                            <br><br>
+                            <span class="mono" style="font-size: 0.6rem;">[ESTRATTO DAL NUMERO 0 - ART. 1]</span>
+                        </div>
+                    </div>
+
+                    <!-- 4. LA PIANTA INTERATTIVA -->
+                    <div class="card">
+                        <h3 class="serif" style="font-size: 1.8rem;">Ficus da sala</h3>
+                        <p class="mono" style="margin-top: 5px; color: #666;">Annaffia la pianta cliccando.</p>
+                        
+                        <div class="plant-container" id="plant-toy" onclick="waterPlant(event)">
+                            <div class="plant-leaves" id="plant-leaves">
+                                <div class="leaf leaf-1"></div>
+                                <div class="leaf leaf-2"></div>
+                                <div class="leaf leaf-3"></div>
+                            </div>
+                            <div class="plant-pot-lip"></div>
+                            <div class="plant-pot">
+                                <div class="water-level" id="water-level"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="mono" style="text-align: center;">
+                            GOCCE DATE: <span id="plant-count" style="color: var(--highlight); font-weight: bold;">0</span>
+                        </div>
+                        <p id="plant-warning" class="serif" style="font-style: italic; color: var(--highlight); text-align: center; margin-top: 10px; opacity: 0; font-size: 0.9rem;">
+                            "È di plastica. Fermati."
+                        </p>
+                    </div>
+
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="mono">
+        <div style="margin-bottom: 10px;">CONVENTIONAL MAGAZINE &copy; 2025</div>
+        <div style="color: #666; font-size: 0.7rem;">TEMPO SPRECATO QUI: <span id="wasted-time">00:00:00</span></div>
+    </footer>
+
+    <script>
+        // --- 1. OROLOGIO & TEMPO PERSO ---
+        function updateTime() {
+            const now = new Date();
+            document.getElementById('clock').innerText = now.toLocaleTimeString('it-IT');
+        }
+        setInterval(updateTime, 1000);
+        updateTime();
+
+        let secondsWasted = 0;
+        setInterval(() => {
+            secondsWasted++;
+            const date = new Date(0);
+            date.setSeconds(secondsWasted);
+            document.getElementById('wasted-time').innerText = date.toISOString().substr(11, 8);
+        }, 1000);
+
+
+        // --- 2. LOGICA BIGLIETTO E CONTATORE REALE ---
+        let ticketIssued = false;
+
+        async function issueTicket() {
+            if(ticketIssued) return;
+            
+            const btn = document.getElementById('take-ticket-btn');
+            const stub = document.getElementById('ticket-stub');
+            const dashboard = document.getElementById('dashboard');
+            const queueCounter = document.getElementById('queue-counter');
+            const displayNumber = document.getElementById('display-number');
+
+            btn.innerText = "STAMPA IN CORSO...";
+            btn.style.opacity = "0.7";
+            btn.style.pointerEvents = "none";
+
+            let realCount = 0;
+            
+            try {
+                const controller = new AbortController();
+                const timeoutId = setTimeout(() => controller.abort(), 8000);
+
+                const response = await fetch('https://api.counterapi.dev/v1/conventionalmag/waitingroom/up', {
+                    signal: controller.signal
+                });
+                clearTimeout(timeoutId);
+
+                if(!response.ok) throw new Error(`API non disponibile, status: ${response.status}`);
+                const data = await response.json();
+                realCount = data.count;
+
+            } catch (error) {
+                // Sostituito console.error con console.log per non mostrare il testo rosso preoccupante.
+                console.log("Nota: Counter API non raggiungibile (causa rete o adblocker). Passaggio al contatore locale.");
+                
+                let localCount = 1402;
+                try {
+                    localCount = parseInt(localStorage.getItem('fakeVisits') || "1402");
+                    localCount += Math.floor(Math.random() * 3) + 1;
+                    localStorage.setItem('fakeVisits', localCount);
+                } catch(e) {
+                    // Protezione nel caso in cui localStorage sia bloccato dal browser (es. iframe sandboxed)
+                    localCount += Math.floor(Math.random() * 3) + 1;
+                }
+                realCount = localCount;
+            }
+
+            setTimeout(() => {
+                btn.style.display = "none";
+                
+                const letter = String.fromCharCode(65 + Math.floor((realCount / 1000) % 26));
+                const formattedNum = realCount.toString().padStart(3, '0');
+                
+                displayNumber.innerText = `${letter}-${formattedNum}`;
+                queueCounter.innerText = (realCount > 1) ? (realCount - 1).toLocaleString('it-IT') : "0";
+
+                stub.classList.add('visible');
+                dashboard.classList.add('visible');
+                
+                ticketIssued = true;
+                
+                setTimeout(() => {
+                    dashboard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }, 1500);
+
+            }, 800);
+        }
+
+        // --- 3. LA PENNA A SCATTO ---
+        let penClicks = 0;
+        let isPenExtended = false;
+        const penToy = document.getElementById('pen-toy');
+
+        function handlePenDown(e) {
+            e.preventDefault(); 
+            penToy.classList.add('pressed');
+        }
+
+        function handlePenUp(e) {
+            if(!penToy.classList.contains('pressed')) return; 
+            penToy.classList.remove('pressed');
+            
+            isPenExtended = !isPenExtended;
+            
+            if(isPenExtended) {
+                penToy.classList.remove('state-0');
+                penToy.classList.add('state-1');
+            } else {
+                penToy.classList.remove('state-1');
+                penToy.classList.add('state-0');
+            }
+
+            penClicks++;
+            document.getElementById('pen-count').innerText = penClicks;
+            playPenSound();
+
+            if(penClicks === 10) {
+                document.getElementById('pen-warning').style.opacity = 1;
+            } else if (penClicks === 25) {
+                document.getElementById('pen-warning').innerText = "Abbiamo chiamato la sicurezza.";
+            }
+        }
+
+        penToy.addEventListener('pointerdown', handlePenDown);
+        window.addEventListener('pointerup', handlePenUp);
+        window.addEventListener('pointercancel', () => penToy.classList.remove('pressed'));
+
+        function playPenSound() {
+            return; // Suono momentaneamente disabilitato come richiesto.
+
+            try {
+                const ctx = new (window.AudioContext || window.webkitAudioContext)();
+                const osc = ctx.createOscillator();
+                const gain = ctx.createGain();
+                osc.type = 'square';
+                osc.frequency.setValueAtTime(isPenExtended ? 600 : 800, ctx.currentTime);
+                osc.frequency.exponentialRampToValueAtTime(100, ctx.currentTime + 0.05);
+                gain.gain.setValueAtTime(0.1, ctx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.05);
+                osc.connect(gain);
+                gain.connect(ctx.destination);
+                osc.start();
+                osc.stop(ctx.currentTime + 0.05);
+            } catch(e) {}
+        }
+
+        // --- 4. IL MODULO BUROCRATICO ---
+        function submitFakeForm(e) {
+            e.preventDefault();
+            const stamp = document.getElementById('form-stamp');
+            const form = e.target;
+            
+            const inputs = form.querySelectorAll('input, button');
+            inputs.forEach(el => el.disabled = true);
+            
+            stamp.classList.add('stamped');
+            
+            setTimeout(() => {
+                stamp.classList.remove('stamped');
+                form.reset();
+                inputs.forEach(el => el.disabled = false);
+            }, 3000);
+        }
+
+        // --- 5. RIVISTA SFOCATA ---
+        function toggleBlur(element) {
+            element.classList.toggle('revealed');
+        }
+
+        // --- 6. LA PIANTA DA UFFICIO ---
+        let waterDrops = 0;
+        const maxWater = 30;
+
+        function waterPlant(e) {
+            const plantContainer = document.getElementById('plant-toy');
+            const waterLevelDiv = document.getElementById('water-level');
+            const leavesDiv = document.getElementById('plant-leaves');
+            
+            const drop = document.createElement('div');
+            drop.className = 'water-drop';
+            
+            const rect = plantContainer.getBoundingClientRect();
+            const clientX = e.clientX || (e.touches && e.touches[0].clientX) || rect.left + rect.width/2;
+            const clientY = e.clientY || (e.touches && e.touches[0].clientY) || rect.top + 20;
+            
+            drop.style.left = `${clientX - rect.left}px`;
+            drop.style.top = `${clientY - rect.top}px`;
+            
+            plantContainer.appendChild(drop);
+            
+            setTimeout(() => {
+                if (drop.parentNode) drop.parentNode.removeChild(drop);
+            }, 400);
+
+            if (waterDrops < maxWater) {
+                waterDrops++;
+                document.getElementById('plant-count').innerText = waterDrops;
+                
+                const fillPercentage = Math.min((waterDrops / maxWater) * 110, 110);
+                waterLevelDiv.style.height = `${fillPercentage}%`;
+                
+                const warning = document.getElementById('plant-warning');
+                if(waterDrops === 5) {
+                    warning.style.opacity = 1;
+                } else if (waterDrops === 15) {
+                    warning.innerText = "Stai allagando il vaso.";
+                } else if (waterDrops === maxWater) {
+                    warning.innerText = "Hai annegato una pianta finta. Complimenti.";
+                    leavesDiv.classList.add('dead');
+                }
+            }
+        }
+
+    </script>
+</body>
+</html>
