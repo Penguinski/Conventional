@@ -7,7 +7,7 @@
     <title>CONVENTIONAL | The Waiting Room</title>
 
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="img/favicon.png">
+    <link rel="icon" type="image/png" href="img/favicon.ico">
 
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-S0KTLZF56G"></script>
@@ -128,6 +128,12 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            
+            /* FIX: Queste due righe spingono la sezione a occupare lo spazio vuoto,
+               rimuovendo la "banda" beige e centrando verticalmente il contenuto */
+            flex-grow: 1;
+            justify-content: center;
+            
             text-align: center;
             background: #fff;
             position: relative;
@@ -1003,10 +1009,10 @@
             }
         }
 
-        // --- 6. ORIGAMI VETTORIALE (Con Matematica di volo reale e superamento del box) ---
+        // --- 6. ORIGAMI VETTORIALE (Avanzato e Volante fuori dal frame) ---
         let origamiFolds = 0;
         
-        // Forme (rimossa la pallina di carta come richiesto)
+        // Forme
         const origamiShapes = [
             // 0: Foglio intero
             `<rect x="20" y="20" width="60" height="60" fill="#fff" stroke="var(--ink)" stroke-width="4" stroke-linejoin="round"/>`,
@@ -1033,21 +1039,23 @@
             origamiFolds++;
             counter.innerText = origamiFolds;
 
-            // Il ciclo ora è di soli 5 step (0 -> 4)
             let step = origamiFolds % origamiShapes.length;
             svgEl.innerHTML = origamiShapes[step];
 
             if (step === 4) {
-                // Calcola un vettore casuale fuori dallo schermo
-                // Moltiplichiamo per 1000/1500 per farlo andare lunghissimo fuori dal box bianco
-                let dirX = (Math.random() > 0.5 ? 1 : -1) * (Math.random() * 800 + 1000); 
-                let dirY = (Math.random() > 0.5 ? 1 : -1) * (Math.random() * 800 + 1000);
+                // Sceglie un angolo casuale nell'emisfero superiore (da sinistra verso destra)
+                // Math.PI = 180° (sinistra pura), Math.PI * 2 = 360°/0° (destra pura), passando per l'alto.
+                // In questo modo l'aereo vola in qualsiasi direzione laterale o superiore, senza MAI scendere.
+                let angle = Math.PI + (Math.random() * Math.PI);
+                let distance = Math.random() * 800 + 1200;
                 
-                // Calcola l'angolo in gradi della traiettoria (Trigonometria pura)
+                let dirX = Math.cos(angle) * distance;
+                let dirY = Math.sin(angle) * distance;
+                
+                // Calcola l'angolo in gradi della traiettoria
                 let angleDeg = Math.atan2(dirY, dirX) * (180 / Math.PI);
                 
-                // Dato che l'aereo SVG punta a SINISTRA nativamente (-180 gradi rispetto all'asse X standard)
-                // Sottraiamo 180 gradi per ruotare il "muso" nella direzione di volo.
+                // Dato che l'aereo SVG punta a SINISTRA nativamente
                 let rotEnd = angleDeg - 180;
                 
                 // Imposta le variabili CSS per il tragitto
