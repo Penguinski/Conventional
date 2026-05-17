@@ -7,7 +7,7 @@
     <title>CONVENTIONAL | The Waiting Room</title>
 
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="img/favicon.ico">
+    <link rel="icon" type="image/png" href="img/favicon.png">
 
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-S0KTLZF56G"></script>
@@ -251,44 +251,6 @@
             flex-direction: column;
             align-items: center;
             text-align: center;
-        }
-
-        /* Form di KIT ricreato in puro stile brutalista (nessun CSS esterno) */
-        .kit-native-form {
-            display: flex;
-            width: 100%;
-            max-width: 500px;
-            margin-top: 2rem;
-            border: var(--border-thick);
-            background: #fff;
-            box-shadow: var(--shadow-hard);
-        }
-
-        .kit-native-form input {
-            border: none;
-            padding: 15px;
-            font-family: var(--font-data);
-            flex-grow: 1;
-            font-size: 0.9rem;
-            outline: none;
-            background: transparent;
-        }
-
-        .kit-native-form button {
-            background: var(--ink);
-            color: #fff;
-            border: none;
-            border-left: var(--border-thick);
-            padding: 0 25px;
-            font-family: var(--font-data);
-            font-weight: bold;
-            cursor: pointer;
-            text-transform: uppercase;
-            transition: 0.2s;
-        }
-
-        .kit-native-form button:hover {
-            background: var(--highlight);
         }
 
         .scroll-hint {
@@ -597,25 +559,6 @@
             transition: transform 0.1s ease;
         }
 
-        /* --- MEDIA QUERIES --- */
-        @media (max-width: 768px) {
-            .kit-native-form {
-                flex-direction: column;
-                box-shadow: none;
-                border: none;
-            }
-            .kit-native-form input {
-                border: var(--border-thick);
-                width: 100%;
-                margin-bottom: 10px;
-            }
-            .kit-native-form button {
-                width: 100%;
-                border: var(--border-thick);
-                padding: 15px;
-            }
-        }
-
         /* --- FOOTER --- */
         footer {
             padding: 2rem var(--margin);
@@ -690,7 +633,7 @@
         <!-- DASHBOARD (SBLOCCATA DOPO IL BIGLIETTO) -->
         <div id="dashboard">
             
-            <!-- SUBSTACK/KIT: LA CHIAMATA ALL'AZIONE -->
+            <!-- SUBSTACK: LA CHIAMATA ALL'AZIONE -->
             <section class="substack-section">
                 <span class="mono" style="background: var(--ink); color: #fff; padding: 4px 8px;">AVVISO AI CITTADINI</span>
                 <h2 class="serif" style="font-size: 2.5rem; margin-top: 1rem; max-width: 500px;">
@@ -700,11 +643,10 @@
                     Non ha senso fissare lo schermo. Lascia qui la tua email: conserveremo il tuo posto in fila e ti avviseremo noi all'apertura ufficiale del Numero 0.
                 </p>
 
-                <!-- KIT FORM RICREATO (Puro, senza CSS di terze parti, connette dritto alla tua lista Kit) -->
-                <form action="https://app.kit.com/forms/9450693/subscriptions" method="post" target="_blank" class="kit-native-form">
-                    <input type="email" name="email_address" required placeholder="Indirizzo email...">
-                    <button type="submit">ISCRIVITI</button>
-                </form>
+                <!-- SUBSTACK EMBED (Inserito all'interno di un contenitore centrato) -->
+                <div style="margin-top: 2rem; width: 100%; display: flex; justify-content: center;">
+                    <iframe src="https://conventionalmagazine.substack.com/embed" width="480" height="320" style="border: 1px solid #EEE; background: white; max-width: 100%;" frameborder="0" scrolling="no"></iframe>
+                </div>
 
                 <!-- FRECCIA DI SCROLL -->
                 <div class="scroll-hint mono">
