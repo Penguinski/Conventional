@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Contatti | CONVENTIONAL</title>
+    <link rel="icon" type="image/png" href="img/favicon.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@3.1.0/dist/cookieconsent.css">
+
+    <style>
+        :root {
+            --paper: #F2F0E9;
+            --ink: #111111;
+            --highlight: #FF4400;
+            --font-display: 'Instrument Serif', serif;
+            --font-body: 'Inter', sans-serif;
+            --font-data: 'Space Mono', monospace;
+            --margin: 1.5rem;
+            --border-thick: 3px solid var(--ink);
+            --border-thin: 1px solid var(--ink);
+            --shadow-hard: 6px 6px 0 var(--ink);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background-color: var(--paper); color: var(--ink); font-family: var(--font-body); display: flex; flex-direction: column; min-height: 100vh; }
+        .mono { font-family: var(--font-data); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; }
+        .serif { font-family: var(--font-display); font-weight: 400; }
+        
+        .status-bar { width: 100%; display: flex; justify-content: space-between; padding: 10px var(--margin); border-bottom: var(--border-thin); background: var(--paper); position: fixed; top: 0; z-index: 1000; }
+        .status-bar a { color: var(--ink); text-decoration: none; font-weight: bold; }
+        .status-bar a:hover { color: var(--highlight); }
+        
+        main { margin-top: 40px; flex-grow: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 4rem var(--margin); }
+        
+        .contact-card { background: #fff; border: var(--border-thick); padding: 3rem 2rem; max-width: 500px; width: 100%; text-align: center; box-shadow: var(--shadow-hard); }
+        
+        .btn-massive { display: inline-block; background: var(--highlight); color: #fff; border: var(--border-thick); padding: 15px 30px; font-family: var(--font-data); font-size: 1rem; font-weight: bold; text-transform: uppercase; cursor: pointer; text-decoration: none; margin-top: 2rem; transition: all 0.1s ease; }
+        .btn-massive:active { transform: translate(4px, 4px); box-shadow: 2px 2px 0 var(--ink); }
+    </style>
+</head>
+<body>
+
+    <header class="status-bar mono">
+        <div><a href="/">← TORNA ALLA SALA D'ATTESA</a></div>
+        <div>MODULO CONTATTI</div>
+    </header>
+
+    <main>
+        <div class="contact-card">
+            <div class="mono" style="margin-bottom: 1rem; color: #666;">UFFICIO COMUNICAZIONI</div>
+            <h1 class="serif" style="font-size: 3rem; margin-bottom: 1rem;">Parla con la direzione</h1>
+            <p style="color: #444; line-height: 1.6;">
+                Per richieste di informazioni, problemi tecnici, cancellazione dei dati personali o per segnalare un'attesa troppo lunga.
+            </p>
+            
+            <a href="mailto:conventionalmagazine@gmail.com" class="btn-massive">Invia un reclamo scritto</a>
+            
+            <p class="serif" style="margin-top: 2rem; font-style: italic; color: #666; font-size: 1.1rem;">
+                "I tempi di risposta burocratica possono variare dai 2 ai 94 giorni lavorativi."
+            </p>
+        </div>
+    </main>
+
+    <script type="module" src="cookieconsent-config.js"></script>
+</body>
+</html>
