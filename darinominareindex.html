@@ -1,0 +1,2540 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>CONVENTIONAL | Volume 0 — The Waiting Room</title>
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-S0KTLZF56G"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-S0KTLZF56G');
+    </script>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@3.1.0/dist/cookieconsent.css">
+
+    <!-- Microsoft Clarity -->
+    <script type="text/javascript">
+      (function(c,l,a,r,i,t,y){
+          c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+          t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+          y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+      })(window, document, "clarity", "script", "wsxvrhi5hw");
+    </script>
+
+<!-- FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            /* COLOR PALETTE */
+            --paper: #F2F0E9;
+            --ink: #111111;
+            --highlight: #FF4400;
+            --bureaucracy: #D6EAF8;
+            --concrete: #8c8c8c;
+            --void: #0a0a0a;
+            
+            /* TILE COLORS (Azulejos Inspired) */
+            --tile-blue: #1E3A8A; /* Blu Cobalto */
+            --tile-gold: #D97706; /* Ocra Dorato */
+
+            /* TYPOGRAPHY */
+            --font-display: 'Instrument Serif', serif;
+            --font-body: 'Inter', sans-serif;
+            --font-data: 'Space Mono', monospace;
+
+            /* LAYOUT */
+            --margin: 2rem;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+            width: 100%;
+        }
+
+        body {
+            background-color: var(--paper);
+            color: var(--ink);
+            font-family: var(--font-body);
+            overflow-x: hidden;
+            width: 100%;
+            position: relative;
+            cursor: crosshair;
+        }
+
+        /* --- UTILS --- */
+        .mono {
+            font-family: var(--font-data);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .serif {
+            font-family: var(--font-display);
+            font-weight: 400;
+        }
+
+        .btn-link {
+            background: none;
+            border: none;
+            font-family: var(--font-data);
+            text-decoration: underline;
+            cursor: pointer;
+            color: inherit;
+            font-size: 0.9rem;
+            padding: 0;
+            margin-top: 1rem;
+            text-transform: uppercase;
+            transition: 0.3s;
+        }
+
+        .btn-link:hover {
+            color: var(--highlight);
+        }
+
+        .btn-link:disabled {
+            color: #ccc;
+            cursor: not-allowed;
+            text-decoration: none;
+        }
+
+        /* --- NAVIGATION / HEADER --- */
+        .status-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 12px var(--margin);
+            border-bottom: 1px solid var(--ink);
+            background: var(--paper);
+            z-index: 1000;
+            gap: 15px;
+        }
+
+        .brand-mark {
+            display: inline-flex;
+            align-items: center;
+            color: inherit;
+            text-decoration: none;
+            min-width: 120px;
+        }
+
+        .brand-logo {
+            display: block;
+            width: 145px;
+            max-height: 18px;
+            object-fit: contain;
+            object-position: left center;
+        }
+
+        .brand-logo[src=""], .brand-logo:not([src]) {
+            display: none;
+        }
+
+        .brand-mark::after {
+            content: "CONVENTIONAL MAG";
+            display: none;
+        }
+
+        .brand-mark.logo-missing::after {
+            display: inline;
+        }
+
+        .menu-trigger {
+            cursor: pointer;
+            text-decoration: underline;
+            white-space: nowrap;
+        }
+
+        .menu-trigger:hover {
+            color: var(--highlight);
+        }
+
+        /* --- MENU OVERLAY --- */
+        .menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 0;
+            background: var(--highlight);
+            color: var(--paper);
+            z-index: 999;
+            overflow: hidden;
+            transition: height 0.6s cubic-bezier(0.77, 0, 0.175, 1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .menu-overlay.open {
+            height: 100vh;
+        }
+
+        .menu-list {
+            list-style: none;
+            text-align: center;
+        }
+
+        .menu-list li {
+            margin: 1.5rem 0;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: 0.5s;
+        }
+
+        .menu-overlay.open .menu-list li {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .menu-link {
+            font-family: var(--font-display);
+            font-size: 4rem;
+            text-decoration: none;
+            color: var(--paper);
+            line-height: 1;
+        }
+
+        .menu-link:hover {
+            font-style: italic;
+            letter-spacing: 2px;
+        }
+
+        .menu-close {
+            position: absolute;
+            top: 12px;
+            right: var(--margin);
+            cursor: pointer;
+            font-size: 1.5rem;
+        }
+
+        /* --- COVER SECTION --- */
+        .cover {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: var(--margin);
+            position: relative;
+            width: 100%;
+        }
+
+        .title-block {
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .main-title {
+            font-family: var(--font-display);
+            font-size: clamp(4rem, 15vw, 12rem);
+            line-height: 0.8;
+            letter-spacing: -0.04em;
+            font-weight: 400;
+        }
+
+        .main-title em {
+            font-style: italic;
+            color: var(--highlight);
+            font-weight: 400;
+        }
+
+        /* TICKET SYSTEM */
+        .ticket-wrapper {
+            position: absolute;
+            z-index: 1;
+            top: 15%;
+            right: 5%;
+            transform: rotate(15deg) scale(0.8);
+            display: block;
+        }
+
+        @media(min-width: 768px) {
+            .ticket-wrapper {
+                top: 20%;
+                right: 10%;
+                transform: rotate(15deg) scale(1);
+            }
+        }
+
+        .ticket {
+            background: #fff;
+            border: 1px solid #ccc;
+            width: 180px;
+            padding: 15px;
+            text-align: center;
+            box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.1);
+            font-family: 'Courier New', Courier, monospace;
+            position: relative;
+        }
+
+        .ticket::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 20px;
+            background: var(--paper);
+            border-radius: 50%;
+            box-shadow: inset 0 -2px 2px rgba(0, 0, 0, 0.1);
+        }
+
+        .ticket-number {
+            font-size: 3rem;
+            color: var(--highlight);
+            font-weight: bold;
+            display: block;
+            margin: 10px 0;
+            line-height: 1;
+        }
+
+        /* --- ISSUE INFO --- */
+        .issue-info {
+            display: flex;
+            justify-content: space-between;
+            border-top: none;
+            padding-bottom: 20px;
+            width: 100%;
+            max-width: 1200px;
+            z-index: 2;
+            margin-top: auto;
+        }
+
+        .infinite-loader {
+            width: 100%;
+            height: 6px;
+            background: #ddd;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+        }
+
+        .loader-bar {
+            height: 100%;
+            background: var(--highlight);
+            width: 0%;
+            animation: loadFiveMinutes 300s linear forwards;
+        }
+
+        @keyframes loadFiveMinutes {
+            0% {
+                width: 0;
+            }
+
+            100% {
+                width: 100%;
+            }
+        }
+
+        section {
+            scroll-margin-top: 80px;
+        }
+
+        /* --- MANIFESTO --- */
+        .manifesto-section {
+            padding: 4rem var(--margin);
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 4rem;
+            border-bottom: 1px solid var(--ink);
+        }
+
+        .manifesto-text {
+            font-size: clamp(2.2rem, 3.5vw, 3.5rem); 
+            line-height: 1.1;
+            margin-bottom: 2rem;
+        }
+
+        .manifesto-body {
+            font-size: clamp(1.1rem, 1.5vw, 1.25rem);
+            max-width: 65ch;
+            line-height: 1.6;
+        }
+
+        .editorial-col {
+            border-left: 1px solid var(--ink);
+            padding-left: 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        /* --- FLOOR SECTION --- */
+        .floor-section {
+            background-color: var(--bureaucracy);
+            padding: 4rem var(--margin);
+            border-bottom: 1px solid var(--ink);
+        }
+
+        .floor-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1px;
+            background: var(--ink);
+            border: 1px solid var(--ink);
+        }
+
+        .floor-tile {
+            background: var(--paper);
+            aspect-ratio: 1;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: all 0.3s ease;
+            cursor: help;
+        }
+
+        .floor-tile:hover {
+            transform: scale(0.98);
+            z-index: 10;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .tile-pattern {
+            width: 100%;
+            height: 60%;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        /* Tile Counter Game */
+        .tile-counter-container {
+            margin-top: 4rem;
+            background: #fff;
+            padding: 2rem;
+            border: 1px solid var(--ink);
+            box-shadow: 5px 5px 0 rgba(0,0,0,0.1);
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .tile-game-grid {
+            display: grid;
+            grid-template-columns: repeat(10, 1fr);
+            gap: 0;
+            border: 2px solid var(--ink);
+            max-width: 600px;
+            margin: 2rem auto;
+            background: #eee;
+        }
+        
+        .game-tile {
+            background: #fdfdfd;
+            aspect-ratio: 1;
+            cursor: pointer;
+            transition: transform 0.1s;
+            border: 1px solid #f0f0f0; /* Very light border */
+            position: relative;
+        }
+
+        .game-tile:hover {
+            z-index: 2;
+            transform: scale(1.1);
+            box-shadow: 0 0 10px rgba(0,0,0,0.15);
+        }
+
+        /* UPDATE: NEW SOPHISTICATED PATTERN (Azulejos Style) */
+        .game-tile.counted {
+            background-color: #fff;
+            border: none;
+            /* COMPLEX AZULEJO PATTERN CONSTRUCTION:
+               1. Gold Cross Center
+               2. Blue Decorative Corners (Quarter Circles)
+               3. Connecting details
+            */
+            background-image: 
+                /* Center Gold Diamond */
+                radial-gradient(circle at center, var(--tile-gold) 15%, transparent 16%),
+                
+                /* Blue Cross Petals */
+                radial-gradient(circle at 50% 0, transparent 15%, var(--tile-blue) 16%, var(--tile-blue) 22%, transparent 23%),
+                radial-gradient(circle at 50% 100%, transparent 15%, var(--tile-blue) 16%, var(--tile-blue) 22%, transparent 23%),
+                radial-gradient(circle at 0 50%, transparent 15%, var(--tile-blue) 16%, var(--tile-blue) 22%, transparent 23%),
+                radial-gradient(circle at 100% 50%, transparent 15%, var(--tile-blue) 16%, var(--tile-blue) 22%, transparent 23%),
+
+                /* Corner Blue Arcs (Connecting Elements) */
+                radial-gradient(circle at 0 0, transparent 40%, var(--tile-blue) 41%, var(--tile-blue) 50%, transparent 51%),
+                radial-gradient(circle at 100% 0, transparent 40%, var(--tile-blue) 41%, var(--tile-blue) 50%, transparent 51%),
+                radial-gradient(circle at 100% 100%, transparent 40%, var(--tile-blue) 41%, var(--tile-blue) 50%, transparent 51%),
+                radial-gradient(circle at 0 100%, transparent 40%, var(--tile-blue) 41%, var(--tile-blue) 50%, transparent 51%),
+                
+                /* Diagonal Gold Accents */
+                linear-gradient(45deg, transparent 48%, var(--tile-gold) 48%, var(--tile-gold) 52%, transparent 52%),
+                linear-gradient(-45deg, transparent 48%, var(--tile-gold) 48%, var(--tile-gold) 52%, transparent 52%);
+                
+            background-size: 100% 100%;
+            animation: tileReveal 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        @keyframes tileReveal {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .game-tile.counted::after {
+            content: ''; 
+        }
+
+        /* PAVIMENTI REALISTICI */
+        .pat-poste {
+            background-color: #e6e6e6;
+            background-image:
+                radial-gradient(circle at 10% 20%, #999 2px, transparent 2.5px),
+                radial-gradient(circle at 40% 60%, #555 1.5px, transparent 2px),
+                radial-gradient(circle at 80% 10%, #777 2px, transparent 2.5px),
+                radial-gradient(circle at 90% 80%, #aaa 1px, transparent 1.5px);
+            background-size: 20px 20px;
+        }
+        .pat-court {
+            background-color: #a19c8a;
+            background-image:
+                linear-gradient(45deg, #3a3a3a 25%, transparent 25%, transparent 75%, #3a3a3a 75%, #3a3a3a),
+                linear-gradient(45deg, #3a3a3a 25%, transparent 25%, transparent 75%, #3a3a3a 75%, #3a3a3a);
+            background-position: 0 0, 30px 30px;
+            background-size: 60px 60px;
+            opacity: 0.9;
+        }
+        .pat-hospital {
+            background-color: #a8d5e5;
+            background-image:
+                radial-gradient(#82b1c4 15%, transparent 16%),
+                radial-gradient(#82b1c4 15%, transparent 16%);
+            background-size: 8px 8px;
+            background-position: 0 0, 2px 2px;
+        }
+        .pat-station {
+            background-color: #222;
+            background-image: radial-gradient(circle at center, #3a3a3a 30%, transparent 31%);
+            background-size: 20px 20px;
+        }
+
+        /* --- RITUALS (UPDATED SCROLLBAR) --- */
+        .rituals-container {
+            overflow-x: hidden;
+            border-bottom: 1px solid var(--ink);
+            padding: 4rem 0;
+            background: #fff;
+        }
+
+        .rituals-track {
+            display: flex;
+            gap: 4rem;
+            padding: 0 var(--margin);
+            overflow-x: auto; /* Enable native scrolling */
+            scroll-behavior: smooth;
+            padding-bottom: 2rem;
+            
+            /* Custom Scrollbar Styling */
+            scrollbar-width: thin; /* Firefox */
+            scrollbar-color: var(--ink) #eee; /* Firefox */
+        }
+
+        /* Webkit Scrollbar Styling (Chrome, Safari, Edge) */
+        .rituals-track::-webkit-scrollbar {
+            height: 8px;
+            background-color: transparent;
+        }
+
+        .rituals-track::-webkit-scrollbar-track {
+            background-color: #eee;
+            border-radius: 4px;
+            margin: 0 var(--margin); /* Add margin so it aligns with content */
+        }
+
+        .rituals-track::-webkit-scrollbar-thumb {
+            background-color: var(--ink);
+            border-radius: 4px;
+            border: 2px solid #eee; /* Padding around thumb */
+        }
+
+        .rituals-track::-webkit-scrollbar-thumb:hover {
+            background-color: var(--highlight);
+        }
+
+        .ritual-card {
+            min-width: 300px;
+            max-width: 400px;
+            border-left: 2px solid var(--highlight);
+            padding-left: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        /* --- SOUNDSCAPES --- */
+        .sound-section {
+            padding: 4rem var(--margin);
+            border-bottom: 1px solid var(--ink);
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .sound-visuals {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .sound-track {
+            --progress: 0%;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            border: 1px solid var(--ink);
+            background: #fff;
+            transition: 0.3s;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .sound-track::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            width: var(--progress);
+            background: linear-gradient(90deg, rgba(17,17,17,0.08), rgba(17,17,17,0.18));
+            pointer-events: none;
+            transition: width 0.15s linear;
+        }
+
+        .sound-track > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .sound-track:hover {
+            transform: translateX(10px);
+            background: #fafafa;
+        }
+
+        .sound-track.is-playing {
+            background: #f7f7f7;
+        }
+
+        .play-btn {
+            width: 40px;
+            height: 40px;
+            background: #ddd;
+            border-radius: 50%;
+            border: 1px solid transparent;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            cursor: pointer;
+            padding: 0;
+        }
+
+        .sound-track.is-playing .play-btn {
+            background: var(--ink);
+        }
+
+        .play-icon {
+            width: 0;
+            height: 0;
+            border-top: 6px solid transparent;
+            border-bottom: 6px solid transparent;
+            border-left: 10px solid var(--ink);
+            margin-left: 3px;
+        }
+
+        .sound-track.is-playing .play-icon {
+            width: 12px;
+            height: 14px;
+            border: 0;
+            margin-left: 0;
+            background:
+                linear-gradient(90deg, var(--paper) 0 35%, transparent 35% 65%, var(--paper) 65% 100%);
+        }
+
+        .wave-container {
+            flex-grow: 1;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            gap: 3px;
+        }
+
+        .wave-bar {
+            width: 3px;
+            background: #d8d8d8;
+            height: 10%;
+            animation: none;
+            transition: background-color 0.12s linear, height 0.12s ease;
+        }
+
+        .sound-track.is-playing .wave-bar {
+            animation: soundWave 1s infinite ease-in-out;
+        }
+
+        .sound-track.is-playing .wave-slow .wave-bar {
+            animation-duration: 2s;
+        }
+
+        .sound-track.is-playing .wave-fast .wave-bar {
+            animation-duration: 0.5s;
+        }
+
+        .wave-stuck .wave-bar {
+            height: 2px;
+        }
+
+        .sound-track.is-playing .wave-stuck .wave-bar {
+            animation: soundWave 1.2s infinite steps(2, end);
+        }
+
+        .sound-meta {
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+            color: #777;
+            font-size: 0.65rem;
+            margin-top: 6px;
+        }
+
+        @keyframes soundWave {
+
+            0%,
+            100% {
+                height: 10%;
+            }
+
+            50% {
+                height: 100%;
+            }
+        }
+
+        /* --- FICTION --- */
+        .fiction-section {
+            padding: 4rem var(--margin);
+            background: #f5f5f5;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            border-bottom: 1px solid var(--ink);
+        }
+
+        .email-client {
+            background: #fff;
+            border: 1px solid #ccc;
+            box-shadow: 10px 10px 0 rgba(0, 0, 0, 0.1);
+            font-family: Arial, sans-serif;
+        }
+
+        .email-header {
+            background: #eee;
+            padding: 10px;
+            border-bottom: 1px solid #ccc;
+            font-size: 0.8rem;
+        }
+
+        .email-body {
+            padding: 20px;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* --- SEMAPHORES --- */
+        .semaphore-section {
+            background-color: var(--void);
+            color: var(--paper);
+            padding: var(--margin);
+            min-height: 100vh;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .light-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .light {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: #222;
+            border: 5px solid #444;
+            transition: 0.3s;
+        }
+
+        .light.red {
+            background: #4a0000;
+        }
+
+        .light.red.active {
+            background: #ff0000;
+            box-shadow: 0 0 50px rgba(255, 0, 0, 0.5);
+        }
+
+        .light.yellow {
+            background: #4a3c00;
+        }
+
+        .light.yellow.active {
+            background: #ffae00;
+            box-shadow: 0 0 50px rgba(255, 174, 0, 0.5);
+        }
+
+        .light.green {
+            background: #002e00;
+        }
+
+        .light.green.active {
+            background: #00ff00;
+            box-shadow: 0 0 50px rgba(0, 255, 0, 0.5);
+        }
+
+        #semaphore-timer {
+            font-size: 2rem;
+            color: var(--highlight);
+            font-family: var(--font-data);
+            margin-top: 1rem;
+        }
+
+        /* --- DOODLES --- */
+        .doodle-section {
+            padding: 4rem var(--margin);
+            border-bottom: 1px solid var(--ink);
+            background: #fff;
+            min-height: 80vh;
+        }
+
+        .doodle-gallery-wrapper {
+            display: none; /* INITIALLY HIDDEN */
+            margin-top: 4rem;
+            border-top: 2px dashed #ccc;
+            padding-top: 3rem;
+            animation: fadeIn 1s ease;
+        }
+
+        .doodle-gallery-wrapper.visible {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .doodle-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .doodle-item {
+            border: 1px dashed #ccc;
+            aspect-ratio: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            cursor: pointer;
+            transition: 0.2s;
+            background: #fff;
+        }
+
+        .doodle-item:hover {
+            border-color: var(--highlight);
+            transform: translateY(-5px);
+            box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.1);
+        }
+
+        .doodle-svg {
+            width: 80%;
+            height: 80%;
+            stroke: var(--ink);
+            stroke-width: 1.5;
+            fill: none;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        /* Doodle Modal */
+        .doodle-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 3000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            color: var(--paper);
+        }
+
+        .doodle-modal.open {
+            display: flex;
+        }
+
+        .doodle-content {
+            background: var(--paper);
+            color: var(--ink);
+            padding: 3rem;
+            max-width: 500px;
+            text-align: center;
+            border: 1px solid var(--ink);
+        }
+
+        /* Drawing Canvas */
+        .drawing-area {
+            border: 2px solid var(--ink);
+            background: #fcfcfc;
+            width: 100%;
+            height: 350px; /* Taller canvas */
+            cursor: crosshair;
+            margin-bottom: 1rem;
+            touch-action: none;
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.05);
+        }
+
+        /* --- DOOMSCROLL --- */
+        .doomscroll {
+            border-top: 10px solid var(--ink);
+            background: var(--paper);
+        }
+
+        .feed-header {
+            padding: var(--margin);
+            border-bottom: 1px solid var(--ink);
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+        }
+
+        #feed-container {
+            max-height: 60vh;
+            overflow-y: auto;
+            border-bottom: 1px solid var(--ink);
+        }
+
+        .feed-item {
+            padding: 2rem var(--margin);
+            border-bottom: 1px solid #ddd;
+            display: grid;
+            grid-template-columns: 120px 1fr;
+            gap: 2rem;
+            opacity: 0.6;
+            transition: opacity 0.2s;
+        }
+
+        .feed-item:hover {
+            opacity: 1;
+            background: #fff;
+        }
+
+        .feed-tag {
+            font-family: var(--font-data);
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            color: var(--highlight);
+            font-weight: bold;
+        }
+
+        /* --- NEWSLETTER --- */
+        .newsletter-section {
+            padding: 6rem var(--margin);
+            border-top: 1px solid var(--ink);
+            text-align: center;
+            background: var(--bureaucracy);
+        }
+
+        .input-group {
+            margin-top: 2rem;
+            display: inline-flex;
+            border: 1px solid var(--ink);
+            background: #fff;
+        }
+
+        .input-group input {
+            border: none;
+            padding: 15px;
+            font-family: var(--font-data);
+            width: 300px;
+            outline: none;
+            background: transparent;
+        }
+
+        .input-group button {
+            background: var(--ink);
+            color: #fff;
+            border: none;
+            padding: 0 25px;
+            font-family: var(--font-data);
+            cursor: pointer;
+            text-transform: uppercase;
+        }
+
+        .input-group button:hover {
+            background: var(--highlight);
+        }
+
+
+        .substack-embed-wrap {
+            margin-top: 2rem;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+
+        .substack-embed-wrap iframe {
+            width: 480px;
+            max-width: 100%;
+            height: 320px;
+            border: 1px solid #EEE;
+            background: #fff;
+        }
+
+        /* --- FOOTER --- */
+        .footer {
+            padding: 4rem var(--margin);
+            background: var(--ink);
+            color: var(--paper);
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+
+        .time-wasted-counter {
+            font-family: var(--font-data);
+            font-size: 3rem;
+            color: var(--highlight);
+        }
+
+        .footer-main {
+            max-width: 520px;
+        }
+
+        .social-links {
+            margin-top: 2rem;
+            display: flex;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+
+        .social-links a {
+            color: var(--paper);
+            text-decoration: none;
+            border: 1px solid var(--paper);
+            padding: 8px 14px;
+            font-family: var(--font-data);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            transition: all 0.2s ease;
+        }
+
+        .social-links a:hover {
+            background: var(--paper);
+            color: var(--ink);
+            transform: translateY(-2px);
+        }
+
+
+        /* --- SIDEBARS --- */
+        .sidebar-panel {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 650px;
+            max-width: 100%;
+            height: 100vh;
+            background: var(--paper);
+            color: var(--ink);
+            z-index: 2000;
+            padding: 4rem var(--margin);
+            overflow-y: auto;
+            transform: translateX(100%);
+            transition: transform 0.6s cubic-bezier(0.8, 0, 0.2, 1), box-shadow 0.6s ease;
+            box-shadow: none;
+            border-left: 1px solid var(--ink);
+        }
+
+        .sidebar-panel.open {
+            transform: translateX(0);
+            box-shadow: -20px 0 50px rgba(0, 0, 0, 0.3);
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            font-size: 1.5rem;
+            cursor: pointer;
+            font-family: var(--font-data);
+            border: 1px solid var(--ink);
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+
+        .close-btn:hover {
+            background: var(--ink);
+            color: var(--paper);
+        }
+
+        .long-read {
+            font-size: 1.15rem;
+            line-height: 1.6;
+            font-family: 'Georgia', serif;
+            color: #222;
+        }
+
+        .long-read h3 {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            font-weight: 400;
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .long-read p {
+            margin-bottom: 1.5rem;
+        }
+
+        .long-read p:first-of-type::first-letter {
+            float: left;
+            font-size: 3.5em;
+            line-height: 0.8;
+            padding-right: 0.1em;
+            font-weight: 400;
+            font-family: var(--font-display);
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .status-bar {
+                font-size: 0.65rem;
+            }
+
+            .brand-logo {
+                width: 115px;
+                max-height: 16px;
+            }
+
+            .main-title {
+                font-weight: 400;
+                -webkit-text-stroke: 0;
+            }
+
+            .issue-info {
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: space-between;
+                text-align: left;
+                gap: 0;
+            }
+
+            .issue-info span {
+                width: auto;
+            }
+
+            .issue-info span:first-child {
+                width: 100%;
+                margin-bottom: 5px;
+                border-bottom: 1px solid #ddd;
+                padding-bottom: 5px;
+            }
+
+            .manifesto-section {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .editorial-col {
+                border-left: none;
+                padding-left: 0;
+                border-bottom: 1px solid var(--ink);
+                padding-bottom: 2rem;
+            }
+
+            .cover {
+                height: 90vh;
+            }
+
+            .semaphore-section {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .fiction-section {
+                grid-template-columns: 1fr;
+            }
+
+            .main-title {
+                font-size: 15vw;
+            }
+
+            .sound-section {
+                grid-template-columns: 1fr;
+            }
+
+            .doodle-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .tile-game-grid {
+                grid-template-columns: repeat(5, 1fr);
+            }
+
+            .sidebar-panel {
+                width: 100%;
+            }
+
+            .feed-item {
+                grid-template-columns: 1fr;
+                gap: 0.5rem;
+            }
+
+            .menu-link {
+                font-size: 2.5rem;
+            }
+
+            .input-group {
+                display: flex;
+                flex-direction: column;
+                width: 100%;
+                border: none;
+                background: transparent;
+                gap: 10px;
+            }
+
+            .input-group input {
+                width: 100%;
+                border: 1px solid var(--ink);
+                background: #fff;
+            }
+
+            .input-group button {
+                width: 100%;
+                border: 1px solid var(--ink);
+                padding: 15px;
+            }
+
+            .footer {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 2rem;
+            }
+
+            .footer>div {
+                width: 100%;
+            }
+
+            .time-wasted-counter {
+                font-size: 2rem;
+                margin-top: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- DOODLE MODAL -->
+    <div class="doodle-modal" id="doodle-modal">
+        <div class="doodle-content">
+            <h3 class="serif" style="font-size: 2rem; margin-bottom: 1rem;" id="modal-title">Titolo</h3>
+            <p class="mono" id="modal-desc">Analisi...</p>
+            <button class="btn-link" style="margin-top: 2rem;" onclick="closeDoodleModal()">CHIUDI</button>
+        </div>
+    </div>
+
+    <!-- MENU OVERLAY -->
+    <div class="menu-overlay" id="menu-overlay">
+        <div class="menu-close" onclick="toggleMenu()">✕</div>
+        <ul class="menu-list">
+            <li><a href="#manifesto" class="menu-link" onclick="toggleMenu()">Nota editoriale</a></li>
+            <li><a href="#floor" class="menu-link" onclick="toggleMenu()">Geometrie</a></li>
+            <li><a href="#rituals" class="menu-link" onclick="toggleMenu()">Rituali</a></li>
+            <li><a href="#sounds" class="menu-link" onclick="toggleMenu()">Suoni</a></li>
+            <li><a href="#fiction" class="menu-link" onclick="toggleMenu()">Short story</a></li>
+            <li><a href="#history" class="menu-link" onclick="toggleMenu()">Storia della tecnologia</a></li>
+            <li><a href="#doodles" class="menu-link" onclick="toggleMenu()">Arte/Psicologia</a></li>
+        </ul>
+    </div>
+
+    <!-- STATUS BAR -->
+    <div class="status-bar mono">
+        <a class="brand-mark" href="#top" aria-label="Conventional home"><img src="img/logo_conventional.svg" alt="Conventional" class="brand-logo" onerror="this.style.display='none'; this.parentElement.classList.add('logo-missing');"></a>
+        <div id="clock">00:00:00</div>
+        <div class="menu-trigger" onclick="toggleMenu()">SOMMARIO [ + ]</div>
+    </div>
+
+    <!-- 1. COVER -->
+    <section class="cover" id="top">
+        <div class="ticket-wrapper">
+            <div class="ticket">
+                <div class="mono" style="font-size: 0.6rem; margin-bottom: 5px;">IL TUO TURNO</div>
+                <span class="ticket-number" id="ticket-number">---</span>
+                <div class="mono" style="font-size: 0.5rem; color: #888; margin-top:5px;">PRIMA DI TE: <span
+                        id="queue-count">...</span></div>
+            </div>
+        </div>
+
+        <div class="title-block">
+            <h1 class="main-title">The <em>waiting</em><br> room</h1>
+            <p class="serif" style="font-size: 1.5rem; margin-top: 2rem;">Un manuale per sopravvivere al tempo morto.
+            </p>
+        </div>
+
+        <div class="issue-info mono">
+            <span>PRICE: 10 MINUTI</span>
+            <span>EST. 2025</span>
+            <span>VOL. 0</span>
+        </div>
+
+        <div class="infinite-loader">
+            <div class="loader-bar"></div>
+        </div>
+    </section>
+
+    <!-- 2. MANIFESTO -->
+    <section class="manifesto-section" id="manifesto">
+        <div class="mono editorial-col" style="border:none; padding:0;">
+            <strong>NOTA EDITORIALE</strong><br>
+            <span style="color: #666; margin-top: 10px; display:block;">Tempo di lettura: Irrilevante</span>
+        </div>
+        <div>
+            <p class="manifesto-text serif">
+                Dalle sale d’aspetto ai treni in ritardo, dalle code che serpeggiano alle notifiche che non arrivano.
+                Questo numero esplora i margini e i micro-rituali di un mondo in pausa.
+            </p>
+            <p class="manifesto-body">
+                Non è un sito che raccoglie articoli. È una sala d'aspetto digitale. Mettetevi comodi. O scomodi. Non
+                importa, tanto dovete aspettare.
+            </p>
+        </div>
+    </section>
+
+    <!-- 3. FEATURE: PAVIMENTI E CONTARE LE MATTONELLE (UPDATED) -->
+    <section class="floor-section" id="floor">
+        <div style="margin-bottom: 3rem;">
+            <span class="mono" style="background: var(--ink); color: #fff; padding: 5px 10px;">OSSERVAZIONE</span>
+            <h2 class="serif" style="font-size: 3rem; margin-top: 1rem;">Contare le mattonelle</h2>
+            <p style="max-width: 500px;">In tutte le sale d’attesa, il primo contatto non è con l’impiegato, il medico o
+                il treno,
+                ma con il pavimento. Ogni spazio pubblico lo sceglie per un motivo diverso.</p>
+        </div>
+
+        <div class="floor-grid">
+            <div class="floor-tile">
+                <div class="tile-pattern pat-poste"></div>
+                <div>
+                    <h4 class="serif">Poste Italiane</h4>
+                    <p class="mono" style="font-size: 0.7rem; margin-top: 10px;">
+                        GRANIGLIA VENEZIANA. <br>L'effetto "caos controllato" serve a nascondere le pedate di chi
+                        aspetta da ore.
+                    </p>
+                </div>
+            </div>
+            <div class="floor-tile">
+                <div class="tile-pattern pat-court"></div>
+                <div>
+                    <h4 class="serif">Tribunale</h4>
+                    <p class="mono" style="font-size: 0.7rem; margin-top: 10px;">
+                        MARMO A SCACCHI. <br>Lucido, severo, ipnotico. Ti ricorda che sei una pedina in una partita più
+                        grande.
+                    </p>
+                </div>
+            </div>
+            <div class="floor-tile">
+                <div class="tile-pattern pat-hospital"></div>
+                <div>
+                    <h4 class="serif">Ospedale</h4>
+                    <p class="mono" style="font-size: 0.7rem; margin-top: 10px;">
+                        LINOLEUM ASETTICO. <br>Continuo, azzurrognolo, puntinato per non creare vertigini. Odora di
+                        disinfettante.
+                    </p>
+                </div>
+            </div>
+            <div class="floor-tile">
+                <div class="tile-pattern pat-station"></div>
+                <div>
+                    <h4 class="serif">Stazione</h4>
+                    <p class="mono" style="font-size: 0.7rem; margin-top: 10px;">
+                        GOMMA A BOLLI NERA. <br>Indistruttibile. Fatta per sopportare milioni di passi frettolosi e
+                        valigie pesanti.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- NEW: TILE COUNTING GAME -->
+        <div class="tile-counter-container">
+            <div style="display: flex; justify-content: space-between; align-items: baseline;">
+                <h3 class="serif" style="font-size: 1.5rem;">Passatempo: Conta le mattonelle</h3>
+                <div class="mono" style="color: var(--highlight);">CONTEGGIO: <span id="tile-count">0</span>/50</div>
+            </div>
+            <p class="mono" style="color: #666; font-size: 0.8rem; margin-top: 5px;">CLICCA SULLE MATTONELLE PER COLORARLE.</p>
+            
+            <div class="tile-game-grid" id="tile-game-grid">
+                <!-- JS Populates Grid -->
+            </div>
+            <p id="tile-win-msg" class="serif" style="font-style: italic; opacity: 0; transition: 0.5s; text-align: center;">"Hai perso 45 secondi della tua vita. Ottimo lavoro."</p>
+            <div style="text-align: center; margin-top: 10px;">
+                <button class="btn-link" onclick="resetTileGame()">RICOMINCIA (SONO ANNOIATO)</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. RITUALS (UPDATED: DEFAULT SCROLLBAR) -->
+    <section class="rituals-container" id="rituals">
+        <div style="padding: 0 var(--margin) 2rem;">
+            <h2 class="serif" style="font-size: 3rem;">Rituali di passaggio</h2>
+            <p class="mono">SCORRI PER INGANNARE L'ATTESA →</p>
+        </div>
+        <div class="rituals-track" id="rituals-scroll-track">
+            <div class="ritual-card">
+                <span class="mono" style="color:var(--highlight);">GROENLANDIA</span>
+                <h3 class="serif" style="font-size: 2rem; margin: 1rem 0;">Sputare il grasso</h3>
+                <p>Quando gli Inuit aspettano qualcuno, masticano grasso di foca e lo sputano. Un'ancora psicologica per
+                    "accorciare il tragitto".</p>
+            </div>
+            <div class="ritual-card">
+                <span class="mono" style="color:var(--highlight);">GIAPPONE</span>
+                <h3 class="serif" style="font-size: 2rem; margin: 1rem 0;">L'Attesa in Piedi</h3>
+                <p>Chi aspetta una mail urgente si alza. Rompe il loop mentale e dà al corpo una sensazione di movimento
+                    nell'immobilità.</p>
+            </div>
+            <div class="ritual-card">
+                <span class="mono" style="color:var(--highlight);">HONG KONG</span>
+                <h3 class="serif" style="font-size: 2rem; margin: 1rem 0;">La Moneta Tattile</h3>
+                <p>Gli anziani accarezzano una moneta aspettando il verde. La superficie liscia funziona come un
+                    mini-timer nervoso.</p>
+            </div>
+            <div class="ritual-card">
+                <span class="mono" style="color:var(--highlight);">ARGENTINA</span>
+                <h3 class="serif" style="font-size: 2rem; margin: 1rem 0;">Le Tre Nocche</h3>
+                <p>Mentre si aspetta l'acqua del Mate, si battono tre volte le nocche sul tavolo. "Sto aspettando, ma
+                    non sono impaziente."</p>
+            </div>
+            <div class="ritual-card">
+                <span class="mono" style="color:var(--highlight);">EMIRATI</span>
+                <h3 class="serif" style="font-size: 2rem; margin: 1rem 0;">I Due Datteri</h3>
+                <p>Si lasciano due datteri sul piatto. Uno per chi ospita, uno per chi arriva. Se l'ospite lo trova, sa
+                    che non è tardi.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. SOUNDSCAPES -->
+    <section class="sound-section" id="sounds">
+        <div>
+            <span class="mono" style="background: var(--ink); color: #fff; padding: 5px 10px;">UDITO</span>
+            <h2 class="serif" style="font-size: 3rem; margin-top: 1rem;">I Suoni del Ritardo</h2>
+            <p>Non solo visivo. L'attesa ha una frequenza. È il ronzio che riempie il silenzio imbarazzante.</p>
+        </div>
+        <div class="sound-visuals">
+            <div class="sound-track" role="button" tabindex="0" aria-label="Riproduci ronzio del microonde">
+                <button class="play-btn" type="button" aria-hidden="true" tabindex="-1">
+                    <div class="play-icon"></div>
+                </button>
+                <div style="flex-grow:1;">
+                    <div class="mono" style="margin-bottom:5px;">RONZIO DEL MICROONDE</div>
+                    <div class="wave-container wave-fast" id="wave1"></div>
+                    <div class="mono sound-meta"><span>02:00 — Frequenza domestica dell’impazienza.</span><span class="sound-status">IN ATTESA</span></div>
+                </div>
+                <audio preload="metadata" src="audio/ronzio-microonde.mp3"></audio>
+            </div>
+            <div class="sound-track" role="button" tabindex="0" aria-label="Riproduci freccia al semaforo rosso">
+                <button class="play-btn" type="button" aria-hidden="true" tabindex="-1">
+                    <div class="play-icon"></div>
+                </button>
+                <div style="flex-grow:1;">
+                    <div class="mono" style="margin-bottom:5px;">FRECCIA AL SEMAFORO ROSSO</div>
+                    <div class="wave-container wave-slow" id="wave2"></div>
+                    <div class="mono sound-meta"><span>00:37 — Il ticchettio più autoritario del marciapiede.</span><span class="sound-status">IN ATTESA</span></div>
+                </div>
+                <audio preload="metadata" src="audio/freccia-semaforo-rosso.mp3"></audio>
+            </div>
+            <div class="sound-track" role="button" tabindex="0" aria-label="Riproduci stampante in riscaldamento">
+                <button class="play-btn" type="button" aria-hidden="true" tabindex="-1">
+                    <div class="play-icon"></div>
+                </button>
+                <div style="flex-grow:1;">
+                    <div class="mono" style="margin-bottom:5px;">STAMPANTE IN RISCALDAMENTO</div>
+                    <div class="wave-container wave-stuck" id="wave3"></div>
+                    <div class="mono sound-meta"><span>∞ — Sta per partire. Forse.</span><span class="sound-status">IN ATTESA</span></div>
+                </div>
+                <audio preload="metadata" src="audio/stampante-riscaldamento.mp3"></audio>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. FICTION -->
+    <section class="fiction-section" id="fiction">
+        <div style="align-self: center;">
+            <span class="mono uppercase" style="border: 1px solid var(--ink); padding: 5px;">Short Story</span>
+            <h2 class="serif" style="font-size: 4rem; margin: 1.5rem 0; line-height: 0.9;">Ordinario.<br>Troppo
+                Ordinario.</h2>
+            <p style="font-size: 1.1rem; margin-bottom: 2rem;">
+                Il signor Rossi odiava le riconciliazioni. E ancora di più odiava l’uso sconsiderato che faceva la
+                Signorina Bianchi dei punti esclamativi.
+            </p>
+            <button class="btn-link" onclick="toggleStory()">LEGGI TUTTO IL DRAMMA BUROCRATICO →</button>
+        </div>
+
+        <div class="email-client">
+            <div class="email-header mono">
+                <div style="display:flex; gap:5px; margin-bottom:10px;">
+                    <div style="width:10px; height:10px; border-radius:50%; background:#ff5f56;"></div>
+                    <div style="width:10px; height:10px; border-radius:50%; background:#ffbd2e;"></div>
+                    <div style="width:10px; height:10px; border-radius:50%; background:#27c93f;"></div>
+                </div>
+                <strong>DA:</strong> Mario Rossi &lt;m.rossi@ordinario.com&gt;<br>
+                <strong>A:</strong> Sig.ra Bianchi &lt;admin@inferno.it&gt;<br>
+                <strong>OGGETTO:</strong> Re: Sollecito Riconciliazione Fatture (Urgentissimo!)
+            </div>
+            <div class="email-body">
+                <p>Gentile Signorina Bianchi,</p>
+                <p>La informo che, a causa di...</p>
+                <br>
+                <p style="color: #666; font-style: italic;">[Bozza salvata automaticamente alle 09:42]</p>
+                <br>
+                <p>...a causa di un <strong>micro-ciclone locale</strong> che ha colpito esclusivamente il mio numero
+                    civico...</p>
+                <p>Distinti Saluti,<br>M. Rossi</p>
+                <button
+                    style="margin-top: 20px; padding: 10px 20px; background: #ddd; border: 1px solid #999; cursor: not-allowed;"
+                    disabled>INVIA (Connessione assente...)</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. SEMAPHORES -->
+    <section class="semaphore-section" id="history">
+        <div class="light-box">
+            <div class="light red active" id="light-red"></div>
+            <div class="light yellow" id="light-yellow"></div>
+            <div class="light green" id="light-green"></div>
+            <div id="semaphore-timer" class="mono">--</div>
+            <div class="mono" style="margin-top: 20px; color: #666;">FIG. A: IL DITTATORE SILENZIOSO</div>
+        </div>
+        <div>
+            <span class="mono" style="color: var(--highlight);">STORIA DELLA TECNOLOGIA</span>
+            <h2 class="serif" style="font-size: 3.5rem; margin-top: 10px; color: #fff;">10 Dicembre 1868</h2>
+            <p style="font-size: 1.2rem; line-height: 1.6; margin-top: 2rem; color: #ccc;">
+                A Londra si accende il primo semaforo della storia. Un mix tra una nave pirata e un lampione vittoriano.
+                Funzionava a gas. Dopo un mese è esploso.
+            </p>
+            <p class="mono" style="color:var(--highlight); margin-top: 1rem; font-size: 0.8rem;">
+                *Attendere il verde per accedere all'articolo.
+            </p>
+            <button id="semaphore-btn" class="btn-link"
+                style="color: #fff; border-bottom: 1px solid #fff; margin-top: 2rem;" onclick="toggleArticle()"
+                disabled>
+                ATTENDERE PREGO...
+            </button>
+        </div>
+    </section>
+
+    <!-- 8. DOODLES -->
+    <section class="doodle-section" id="doodles">
+        <div style="text-align: center;">
+            <span class="mono" style="background: var(--ink); color: #fff; padding: 5px 10px;">PSICOLOGIA
+                INVOLONTARIA</span>
+            <h2 class="serif" style="font-size: 3rem; margin-top: 1rem;">La Galleria dello Scarabocchio</h2>
+            <p style="max-width: 600px; margin: 10px auto;">Spesso, mentre si aspetta, la mano disegna da sola. Ma prima di vedere gli scarabocchi degli altri, devi lasciare il tuo contributo al vuoto.</p>
+            <p class="mono" style="max-width: 600px; margin: 10px auto; color: #666; font-size: 0.7rem;">Lascia un segno e poi entra nell’archivio: ogni scarabocchio ha la sua diagnosi provvisoria.</p>
+        </div>
+
+        <!-- DRAW YOUR OWN -->
+        <div style="margin-top: 3rem; max-width: 600px; margin-left: auto; margin-right: auto;">
+            <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 10px;">
+                <h3 class="serif" style="font-size: 1.5rem;">Fai da Te</h3>
+                <span class="mono" style="font-size: 0.7rem; color: #666;">AREA DI SFOGO N. 42</span>
+            </div>
+            
+            <canvas id="drawCanvas" class="drawing-area"></canvas>
+            
+            <div style="display:flex; gap:10px; justify-content: center;">
+                <button class="mono"
+                    style="padding: 15px 30px; background: var(--ink); color: #fff; border:none; cursor:pointer; font-size: 1rem;"
+                    onclick="saveDoodle()">AGGIUNGI ALLA GALLERIA</button>
+                <button class="mono"
+                    style="padding: 15px 20px; background: #ddd; color: var(--ink); border:none; cursor:pointer;"
+                    onclick="clearCanvas()">CANCELLA</button>
+            </div>
+        </div>
+
+        <!-- GALLERY -->
+        <div class="doodle-gallery-wrapper" id="gallery-container">
+            <div style="text-align: center; margin-bottom: 2rem;">
+                <h3 class="serif" style="font-size: 2rem;">Archivio Pubblico</h3>
+                <p class="mono" style="color: #666;">CLICCA PER L'ANALISI PSICOLOGICA</p>
+            </div>
+
+            <div class="doodle-grid" id="doodle-grid">
+                <!-- Cubo 3D (Necker Cube) -->
+                <div class="doodle-item" onclick="analyzeDoodle('cubo')">
+                    <svg class="doodle-svg" viewBox="0 0 100 100">
+                        <!-- Front face -->
+                        <rect x="25" y="25" width="40" height="40" style="fill:none;" />
+                        <!-- Back face -->
+                        <polyline points="25,25 45,10 85,10 85,50 65,65" style="fill:none;" />
+                        <!-- Connections -->
+                        <line x1="65" y1="25" x2="85" y2="10" />
+                        <line x1="65" y1="65" x2="85" y2="50" />
+                        <!-- Hidden lines (dashed) -->
+                        <polyline points="45,10 45,50 85,50" style="stroke-dasharray: 4,2; opacity:0.5" />
+                        <line x1="25" y1="65" x2="45" y2="50" style="stroke-dasharray: 4,2; opacity:0.5" />
+                    </svg>
+                    <span class="mono" style="position:absolute; bottom:5px; right:5px; font-size:0.6rem;">"IL CUBO"</span>
+                </div>
+
+                <!-- L'Occhio -->
+                <div class="doodle-item" onclick="analyzeDoodle('occhio')">
+                    <svg class="doodle-svg" viewBox="0 0 100 100">
+                        <path d="M10,50 Q50,20 90,50 Q50,80 10,50 Z" />
+                        <circle cx="50" cy="50" r="15" />
+                        <circle cx="50" cy="50" r="5" style="fill:var(--ink)" />
+                        <line x1="50" y1="20" x2="50" y2="35" />
+                        <line x1="50" y1="65" x2="50" y2="80" />
+                    </svg>
+                    <span class="mono" style="position:absolute; bottom:5px; right:5px; font-size:0.6rem;">"L'OCCHIO"</span>
+                </div>
+
+                <!-- Firma Ripetuta -->
+                <div class="doodle-item" onclick="analyzeDoodle('firma')">
+                    <svg class="doodle-svg" viewBox="0 0 100 100">
+                        <path
+                            d="M10,30 C20,10 30,50 40,30 S60,10 70,30 S90,50 80,30 M15,50 C25,30 35,70 45,50 S65,30 75,50 S95,70 85,50 M20,70 C30,50 40,90 50,70 S70,50 80,70 S100,90 90,70" />
+                    </svg>
+                    <span class="mono" style="position:absolute; bottom:5px; right:5px; font-size:0.6rem;">"LA FIRMA"</span>
+                </div>
+
+                <!-- Annerire i Quadretti -->
+                <div class="doodle-item" onclick="analyzeDoodle('quadretti')">
+                    <svg class="doodle-svg" viewBox="0 0 100 100">
+                        <!-- Grid -->
+                        <path d="M20,20 L80,20 M20,40 L80,40 M20,60 L80,60 M20,80 L80,80" style="opacity:0.3" />
+                        <path d="M20,20 L20,80 M40,20 L40,80 M60,20 L60,80 M80,20 L80,80" style="opacity:0.3" />
+                        <!-- Filled cells scribbles -->
+                        <path d="M22,22 L38,38 M38,22 L22,38 M25,22 L25,38 M30,22 L30,38 M35,22 L35,38"
+                            style="stroke-width:2" />
+                        <path d="M42,42 L58,58 M58,42 L42,58 M42,45 L58,45 M42,50 L58,50 M42,55 L58,55"
+                            style="stroke-width:2" />
+                        <path d="M62,62 L78,78 M78,62 L62,78 M65,62 L75,78 M75,62 L65,78" style="stroke-width:2" />
+                    </svg>
+                    <span class="mono" style="position:absolute; bottom:5px; right:5px; font-size:0.6rem;">"ANNERIRE"</span>
+                </div>
+
+                <!-- La Spirale -->
+                <div class="doodle-item" onclick="analyzeDoodle('spirale')">
+                    <svg class="doodle-svg" viewBox="0 0 100 100">
+                         <!-- Spiral Path approximating a growing spiral -->
+                         <path d="M50,50 m0,0 
+                                  a5,5 0 0,1 10,0 
+                                  a10,10 0 0,1 -20,0 
+                                  a15,15 0 0,1 30,0 
+                                  a20,20 0 0,1 -40,0 
+                                  a25,25 0 0,1 50,0
+                                  a30,30 0 0,1 -60,0" style="fill:none; stroke-width: 1.5;"/>
+                    </svg>
+                    <span class="mono" style="position:absolute; bottom:5px; right:5px; font-size:0.6rem;">"LA SPIRALE"</span>
+                </div>
+
+                <!-- Le Frecce -->
+                <div class="doodle-item" onclick="analyzeDoodle('frecce')">
+                    <svg class="doodle-svg" viewBox="0 0 100 100">
+                        <line x1="20" y1="80" x2="80" y2="20" style="stroke-width: 2;"/>
+                        <polyline points="60,20 80,20 80,40" style="fill:none; stroke-width: 2;" />
+                        
+                        <line x1="30" y1="85" x2="60" y2="85" style="stroke-width: 2;"/>
+                        <polyline points="50,80 60,85 50,90" style="fill:none; stroke-width: 2;" />
+                        
+                        <line x1="15" y1="50" x2="50" y2="15" style="stroke-width: 2;"/>
+                        <polyline points="35,15 50,15 50,30" style="fill:none; stroke-width: 2;" />
+                    </svg>
+                    <span class="mono" style="position:absolute; bottom:5px; right:5px; font-size:0.6rem;">"LE FRECCE"</span>
+                </div>
+
+                <!-- Il Labirinto -->
+                <div class="doodle-item" onclick="analyzeDoodle('labirinto')">
+                    <svg class="doodle-svg" viewBox="0 0 100 100">
+                        <path d="M20,20 H80 V80 H20 V35 H65 V65 H35 V50 H55" />
+                        <path d="M25,25 H75 V75 H25" style="opacity:0.35; stroke-dasharray:3,3;" />
+                    </svg>
+                    <span class="mono" style="position:absolute; bottom:5px; right:5px; font-size:0.6rem;">"LABIRINTO"</span>
+                </div>
+
+                <!-- La Casetta -->
+                <div class="doodle-item" onclick="analyzeDoodle('casetta')">
+                    <svg class="doodle-svg" viewBox="0 0 100 100">
+                        <path d="M20,55 L50,25 L80,55" />
+                        <rect x="30" y="55" width="40" height="30" />
+                        <rect x="45" y="65" width="10" height="20" />
+                        <path d="M35,38 L35,28 L45,28 L45,32" />
+                    </svg>
+                    <span class="mono" style="position:absolute; bottom:5px; right:5px; font-size:0.6rem;">"CASETTA"</span>
+                </div>
+
+                <!-- Le Onde -->
+                <div class="doodle-item" onclick="analyzeDoodle('onde')">
+                    <svg class="doodle-svg" viewBox="0 0 100 100">
+                        <path d="M10,35 C20,20 30,50 40,35 S60,20 70,35 S90,50 95,35" />
+                        <path d="M10,50 C20,35 30,65 40,50 S60,35 70,50 S90,65 95,50" />
+                        <path d="M10,65 C20,50 30,80 40,65 S60,50 70,65 S90,80 95,65" />
+                    </svg>
+                    <span class="mono" style="position:absolute; bottom:5px; right:5px; font-size:0.6rem;">"LE ONDE"</span>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 9. THE VOID (DOOMSCROLL) (UPDATED) -->
+    <section class="doomscroll" id="void">
+        <div class="feed-header">
+            <h3 class="serif" style="font-size: 2.5rem;">L'Abisso dello Scrolling</h3>
+            <span class="mono">SCROLL TO WASTE TIME</span>
+        </div>
+        <div id="feed-container">
+            <!-- JS will populate -->
+        </div>
+    </section>
+
+    <!-- 10. NEWSLETTER -->
+    <section class="newsletter-section">
+        <span class="mono">IL PROSSIMO TURNO</span>
+        <h2 class="serif" style="font-size: 2.5rem; margin-top: 1rem;">Lascia la tua email.</h2>
+        <p style="margin-top: 1rem; color: #555; max-width: 520px; margin-left: auto; margin-right: auto;">
+            Ti avviseremo quando sarà il momento di aspettare di nuovo.
+        </p>
+
+        <div class="substack-embed-wrap">
+            <iframe src="https://conventionalmagazine.substack.com/embed" frameborder="0" scrolling="no"></iframe>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-main">
+            <h4 class="mono" style="margin-bottom: 2rem;">CONVENTIONAL MAGAZINE — VOL. 0</h4>
+            <p class="serif" style="font-size: 1.5rem; max-width: 400px; line-height: 1.2;">
+                "L'attesa attenua le passioni mediocri e aumenta le grandi." <br>
+                <span class="mono">- François de La Rochefoucauld</span>
+            </p>
+            <div class="social-links" aria-label="Social Conventional">
+                <a href="https://www.instagram.com/conventionalmag/" target="_blank" rel="noopener noreferrer">Instagram</a>
+                <a href="https://x.com/ConventionalMag" target="_blank" rel="noopener noreferrer">X</a>
+                <a href="https://www.threads.com/@conventionalmag" target="_blank" rel="noopener noreferrer">Threads</a>
+                <a href="https://medium.com/@conventionalmagazine" target="_blank" rel="noopener noreferrer">Medium</a>
+            </div>
+        </div>
+        <div style="text-align: right;">
+            <div class="mono" style="margin-bottom: 10px;">HAI INGANNATO L'ATTESA PER:</div>
+            <div class="time-wasted-counter" id="wasted-time">00:00:00</div>
+        </div>
+    </footer>
+
+    <!-- SIDEBAR 1: HISTORY (SEMAPHORES) -->
+    <div class="sidebar-panel" id="article-sidebar">
+        <div class="close-btn" onclick="toggleArticle()">✕</div>
+        <span class="mono" style="color: var(--highlight);">ARCHIVIO STORICO</span>
+        <h2 class="serif" style="font-size: 3.5rem; margin-top: 1.5rem; line-height: 1;">I Dittatori Silenziosi che
+            Governano le Nostre Strade</h2>
+        <h2 class="mono">Una storia (quasi) universale dei semafori</h2>
+        <p class="mono" style="margin: 1.5rem 0; color: #666;">TEMPO DI LETTURA: 6 MIN</p>
+        <hr style="margin: 3rem 0; border: 0; border-top: 1px solid var(--ink);">
+
+        <div class="long-read">
+            <!-- TITOLO SISTEMATO: Prima lettera con stile speciale nel primo paragrafo, non come titolo separato -->
+            <h3>L'epoca pre-semaforo</h3>
+            <h2 class="mono">Quando il traffico aveva un odore caratteristico</h2>
+            <br>
+            <p>Prima che i semafori illuminassero le nostre intersezioni con la loro autoritaria presenza, le strade
+                urbane erano un teatro di guerra civile a cadenza quotidiana. Non c'erano clacson, ma nitriti. Non
+                c'erano tamponamenti, ma collisioni tra carrozze trainate da cavalli che, per loro natura, avevano un
+                concetto di "distanza di sicurezza" piuttosto elastico.</p>
+            <p>La regolamentazione del traffico a cavallo ha radici antiche: Giulio Cesare aveva promulgato un’ordinanza
+                che vietava il transito ai veicoli a trazione animale nelle strade di Roma durante le prime 10 ore di
+                luce.</p>
+            <p>Le uniche eccezioni? Rifornimenti militari, servizi di nettezza urbana e, ovviamente, le carrozze che
+                trasportavano sacrifici umani agli dei pagani.
+                Questione di priorità.</p>
+            <p>Successivamente, la polizia diventa il segnale vivente. A Londra del 1722, ben due uomini erano stati
+                incaricati di gestire il traffico sul London Bridge: uno controllava il flusso verso la città, un altro
+                quello in uscita, entrambi garantendo che tutti restassero sul lato giusto della strada. </p>
+            <p>Negli Stati Uniti coloniali invece, gli olandesi importarono un sistema di licenze per i carrettieri che
+                includeva anche forme di discriminazione razziale nelle concessioni.</p>
+            <h3>Il Primo Semaforo</h3>
+            <h2 class="mono">Quando l’ingegno si è fatto esplosivo</h2>
+            <br>
+            <p>Il 10 dicembre 1868, in quello che oggi è il lato nord-est di Parliament Square a Londra, sorse una
+                struttura che sembrava un incrocio tra una nave pirata e un lampione vittoriano. Era il primo semaforo
+                della storia, e dichiarava guerra al caos.</p>
+            <p>L'architetto di questa rivoluzione? John Peake Knight, un ingegnere ferroviario che aveva fatto fortune
+                con i segnali semaforici per treni e pensò: "Perché non applicare la stessa logica ai carri e ai
+                pedoni?". </p>
+            <p>La sua creazione era un tripudio di eleganza vittoriana: una colonna cava in ghisa decorata con foglie di
+                acanto dorata, coronata da una scatola ottagonale con un pigna di ananas. Sopra, due braccia semaforiche
+                che durante il giorno segnalavano "stop" quando erano verticali e "procedere con cautela" a 45 gradi.
+            </p>
+            <p>Ma la vera magia accadeva di notte: due lampade a gas, una rossa e una verde, illuminate da un poliziotto
+                che manovrava una leva a 24 ore su 24
+            </p>
+            <p>Il successo fu immediato: i cocchieri, contro ogni previsione, obbedivano. L'Illustrated Times del 1869
+                esultò: "Gli autisti regolari sono, fino a un livello inaspettato, sensibili ai segnali".
+            </p>
+            <p>Sfortunatamente il 2 gennaio 1869 una perdita di gas riempì la torre cava e l'esplosione uccise il povero
+                poliziotto di turno. Londra rinunciò ai semafori per altri 40 anni.
+            </p>
+            <p>Il primo esperimento durò meno di un mese, dimostrando che persino le idee geniali possono finire con una
+                botte di benzina e una scintilla.
+            </p>
+            <h3>L’era elettronica</h3>
+            <h2 class="mono">Il trionfo del procedere con cautela</h2>
+            <br>
+            <p>Dopo la parentesi esplosiva di Londra, il mondo dovette aspettare l'avvento dell'elettricità per
+                riprovare. Il primo semaforo elettrico si accese a Cleveland, Ohio, nel 1914. Ma la vera svolta arrivò
+                da un poliziotto di Detroit, William Potts, che nel 1920 aggiunse una luce gialla tra il rosso e il
+                verde.</p>
+            <p>Perché il giallo? Perché a Detroit, ignorare il rosso era diventato uno sport cittadino. Potts pensò che
+                un segnale di "attenzione imminente" potesse ridurre gli incidenti. Il giallo non era casuale: proveniva
+                direttamente dal sistema ferroviario, dove segnalava "procedere con cautela".</p>
+            <p>Il sistema a tre colori si diffuse come una moda, ma con varianti bizzarre. Negli Stati Uniti, alcuni
+                semafori avevano le parole "Stop" e "Go" scritte in bianco su sfondo verde, con lampade a cherosene per
+                la notte, altri stati avevano design diversi, creando un patchwork di segnali che confondevano i
+                viaggiatori più dei cartelli stradali oggi.</p>
+            <p>Nel 1935, la Federal Highway Administration pubblicò il Manual on Uniform Traffic Control Devices,
+                imponendo finalmente standard nazionali. Il rosso significava "stop", il giallo "prepararsi a
+                fermarsi", il verde "procedere". Fine delle discussioni. O quasi.</p>
+            <h3>La psicologia dei colori</h3>
+            <h2 class="mono">Perché non rosa, celeste e magenta?</h2>
+            <br>
+            <p>La scelta dei colori non è frutto di un capriccio estetico, ma di una combinazione di fattori pratici,
+                psicologici e storici.</p>
+            <p>Il rosso ha la lunghezza d'onda più lunga dello spettro visibile, il che lo rende visibile a distanze
+                maggiori e in condizioni di nebbia o polvere. Simbolicamente, inoltre, è associato al sangue e al fuoco
+                da millenni, metafore abbastanza immediate di pericolo. </p>
+            <p>Nel mondo ferroviario del XIX secolo, il rosso segnalava "pericolo" o "stop" perché i treni hanno bisogno
+                di molto spazio per frenare. Un treno che vede rosso sa che deve fermarsi chilometri prima.</p>
+            <p>Il verde ha una storia controintuitiva. Nelle origini ferroviarie, il verde significava "cautela" e il
+                bianco "via libera". Ma il bianco creava problemi: di notte, i conducenti confondevano la luce bianca
+                con le stelle. </p>
+            <p>Il disastro fu compiuto quando, nel 1914, una lente rossa cadde da un segnale, lasciando la luce bianca
+                esposta e causando una collisione ferroviaria catastrofica. Da allora, il verde è diventato il "via
+                libera" standard, essendo facilmente distinguibile.</p>
+            <p>Il giallo (o ambra) è il compromesso perfetto: posizionato tra rosso e verde nello spettro, è facilmente
+                distinguibile e psicologicamente associato all'attenzione. Nel 1968, la Convenzione di Vienna sui
+                Segnali Stradali lo ha reso obbligatorio per i paesi aderenti.</p>
+            <h3>L'era moderna</h3>
+            <h2 class="mono">Da dispositivo di sicurezza a strumento di pianificazione urbana</h2>
+            <br>
+            <p>Oggi, i semafori non sono più semplici lanterne a gas. Sono complessi nodi logici, computerizzati,
+                sincronizzati e controllati da algoritmi che ottimizzano il flusso del traffico. Innovazioni
+                pionieristiche come quella di Toronto, che nel 1967 usò per prima i computer per il controllo del
+                traffico, hanno permesso a città come New York di risparmiare milioni di dollari con sistemi
+                automatizzati.</p>
+            <p>I semafori, che nascono con una causa umile, proteggere i pedoni dai carri a cavallo, oggi vengono
+                paradossalmente considerati dai pedoni come ostacoli, non come una protezione.
+                Per i ciclisti invece, rimangono semplici suggerimenti.
+            </p>
+            <h3>Conclusione </h3>
+            <p>La prossima volta che sarete fermi a un semaforo rosso, nel mezzo di una attesa forzata, ricordate che
+                state partecipando a un rito centenario. È un'invenzione nata da un ingegnere ferroviario, perfezionata
+                da un poliziotto di Detroit e standardizzata da convenzioni internazionali. E ricordate anche i
+                poliziotti londinesi che, per almeno un mese nel 1868, hanno rischiato la vita ogni notte per assicurare
+                il vostro sicuro attraversamento.</p>
+            <p>Il minimo che potete fare, in quell'attesa forzata, è non suonare il clacson.</p>
+            <blockquote
+                style="border-left: 3px solid var(--highlight); padding-left: 20px; font-style: italic; color: #555; margin: 2rem 0;">
+                "L'individuo medio trascorre circa due settimane in attesa che il semaforo cambi."
+            </blockquote>
+        </div>
+    </div>
+
+    <!-- SIDEBAR 2: FICTION (STORY) -->
+    <div class="sidebar-panel" id="story-sidebar">
+        <div class="close-btn" onclick="toggleStory()">✕</div>
+        <span class="mono" style="color: var(--highlight);">SHORT STORY</span>
+        <h2 class="serif" style="font-size: 3.5rem; margin-top: 1.5rem; line-height: 1;">Racconto stra-ordinario.</h2>
+        <p class="mono" style="margin: 1.5rem 0; color: #666;">AUTORE: ANONIMO | TEMPO: 6 MIN</p>
+        <hr style="margin: 3rem 0; border: 0; border-top: 1px solid var(--ink);">
+
+        <div class="long-read">
+            <p>Ordinario.
+                Questa era la prima parola che sarebbe saltata in mente a chiunque avesse mai desiderato parlare di lui.
+                Non che questo avvenisse spesso, comunque.
+                Una vita assolutamente ordinaria.
+                Casa e poi ufficio, ufficio e poi casa, qualche cena occasionale con gli amici dell’università, ogni tre
+                o quattro mesi, all’incirca.
+                Il dramma più grande della sua vita consisteva nello schivare un ciclista a lato strada, o nel
+                rovesciare accidentalmente il caffè.
+                Fino a quel momento, perlomeno.</p>
+
+            <p>Sullo monitor, che emetteva una perfida luce azzurra, campeggiava la sua nemesi di oggi.
+                Oggetto: Sollecito Riconciliazione Fatture Mesi Precedenti (Urgentissimo!).
+                Il signor Rossi odiava le riconciliazioni. E ancora di più odiava l’uso sconsiderato che faceva la
+                Signorina Bianchi dei punti esclamativi.
+                Certo, normalmente non sarebbe stata una tragedia, ma non oggi.</p>
+
+            <p>Oggi sembrava che tutte le minime disgrazie dell'universo si fossero coalizzate per cadergli sulla testa.
+                Prima il toast bruciato e annerito, poi la sigaretta spezzata nel pacchetto in modo irrecuperabile, il
+                suo parcheggio fisso occupato da un'ignota utilitaria, e il calore asfissiante già alle prime ore.</p>
+
+            <p>No, oggi non poteva proprio sottostare alle meschine angherie della Bianchi.
+                Gli serviva una scusa ineluttabile. Non un banale mal di testa, che richiedeva una nota del medico e lo
+                sguardo di compatimento della segretaria, ma qualcosa di monumentale, di assolutamente inattaccabile.
+                Qualcosa che rendesse la riconciliazione delle fatture l’ultimo, ridicolo, problema della giornata.</p>
+
+            <p>Iniziò a scrivere:
+                "Gentile Signorina Bianchi, la informo che, a causa di..."
+                Si fermò, lasciando la frase sospesa. Quale disastro era abbastanza credibile da neutralizzare
+                l'Urgentissimo! della Bianchi e da imporre il suo immediato allontanamento?</p>
+
+            <p>Il primo pensiero fu per il gatto fuggito. La Signorina Bianchi amava i felini con fervore quasi
+                religioso, e la preoccupazione per una creatura smarrita avrebbe sicuramente generato compassione e una
+                sospensione del giudizio. L'alibi perfetto, se non fosse stato per un dettaglio: il signor Rossi era
+                risaputo odiatore di gatti. Spiegare come un tale abominio peloso fosse entrato in casa sua, e perché si
+                fosse preso la briga di cercarlo, avrebbe richiesto un complesso backstory di menzogne che andava oltre
+                la sua pigrizia.</p>
+
+            <p>Scartò il felino per un alibi più convenzionale, ma si scontrò con la statistica. La morte della nonna
+                era una scusa intramontabile, peccato che la nonna, la sua ultima, fosse già morta tre volte per saltare
+                delle riunioni cruciali negli ultimi due anni. Usarla una quarta volta avrebbe richiesto la produzione
+                di certificati di morte che, per uno che evitava persino le riconciliazioni, era un impegno eccessivo e
+                rischioso.</p>
+
+            <p>L'immaginazione si fece più oscura. La soluzione più pulita era l'eliminazione del problema alla fonte.
+                Si figurò un atto di aggressione alimentare: presentarsi dalla Bianchi con un muffin artigianale,
+                apparentemente innocuo, ma contenente una sostanza in grado di indurre un malessere dirompente e,
+                soprattutto, rapido. Un lassativo in dosi massicce, o una pianta velenosa a basso dosaggio.
+                Peccato fosse atto che, pur sollevandolo dalla riconciliazione, lo avrebbe trasformato in un potenziale
+                assassino (o, peggio, in un trafficante di dolciumi sospetti). Il rischio di essere interrogato sui suoi
+                hobby culinari superava di gran lunga il fastidio di riconciliare una fattura.</p>
+
+            <p>Forse era meglio, non un sabotaggio visibile, ma una trappola sottile: un po’ di colla, e la Bianchi,
+                nel tentativo di riporre i suoi Urgentissimi! archivi, si sarebbe ritrovata con le mani incollate al
+                cassetto, il che l’avrebbe costretta a una fuga immediata dall'ufficio e a una visita imbarazzante al
+                pronto soccorso, dove avrebbe dovuto spiegare ai medici come si fosse incautamente fusa con la sua
+                cancelleria.</p>
+
+            <p>Il signor Rossi si ritrovò a sorridere di un sorriso sottile, quasi compiaciuto, per la pulizia
+                concettuale dell'atto. Ma si bloccò quasi subito. Un sabotaggio di tale efficacia richiedeva una
+                pianificazione preventiva, un acquisto di colla in contanti e, soprattutto, l’ingresso furtivo
+                nell'ufficio della Bianchi prima dell'orario di lavoro. Queste azioni, pur giustificate dalla gravità
+                del sollecito, richiedevano un dispendio di energie, una produzione di caos, che era l'esatto opposto di
+                ciò che il signor Rossi cercava. La colla, per quanto potente, avrebbe lasciato tracce di DNA, impronte
+                digitali e, peggio ancora, domande. Il rischio di passare dalla posizione di procrastinatore a quella di
+                sospettato numero uno in un’indagine sulla sicurezza sul lavoro era un onere troppo gravoso da
+                sostenere. L'azione richiedeva troppa azione.</p>
+
+            <p>Si arrese al fatto che il dramma dovesse riguardare la sua persona, ma con un risvolto inatteso. Pensò
+                a un ricovero d'urgenza. Non per una malattia, ma per l'improvvisa comparsa di un tatuaggio illegale e
+                osceno sul suo avambraccio, fatto nel sonno da chissà chi, e che richiedeva l'immediata rimozione laser.
+                L'imbarazzo e la necessità di coprire l'oltraggio avrebbero giustificato la sua assenza, ma la Bianchi
+                avrebbe voluto vedere il tatuaggio per credere al dramma. E lui non voleva mostrare nulla alla Bianchi.
+            </p>
+
+            <p>Il culmine della sua fantasia giustificativa fu raggiunto con la visione di un disastro meteorologico.
+                Una comunicazione ufficiale e personale del servizio meteorologico che lo informava di un micro-ciclone
+                locale che avrebbe colpito solo la sua via. Un evento atmosferico di proporzioni bibliche, ma di portata
+                condominiale. La necessità di barricare porte e finestre contro la furia del vento – e l'impossibilità
+                fisica di raggiungere l'ufficio – sarebbero state inattaccabili.</p>
+
+            <p>Rossi sorrise. Era perfetto. Assurdo, ma perfetto.</p>
+
+            <p>Mentre il dito esitava sul tasto "Invia", un rumore sordo scosse i vetri dell'ufficio. Il cielo,
+                limpido fino a un secondo prima, si tinse di un violaceo innaturale, il colore che la Signorina Bianchi
+                amava per le sue unghie. Un vento improvviso, localizzato, iniziò a fischiare esattamente fuori dalla
+                sua finestra, piegando l'unico, triste albero del parcheggio aziendale in un inchino grottesco.</p>
+
+            <p>Rossi guardò fuori, pallido. La natura aveva un senso dell'ironia terribile, e una precisione logistica
+                impensabile per la burocrazia. Non era un alibi. Stava succedendo davvero.</p>
+
+            <p>E la cosa peggiore non era il micro-ciclone. Era che ora, dovendo barricarsi in ufficio per
+                sopravvivere all'ira degli elementi, non aveva più nessuna, plausibile scusa per non finire quelle
+                maledette riconciliazioni. Non poteva andarsene. Il mondo, con la sua crudeltà, gli aveva tolto
+                l'ultima, sottile via di fuga.</p>
+
+            <p>Con la rassegnazione di un uomo che aveva sconfitto l'ordinario solo per essere condannato da un
+                disastro, Rossi spinse il tasto.</p>
+        </div>
+    </div>
+    <script type="module" src="cookieconsent-config.js"></script>
+
+
+    <script>
+        // 1. CLOCK & TIMER
+        function updateClock() {
+            const now = new Date();
+            document.getElementById('clock').innerText = now.toLocaleTimeString('it-IT');
+        }
+        setInterval(updateClock, 1000);
+
+        let secondsWasted = 0;
+        function updateWastedTime() {
+            secondsWasted++;
+            const date = new Date(0);
+            date.setSeconds(secondsWasted);
+            document.getElementById('wasted-time').innerText = date.toISOString().substr(11, 8);
+        }
+        setInterval(updateWastedTime, 1000);
+
+        // 2. SEMAPHORE LOGIC (UPDATED WITH COUNTDOWN)
+        let semaphoreTimer = 30;
+        let semaphoreActive = false;
+        let intervalId;
+
+        function startSemaphoreTimer() {
+            if (semaphoreActive) return;
+            semaphoreActive = true;
+            const timerDisplay = document.getElementById('semaphore-timer');
+            const btn = document.getElementById('semaphore-btn');
+
+            // Force Red Light initially
+            document.getElementById('light-red').classList.add('active');
+            document.getElementById('light-yellow').classList.remove('active');
+            document.getElementById('light-green').classList.remove('active');
+
+            intervalId = setInterval(() => {
+                semaphoreTimer--;
+                timerDisplay.innerText = `-${semaphoreTimer}s`;
+
+                if (semaphoreTimer <= 0) {
+                    clearInterval(intervalId);
+                    timerDisplay.innerText = "VIA LIBERA";
+                    document.getElementById('light-red').classList.remove('active');
+                    document.getElementById('light-green').classList.add('active');
+                    btn.disabled = false;
+                    btn.innerText = "LEGGI LA STORIA COMPLETA DE I DITTATORI SILENZIOSI →";
+                }
+            }, 1000);
+        }
+
+        // Intersection Observer for Semaphore
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    startSemaphoreTimer();
+                }
+            });
+        }, { threshold: 0.5 });
+
+        observer.observe(document.getElementById('history'));
+
+        // 3. TOGGLE SIDEBARS
+        function toggleArticle() {
+            document.getElementById('article-sidebar').classList.toggle('open');
+        }
+        function toggleStory() {
+            document.getElementById('story-sidebar').classList.toggle('open');
+        }
+
+        function toggleMenu() {
+            document.getElementById('menu-overlay').classList.toggle('open');
+        }
+
+        // 4. SOUND WAVES + AUDIO PLAYERS
+        function createWaves(containerId, count) {
+            const container = document.getElementById(containerId);
+            for (let i = 0; i < count; i++) {
+                const bar = document.createElement('div');
+                bar.className = 'wave-bar';
+                bar.dataset.index = i;
+                bar.style.animationDelay = Math.random() + 's';
+                container.appendChild(bar);
+            }
+        }
+        createWaves('wave1', 40);
+        createWaves('wave2', 40);
+        createWaves('wave3', 40);
+
+        const soundTracks = document.querySelectorAll('.sound-track');
+
+        function setTrackStatus(track, label) {
+            const status = track.querySelector('.sound-status');
+            if (status) status.innerText = label;
+        }
+
+        function paintWaveProgress(track, progress) {
+            const bars = track.querySelectorAll('.wave-bar');
+            const percent = Math.max(0, Math.min(100, progress * 100));
+            track.style.setProperty('--progress', `${percent}%`);
+
+            bars.forEach((bar, index) => {
+                const ratio = (index + 1) / bars.length;
+                if (ratio <= progress) {
+                    const gray = Math.round(170 - (ratio * 90));
+                    bar.style.backgroundColor = `rgb(${gray}, ${gray}, ${gray})`;
+                } else {
+                    bar.style.backgroundColor = '#d8d8d8';
+                }
+            });
+        }
+
+        function stopOtherTracks(currentTrack) {
+            soundTracks.forEach(track => {
+                if (track === currentTrack) return;
+                const audio = track.querySelector('audio');
+                if (!audio) return;
+                audio.pause();
+                track.classList.remove('is-playing');
+                setTrackStatus(track, audio.currentTime > 0 ? 'IN PAUSA' : 'IN ATTESA');
+            });
+        }
+
+        soundTracks.forEach(track => {
+            const audio = track.querySelector('audio');
+            if (!audio) return;
+
+            track.addEventListener('click', async () => {
+                stopOtherTracks(track);
+
+                if (audio.paused) {
+                    try {
+                        await audio.play();
+                        track.classList.add('is-playing');
+                        setTrackStatus(track, 'IN RIPRODUZIONE');
+                    } catch (error) {
+                        setTrackStatus(track, 'FILE AUDIO MANCANTE');
+                    }
+                } else {
+                    audio.pause();
+                    track.classList.remove('is-playing');
+                    setTrackStatus(track, 'IN PAUSA');
+                }
+            });
+
+            track.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    track.click();
+                }
+            });
+
+            audio.addEventListener('timeupdate', () => {
+                if (!audio.duration || Number.isNaN(audio.duration)) return;
+                paintWaveProgress(track, audio.currentTime / audio.duration);
+            });
+
+            audio.addEventListener('ended', () => {
+                track.classList.remove('is-playing');
+                paintWaveProgress(track, 1);
+                setTrackStatus(track, 'COMPLETATO');
+            });
+
+            audio.addEventListener('error', () => {
+                track.classList.remove('is-playing');
+                setTrackStatus(track, 'FILE AUDIO MANCANTE');
+            });
+        });
+
+        // 5. DOOMSCROLL FEED (UPDATED)
+        const feedContainer = document.getElementById('feed-container');
+        const feedContent = [
+            {
+                        "tag": "CARICAMENTO",
+                        "text": "La rotella gira. Non promette niente, ma lo fa con continuità.",
+                        "time": "Adesso"
+            },
+            {
+                        "tag": "TICKET",
+                        "text": "Il numero chiamato è vicino al tuo solo per crudeltà tipografica.",
+                        "time": "Adesso"
+            },
+            {
+                        "tag": "EMAIL",
+                        "text": "Nessuna nuova email. Aggiorni comunque, per scrupolo e debolezza.",
+                        "time": "1m fa"
+            },
+            {
+                        "tag": "MICROONDE",
+                        "text": "Gli ultimi dieci secondi hanno una densità diversa dal resto del tempo.",
+                        "time": "2m fa"
+            },
+            {
+                        "tag": "SEMAFORO",
+                        "text": "Il verde arriva appena guardi altrove. È una regola non scritta.",
+                        "time": "3m fa"
+            },
+            {
+                        "tag": "STAMPANTE",
+                        "text": "Pronta. Elaborazione. In pausa. Pronta. Un piccolo teatro amministrativo.",
+                        "time": "4m fa"
+            },
+            {
+                        "tag": "AUTOBUS",
+                        "text": "In arrivo tra 2 minuti. Da 9 minuti.",
+                        "time": "5m fa"
+            },
+            {
+                        "tag": "DOWNLOAD",
+                        "text": "99%. Il resto appartiene alla fede.",
+                        "time": "6m fa"
+            },
+            {
+                        "tag": "MODULO",
+                        "text": "Campo obbligatorio: spiegare perché questo campo è obbligatorio.",
+                        "time": "7m fa"
+            },
+            {
+                        "tag": "SPID",
+                        "text": "Autorizza l’accesso dall’app. L’app chiede di autorizzare l’accesso.",
+                        "time": "8m fa"
+            },
+            {
+                        "tag": "PASSWORD",
+                        "text": "Ti abbiamo inviato un codice. Il codice sta facendo il suo percorso interiore.",
+                        "time": "9m fa"
+            },
+            {
+                        "tag": "CALL CENTER",
+                        "text": "Sei il prossimo in linea. La linea, però, è un concetto elastico.",
+                        "time": "10m fa"
+            },
+            {
+                        "tag": "ASCENSORE",
+                        "text": "Il display cambia piano. Tu resti nello stesso punto della tua vita.",
+                        "time": "12m fa"
+            },
+            {
+                        "tag": "SALA D’ATTESA",
+                        "text": "La porta si apre. Esce qualcuno. Non eri tu. Non era ancora il momento.",
+                        "time": "14m fa"
+            },
+            {
+                        "tag": "TABELLONE",
+                        "text": "Ritardo in aggiornamento. Anche il ritardo sta aspettando informazioni.",
+                        "time": "15m fa"
+            },
+            {
+                        "tag": "PAGAMENTO",
+                        "text": "Transazione in corso. Non aggiornare la pagina. Non respirare troppo forte.",
+                        "time": "16m fa"
+            },
+            {
+                        "tag": "POSTE",
+                        "text": "Sportello libero. Nessuno si alza. Serve il coraggio del primo cittadino.",
+                        "time": "18m fa"
+            },
+            {
+                        "tag": "CAF",
+                        "text": "Manca una fotocopia della fotocopia. Preferibilmente fronte-retro.",
+                        "time": "20m fa"
+            },
+            {
+                        "tag": "RECEPTION",
+                        "text": "Il campanello sul banco è lì. Lo premi e ti senti immediatamente colpevole.",
+                        "time": "22m fa"
+            },
+            {
+                        "tag": "TRENO",
+                        "text": "Il binario sarà comunicato a breve. Il concetto di breve resta aperto.",
+                        "time": "24m fa"
+            },
+            {
+                        "tag": "AGGIORNAMENTO",
+                        "text": "Download completato. Preparazione dell’installazione. Preparazione della preparazione.",
+                        "time": "26m fa"
+            },
+            {
+                        "tag": "BATTERIA",
+                        "text": "1%. Il caricatore è certamente vicino, ma non in questa dimensione.",
+                        "time": "28m fa"
+            },
+            {
+                        "tag": "NOTIFICA",
+                        "text": "Hai sbloccato il telefono per controllare niente. Niente era ancora lì.",
+                        "time": "30m fa"
+            },
+            {
+                        "tag": "BACHECA",
+                        "text": "Avviso urgente. Pubblicato tre mesi fa. Ancora perfettamente minaccioso.",
+                        "time": "32m fa"
+            },
+            {
+                        "tag": "FILA",
+                        "text": "La coda accanto procede. La tua riflette sul significato del movimento.",
+                        "time": "35m fa"
+            },
+            {
+                        "tag": "AREA PERSONALE",
+                        "text": "Servizio momentaneamente non disponibile. Il momento non viene specificato.",
+                        "time": "38m fa"
+            },
+            {
+                        "tag": "CONVENTIONAL",
+                        "text": "Una cosa ordinaria, osservata abbastanza a lungo, inizia a comportarsi male.",
+                        "time": "40m fa"
+            }
+];
+
+        function createFeedItem() {
+            const item = feedContent[Math.floor(Math.random() * feedContent.length)];
+            const div = document.createElement('div');
+            div.className = 'feed-item';
+            div.innerHTML = `
+                <div class="feed-tag">${item.tag} <br> <span style="color:#999; margin-top:5px; display:block; font-weight:normal;">${item.time}</span></div>
+                <div style="font-family: var(--font-body); font-size: 1.2rem; line-height: 1.4;">${item.text}</div>
+            `;
+            return div;
+        }
+
+        for (let i = 0; i < 15; i++) { feedContainer.appendChild(createFeedItem()); }
+
+        feedContainer.addEventListener('scroll', () => {
+            if ((feedContainer.scrollTop + feedContainer.clientHeight) >= feedContainer.scrollHeight - 100) {
+                for (let i = 0; i < 3; i++) { feedContainer.appendChild(createFeedItem()); }
+            }
+        });
+
+        // 6. GENERATORE TICKET
+        function generateTicket() {
+            const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            const letter = letters.charAt(Math.floor(Math.random() * letters.length));
+            const num = Math.floor(Math.random() * 100);
+            const people = Math.floor(Math.random() * (2000 - 400 + 1)) + 400;
+
+            document.getElementById('ticket-number').innerText = `${letter}-${num}`;
+            document.getElementById('queue-count').innerText = people;
+        }
+        generateTicket();
+
+        // 7. DOODLE LOGIC & DRAWING CANVAS
+        const doodleData = {
+            'cubo': { title: 'Il Cubo di Necker', desc: 'Disegnare oggetti tridimensionali indica una mente analitica che cerca struttura nel caos. Cerchi di vedere tutti i lati della situazione.' },
+            'occhio': { title: 'L\'Occhio Onnisciente', desc: 'Indica vigilanza e una certa dose di paranoia. Ti senti osservato o giudicato. O forse sei tu che giudichi gli altri.' },
+            'firma': { title: 'La Firma Ripetuta', desc: 'Un classico segno di egocentrismo o ricerca di identità. Stai cercando di affermare la tua esistenza in un momento di noia.' },
+            'quadretti': { title: 'Annerire i Quadretti', desc: 'Ansia latente e bisogno di ordine. Riempire gli spazi vuoti ti dà un senso di completamento temporaneo.' },
+            'spirale': { title: 'La Spirale Infinita', desc: 'Simbolo di evoluzione o confusione. Indica che stai girando intorno a un problema senza risolverlo, oppure che stai crescendo spiritualmente. Dipende se la spirale va dentro o fuori.' },
+            'frecce': { title: 'Le Frecce', desc: 'Ambizioso e aggressivo. Stai puntando a un obiettivo, o forse stai solo cercando disperatamente l\'uscita più vicina.' },
+            'labirinto': { title: 'Il Labirinto', desc: 'Stai cercando una via d\'uscita, ma con una certa eleganza. Il problema è che l\'hai disegnata tu e non hai comunque previsto l\'uscita.' },
+            'casetta': { title: 'La Casetta', desc: 'Bisogno di rifugio, nostalgia da quaderno a quadretti, desiderio di una stanza dove nessuno ti chieda quando arriva il tuo turno.' },
+            'onde': { title: 'Le Onde', desc: 'Pensiero oscillante. Non hai ancora deciso se stai aspettando con calma o se stai lentamente evaporando.' }
+        };
+
+        function analyzeDoodle(type) {
+            const data = doodleData[type];
+            if (data) {
+                document.getElementById('modal-title').innerText = data.title;
+                document.getElementById('modal-desc').innerText = data.desc;
+                document.getElementById('doodle-modal').classList.add('open');
+            }
+        }
+
+        function closeDoodleModal() {
+            document.getElementById('doodle-modal').classList.remove('open');
+        }
+
+        // Canvas Setup
+        const canvas = document.getElementById('drawCanvas');
+        const ctx = canvas.getContext('2d');
+        let drawing = false;
+        let hasDrawnOnCanvas = false;
+        const doodleStorageKey = 'conventional-volume-0-local-doodles';
+        const maxStoredDoodles = 8;
+
+        function getStoredDoodles() {
+            try {
+                return JSON.parse(localStorage.getItem(doodleStorageKey) || '[]');
+            } catch (error) {
+                return [];
+            }
+        }
+
+        function storeDoodle(dataUrl) {
+            try {
+                const stored = getStoredDoodles();
+                stored.unshift(dataUrl);
+                localStorage.setItem(doodleStorageKey, JSON.stringify(stored.slice(0, maxStoredDoodles)));
+            } catch (error) {
+                console.warn('Archivio non disponibile. Lo scarabocchio resta visibile solo per questa sessione.');
+            }
+        }
+
+        function revealDoodleGallery(scroll = false) {
+            const gallery = document.getElementById('gallery-container');
+            gallery.classList.add('visible');
+            if (scroll) {
+                setTimeout(() => {
+                    gallery.scrollIntoView({ behavior: 'smooth' });
+                }, 300);
+            }
+        }
+
+        function addUserDoodleToGrid(dataUrl, prepend = true) {
+            const grid = document.getElementById('doodle-grid');
+            const newDiv = document.createElement('div');
+            newDiv.className = 'doodle-item';
+            newDiv.innerHTML = `
+                <img src="${dataUrl}" alt="Scarabocchio archiviato" style="width:80%; height:80%; object-fit:contain;">
+                <span class="mono" style="position:absolute; bottom:5px; right:5px; font-size:0.6rem;">"TUO"</span>
+            `;
+            newDiv.onclick = function () {
+                document.getElementById('modal-title').innerText = 'Il Tuo Scarabocchio';
+                document.getElementById('modal-desc').innerText = 'Indecifrabile. Probabilmente un segno di genio incompreso o di noia mortale.';
+                document.getElementById('doodle-modal').classList.add('open');
+            };
+
+            if (prepend) {
+                grid.insertBefore(newDiv, grid.firstChild);
+            } else {
+                grid.appendChild(newDiv);
+            }
+        }
+
+        function loadStoredDoodles() {
+            const stored = getStoredDoodles();
+            if (!stored.length) return;
+            stored.slice().reverse().forEach(dataUrl => addUserDoodleToGrid(dataUrl, true));
+            revealDoodleGallery(false);
+        }
+
+        // Resize canvas correctly
+        function resizeCanvas() {
+            const rect = canvas.getBoundingClientRect();
+            canvas.width = rect.width;
+            canvas.height = rect.height;
+        }
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+
+        function startDraw(e) {
+            drawing = true;
+            draw(e);
+        }
+
+        function endDraw() {
+            drawing = false;
+            ctx.beginPath();
+        }
+
+        function draw(e) {
+            if (!drawing) return;
+            const rect = canvas.getBoundingClientRect();
+            const x = (e.clientX || e.touches[0].clientX) - rect.left;
+            const y = (e.clientY || e.touches[0].clientY) - rect.top;
+
+            hasDrawnOnCanvas = true;
+
+            ctx.lineWidth = 2;
+            ctx.lineCap = 'round';
+            ctx.strokeStyle = '#111';
+
+            ctx.lineTo(x, y);
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.moveTo(x, y);
+        }
+
+        canvas.addEventListener('mousedown', startDraw);
+        canvas.addEventListener('mouseup', endDraw);
+        canvas.addEventListener('mousemove', draw);
+        // Touch support
+        canvas.addEventListener('touchstart', (e) => { e.preventDefault(); startDraw(e); });
+        canvas.addEventListener('touchend', endDraw);
+        canvas.addEventListener('touchmove', (e) => { e.preventDefault(); draw(e); });
+
+        function clearCanvas() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            hasDrawnOnCanvas = false;
+        }
+
+        function saveDoodle() {
+            if (!hasDrawnOnCanvas) {
+                document.getElementById('modal-title').innerText = 'Archivio Rifiutato';
+                document.getElementById('modal-desc').innerText = 'Il vuoto è interessante, ma qui serve almeno un segno.';
+                document.getElementById('doodle-modal').classList.add('open');
+                return;
+            }
+
+            const dataUrl = canvas.toDataURL('image/png');
+            addUserDoodleToGrid(dataUrl, true);
+            storeDoodle(dataUrl);
+            clearCanvas();
+            revealDoodleGallery(true);
+        }
+
+        loadStoredDoodles();
+
+        // --- NEW: TILE COUNTING GAME LOGIC ---
+        let tilesCounted = 0;
+        const totalTiles = 50;
+        const tileGrid = document.getElementById('tile-game-grid');
+
+        function initTileGame() {
+            tileGrid.innerHTML = '';
+            tilesCounted = 0;
+            document.getElementById('tile-count').innerText = '0';
+            document.getElementById('tile-win-msg').style.opacity = '0';
+
+            for (let i = 1; i <= totalTiles; i++) {
+                const tile = document.createElement('div');
+                tile.className = 'game-tile';
+                tile.dataset.index = i; // Store number
+                
+                tile.onclick = function() {
+                    if (!this.classList.contains('counted')) {
+                        this.classList.add('counted');
+                        tilesCounted++;
+                        document.getElementById('tile-count').innerText = tilesCounted;
+                        
+                        // Check Win
+                        if(tilesCounted === totalTiles) {
+                            document.getElementById('tile-win-msg').style.opacity = '1';
+                        }
+                    }
+                };
+                tileGrid.appendChild(tile);
+            }
+        }
+
+        function resetTileGame() {
+            initTileGame();
+        }
+
+        // Initialize game on load
+        initTileGame();
+
+    </script>
+</body>
+
+</html>
