@@ -1,0 +1,396 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#F7F3EA">
+  <meta name="description" content="Conventional, Volume 1 — Lost and Found. Tracce umane del quotidiano.">
+  <meta property="og:title" content="Conventional — Volume 1 / Lost and Found">
+  <meta property="og:description" content="Un volume digitale sulle tracce lasciate dall'uso, dal passaggio e dall'assenza.">
+  <title>Conventional — Volume 1 / Lost and Found</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Lisu+Bosa:ital,wght@0,400;0,500;1,400&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
+  <link rel="stylesheet" href="final.css">
+  <script>document.documentElement.classList.add("js");</script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Salta al contenuto</a>
+
+  <header class="site-header" id="siteHeader">
+    <a class="site-header__brand" href="#cover" aria-label="Conventional, torna alla copertina">Conventional</a>
+    <p class="site-header__folio" id="headerFolio" aria-live="polite">Copertina</p>
+    <p class="site-header__volume">Vol. 1 · Lost and Found</p>
+    <span class="site-header__progress" aria-hidden="true"><i id="headerProgress"></i></span>
+  </header>
+
+  <nav class="chapter-nav" aria-label="Capitoli del volume">
+    <span class="chapter-nav__track" aria-hidden="true"><i id="chapterProgress"></i></span>
+    <a href="#chapter-01" data-nav-chapter="01"><span>01</span><em>Tracce visibili</em></a>
+    <a href="#chapter-02" data-nav-chapter="02"><span>02</span><em>Percorsi d’uso</em></a>
+    <a href="#chapter-03" data-nav-chapter="03"><span>03</span><em>Ciò che resta</em></a>
+  </nav>
+
+  <main id="main">
+
+    <!-- ============ COPERTINA ============ -->
+    <section class="cover" id="cover" aria-label="Copertina del volume">
+      <div class="cover__register grid-shell">
+        <p>Conventional / Rivista indipendente</p>
+        <p>Volume 1 · N° 01</p>
+        <p>Tracce umane del quotidiano</p>
+      </div>
+
+      <div class="cover__composition grid-shell">
+        <div class="cover__title">
+          <p class="folio-label">Lost property office / Reperto 000</p>
+          <h1 aria-label="Lost and Found">
+            <span class="title-mask"><span>Lost and</span></span>
+            <span class="title-mask"><span>Found</span></span>
+          </h1>
+          <p class="cover__deck">Un volume sulle superfici alterate, i gesti ripetuti e le presenze che diventano leggibili solo dopo essere passate.</p>
+        </div>
+
+        <figure class="cover__media media-frame" id="coverMedia">
+          <div class="cover-media-art" aria-hidden="true">
+            <span class="cover-media-art__number">01</span>
+            <span class="cover-media-art__label">Lost property<br>Ordinary evidence</span>
+            <i></i>
+            <strong>Volume<br>One</strong>
+            <span class="cover-media-art__state" id="coverState">Superficie / Clean</span>
+          </div>
+          <figcaption>Fig. 00 — La superficie prima del contatto</figcaption>
+        </figure>
+
+        <button class="fingerprint-plate" id="fingerprintPlate" type="button" aria-pressed="false"
+          aria-label="Lascia un'impronta e rivela il titolo del volume">
+          <span class="fingerprint-plate__surface" aria-hidden="true">
+            <svg class="fingerprint" viewBox="0 0 120 140">
+              <path d="M61 10C31 10 10 34 10 66c0 23 4 45-5 63"></path>
+              <path d="M61 22c-23 0-39 18-39 43 0 26 5 44-4 67"></path>
+              <path d="M61 34c-16 0-27 13-27 31 0 27 7 46 0 67"></path>
+              <path d="M61 46c-9 0-15 8-15 19 0 27 9 43 5 67"></path>
+              <path d="M61 10c30 0 51 24 51 56 0 23-4 45 5 63"></path>
+              <path d="M61 22c23 0 39 18 39 43 0 26-5 44 4 67"></path>
+              <path d="M61 34c16 0 27 13 27 31 0 27-7 46 0 67"></path>
+              <path d="M61 46c9 0 15 8 15 19 0 27-9 43-5 67"></path>
+              <path d="M61 58v74"></path>
+            </svg>
+          </span>
+          <span class="fingerprint-plate__label"><span class="touch-label">Appoggia il dito</span><span class="click-label">Fai clic</span></span>
+        </button>
+
+        <p class="cover__side-copy">Le cose ordinarie parlano piano. Bisogna guardarle dopo.</p>
+      </div>
+
+      <div class="cover__scroll grid-shell" aria-hidden="true">
+        <span>Scorri per aprire il volume</span><i></i>
+      </div>
+    </section>
+
+    <!-- ============ TRANSIZIONE 01 ============ -->
+    <section class="chapter-transition chapter-transition--one" id="transition-01" aria-label="Capitolo 1, Tracce visibili">
+      <div class="chapter-transition__panel">
+        <p class="chapter-transition__meta">Conventional / Volume 1</p>
+        <p class="chapter-transition__index" aria-hidden="true">01</p>
+        <h2><span class="title-mask"><span>Tracce</span></span><span class="title-mask"><span>visibili</span></span></h2>
+        <span class="chapter-transition__rule" aria-hidden="true"></span>
+        <p class="chapter-transition__note">Dall’impronta lasciata sulla copertina inizia l’inventario: ciò che l’uso rende leggibile a occhio nudo.</p>
+      </div>
+    </section>
+
+    <!-- ============ CAPITOLO 01 ============ -->
+    <div class="chapter-act" id="chapter-01" data-chapter="01" data-chapter-label="01 / Tracce visibili">
+
+      <section class="premise section-grid" id="premessa" aria-labelledby="premiseTitle">
+        <header class="section-head premise__heading">
+          <p class="folio-label" data-rise>01.1 / Premessa editoriale</p>
+          <h2 id="premiseTitle" class="masked-heading">
+            <span class="title-mask"><span>Tutto lascia</span></span>
+            <span class="title-mask"><span>qualcosa.</span></span>
+          </h2>
+          <p class="premise__ghost" aria-hidden="true">resta</p>
+        </header>
+        <div class="premise__copy">
+          <p class="dropcap" data-rise>Le tracce non sono sempre spettacolari. Più spesso sono piccole, laterali, quasi fastidiose.</p>
+          <p data-rise>Un bordo consumato, una macchia che nessuno rivendica, un oggetto appoggiato “solo per un attimo” e rimasto lì per settimane.</p>
+          <p data-rise>Questo volume osserva ciò che resta dopo il gesto: superfici alterate, oggetti deformati, percorsi improvvisati, presenze leggibili solo quando il corpo è già uscito dalla stanza.</p>
+          <aside class="found-note" data-rise>
+            <span>Appunto trovato</span>
+            <p>La polvere è tempo che ha trovato una superficie.</p>
+          </aside>
+        </div>
+      </section>
+
+      <section class="field-notes section-grid" id="field-notes" aria-labelledby="fieldNotesTitle">
+        <header class="section-head field-notes__intro">
+          <p class="folio-label" data-rise>01.2 / Field notes</p>
+          <h2 id="fieldNotesTitle" class="masked-heading">
+            <span class="title-mask"><span>Osservazioni</span></span>
+            <span class="title-mask"><span>ordinarie</span></span>
+          </h2>
+          <p class="lede" data-rise>Sette appunti raccolti sul campo. Riconoscine fino a tre: le tue scelte resteranno annotate sullo scontrino finale.</p>
+          <p class="section-head__counter" id="notesCounter" aria-live="polite">0 / 3 selezionate</p>
+        </header>
+        <div class="field-notes__field" id="notesField"></div>
+      </section>
+
+      <section class="inventory" id="inventario" aria-labelledby="inventoryTitle">
+        <header class="section-head grid-shell">
+          <p class="folio-label" data-rise>01.3 / Inventario delle tracce</p>
+          <h2 id="inventoryTitle" class="masked-heading">
+            <span class="title-mask"><span>Reperti</span></span>
+            <span class="title-mask"><span>ordinari</span></span>
+          </h2>
+          <p class="lede" data-rise>Diciotto oggetti e comportamenti catalogati in due modi: una lettura guidata, per essere attraversata, e un indice, per essere consultato.</p>
+        </header>
+
+        <div class="guided grid-shell" aria-label="Lettura guidata dei reperti">
+          <div class="guided__head">
+            <p class="guided__mode">Lettura guidata · 5 reperti</p>
+            <div class="guided__controls">
+              <p class="guided__counter" id="guidedCounter" aria-live="polite">01 / 05</p>
+              <button class="guided__nav" id="guidedPrev" type="button" aria-label="Reperto precedente">←</button>
+              <button class="guided__nav" id="guidedNext" type="button" aria-label="Reperto successivo">→</button>
+            </div>
+          </div>
+          <div class="guided__stage" id="guidedStage"></div>
+        </div>
+
+        <div class="trace-index-wrap section-grid" aria-label="Indice completo dei reperti">
+          <header class="trace-index-wrap__head">
+            <p class="folio-label" data-rise>Indice · consultazione</p>
+            <p data-rise>Diciotto reperti in ordine di archivio. Sfoglia l’indice: ogni riga apre il suo cassetto.</p>
+          </header>
+          <div class="trace-index" id="traceIndex"></div>
+          <aside class="trace-preview" id="tracePreview" aria-live="polite">
+            <p class="trace-preview__eyebrow">Cassetto / 01</p>
+            <p class="trace-preview__number" aria-hidden="true">01</p>
+            <div class="trace-preview__copy">
+              <p>Archivio / Rep. 01 · Casa</p>
+              <h3>La saponetta consumata male</h3>
+              <p>Seleziona un reperto dall’indice per aprire il suo cassetto editoriale.</p>
+            </div>
+          </aside>
+        </div>
+      </section>
+    </div>
+
+    <!-- ============ TRANSIZIONE 02 ============ -->
+    <section class="chapter-transition chapter-transition--two" id="transition-02" aria-label="Capitolo 2, Percorsi d'uso">
+      <div class="chapter-transition__panel">
+        <p class="chapter-transition__meta">Dal reperto al passaggio</p>
+        <p class="chapter-transition__index" aria-hidden="true">02</p>
+        <h2><span class="title-mask"><span>Percorsi</span></span><span class="title-mask"><span>d’uso</span></span></h2>
+        <span class="chapter-transition__rule" aria-hidden="true"></span>
+        <p class="chapter-transition__note">Le tracce non stanno ferme: disegnano itinerari dentro la casa, dentro le abitudini, dentro le interfacce.</p>
+      </div>
+    </section>
+
+    <!-- ============ CAPITOLO 02 ============ -->
+    <div class="chapter-act" id="chapter-02" data-chapter="02" data-chapter-label="02 / Percorsi d’uso">
+
+      <section class="house section-grid" id="casa" aria-labelledby="houseTitle">
+        <header class="section-head house__intro">
+          <p class="folio-label" data-rise>02.1 / Mappa domestica</p>
+          <h2 id="houseTitle" class="masked-heading">
+            <span class="title-mask"><span>Ogni stanza</span></span>
+            <span class="title-mask"><span>conserva</span></span>
+            <span class="title-mask"><span>qualcosa.</span></span>
+          </h2>
+          <p class="lede" data-rise>La casa non è uno sfondo: è una macchina lenta che registra dove passiamo e cosa rimandiamo. Apri gli otto indizi: il tuo percorso resterà disegnato sulla pianta.</p>
+        </header>
+        <div class="house__map-wrap">
+          <div class="house-map" id="houseMap" role="group" aria-label="Pianta domestica interattiva con otto indizi">
+            <svg class="house-plan" viewBox="0 0 1000 680" preserveAspectRatio="none" aria-hidden="true">
+              <rect class="plan-wall" x="30" y="30" width="940" height="620"></rect>
+              <path class="plan-wall" d="M330 30 V 250 M330 330 V 500"></path>
+              <path class="plan-wall" d="M30 300 H 210 M290 300 H 330"></path>
+              <path class="plan-wall" d="M330 500 H 560 M640 500 H 970"></path>
+              <path class="plan-wall" d="M660 500 V 650"></path>
+              <path class="plan-wall" d="M30 500 H 140"></path>
+              <text class="plan-label" x="52" y="66">Bagno</text>
+              <text class="plan-label" x="352" y="66">Cucina</text>
+              <text class="plan-label" x="52" y="340">Disimpegno</text>
+              <text class="plan-label" x="352" y="546">Soggiorno</text>
+              <text class="plan-label" x="690" y="546">Camera</text>
+              <text class="plan-label" x="52" y="630">Ingresso</text>
+              <path class="house-route" id="houseRoutePath" d=""></path>
+            </svg>
+          </div>
+          <article class="room-reading" id="roomReading" aria-live="polite">
+            <p>Indizio / 00</p>
+            <h3>La casa è ancora chiusa.</h3>
+            <span>8 ambienti, nessun indizio aperto. Tocca un punto numerato sulla pianta.</span>
+          </article>
+        </div>
+      </section>
+
+      <section class="gestures" id="gesti" aria-labelledby="gesturesTitle">
+        <div class="gestures__stage">
+          <div class="gestures__meta grid-shell">
+            <p class="folio-label">02.2 / Gesti ripetuti</p>
+            <p id="gestureIndex">01 / 10</p>
+          </div>
+          <div class="gesture-log grid-shell">
+            <div class="gesture-log__active" id="gestureSurface">
+              <h2 id="gesturesTitle">Gesture<br>Log</h2>
+            </div>
+            <ol class="gesture-log__list" id="gestureList" aria-label="Archivio completo dei gesti"></ol>
+          </div>
+          <p class="gestures__caption">La ripetizione trasforma il gesto in archivio.</p>
+        </div>
+      </section>
+
+      <section class="desire-paths" id="desire-paths" aria-labelledby="desireTitle">
+        <div class="desire-paths__stage section-grid">
+          <div class="desire-diagram" data-media-frame>
+            <svg viewBox="0 0 700 760" role="img" aria-label="Diagramma: il percorso previsto e il sentiero creato dall'uso">
+              <rect x="20" y="20" width="660" height="720"></rect>
+              <path class="planned-path" pathLength="1" d="M100 650 H590 V115"></path>
+              <path class="used-path used-path--wide" pathLength="1" d="M100 650 C220 510 370 340 590 115"></path>
+              <path class="used-path used-path--thin" pathLength="1" d="M118 654 C260 498 386 334 574 108"></path>
+              <path class="case-path case-path--space" pathLength="1" d="M100 650 C175 525 355 390 590 115"></path>
+              <path class="case-path case-path--home" pathLength="1" d="M100 650 C285 610 390 300 590 115"></path>
+              <path class="case-path case-path--digital" pathLength="1" d="M100 650 C210 430 470 420 590 115"></path>
+              <text x="92" y="700">A / Previsto</text>
+              <text x="478" y="88">B / Usato</text>
+            </svg>
+          </div>
+          <article class="desire-paths__copy">
+            <p class="folio-label">02.3 / Desire paths</p>
+            <h2 id="desireTitle" class="masked-heading">
+              <span class="title-mask"><span>La strada che</span></span>
+              <span class="title-mask"><span>non era prevista</span></span>
+            </h2>
+            <p class="lede">Ogni sistema immagina un utente ideale. Poi arriva una persona vera e passa da un’altra parte.</p>
+            <p>I desire paths sono sentieri che compaiono dove nessuno aveva previsto un passaggio. Nascono perché molte persone compiono la stessa deviazione, finché la deviazione diventa percorso.</p>
+            <p>Succede anche negli spazi digitali: un gruppo con una sola persona diventa un blocco note, uno screenshot diventa memoria provvisoria.</p>
+          </article>
+        </div>
+        <div class="deviation-cases section-grid" id="deviationCases" aria-label="Tre forme di deviazione"></div>
+      </section>
+    </div>
+
+    <!-- ============ TRANSIZIONE 03 ============ -->
+    <section class="chapter-transition chapter-transition--three" id="transition-03" aria-label="Capitolo 3, Ciò che resta">
+      <div class="chapter-transition__panel">
+        <p class="chapter-transition__meta">Dopo il passaggio</p>
+        <p class="chapter-transition__index" aria-hidden="true">03</p>
+        <h2><span class="title-mask"><span>Ciò che</span></span><span class="title-mask"><span>resta</span></span></h2>
+        <span class="chapter-transition__rule" aria-hidden="true"></span>
+        <p class="chapter-transition__note">Una deviazione finisce. La sua forma resta: sugli oggetti, sulle superfici e — alla fine — su questo volume.</p>
+      </div>
+    </section>
+
+    <!-- ============ CAPITOLO 03 ============ -->
+    <div class="chapter-act" id="chapter-03" data-chapter="03" data-chapter-label="03 / Ciò che resta">
+
+      <section class="wear" id="usura" aria-labelledby="wearTitle">
+        <header class="section-head grid-shell wear__intro">
+          <p class="folio-label" data-rise>03.1 / Catalogo dell’usura</p>
+          <h2 id="wearTitle" class="masked-heading">
+            <span class="title-mask"><span>Oggetti</span></span>
+            <span class="title-mask"><span>alterati.</span></span>
+          </h2>
+          <p class="lede" data-rise>Nessun evento straordinario: solo la ripetizione che lavora lentamente e lascia una forma.</p>
+        </header>
+        <div class="wear-stack grid-shell" id="wearStack"></div>
+        <div class="wear-index section-grid">
+          <header>
+            <p class="folio-label" data-rise>Catalogue index</p>
+            <h3 data-rise>Forme rimaste fuori dalla pila.</h3>
+          </header>
+          <div class="wear-index__list" id="wearIndex"></div>
+        </div>
+      </section>
+
+      <section class="scanner-section" id="invisibili" aria-labelledby="scannerTitle">
+        <header class="section-head grid-shell scanner-section__intro">
+          <p class="folio-label" data-rise>03.2 / Tracce invisibili</p>
+          <h2 id="scannerTitle" class="masked-heading">
+            <span class="title-mask"><span>Ciò che resta</span></span>
+            <span class="title-mask"><span>senza mostrarsi</span></span>
+          </h2>
+          <p class="lede" data-rise>La presenza a volte arriva in ritardo. Muovi la luce radente sulla superficie: cinque frammenti aspettano di essere letti.</p>
+        </header>
+        <div class="scanner-shell grid-shell">
+          <div class="scanner-stage">
+            <div class="scanner" id="scanner" tabindex="0" role="application"
+              aria-label="Superficie da ispezionare. Muovi la luce con il puntatore, trascina il cursore o usa i tasti freccia.">
+              <div class="scanner__base" aria-hidden="true">
+                <span>Superficie / 07</span><span>Luce radente</span><span>Indizi non materiali</span>
+              </div>
+              <div class="scanner__revealed" id="scannerRevealed"></div>
+              <div class="scanner__light" aria-hidden="true"></div>
+              <button class="scanner__handle" id="scannerHandle" type="button" aria-label="Trascina la luce sulla superficie"><span></span></button>
+              <p class="scanner__status" id="scannerStatus" aria-live="polite">0 / 5 frammenti leggibili</p>
+            </div>
+          </div>
+          <aside class="scanner-reading" id="scannerReading" aria-live="polite">
+            <p>Lettura / In attesa</p>
+            <h3>La superficie non ha ancora parlato.</h3>
+            <p>Sposta la luce: ogni frammento scoperto resta disponibile qui per la lettura completa.</p>
+            <div class="scanner-reading__tabs" id="scannerTabs" aria-label="Frammenti scoperti"></div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="quiz-receipt section-grid" id="quiz" aria-labelledby="quizTitle">
+        <header class="section-head quiz-receipt__intro">
+          <p class="folio-label" data-rise>03.3 / Lost receipt</p>
+          <h2 id="quizTitle" class="masked-heading">
+            <span class="title-mask"><span>La visita</span></span>
+            <span class="title-mask"><span>diventa reperto</span></span>
+          </h2>
+          <p class="lede" data-rise>Cinque domande sulle tue abitudini. Alla fine, il volume emette una ricevuta personale: niente di speciale, precisamente.</p>
+        </header>
+        <div class="quiz">
+          <nav class="quiz__steps" id="quizSteps" aria-label="Avanzamento del questionario"></nav>
+          <form id="quizForm" class="quiz__form"></form>
+        </div>
+        <aside class="receipt-paper" id="receiptPaper" aria-live="polite">
+          <div class="receipt-paper__head"><span>Conventional</span><span>Vol. 01</span></div>
+          <p>Scontrino non fiscale / Passaggio locale</p>
+          <div class="receipt-paper__rule"><i></i></div>
+          <h3 id="receiptTitle">Reperto in attesa</h3>
+          <div class="receipt-paper__lines" id="receiptLines"><p>La ricevuta si compone mentre rispondi.</p></div>
+          <div class="receipt-paper__evidence" id="receiptEvidence"></div>
+          <div class="receipt-paper__rule"><i></i></div>
+          <p class="receipt-paper__total" id="receiptTotal">Nothing special.</p>
+          <div class="receipt-paper__barcode" aria-hidden="true"></div>
+          <p class="receipt-paper__number" id="receiptNumber">0000 0000 0000</p>
+          <button class="receipt-paper__export" id="receiptExport" type="button" disabled>
+            Esporta lo scontrino · PNG
+          </button>
+          <p class="receipt-paper__hint" id="receiptExportHint">Disponibile dopo la quinta risposta.</p>
+        </aside>
+      </section>
+
+      <footer class="ending section-grid" id="fine">
+        <p class="folio-label" data-rise>Fine del volume / Stato della superficie</p>
+        <h2 class="masked-heading">
+          <span class="title-mask"><span>Non è più</span></span>
+          <span class="title-mask"><span>come l’hai trovata.</span></span>
+        </h2>
+        <div class="ending__colophon">
+          <p id="endingSummary" data-rise>Il volume conserva la forma delle tue scelte.</p>
+          <dl class="ending__credits" data-rise>
+            <div><dt>Testata</dt><dd>Conventional — rivista indipendente</dd></div>
+            <div><dt>Volume</dt><dd>1 · Lost and Found — Tracce umane del quotidiano</dd></div>
+            <div><dt>Capitoli</dt><dd>01 Tracce visibili · 02 Percorsi d’uso · 03 Ciò che resta</dd></div>
+            <div><dt>Colofone</dt><dd>Composto in Source Serif, Lisu Bosa e DM Mono. Nessun reperto è stato spostato.</dd></div>
+          </dl>
+          <a class="ending__back" href="#cover" data-rise>Ritorna alla copertina ↑</a>
+        </div>
+        <span class="ending__mark" aria-hidden="true">C</span>
+      </footer>
+    </div>
+  </main>
+
+  <script defer src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollTrigger.min.js"></script>
+  <script defer src="data.js"></script>
+  <script defer src="final.js"></script>
+</body>
+</html>
