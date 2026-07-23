@@ -1,0 +1,1 @@
+import{t as e}from"./index-DoZx-NBz.js";import{t}from"./LocalImageReader-3rDs7eSI.js";var n=e();function r(e){return(0,n.jsx)(t,{kind:`coffee`,...e})}export{r as default};
