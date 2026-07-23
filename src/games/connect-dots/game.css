@@ -1,0 +1,7 @@
+.dots-board { position:relative; width:min(100%, 580px); aspect-ratio:1; margin:0 auto; background:var(--blue); border:var(--line); touch-action:none; }
+.dots-board svg { position:absolute; inset:0; width:100%; height:100%; overflow:visible; }
+.dots-board polyline { fill:none; stroke:var(--ink); stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round; }
+.dots-board polyline.echo { stroke:var(--paper); stroke-width:.7; opacity:.75; }
+.dots-board button { position:absolute; translate:-50% -50%; width:44px; height:44px; border-radius:50%; font:10px var(--mono); cursor:pointer; }
+.dots-board button::before { content:""; position:absolute; inset:14px; background:var(--ink); border-radius:50%; }
+.dots-board button.done::before { background:var(--terracotta); }.dots-board button.current { outline:2px dashed var(--ink); outline-offset:0; }

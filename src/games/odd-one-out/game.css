@@ -1,0 +1,6 @@
+.odd-viewport { min-height: 420px; overflow: auto; border: var(--line); background: var(--blue); touch-action: pan-x pan-y; }
+.odd-scene { width: 700px; min-height: 520px; padding: 38px; display: grid; grid-template-columns: repeat(5, 1fr); gap: 24px; transform-origin: top left; background: repeating-radial-gradient(circle at 30% 20%, rgba(255,255,255,.28) 0 1px, transparent 2px 14px); }
+.odd-scene button { min-height: 86px; position: relative; padding: 32px 4px 5px; border: 1px dashed #2d58a4; background: rgba(247,243,234,.2); font: 10px/1.1 var(--mono); cursor: pointer; }
+.odd-scene button i { position: absolute; left: calc(50% - 16px); top: 4px; width: 32px; height: 45px; border: 2px solid #2d58a4; border-radius: 50% 50% 45% 45%; }
+.odd-scene button i::before { content:""; position:absolute; width:15px; height:15px; border:2px solid #2d58a4; background:var(--blue); border-radius:50%; left:6px; top:-8px; }
+.odd-scene button span,.odd-scene button small { display:block; }.odd-scene button small { margin-top:4px; color:#2d58a4; }.odd-scene button.found { background: var(--olive); }

@@ -1,0 +1,2 @@
+.dust-game canvas { width:100%; height:auto; max-height:64vh; border:var(--line); touch-action:none; display:block; cursor:crosshair; }
+.dust-controls label { display:flex; align-items:center; gap:8px; }.dust-actions { display:flex; flex-wrap:wrap; gap:10px; }

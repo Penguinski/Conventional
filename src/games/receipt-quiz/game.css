@@ -1,0 +1,5 @@
+.quiz-question { max-width:650px; margin:0 auto; border:var(--line); padding:22px; background:var(--olive); }
+.quiz-question>span,.receipt-result>span { font:11px var(--mono); }.quiz-question h2,.receipt-result h2 { font:700 36px/1 var(--serif-display); }
+.quiz-question button { width:100%; min-height:52px; border-top:1px solid var(--ink); text-align:left; cursor:pointer; }
+.receipt-result { max-width:540px; margin:0 auto; padding:25px; background:#fffdf4; border:1px dashed var(--ink); box-shadow:0 5px 20px rgba(0,0,0,.08); }
+.receipt-result p { display:flex; flex-direction:column; gap:3px; padding:9px 0; border-bottom:1px dashed var(--ink); }.receipt-result p b { font:12px var(--mono); }.receipt-result p span { font-size:17px; }

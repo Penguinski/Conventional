@@ -1,0 +1,3 @@
+.drawer { height: min(65vh, 560px); position: relative; overflow: hidden; border: 14px solid #8d3e2a; background: #c86142; box-shadow: inset 0 0 0 3px var(--paper); touch-action: none; }
+.drawer-object { position:absolute; min-width:62px; min-height:44px; padding:8px; border:1.5px solid var(--paper); color:var(--paper); background:#a94b32; font:10px var(--mono); cursor:grab; transition:transform 180ms ease; }
+.drawer-object.depth-1 { background:#7f5139; }.drawer-object.depth-2 { background:#434c3e; }.drawer-object.moved { opacity:.7; }.drawer-object.relic { border-style:dashed; }

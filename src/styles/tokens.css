@@ -1,0 +1,22 @@
+:root {
+  color-scheme: light;
+  --paper: #f7f3ea;
+  --ink: #263627;
+  --lilac: #b7aacb;
+  --blue: #90b5dd;
+  --olive: #9f9720;
+  --terracotta: #c96243;
+  --line: 1.25px solid var(--ink);
+  --serif-display: "Source Serif 4", Georgia, serif;
+  --serif-text: "Lisu Bosa", Georgia, serif;
+  --mono: "DM Mono", "Courier New", monospace;
+  font-synthesis: none;
+}
+
+* { box-sizing: border-box; }
+html { background: var(--paper); color: var(--ink); }
+body { margin: 0; min-width: 320px; min-height: 100vh; font-family: var(--serif-text); font-size: 17px; }
+button, input, textarea { font: inherit; color: inherit; }
+button { border-radius: 0; }
+:focus-visible { outline: 3px solid #0a64bd; outline-offset: 3px; }
+::selection { background: var(--blue); color: var(--ink); }

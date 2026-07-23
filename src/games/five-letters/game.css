@@ -1,0 +1,6 @@
+.word-board { width:min(100%,390px); margin:0 auto; display:grid; grid-template-columns:repeat(5,1fr); gap:6px; }
+.word-board i { aspect-ratio:1; border:var(--line); display:grid; place-items:center; font:700 27px var(--mono); font-style:normal; }
+.word-board i.correct { background:var(--ink); color:var(--paper); }.word-board i.present { background:var(--olive); }.word-board i.absent { background:#c8c2b7; }
+.keyboard { display:grid; gap:5px; }.keyboard>div { display:flex; justify-content:center; gap:4px; }
+.keyboard button { min-width:30px; min-height:44px; padding:4px; border:1px solid var(--ink); font:11px var(--mono); cursor:pointer; }.keyboard button.wide { min-width:85px; }
+.word-message { text-align:center; font:12px var(--mono); }
