@@ -1,7 +1,14 @@
+.active-clue { position:sticky; top:0; z-index:5; min-height:66px; padding:10px 13px; border:var(--line); background:var(--blue); display:flex; flex-direction:column; justify-content:center; gap:4px; }
+.active-clue span { font:10px var(--mono); }.active-clue strong { font:700 19px/1.05 var(--serif-display); }
 .crossword-layout { display:grid; gap:18px; grid-template-columns:minmax(280px,520px) 1fr; align-items:start; }
 .crossword-grid { display:grid; grid-template-columns:repeat(9,1fr); background:var(--ink); gap:1px; border:1px solid var(--ink); }
 .crossword-grid i,.crossword-grid label { aspect-ratio:1; min-width:0; position:relative; background:var(--paper); }
-.crossword-grid i.block { background:var(--ink); }.crossword-grid input { width:100%; height:100%; border:0; background:transparent; text-align:center; font:700 clamp(14px,4vw,24px) var(--mono); text-transform:uppercase; }
-.crossword-grid small { position:absolute; z-index:2; left:2px; top:1px; font:7px var(--mono); }.crossword-grid label.wrong { background:#f3b3a3; }
-.clues { margin:0; padding-left:22px; display:grid; gap:8px; font-size:16px; }.game-status>div { display:flex; flex-wrap:wrap; gap:5px; }
-@media(max-width:720px){.crossword-layout{grid-template-columns:1fr}.clues{max-height:220px;overflow:auto}}
+.crossword-grid i.block { background:var(--ink); }
+.crossword-grid input { width:100%; height:100%; min-height:34px; border:0; background:transparent; text-align:center; font:700 clamp(14px,4vw,24px) var(--mono); text-transform:uppercase; }
+.crossword-grid small { position:absolute; z-index:2; left:2px; top:1px; font:10px var(--mono); pointer-events:none; }
+.crossword-grid label.wrong { background:#f3b3a3; }.crossword-grid label.active-word { background:#dfeaf5; }
+.clues { margin:0; padding:0; display:grid; gap:5px; list-style:none; font-size:16px; }
+.clues button { width:100%; min-height:44px; padding:7px; text-align:left; border-left:5px solid transparent; cursor:pointer; }
+.clues li.active button { border-left-color:var(--terracotta); background:rgba(201,98,67,.12); }
+.game-status>div { display:flex; flex-wrap:wrap; gap:5px; }
+@media(max-width:720px){.crossword-layout{grid-template-columns:1fr}.clues{max-height:190px;overflow:auto}.active-clue{top:0}}

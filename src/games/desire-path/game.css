@@ -1,1 +1,1 @@
-.desire-game canvas { width: min(100%, 520px); height: auto; margin: 0 auto; border: var(--line); touch-action: none; background: var(--paper); display: block; }
+.desire-game canvas { width:min(100%,520px); aspect-ratio:360/440; height:auto; margin:0 auto; border:var(--line); touch-action:none; background:var(--paper); display:block; }

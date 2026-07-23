@@ -28,6 +28,10 @@ export function solutionCells() {
   return cells;
 }
 
+export function cellsForEntry(entry: Entry) {
+  return [...entry.answer].map((_, index) => `${entry.row + (entry.direction === "down" ? index : 0)}-${entry.col + (entry.direction === "across" ? index : 0)}`);
+}
+
 export function validateCrossword(values: Record<string, string>): boolean {
   return [...solutionCells()].every(([key, letter]) => values[key]?.toUpperCase() === letter);
 }

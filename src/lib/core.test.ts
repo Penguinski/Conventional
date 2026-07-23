@@ -1,14 +1,21 @@
 import { describe, expect, it } from "vitest";
-import { classifyPath } from "../games/desire-path/logic";
-import { evaluateGuess } from "../games/five-letters/logic";
+import { analyzePath, classifyPath } from "../games/desire-path/logic";
+import { acceptedWords, DICTIONARY_VERSION, evaluateGuess, solutionWords } from "../games/five-letters/logic";
 import { entries, solutionCells, validateCrossword } from "../games/crossword/logic";
+import { evaluateAccusation } from "../games/dish-mystery/logic";
 import { compareLowerIsBetter, normalizeStrokes } from "./scoring";
 import { isValidNickname, makeNickname, migrateState, SCHEMA_VERSION } from "./persistence";
+import { pointFromPointer } from "./pointer-stroke";
 
 describe("Cinque tracce", () => {
   it("consuma correttamente le lettere duplicate", () => {
     expect(evaluateGuess("TAZZA", "TRACC")).toEqual(["correct", "present", "absent", "absent", "absent"]);
     expect(evaluateGuess("PASSO", "SEGNO")).toEqual(["absent", "absent", "present", "absent", "correct"]);
+  });
+  it("separa soluzioni e dizionario accettato", () => {
+    expect(DICTIONARY_VERSION).toBeGreaterThan(1);
+    expect(acceptedWords.length).toBeGreaterThan(solutionWords.length * 4);
+    expect(solutionWords.every((word) => acceptedWords.includes(word))).toBe(true);
   });
 });
 
@@ -43,8 +50,28 @@ describe("punteggi e persistenza", () => {
 
 describe("labirinto", () => {
   it("classifica percorso ufficiale, scorciatoia e ibrido", () => {
-    expect(classifyPath([{ x: 0, y: 0 }, { x: 50, y: 50 }, { x: 100, y: 100 }])).toBe("scorciatoia");
-    expect(classifyPath([{ x: 0, y: 0 }, { x: 100, y: 0 }, { x: 0, y: 50 }, { x: 100, y: 100 }])).toBe("ufficiale");
-    expect(classifyPath([{ x: 0, y: 0 }, { x: 70, y: 0 }, { x: 70, y: 70 }, { x: 100, y: 100 }])).toBe("ibrido");
+    const shortcut = [{ x: 24, y: 24 }, { x: 336, y: 416 }];
+    const official = [{ x:24,y:24 },{ x:60,y:24 },{ x:60,y:340 },{ x:150,y:340 },{ x:150,y:90 },{ x:230,y:90 },{ x:230,y:340 },{ x:330,y:340 },{ x:336,y:416 }];
+    const hybrid = [{ x:24,y:24 },{ x:130,y:120 },{ x:130,y:340 },{ x:230,y:340 },{ x:230,y:330 },{ x:336,y:416 }];
+    expect(classifyPath(shortcut)).toBe("scorciatoia");
+    expect(classifyPath(official)).toBe("ufficiale");
+    expect(classifyPath(hybrid)).toBe("ibrido");
+    expect(analyzePath(shortcut)).toMatchObject({ startValid:true, endValid:true });
+  });
+});
+
+describe("motore pointer", () => {
+  it("estrae subito coordinate logiche e pressione", () => {
+    const canvas = { getBoundingClientRect: () => ({ left:10, top:20, width:200, height:100 }) } as HTMLCanvasElement;
+    expect(pointFromPointer({ clientX:110, clientY:70, pressure:.7 }, canvas, 400, 300)).toEqual({ x:200, y:150, pressure:.7 });
+  });
+});
+
+describe("caso dei piatti", () => {
+  it("richiede la catena di due evidenze senza bloccare l'accusa", () => {
+    expect(evaluateAccusation("marta", [])).toMatchObject({ solved:false });
+    expect(evaluateAccusation("marta", ["pan"])).toMatchObject({ solved:false });
+    expect(evaluateAccusation("marta", ["pan","marta-mug"])).toMatchObject({ solved:true });
+    expect(evaluateAccusation("teo", ["teo-plate"])).toMatchObject({ solved:false });
   });
 });

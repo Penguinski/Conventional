@@ -1,5 +1,18 @@
 .privacy-note { display:flex; flex-direction:column; gap:4px; padding:14px; background:var(--blue); }.privacy-note span { font-size:15px; }
 .reader-actions { display:flex; flex-wrap:wrap; gap:8px; }.reader-actions label { display:inline-flex; align-items:center; }.reader-actions input { position:absolute; opacity:0; width:1px; height:1px; }
-.reader-frame { position:relative; width:min(100%,620px); aspect-ratio:1.24; margin:0 auto; border:var(--line); background:#d9d3c8; overflow:hidden; }
+.reader-frame { position:relative; width:100%; aspect-ratio:1.24; margin:0 auto; border:var(--line); background:#d9d3c8; overflow:hidden; }
 .reader-frame video,.reader-frame canvas { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }.reader-frame video.hidden { display:none; }
 .reader-frame i { position:absolute; inset:11%; border:3px dashed var(--paper); pointer-events:none; }.reader-frame.coffee i { border-radius:50%; }.reader-frame.foot i { border-radius:52% 42% 48% 55%; inset:8% 30%; transform:rotate(-5deg); }
+.coffee-lab { position:relative; width:min(100%,620px); margin:0 auto; }
+.analysis-overlay { position:absolute; inset:0; width:100%; height:100%; pointer-events:none; }
+.analysis-overlay circle { fill:rgba(247,243,234,.72); stroke:var(--terracotta); stroke-width:.7; }.analysis-overlay polyline { fill:none; stroke:var(--paper); stroke-width:.7; stroke-dasharray:2 3; }
+.analysis-overlay.analysing { animation:scan 1s linear infinite; }.analysis-status { margin:0; padding:12px; border-left:7px solid var(--terracotta); background:rgba(201,98,67,.12); }
+@keyframes scan { 50% { opacity:.35; } }
+.shape-choices { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; }.shape-choices button { min-height:64px; border:var(--line); font:12px var(--mono); cursor:pointer; }.shape-choices button.selected { background:var(--olive); }
+.sole-workbench { display:grid; grid-template-columns:minmax(0,1fr) 180px; gap:12px; align-items:stretch; }
+.sole-guide { min-height:300px; border:var(--line); border-radius:52% 42% 48% 55%; display:flex; flex-direction:column; justify-content:space-between; align-items:center; padding:32px 8px; background:var(--lilac); font:10px var(--mono); }
+.wear-map { display:grid; grid-template-columns:repeat(2,1fr); gap:8px; }
+.wear-map button { position:relative; min-height:88px; overflow:hidden; border:var(--line); cursor:pointer; font:11px var(--mono); }
+.wear-map button span { position:relative; z-index:2; }.wear-map button i { position:absolute; inset:0; background:var(--terracotta); }
+.wear-map button.selected { box-shadow:inset 0 0 0 6px var(--ink); }
+@media(max-width:600px){.sole-workbench{grid-template-columns:1fr}.sole-guide{min-height:130px;border-radius:45%;flex-direction:row;padding:20px}.shape-choices{grid-template-columns:1fr}}

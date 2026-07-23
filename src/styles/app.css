@@ -19,7 +19,7 @@ button { background: none; border: 0; }
   position: relative;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
   min-height: 65px;
   border-bottom: var(--line);
   max-width: 1180px;
@@ -33,22 +33,6 @@ button { background: none; border: 0; }
 }
 .wordmark i { font: 400 18px/1 var(--mono); margin: 0 4px; }
 .wordmark span { font: 400 14px/1 var(--mono); letter-spacing: 0; }
-.menu-button { width: 52px; height: 52px; display: grid; align-content: center; gap: 6px; cursor: pointer; }
-.menu-button span { display: block; height: 5px; background: var(--ink); }
-.issue-menu {
-  position: absolute;
-  right: 0;
-  top: 60px;
-  z-index: 20;
-  width: min(270px, calc(100vw - 34px));
-  padding: 18px;
-  background: var(--ink);
-  color: var(--paper);
-  display: grid;
-  gap: 12px;
-  box-shadow: 8px 8px 0 var(--terracotta);
-}
-.issue-menu a, .issue-menu button { color: inherit; text-decoration: none; text-align: left; font: 400 14px/1.4 var(--mono); padding: 9px; border-bottom: 1px solid currentColor; }
 .issue-intro {
   max-width: 1180px;
   margin: 29px auto 32px;
@@ -90,22 +74,35 @@ button { background: none; border: 0; }
 .corner-tab {
   position: absolute;
   z-index: 4;
-  top: 13px;
-  width: 82px;
-  padding: 4px 0 18px;
+  top: 0;
+  width: 66px;
+  height: 66px;
   color: #fff;
-  background: var(--terracotta);
-  font: 400 12px/1 var(--mono);
-  text-align: center;
-  transform-origin: center;
+  pointer-events: none;
 }
-.tab-right { right: -24px; transform: rotate(45deg); }
-.tab-left { left: -24px; transform: rotate(-45deg); }
-.category-percorso .corner-tab { background: var(--olive); color: var(--ink); }
-.category-osservazione .corner-tab { background: var(--terracotta); }
-.category-mistero .corner-tab { background: var(--terracotta); }
-.category-parole .corner-tab { background: var(--olive); color: var(--ink); }
-.category-rituale .corner-tab { background: var(--blue); }
+.corner-tab i { position: absolute; inset: 0; display: block; background: var(--terracotta); }
+.corner-tab b {
+  position: absolute;
+  top: 13px;
+  width: 76px;
+  white-space: nowrap;
+  text-align: center;
+  font: 400 11px/1 var(--mono);
+}
+.tab-right { right: 0; }
+.tab-right i { clip-path: polygon(100% 0, 100% 100%, 0 0); }
+.tab-right b { right: -8px; transform: rotate(45deg); }
+.tab-left { left: 0; }
+.tab-left i { clip-path: polygon(0 0, 100% 0, 0 100%); }
+.tab-left b { left: -8px; transform: rotate(-45deg); }
+.corner-tab.tab-compact b { top: 14px; font-size: 10px; }
+.category-percorso .corner-tab i { background: var(--olive); }
+.category-percorso .corner-tab { color: var(--ink); }
+.category-osservazione .corner-tab i { background: var(--terracotta); }
+.category-mistero .corner-tab i { background: var(--terracotta); }
+.category-parole .corner-tab i { background: var(--olive); }
+.category-parole .corner-tab { color: var(--ink); }
+.category-rituale .corner-tab i { background: var(--blue); }
 .card-copy { display: flex; flex-direction: column; flex: 1; min-height: 0; }
 .card-copy strong { font: 700 clamp(20px, 5.3vw, 29px)/.92 var(--serif-display); letter-spacing: -.7px; margin: 8px 0 7px; }
 .card-copy small { font: 400 10px/1.25 var(--mono); margin-bottom: 8px; }
@@ -167,7 +164,8 @@ button { background: none; border: 0; }
 .art-foot i { position: absolute; width: 38%; height: 72%; border: 3px solid var(--ink); border-radius: 58% 42% 50% 50%; transform: rotate(13deg); left: 12%; top: 15%; }
 .art-foot i:nth-child(2) { left: auto; right: 12%; transform: rotate(-13deg); }
 .editorial-card { background: var(--paper); }
-.editorial-card .corner-tab { background: var(--blue); color: var(--ink); font-size: 9px; }
+.editorial-card .corner-tab i { background: var(--blue); }
+.editorial-card .corner-tab { color: var(--ink); }
 .editorial-vignetta { background: var(--blue); }.editorial-nota { background: var(--olive); }.editorial-bacheca { background: var(--lilac); }
 .editorial-card-art { position: relative; height: 160px; }
 .editorial-card-art i { position: absolute; width: 52%; height: 52%; border: 2px solid var(--ink); border-radius: 50%; left: 8%; top: 15%; }
@@ -214,8 +212,16 @@ button { background: none; border: 0; }
 }
 .control-button.primary { background: var(--ink); color: var(--paper); }
 .editorial-beat { border-left: 8px solid var(--terracotta); padding: 10px 12px; background: rgba(201,98,67,.12); font-size: 16px; }
+.compact-instruction { margin:0; padding:10px 12px; background:rgba(144,181,221,.22); font-size:16px; line-height:1.25; }
 .result-panel { padding: 18px; border: var(--line); background: var(--blue); }
 .result-panel h2 { margin: 0 0 6px; font: 700 28px/1 var(--serif-display); }.result-panel p { margin: 4px 0; }
+.error-fallback { min-height: 100vh; padding: clamp(24px, 8vw, 80px); background: var(--paper); color: var(--ink); display: grid; align-content: center; gap: 16px; }
+.error-fallback span { font: 400 11px var(--mono); }
+.error-fallback h1 { max-width: 760px; margin: 0; font: 700 clamp(38px, 8vw, 72px)/.95 var(--serif-display); }
+.error-fallback p { max-width: 620px; margin: 0; font-size: 19px; }
+.error-fallback > div { display: flex; flex-wrap: wrap; gap: 8px; }
+.error-fallback pre { max-width: 100%; overflow: auto; padding: 12px; border: var(--line); font: 11px var(--mono); }
+.error-game { min-height: 360px; padding: 24px; border: var(--line); align-content: center; }
 
 @media (min-width: 600px) {
   .magazine { padding: 24px 25px 70px; }

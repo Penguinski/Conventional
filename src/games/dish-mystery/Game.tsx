@@ -1,48 +1,57 @@
 import { useState } from "react";
 import type { GameProps } from "../types";
 import { useActiveTimer } from "../../lib/game-utils";
+import { dishClues, dishSuspects, evaluateAccusation } from "./logic";
 import "./game.css";
 
-const clues = [
-  ["Padella", "È unta di pomodoro e ha il manico ancora tiepido."],
-  ["Lavello", "Due piatti sono sciacquati. La padella no."],
-  ["Messaggio", "Nora: «Ho mangiato fuori. Torno tardi.»"],
-  ["Scolapiatti", "Il piatto blu usato da Teo è già asciutto."],
-  ["Piano cottura", "Una macchia fresca coincide con il fornello della padella."],
-];
-const suspects = [
-  ["Nora", "Ho mangiato fuori."],
-  ["Teo", "Ho lavato il mio piatto subito."],
-  ["Marta", "Ho cucinato la pasta, ma pensavo lavasse Teo."],
-];
-
 export default function DishMystery({ onProgress, onComplete }: GameProps) {
-  const [seen, setSeen] = useState<number[]>([]);
-  const [attempts, setAttempts] = useState(0);
-  const [message, setMessage] = useState("");
-  const [done, setDone] = useState(false);
-  const seconds = useActiveTimer(!done);
-  const inspect = (index: number) => {
-    const next = seen.includes(index) ? seen : [...seen, index];
-    setSeen(next); onProgress({ indizi: next.length });
+  const [seen,setSeen]=useState<string[]>([]);
+  const [activeClue,setActiveClue]=useState<string|null>(null);
+  const [attempts,setAttempts]=useState(0);
+  const [message,setMessage]=useState("");
+  const [done,setDone]=useState(false);
+  const seconds=useActiveTimer(!done);
+
+  const inspect=(id:string)=>{
+    const next=seen.includes(id)?seen:[...seen,id];
+    setSeen(next);
+    setActiveClue(id);
+    onProgress({indizi:next.length});
   };
-  const accuse = (name: string) => {
-    if (seen.length < 3) { setMessage("Servono almeno tre indizi prima di accusare."); return; }
-    const nextAttempts = attempts + 1; setAttempts(nextAttempts);
-    if (name === "Marta") {
-      setDone(true); setMessage("La padella e il fornello confermano la sua versione: ha cucinato. Il piatto di Teo, però, è già lavato.");
-      onComplete({ primoTentativo: nextAttempts === 1, secondi: seconds, indizi: seen.length });
-    } else {
-      setMessage(name === "Nora" ? "Il messaggio e l’assenza di un suo piatto restano senza contraddizione." : "Il suo piatto blu è nello scolapiatti: questa traccia non è ancora spiegata.");
+
+  const accuse=(suspect:string)=>{
+    if(done)return;
+    const result=evaluateAccusation(suspect,seen);
+    const nextAttempts=attempts+1;
+    setAttempts(nextAttempts);
+    setMessage(result.message);
+    if(result.solved){
+      setDone(true);
+      onComplete({primoTentativo:nextAttempts===1,secondi:seconds,indizi:seen.length});
     }
   };
+
+  const reset=()=>{setSeen([]);setActiveClue(null);setAttempts(0);setMessage("");setDone(false);};
+  const clue=dishClues.find((item)=>item.id===activeClue);
+
   return (
     <div className="game-panel mystery-game">
-      <div className="game-status"><span>{seen.length}/5 INDIZI · {seconds}s</span><span>{attempts} accuse</span></div>
-      <div className="clue-grid">{clues.map(([title, body], index) => <button key={title} className={seen.includes(index) ? "seen" : ""} onClick={() => inspect(index)}><strong>{title}</strong><span>{seen.includes(index) ? body : "ISPEZIONA"}</span></button>)}</div>
-      {seen.length >= 2 && <p className="editorial-beat">Una traccia utile deve restringere le possibilità, non soltanto sembrare investigativa.</p>}
-      <div className="suspects">{suspects.map(([name, statement]) => <button key={name} disabled={done} onClick={() => accuse(name)}><strong>{name}</strong><span>«{statement}»</span><small>ACCUSA</small></button>)}</div>
-      {message && <div className={done ? "result-panel" : "notice-inline"}><h2>{done ? "Caso chiuso" : "Contraddizione irrisolta"}</h2><p>{message}</p></div>}
+      <div className="game-status"><span>{seen.length}/5 INDIZI · {seconds}s · {attempts} accuse</span><button onClick={reset}>RIPROVA</button></div>
+      <p className="compact-instruction">Domanda: chi ha cucinato la salsa e ha lasciato la padella? Ispeziona la mappa o accusa subito.</p>
+      <div className="kitchen-map" aria-label="Mappa geometrica della cucina">
+        <svg viewBox="0 0 100 80" aria-hidden="true">
+          <rect x="4" y="4" width="92" height="72" fill="#90b5dd" stroke="#263627" />
+          <rect x="36" y="14" width="42" height="26" fill="#c96243" stroke="#263627" />
+          <circle cx="45" cy="28" r="7" fill="#263627" /><circle cx="64" cy="28" r="7" fill="#263627" />
+          <rect x="62" y="52" width="29" height="18" fill="#f7f3ea" stroke="#263627" />
+          <rect x="10" y="55" width="24" height="14" fill="#9f9720" stroke="#263627" />
+          <circle cx="31" cy="42" r="8" fill="#b7aacb" stroke="#263627" />
+        </svg>
+        {dishClues.map((item)=><button key={item.id} className={seen.includes(item.id)?"seen":""} style={{left:`${item.x}%`,top:`${item.y}%`}} onClick={()=>inspect(item.id)} aria-label={`Ispeziona ${item.title}`}><span>{seen.includes(item.id)?"✓":"+"}</span></button>)}
+      </div>
+      {clue&&<section className="clue-detail" aria-live="polite"><span>INDIZIO</span><h2>{clue.title}</h2><p>{clue.body}</p></section>}
+      <div className="suspects">{dishSuspects.map((suspect)=><article key={suspect.id}><strong>{suspect.name}</strong><p>«{suspect.statement}»</p><button disabled={done} onClick={()=>accuse(suspect.id)}>ACCUSA {suspect.name.toUpperCase()}</button></article>)}</div>
+      {message&&<div className={done?"result-panel":"notice-inline"}><h2>{done?"Caso chiuso":"Contraddizione ancora aperta"}</h2><p>{message}</p></div>}
     </div>
   );
 }

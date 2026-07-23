@@ -5,11 +5,10 @@ interface Props {
   game: GameDefinition;
   progress?: GameProgress;
   onClose: () => void;
-  onProgress: (result?: GameProgress["result"]) => void;
   children: ReactNode;
 }
 
-export default function GameShell({ game, progress, onClose, onProgress, children }: Props) {
+export default function GameShell({ game, progress, onClose, children }: Props) {
   const sheetRef = useRef<HTMLElement>(null);
   const [instructions, setInstructions] = useState(false);
   const [sources, setSources] = useState(false);
@@ -51,7 +50,7 @@ export default function GameShell({ game, progress, onClose, onProgress, childre
           {instructions && <p className="instruction-note">Agisci direttamente sull’area di gioco. Puoi chiudere e tornare: il progresso viene conservato in questo browser.</p>}
         </header>
         <Suspense fallback={<div className="loading-game">Apro il gioco…</div>}>
-          <div className="game-stage" onPointerDown={() => onProgress()}>{children}</div>
+          <div className="game-stage">{children}</div>
         </Suspense>
         {progress?.state === "completed" && (
           <section className="game-ending" aria-live="polite">

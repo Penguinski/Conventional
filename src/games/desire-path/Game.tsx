@@ -1,80 +1,153 @@
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 import type { GameProps } from "../types";
-import { classifyPath, type PathKind } from "./logic";
+import { prepareLogicalContext, usePointerStroke, useResponsiveCanvas, type CanvasPoint } from "../../lib/pointer-stroke";
+import { analyzePath, FINISH, START, WALLS, type PathKind } from "./logic";
 import "./game.css";
 
-type Point = { x: number; y: number };
+const WIDTH = 360;
+const HEIGHT = 440;
 
 export default function DesirePathGame({ onProgress, onComplete }: GameProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const [points, setPoints] = useState<Point[]>([]);
-  const [drawing, setDrawing] = useState(false);
+  const visibleStrokeRef = useRef<CanvasPoint[]>([]);
   const [kind, setKind] = useState<PathKind | null>(null);
+  const [message, setMessage] = useState("Parti da A e raggiungi ×. I muri si possono attraversare.");
+  const [metrics, setMetrics] = useState<{ crossings: number; efficiency: number; length: number } | null>(null);
 
-  const draw = (list: Point[]) => {
+  const render = useCallback((stroke = visibleStrokeRef.current) => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-    const ctx = canvas.getContext("2d")!;
-    const { width, height } = canvas;
-    ctx.clearRect(0, 0, width, height);
-    ctx.fillStyle = "#f7f3ea";
-    ctx.fillRect(0, 0, width, height);
-    ctx.strokeStyle = "#b7aacb";
-    ctx.lineWidth = 17;
-    ctx.lineCap = "square";
-    const walls = [
-      [35, 45, 230, 45], [35, 45, 35, 190], [105, 45, 105, 250], [105, 250, 255, 250],
-      [180, 45, 180, 175], [180, 175, 295, 175], [295, 70, 295, 300], [35, 320, 210, 320],
-      [210, 250, 210, 370], [65, 320, 65, 405], [65, 405, 320, 405],
-    ];
-    walls.forEach(([x1, y1, x2, y2]) => { ctx.beginPath(); ctx.moveTo(x1, y1); ctx.lineTo(x2, y2); ctx.stroke(); });
-    ctx.fillStyle = "#263627";
-    ctx.font = "700 23px DM Mono";
-    ctx.fillText("A", 12, 28);
-    ctx.fillText("×", width - 27, height - 16);
-    if (list.length > 1) {
-      ctx.strokeStyle = "#c96243";
-      ctx.lineWidth = 8;
-      ctx.lineCap = "round";
-      ctx.lineJoin = "round";
-      ctx.globalAlpha = .78;
-      ctx.beginPath();
-      list.forEach((point, index) => index ? ctx.lineTo(point.x, point.y) : ctx.moveTo(point.x, point.y));
-      ctx.stroke();
-      ctx.globalAlpha = 1;
+    const context = prepareLogicalContext(canvas, WIDTH, HEIGHT);
+    context.clearRect(0, 0, WIDTH, HEIGHT);
+    context.fillStyle = "#f7f3ea";
+    context.fillRect(0, 0, WIDTH, HEIGHT);
+
+    context.strokeStyle = "#b7aacb";
+    context.lineWidth = 18;
+    context.lineCap = "square";
+    WALLS.forEach((wall) => {
+      context.beginPath();
+      context.moveTo(wall.x1, wall.y1);
+      context.lineTo(wall.x2, wall.y2);
+      context.stroke();
+    });
+
+    const analysis = stroke.length > 1 ? analyzePath(stroke) : null;
+    analysis?.crossings.forEach((wallIndex) => {
+      const wall = WALLS[wallIndex];
+      const crossing = stroke.find((point) => Math.abs(point.x - wall.x1) < 18 && point.y >= Math.min(wall.y1, wall.y2) && point.y <= Math.max(wall.y1, wall.y2));
+      if (!crossing) return;
+      context.fillStyle = "#f7f3ea";
+      context.beginPath();
+      context.arc(crossing.x, crossing.y, 17, 0, Math.PI * 2);
+      context.fill();
+      context.strokeStyle = "#c96243";
+      context.lineWidth = 2;
+      context.stroke();
+    });
+
+    context.fillStyle = "#263627";
+    context.font = "700 22px 'DM Mono'";
+    context.fillText("A", START.x - 9, START.y + 8);
+    context.fillText("×", FINISH.x - 8, FINISH.y + 8);
+    context.strokeStyle = "#263627";
+    context.lineWidth = 2;
+    context.setLineDash([4, 6]);
+    context.beginPath();
+    context.arc(START.x, START.y, 20, 0, Math.PI * 2);
+    context.stroke();
+    context.beginPath();
+    context.arc(FINISH.x, FINISH.y, 22, 0, Math.PI * 2);
+    context.stroke();
+    context.setLineDash([]);
+
+    if (stroke.length) {
+      context.strokeStyle = "#c96243";
+      context.lineWidth = 8;
+      context.lineCap = "round";
+      context.lineJoin = "round";
+      context.globalAlpha = .85;
+      context.beginPath();
+      stroke.forEach((point, index) => index ? context.lineTo(point.x, point.y) : context.moveTo(point.x, point.y));
+      context.stroke();
+      context.globalAlpha = 1;
     }
+  }, []);
+
+  useResponsiveCanvas(canvasRef, WIDTH, HEIGHT, render);
+
+  const reset = () => {
+    visibleStrokeRef.current = [];
+    setKind(null);
+    setMetrics(null);
+    setMessage("Parti da A e raggiungi ×. I muri si possono attraversare.");
+    render([]);
   };
 
-  useEffect(() => { draw(points); }, [points]);
-  const pointFromEvent = (event: React.PointerEvent<HTMLCanvasElement>) => {
-    const rect = event.currentTarget.getBoundingClientRect();
-    return { x: (event.clientX - rect.left) * 360 / rect.width, y: (event.clientY - rect.top) * 440 / rect.height };
-  };
-  const finish = (next: Point[]) => {
-    setDrawing(false);
-    if (!next.length || Math.hypot(next.at(-1)!.x - 340, next.at(-1)!.y - 420) > 80) return;
-    const result = classifyPath(next);
-    setKind(result);
-    onComplete({ percorso: result, punti: next.length });
-    if (navigator.vibrate) navigator.vibrate(30);
-  };
+  const pointer = usePointerStroke({
+    logicalWidth: WIDTH,
+    logicalHeight: HEIGHT,
+    onStart: () => {
+      visibleStrokeRef.current = [];
+      setKind(null);
+      setMetrics(null);
+      onProgress({ gesto: "iniziato" });
+    },
+    onFrame: (stroke) => {
+      visibleStrokeRef.current = stroke;
+      render(stroke);
+    },
+    onEnd: (stroke) => {
+      visibleStrokeRef.current = stroke;
+      const analysis = analyzePath(stroke);
+      if (!analysis.startValid) {
+        setMessage("Il tratto deve partire dentro il cerchio di A.");
+        return;
+      }
+      if (!analysis.endValid) {
+        setMessage("Raggiungi il cerchio di × per concludere.");
+        return;
+      }
+      setKind(analysis.kind);
+      setMetrics({ crossings: analysis.crossings.length, efficiency: analysis.efficiency, length: analysis.length });
+      setMessage("Percorso registrato.");
+      onComplete({
+        percorso: analysis.kind,
+        muri: analysis.crossings.length,
+        efficienza: Number(analysis.efficiency.toFixed(2)),
+        lunghezza: Math.round(analysis.length),
+      });
+      navigator.vibrate?.(30);
+    },
+    onCancel: (stroke) => {
+      visibleStrokeRef.current = stroke;
+      setMessage("Tratto interrotto. Puoi ripartire da A.");
+      render(stroke);
+    },
+  });
 
   return (
     <div className="game-panel desire-game">
-      <div className="game-status"><span>PARTENZA: A</span><span>ARRIVO: ×</span><button onClick={() => { setPoints([]); setKind(null); }}>RIPROVA</button></div>
+      <div className="game-status">
+        <span>PARTENZA: A · ARRIVO: ×</span>
+        <button onClick={reset}>RIPROVA</button>
+      </div>
+      <p className="compact-instruction" role="status">{message}</p>
       <canvas
         ref={canvasRef}
-        width={360}
-        height={440}
+        width={WIDTH}
+        height={HEIGHT}
         aria-label="Labirinto tattile da A a X"
-        onPointerDown={(event) => { event.currentTarget.setPointerCapture(event.pointerId); const next = [pointFromEvent(event)]; setPoints(next); setDrawing(true); onProgress(); }}
-        onPointerMove={(event) => { if (!drawing) return; setPoints((current) => [...current, pointFromEvent(event)]); }}
-        onPointerUp={() => finish(points)}
-        onPointerCancel={() => setDrawing(false)}
+        data-testid="maze-canvas"
+        {...pointer}
       />
-      {points.length > 18 && !kind && <p className="editorial-beat">Il retweet fu prima una convenzione manuale degli utenti; la piattaforma lo trasformò poi in funzione.</p>}
-      {points.length > 45 && !kind && <p className="editorial-beat">Anche l’hashtag nacque da una proposta d’uso prima di diventare infrastruttura cliccabile.</p>}
-      {kind && <div className="result-panel"><h2>Percorso {kind}</h2><p>La tua linea resta sopra al sistema. Le tracce chiare mostrano passaggi dimostrativi precedenti.</p></div>}
+      {kind && metrics && (
+        <div className="result-panel">
+          <h2>Percorso {kind}</h2>
+          <p>{metrics.crossings} muri attraversati · efficienza {Math.round(metrics.efficiency * 100)}% · {Math.round(metrics.length)} unità.</p>
+          <p>{kind === "ufficiale" ? "Hai seguito i varchi previsti." : kind === "scorciatoia" ? "Hai trasformato i muri in materiale attraversabile." : "Hai alternato regola e deviazione."}</p>
+        </div>
+      )}
     </div>
   );
 }

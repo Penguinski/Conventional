@@ -2,6 +2,7 @@ import type { GameProgress } from "../games/types";
 
 const DB_NAME = "conventional-vol-1";
 const STORE = "progress";
+const LOCAL_KEY = "conventional-vol-1-progress";
 export const SCHEMA_VERSION = 2;
 
 export interface PersistedState {
@@ -59,7 +60,29 @@ function openDb(): Promise<IDBDatabase> {
   });
 }
 
+function localSnapshot(): unknown {
+  try {
+    const raw = window.localStorage.getItem(LOCAL_KEY);
+    return raw ? JSON.parse(raw) : undefined;
+  } catch {
+    return undefined;
+  }
+}
+
+function reconcile(first: PersistedState, second: PersistedState): PersistedState {
+  const games = { ...first.games };
+  Object.entries(second.games).forEach(([id, progress]) => {
+    if (!games[id] || progress.updatedAt >= games[id].updatedAt) games[id] = progress;
+  });
+  return {
+    version: SCHEMA_VERSION,
+    games,
+    nickname: isValidNickname(second.nickname) ? second.nickname : first.nickname,
+  };
+}
+
 export async function loadState(): Promise<PersistedState> {
+  const local = migrateState(localSnapshot());
   try {
     const db = await openDb();
     const value = await new Promise<unknown>((resolve, reject) => {
@@ -68,13 +91,18 @@ export async function loadState(): Promise<PersistedState> {
       request.onerror = () => reject(request.error);
     });
     db.close();
-    return migrateState(value);
+    return reconcile(migrateState(value), local);
   } catch {
-    return migrateState(undefined);
+    return local;
   }
 }
 
 export async function saveState(state: PersistedState): Promise<void> {
+  try {
+    window.localStorage.setItem(LOCAL_KEY, JSON.stringify(state));
+  } catch {
+    // IndexedDB remains available when localStorage is blocked or full.
+  }
   try {
     const db = await openDb();
     await new Promise<void>((resolve, reject) => {

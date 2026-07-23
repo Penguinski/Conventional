@@ -1,3 +1,16 @@
-.drawer { height: min(65vh, 560px); position: relative; overflow: hidden; border: 14px solid #8d3e2a; background: #c86142; box-shadow: inset 0 0 0 3px var(--paper); touch-action: none; }
-.drawer-object { position:absolute; min-width:62px; min-height:44px; padding:8px; border:1.5px solid var(--paper); color:var(--paper); background:#a94b32; font:10px var(--mono); cursor:grab; transition:transform 180ms ease; }
-.drawer-object.depth-1 { background:#7f5139; }.drawer-object.depth-2 { background:#434c3e; }.drawer-object.moved { opacity:.7; }.drawer-object.relic { border-style:dashed; }
+.drawer { height:min(65vh,560px); position:relative; overflow:hidden; border:14px solid #8d3e2a; background:#c86142; box-shadow:inset 0 0 0 3px var(--paper); touch-action:none; }
+.drawer-object { position:absolute; width:92px; height:66px; padding:0; border:0; background:transparent; cursor:grab; touch-action:none; }
+.drawer-object:active { cursor:grabbing; }
+.drawer-object span { display:block; width:100%; height:100%; border:2px solid var(--paper); background:#35433a; box-shadow:3px 4px 0 rgba(38,54,39,.22); }
+.drawer-object.shape-bar { width:135px; height:32px; }
+.drawer-object.shape-bar span { border-radius:16px; background:#9f9720; }
+.drawer-object.shape-disk { width:62px; height:62px; }
+.drawer-object.shape-disk span { border-radius:50%; background:#90b5dd; box-shadow:inset 0 0 0 12px #c96243,3px 4px 0 rgba(38,54,39,.2); }
+.drawer-object.shape-loop { width:110px; height:76px; }
+.drawer-object.shape-loop span { border:9px double var(--paper); border-radius:50%; background:transparent; box-shadow:none; }
+.drawer-object.shape-paper span,.drawer-object.shape-list span,.drawer-object.shape-ticket span { background:#f7f3ea; border-color:#263627; }
+.drawer-object.shape-list span { background:repeating-linear-gradient(#f7f3ea 0 13px,#90b5dd 14px 15px); }
+.drawer-object.shape-ticket { width:105px; height:48px; }
+.drawer-object.shape-ticket span { border-style:dashed; background:#b7aacb; }
+.drawer-object.shape-key { width:125px; height:42px; }
+.drawer-object.shape-key span { border:7px solid #263627; border-left-width:35px; border-radius:21px 4px 4px 21px; background:#9f9720; }

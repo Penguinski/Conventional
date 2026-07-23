@@ -171,8 +171,8 @@ export const editorialCards: EditorialCard[] = [
   {
     id: "bacheca",
     type: "bacheca",
-    title: "Bacheca",
-    body: "Classifiche locali dei giochi confrontabili e disegni in attesa di una futura moderazione.",
+    title: "Riepilogo locale",
+    body: "Dodici giochi, un contatore e nessuna classifica: riprendi da dove avevi lasciato.",
     action: "APRI",
   },
 ];

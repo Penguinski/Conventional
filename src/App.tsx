@@ -1,5 +1,7 @@
 import { lazy, useCallback, useEffect, useRef, useState } from "react";
 import CardArt from "./components/CardArt";
+import CornerTab from "./components/CornerTab";
+import { ErrorBoundary } from "./components/ErrorBoundaries";
 import GameShell from "./components/GameShell";
 import { editorialCards, games } from "./content/manifest";
 import type { EditorialCard, GameProgress } from "./games/types";
@@ -31,7 +33,7 @@ function EditorialModal({ card, onClose }: { card: EditorialCard; onClose: () =>
             <button onClick={() => setIndex((index + 1) % archive.length)}>PROSSIMA TRACCIA →</button>
           </div>
         )}
-        {card.type === "bacheca" && <p className="notice">Le classifiche cloud sono disattivate finché Supabase non viene configurato. I risultati restano sul dispositivo.</p>}
+        {card.type === "bacheca" && <p className="notice">Qui ritrovi i giochi completati e quelli ancora aperti. Il riepilogo resta sul dispositivo e non crea classifiche.</p>}
       </article>
     </div>
   );
@@ -41,17 +43,27 @@ export default function App() {
   const [store, setStore] = useState<PersistedState | null>(null);
   const [activeId, setActiveId] = useState<string | null>(() => routeId());
   const [editorial, setEditorial] = useState<EditorialCard | null>(null);
-  const [menuOpen, setMenuOpen] = useState(false);
   const scrollRef = useRef(0);
 
   useEffect(() => { loadState().then(setStore); }, []);
   useEffect(() => {
-    const onPop = () => setActiveId(routeId());
+    const previousRestoration = window.history.scrollRestoration;
+    window.history.scrollRestoration = "manual";
+    const onPop = (event: PopStateEvent) => {
+      const id = routeId();
+      if (!id && typeof event.state?.scroll === "number") scrollRef.current = event.state.scroll;
+      setActiveId(id);
+    };
     window.addEventListener("popstate", onPop);
-    return () => window.removeEventListener("popstate", onPop);
+    return () => {
+      window.history.scrollRestoration = previousRestoration;
+      window.removeEventListener("popstate", onPop);
+    };
   }, []);
   useEffect(() => {
-    if (!activeId) window.requestAnimationFrame(() => window.scrollTo({ top: scrollRef.current }));
+    if (activeId) return;
+    const frame = window.requestAnimationFrame(() => window.requestAnimationFrame(() => window.scrollTo({ top: scrollRef.current })));
+    return () => window.cancelAnimationFrame(frame);
   }, [activeId]);
 
   const completed = Object.values(store?.games ?? {}).filter((entry) => entry.state === "completed").length;
@@ -73,9 +85,10 @@ export default function App() {
 
   const openGame = (id: string) => {
     scrollRef.current = window.scrollY;
+    window.history.replaceState({ ...window.history.state, scroll: scrollRef.current }, "", window.location.href);
     const url = new URL(window.location.href);
     url.searchParams.set("gioco", id);
-    window.history.pushState({ scroll: scrollRef.current }, "", url);
+    window.history.pushState({ game: id }, "", url);
     setActiveId(id);
   };
 
@@ -96,10 +109,6 @@ export default function App() {
     <div className="magazine">
       <header className="masthead">
         <a className="wordmark" href="./" aria-label="Conventional, home">Conventional <i>/</i> <span>VOL. 1</span></a>
-        <button className="menu-button" onClick={() => setMenuOpen((value) => !value)} aria-expanded={menuOpen} aria-label="Apri indice">
-          <span /><span /><span />
-        </button>
-        {menuOpen && <nav className="issue-menu"><a href="#giochi">Giochi</a><a href="#colophon">Colophon</a><button onClick={() => setMenuOpen(false)}>CHIUDI</button></nav>}
       </header>
 
       <main>
@@ -119,7 +128,7 @@ export default function App() {
               const progress = store?.games[item.game.id]?.state ?? "new";
               return (
                 <button className={`issue-card category-${item.game.category}`} key={item.game.id} onClick={() => openGame(item.game.id)}>
-                  <span className={`corner-tab tab-${inward}`}>N. {String(item.game.number).padStart(2, "0")}</span>
+                  <CornerTab side={inward} label={`N. ${String(item.game.number).padStart(2, "0")}`} />
                   <CardArt number={item.game.number} category={item.game.category} />
                   <span className="card-copy">
                     <strong>{item.game.title}</strong>
@@ -131,7 +140,7 @@ export default function App() {
             }
             return (
               <button className={`issue-card editorial-card editorial-${item.card.type}`} key={item.card.id} onClick={() => setEditorial(item.card)}>
-                <span className={`corner-tab tab-${inward}`}>{item.card.type.toUpperCase()}</span>
+                <CornerTab side={inward} label={item.card.type.toUpperCase()} compact />
                 <div className="editorial-card-art" aria-hidden="true"><i /><i /><span /></div>
                 <span className="card-copy"><strong>{item.card.title}</strong><small>{item.card.body}</small><span className="card-action">{item.card.action}<b>→</b></span></span>
               </button>
@@ -140,10 +149,8 @@ export default function App() {
         </section>
       </main>
 
-      <footer className="colophon" id="colophon">
+      <footer className="colophon">
         <p>CONVENTIONAL / VOL. 1 / 2026</p>
-        <p>Le tracce globali sono facoltative. Senza backend, tutto resta nel browser.</p>
-        <p className="nickname">IDENTITÀ LOCALE: {store?.nickname ?? "assegnazione…"}</p>
       </footer>
 
       {activeGame && ActiveComponent && store && (
@@ -151,13 +158,14 @@ export default function App() {
           game={activeGame}
           progress={store.games[activeGame.id]}
           onClose={closeGame}
-          onProgress={(result) => updateGame(activeGame.id, "in-progress", result)}
         >
-          <ActiveComponent
-            saved={store.games[activeGame.id]}
-            onProgress={(result) => updateGame(activeGame.id, "in-progress", result)}
-            onComplete={(result) => updateGame(activeGame.id, "completed", result)}
-          />
+          <ErrorBoundary scope="game" onBack={closeGame} resetKey={activeGame.id}>
+            <ActiveComponent
+              saved={store.games[activeGame.id]}
+              onProgress={(result) => updateGame(activeGame.id, "in-progress", result)}
+              onComplete={(result) => updateGame(activeGame.id, "completed", result)}
+            />
+          </ErrorBoundary>
         </GameShell>
       )}
       {editorial && <EditorialModal card={editorial} onClose={() => setEditorial(null)} />}

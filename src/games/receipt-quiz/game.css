@@ -1,5 +1,9 @@
 .quiz-question { max-width:650px; margin:0 auto; border:var(--line); padding:22px; background:var(--olive); }
 .quiz-question>span,.receipt-result>span { font:11px var(--mono); }.quiz-question h2,.receipt-result h2 { font:700 36px/1 var(--serif-display); }
 .quiz-question button { width:100%; min-height:52px; border-top:1px solid var(--ink); text-align:left; cursor:pointer; }
-.receipt-result { max-width:540px; margin:0 auto; padding:25px; background:#fffdf4; border:1px dashed var(--ink); box-shadow:0 5px 20px rgba(0,0,0,.08); }
-.receipt-result p { display:flex; flex-direction:column; gap:3px; padding:9px 0; border-bottom:1px dashed var(--ink); }.receipt-result p b { font:12px var(--mono); }.receipt-result p span { font-size:17px; }
+.quiz-question button.quiz-back { margin-top:18px; font:11px var(--mono); }
+.receipt-result { width:min(100%,540px); aspect-ratio:9/16; overflow:auto; margin:0 auto; padding:25px; background:#fffdf4; border:1px dashed var(--ink); box-shadow:0 5px 20px rgba(0,0,0,.08); }
+.receipt-result p { display:flex; flex-direction:column; gap:4px; padding:9px 0; border-bottom:1px dashed var(--ink); }
+.receipt-result p b,.receipt-result p small { font:10px/1.2 var(--mono); }.receipt-result p span { font-size:17px; }.receipt-result p small { color:#5b665c; }
+.receipt-actions { display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:15px; }
+@media(max-width:420px){.receipt-result{padding:18px}.receipt-actions{grid-template-columns:1fr}}
