@@ -7,6 +7,7 @@ export default defineConfig(({ mode }) => ({
   build: {
     target: "es2022",
     sourcemap: false,
+    assetsDir: "",
   },
   test: {
     include: ["src/**/*.test.ts"],
