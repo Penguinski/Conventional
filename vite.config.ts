@@ -6,7 +6,7 @@ export default defineConfig(({ mode }) => ({
   base: mode === "production" ? "./" : "/",
   build: {
     target: "es2022",
-    sourcemap: true,
+    sourcemap: false,
   },
   test: {
     include: ["src/**/*.test.ts"],
