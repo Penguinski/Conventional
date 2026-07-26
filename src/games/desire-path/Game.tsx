@@ -1,5 +1,6 @@
 import { useCallback, useRef, useState } from "react";
 import type { GameProps } from "../types";
+import GamePageShell from "../../components/GamePageShell";
 import { prepareLogicalContext, usePointerStroke, useResponsiveCanvas, type CanvasPoint } from "../../lib/pointer-stroke";
 import { analyzePath, FINISH, START, WALLS, type PathKind } from "./logic";
 import "./game.css";
@@ -7,12 +8,18 @@ import "./game.css";
 const WIDTH = 360;
 const HEIGHT = 440;
 
+const crossingPoint = (stroke: CanvasPoint[], wall: (typeof WALLS)[number]) => {
+  const vertical = wall.x1 === wall.x2;
+  return stroke.find((point) => vertical
+    ? Math.abs(point.x - wall.x1) < 10 && point.y >= Math.min(wall.y1, wall.y2) && point.y <= Math.max(wall.y1, wall.y2)
+    : Math.abs(point.y - wall.y1) < 10 && point.x >= Math.min(wall.x1, wall.x2) && point.x <= Math.max(wall.x1, wall.x2));
+};
+
 export default function DesirePathGame({ onProgress, onComplete }: GameProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const visibleStrokeRef = useRef<CanvasPoint[]>([]);
   const [kind, setKind] = useState<PathKind | null>(null);
-  const [message, setMessage] = useState("Parti da A e raggiungi ×. I muri si possono attraversare.");
-  const [metrics, setMetrics] = useState<{ crossings: number; efficiency: number; length: number } | null>(null);
+  const [message, setMessage] = useState("Segui il percorso. Oppure inventane uno.");
 
   const render = useCallback((stroke = visibleStrokeRef.current) => {
     const canvas = canvasRef.current;
@@ -23,8 +30,9 @@ export default function DesirePathGame({ onProgress, onComplete }: GameProps) {
     context.fillRect(0, 0, WIDTH, HEIGHT);
 
     context.strokeStyle = "#b7aacb";
-    context.lineWidth = 18;
+    context.lineWidth = 12;
     context.lineCap = "square";
+    context.lineJoin = "miter";
     WALLS.forEach((wall) => {
       context.beginPath();
       context.moveTo(wall.x1, wall.y1);
@@ -35,7 +43,7 @@ export default function DesirePathGame({ onProgress, onComplete }: GameProps) {
     const analysis = stroke.length > 1 ? analyzePath(stroke) : null;
     analysis?.crossings.forEach((wallIndex) => {
       const wall = WALLS[wallIndex];
-      const crossing = stroke.find((point) => Math.abs(point.x - wall.x1) < 18 && point.y >= Math.min(wall.y1, wall.y2) && point.y <= Math.max(wall.y1, wall.y2));
+      const crossing = crossingPoint(stroke, wall);
       if (!crossing) return;
       context.fillStyle = "#f7f3ea";
       context.beginPath();
@@ -46,20 +54,23 @@ export default function DesirePathGame({ onProgress, onComplete }: GameProps) {
       context.stroke();
     });
 
-    context.fillStyle = "#263627";
-    context.font = "700 22px 'DM Mono'";
-    context.fillText("A", START.x - 9, START.y + 8);
-    context.fillText("×", FINISH.x - 8, FINISH.y + 8);
     context.strokeStyle = "#263627";
-    context.lineWidth = 2;
-    context.setLineDash([4, 6]);
+    context.lineWidth = 4;
+    context.lineCap = "round";
     context.beginPath();
-    context.arc(START.x, START.y, 20, 0, Math.PI * 2);
+    context.moveTo(5, START.y);
+    context.lineTo(39, START.y);
+    context.moveTo(30, START.y - 9);
+    context.lineTo(39, START.y);
+    context.lineTo(30, START.y + 9);
     context.stroke();
+
     context.beginPath();
-    context.arc(FINISH.x, FINISH.y, 22, 0, Math.PI * 2);
+    context.moveTo(FINISH.x - 8, FINISH.y - 8);
+    context.lineTo(FINISH.x + 8, FINISH.y + 8);
+    context.moveTo(FINISH.x + 8, FINISH.y - 8);
+    context.lineTo(FINISH.x - 8, FINISH.y + 8);
     context.stroke();
-    context.setLineDash([]);
 
     if (stroke.length) {
       context.strokeStyle = "#c96243";
@@ -79,9 +90,15 @@ export default function DesirePathGame({ onProgress, onComplete }: GameProps) {
   const reset = () => {
     visibleStrokeRef.current = [];
     setKind(null);
-    setMetrics(null);
-    setMessage("Parti da A e raggiungi ×. I muri si possono attraversare.");
+    setMessage("Segui il percorso. Oppure inventane uno.");
     render([]);
+  };
+
+  const goHome = () => {
+    const url = new URL(window.location.href);
+    url.searchParams.delete("gioco");
+    window.history.replaceState({ scroll: 0 }, "", url);
+    window.dispatchEvent(new PopStateEvent("popstate", { state: { scroll: 0 } }));
   };
 
   const pointer = usePointerStroke({
@@ -90,7 +107,6 @@ export default function DesirePathGame({ onProgress, onComplete }: GameProps) {
     onStart: () => {
       visibleStrokeRef.current = [];
       setKind(null);
-      setMetrics(null);
       onProgress({ gesto: "iniziato" });
     },
     onFrame: (stroke) => {
@@ -109,7 +125,6 @@ export default function DesirePathGame({ onProgress, onComplete }: GameProps) {
         return;
       }
       setKind(analysis.kind);
-      setMetrics({ crossings: analysis.crossings.length, efficiency: analysis.efficiency, length: analysis.length });
       setMessage("Percorso registrato.");
       onComplete({
         percorso: analysis.kind,
@@ -127,27 +142,41 @@ export default function DesirePathGame({ onProgress, onComplete }: GameProps) {
   });
 
   return (
-    <div className="game-panel desire-game">
-      <div className="game-status">
-        <span>PARTENZA: A · ARRIVO: ×</span>
-        <button onClick={reset}>RIPROVA</button>
-      </div>
-      <p className="compact-instruction" role="status">{message}</p>
-      <canvas
-        ref={canvasRef}
-        width={WIDTH}
-        height={HEIGHT}
-        aria-label="Labirinto tattile da A a X"
-        data-testid="maze-canvas"
-        {...pointer}
-      />
-      {kind && metrics && (
-        <div className="result-panel">
-          <h2>Percorso {kind}</h2>
-          <p>{metrics.crossings} muri attraversati · efficienza {Math.round(metrics.efficiency * 100)}% · {Math.round(metrics.length)} unità.</p>
-          <p>{kind === "ufficiale" ? "Hai seguito i varchi previsti." : kind === "scorciatoia" ? "Hai trasformato i muri in materiale attraversabile." : "Hai alternato regola e deviazione."}</p>
-        </div>
+    <GamePageShell
+      title="Labirinto matto"
+      subtitle="Trova l’uscita. O almeno prova a farlo."
+      onBack={goHome}
+      info={(
+        <>
+          <span className="maze-legend-swatch" aria-hidden="true" />
+          <div className={kind ? "maze-legend-copy game-tools result-panel" : "maze-legend-copy"}>
+            {kind && <span className="maze-complete-state">COMPLETATO</span>}
+            <p role="status">{kind ? `Percorso ${kind} registrato. Puoi ricominciare oppure tornare ai giochi.` : message}</p>
+          </div>
+        </>
       )}
-    </div>
+      secondaryAction={(
+        <button className="game-page-action game-page-action-secondary" type="button" onClick={reset}>
+          <span aria-hidden="true">↻</span>
+          <strong>Ricomincia</strong>
+        </button>
+      )}
+      primaryAction={(
+        <button className="game-page-action game-page-action-primary" type="button" onClick={goHome}>
+          <strong>Fatto</strong>
+        </button>
+      )}
+    >
+      <div className="desire-game">
+        <canvas
+          ref={canvasRef}
+          width={WIDTH}
+          height={HEIGHT}
+          aria-label="Labirinto tattile dalla freccia alla X"
+          data-testid="maze-canvas"
+          {...pointer}
+        />
+      </div>
+    </GamePageShell>
   );
 }

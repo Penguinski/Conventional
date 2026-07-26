@@ -1,8 +1,106 @@
-.odd-viewport { min-height:420px; max-height:62vh; overflow:auto; border:var(--line); background:var(--blue); touch-action:pan-x pan-y; }
-.odd-scene { position:relative; width:760px; height:520px; transform-origin:top left; }
-.odd-scene svg { position:absolute; inset:0; width:760px; height:520px; }
-.odd-scene button { position:absolute; translate:-50% -50%; width:52px; height:70px; border:2px solid transparent; border-radius:50%; cursor:pointer; background:transparent; }
-.odd-scene button:hover,.odd-scene button:focus-visible { border-color:var(--paper); background:rgba(247,243,234,.18); }
-.odd-scene button.found { border-color:var(--olive); box-shadow:0 0 0 6px rgba(159,151,32,.4); }
-.miss-mark { animation:miss-pulse .45s ease-out; }
-@keyframes miss-pulse { from { opacity:1; transform:scale(.5); transform-origin:center; } to { opacity:0; transform:scale(1.4); transform-origin:center; } }
+.odd-game { width:100%; }
+.odd-grid-panel { border:var(--line); background:var(--paper); }
+.odd-grid {
+  padding:10px;
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:6px;
+}
+.odd-figure {
+  position:relative;
+  min-width:0;
+  min-height:70px;
+  aspect-ratio:1.12;
+  padding:2px;
+  border:2px solid transparent;
+  background:transparent;
+  cursor:pointer;
+}
+.odd-figure svg {
+  width:100%;
+  height:100%;
+  display:block;
+  transform:scale(1.25);
+  transform-origin:center;
+}
+.odd-body,.odd-arm,.odd-feet {
+  fill:var(--paper);
+  stroke:#2d58a4;
+  stroke-width:2.3;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+}
+.odd-arm,.odd-feet { fill:none; stroke-width:2; }
+.odd-eye,.odd-trace { fill:#2d58a4; }
+.odd-figure:hover,.odd-figure:focus-visible { border-color:var(--blue); }
+.odd-figure.selected {
+  border-color:var(--ink);
+  background:rgba(183,170,203,.24);
+  outline:1px solid var(--paper);
+  outline-offset:-4px;
+}
+.odd-figure.selected::after {
+  content:"✓";
+  position:absolute;
+  top:3px;
+  right:3px;
+  width:20px;
+  height:20px;
+  display:grid;
+  place-items:center;
+  border:1px solid var(--ink);
+  background:var(--paper);
+  font:700 14px/1 var(--mono);
+}
+.odd-figure.wrong { border-style:dashed; }
+.odd-figure.wrong::after { content:"×"; }
+.odd-figure.found { border-style:double; border-width:4px; }
+.odd-figure:disabled { cursor:default; opacity:1; }
+.odd-feedback {
+  padding:7px 12px 8px;
+  border-top:var(--line);
+  display:grid;
+  align-content:center;
+}
+.odd-feedback p { margin:0; font:400 14px/1.18 var(--serif-text); }
+.odd-feedback.game-tools.result-panel {
+  margin:0;
+  padding:8px 12px;
+  border:0;
+  border-top:var(--line);
+  background:rgba(144,181,221,.24);
+  display:grid;
+  justify-content:stretch;
+  gap:3px;
+}
+.odd-complete-state { font:400 9px/1 var(--mono); letter-spacing:.04em; }
+.odd-metrics {
+  grid-column:1/-1;
+  width:100%;
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+}
+.odd-metrics > div {
+  min-width:0;
+  min-height:62px;
+  padding:7px 5px;
+  display:grid;
+  place-items:center;
+  align-content:center;
+  gap:5px;
+  text-align:center;
+}
+.odd-metrics > div + div { border-left:var(--line); }
+.odd-metrics span { font:400 9px/1 var(--mono); }
+.odd-metrics strong {
+  white-space:nowrap;
+  font:400 clamp(23px,7vw,34px)/1 var(--serif-text);
+}
+.odd-confirm-action { background:var(--blue); color:var(--paper); }
+.odd-confirm-action:disabled { color:var(--ink); opacity:.48; cursor:not-allowed; }
+
+@media (max-width:374px) {
+  .odd-grid { padding:8px; gap:4px; }
+  .odd-figure { min-height:67px; }
+  .odd-feedback { padding-inline:9px; }
+}

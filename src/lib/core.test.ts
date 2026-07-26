@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { analyzePath, classifyPath } from "../games/desire-path/logic";
+import { analyzePath, classifyPath, FINISH, MAZE_REACHABLE, MAZE_SOLUTION, START } from "../games/desire-path/logic";
 import { acceptedWords, DICTIONARY_VERSION, evaluateGuess, solutionWords } from "../games/five-letters/logic";
 import { entries, solutionCells, validateCrossword } from "../games/crossword/logic";
 import { evaluateAccusation } from "../games/dish-mystery/logic";
@@ -50,13 +50,18 @@ describe("punteggi e persistenza", () => {
 
 describe("labirinto", () => {
   it("classifica percorso ufficiale, scorciatoia e ibrido", () => {
-    const shortcut = [{ x: 24, y: 24 }, { x: 336, y: 416 }];
-    const official = [{ x:24,y:24 },{ x:60,y:24 },{ x:60,y:340 },{ x:150,y:340 },{ x:150,y:90 },{ x:230,y:90 },{ x:230,y:340 },{ x:330,y:340 },{ x:336,y:416 }];
-    const hybrid = [{ x:24,y:24 },{ x:130,y:120 },{ x:130,y:340 },{ x:230,y:340 },{ x:230,y:330 },{ x:336,y:416 }];
+    const shortcut = [START, FINISH];
+    const official = MAZE_SOLUTION;
+    const hybrid = [START, { x:30, y:220 }, { x:30, y:400 }, { x:180, y:400 }, FINISH];
     expect(classifyPath(shortcut)).toBe("scorciatoia");
     expect(classifyPath(official)).toBe("ufficiale");
     expect(classifyPath(hybrid)).toBe("ibrido");
     expect(analyzePath(shortcut)).toMatchObject({ startValid:true, endValid:true });
+  });
+  it("ha un percorso deterministico raggiungibile senza attraversare muri", () => {
+    expect(MAZE_REACHABLE).toBe(true);
+    expect(MAZE_SOLUTION.length).toBeGreaterThan(12);
+    expect(analyzePath(MAZE_SOLUTION)).toMatchObject({ crossings:[], startValid:true, endValid:true });
   });
 });
 

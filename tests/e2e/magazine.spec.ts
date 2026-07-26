@@ -1,5 +1,6 @@
 import { expect, test, type Locator, type Page } from "@playwright/test";
 import { dots } from "../../src/games/connect-dots/logic";
+import { MAZE_SOLUTION } from "../../src/games/desire-path/logic";
 import { dailyWord } from "../../src/games/five-letters/logic";
 import { solutionCells } from "../../src/games/crossword/logic";
 
@@ -47,6 +48,8 @@ async function touchStroke(page:Page,canvas:Locator,points:Array<[number,number]
   await session.detach();
 }
 
+const mazeRoute=MAZE_SOLUTION.map(({x,y}):[number,number]=>[x/360,y/440]);
+
 async function expectCurrentGameCompleted(page:Page){
   await expect(page.locator(".game-tools").getByText("COMPLETATO",{exact:true})).toBeVisible();
 }
@@ -93,7 +96,7 @@ test("mouse pointer completes maze and dust without blank screens",async({page},
   const errors=await pointerErrors(page);
   await page.goto("/?gioco=fuori-traccia");
   const maze=page.getByTestId("maze-canvas");
-  await mouseStroke(page,maze,[[.067,.055],[.25,.24],[.5,.5],[.75,.74],[.933,.945]]);
+  await mouseStroke(page,maze,mazeRoute);
   await expect(page.getByText(/Percorso (scorciatoia|ibrido|ufficiale)/)).toBeVisible();
   await expect(page.locator("#root")).toBeVisible();
   await page.getByRole("button",{name:"Torna alla rivista"}).click();
@@ -116,7 +119,7 @@ test("touch pointer completes both canvases and survives cancel/lost capture",as
   const errors=await pointerErrors(page);
   await page.goto("/?gioco=fuori-traccia");
   const maze=page.getByTestId("maze-canvas");
-  await touchStroke(page,maze,[[.067,.055],[.25,.25],[.5,.5],[.74,.74],[.933,.945]]);
+  await touchStroke(page,maze,mazeRoute);
   await expect(page.locator(".result-panel")).toBeVisible();
   await maze.dispatchEvent("pointerdown",{pointerId:77,pointerType:"touch",clientX:10,clientY:10,bubbles:true});
   await maze.dispatchEvent("pointercancel",{pointerId:77,pointerType:"touch",clientX:20,clientY:20,bubbles:true});
@@ -131,19 +134,134 @@ test("touch pointer completes both canvases and survives cancel/lost capture",as
   expect(errors).toEqual([]);
 });
 
+test("connect dots survives mouse, touch, cancel, exit, resize, reset, error, and completion",async({page},testInfo)=>{
+  test.skip(!["desktop","mobile-390"].includes(testInfo.project.name));
+  const errors=await pointerErrors(page);
+  await page.goto("/?gioco=collega-punti");
+  const board=page.locator(".dots-board");
+  const complete=page.getByRole("button",{name:"Completa"});
+  await expect(board).toBeVisible();
+  await expect(complete).toBeDisabled();
+
+  await page.getByRole("button",{name:"Punto 3"}).click();
+  await expect(page.locator(".dots-feedback")).toContainText("punto 1");
+
+  await page.getByRole("button",{name:"Cancella"}).click();
+  await expect(page.locator(".dots-info-grid")).toContainText(`0/${dots.length}`);
+  await expect(board.locator(".personal-line")).toHaveAttribute("points","");
+
+  await page.getByRole("button",{name:"Punto 1",exact:true}).click();
+  await page.getByRole("button",{name:"Punto 2",exact:true}).click();
+  await expect(page.getByRole("button",{name:"Punto 1",exact:true})).toHaveAttribute("aria-pressed","true");
+  await expect(page.getByRole("button",{name:"Punto 2",exact:true})).toHaveAttribute("aria-pressed","true");
+
+  const lineBeforeResize=await board.locator(".personal-line").getAttribute("points");
+  await page.setViewportSize({width:430,height:932});
+  await expect(page.locator(".dots-info-grid")).toContainText(`2/${dots.length}`);
+  await expect(board.locator(".personal-line")).toHaveAttribute("points",lineBeforeResize ?? "");
+
+  await page.getByRole("button",{name:"Cancella"}).click();
+  const box=await board.boundingBox();
+  if(!box)throw new Error("Dots board unavailable");
+  await page.mouse.move(box.x+box.width*.5,box.y+box.height*.18);
+  await page.mouse.down();
+  await page.mouse.move(box.x+box.width+45,box.y+box.height*.5,{steps:4});
+  await page.mouse.up();
+  await expect(page.locator("#root")).toBeVisible();
+  const plotted=await board.locator(".personal-line").getAttribute("points");
+  expect((plotted ?? "").split(" ").every((pair)=>{
+    const [x,y]=pair.split(",").map(Number);
+    return x>=0&&x<=100&&y>=0&&y<=100;
+  })).toBe(true);
+
+  await page.getByRole("button",{name:"Cancella"}).click();
+  await board.dispatchEvent("pointerdown",{pointerId:91,pointerType:"touch",clientX:box.x+box.width*.5,clientY:box.y+box.height*.18,bubbles:true});
+  await board.dispatchEvent("pointercancel",{pointerId:91,pointerType:"touch",clientX:box.x+box.width*.5,clientY:box.y+box.height*.18,bubbles:true});
+  await board.dispatchEvent("lostpointercapture",{pointerId:91,pointerType:"touch",bubbles:true});
+  await expect(page.locator(".dots-feedback")).toContainText("Gesto interrotto");
+  await expect(page.locator("#root")).toBeVisible();
+
+  await page.getByRole("button",{name:"Cancella"}).click();
+  const stroke=dots.map(([x,y]):[number,number]=>[x/100,y/100]);
+  if(testInfo.project.name==="mobile-390")await touchStroke(page,board,stroke);
+  else await mouseStroke(page,board,stroke);
+  await expect(complete).toBeEnabled();
+  await complete.click();
+  await expectCurrentGameCompleted(page);
+  await page.getByRole("button",{name:"Torna alla rivista"}).click();
+  await expect(page.locator(".card-grid")).toBeVisible();
+  expect(errors).toEqual([]);
+});
+
+test("spot difference supports changeable selection, feedback, resize, reset, and completion",async({page},testInfo)=>{
+  test.skip(!["desktop","mobile-390"].includes(testInfo.project.name));
+  const errors=await pointerErrors(page);
+  await page.goto("/?gioco=prima-dopo");
+  const beforeScene=page.locator('svg[aria-label="Stanza prima"]');
+  const afterScene=page.locator('svg[aria-label="Stanza dopo"]');
+  const complete=page.getByRole("button",{name:"Completa"});
+  await expect(beforeScene).toBeVisible();
+  await expect(complete).toBeDisabled();
+
+  await beforeScene.click({position:{x:18,y:18}});
+  await expect(page.locator(".difference-feedback")).toContainText("non c’è una differenza");
+
+  const cup=beforeScene.locator('[aria-label="Differenza: tazza spostata"]');
+  const cushion=beforeScene.locator('[aria-label="Differenza: cuscino schiacciato"]');
+  await cup.click({force:true});
+  await expect(cup).toHaveAttribute("aria-pressed","true");
+  await expect(complete).toBeEnabled();
+  await cushion.click({force:true});
+  await expect(cup).toHaveAttribute("aria-pressed","false");
+  await expect(cushion).toHaveAttribute("aria-pressed","true");
+  await complete.click();
+  await expect(page.locator(".difference-info-grid")).toContainText("1/7");
+  await expect(page.locator(".difference-found")).toHaveCount(2);
+
+  if(testInfo.project.name==="mobile-390"){
+    await page.getByRole("button",{name:"Dopo",exact:true}).click();
+    await expect(afterScene).toBeVisible();
+    await expect(afterScene.locator(".difference-found")).toBeVisible();
+    const afterCup=afterScene.locator('[aria-label="Differenza: tazza spostata"]');
+    await afterCup.click({force:true});
+    await expect(afterCup).toHaveAttribute("aria-pressed","true");
+  }
+
+  await page.getByRole("button",{name:"Ricomincia"}).click();
+  await expect(page.locator(".difference-info-grid")).toContainText("0/7");
+  await expect(page.locator(".difference-feedback")).toHaveCount(0);
+  await expect(complete).toBeDisabled();
+
+  await page.setViewportSize({width:430,height:932});
+  await page.getByRole("button",{name:"Prima",exact:true}).click();
+  for(const target of await beforeScene.locator(".difference-target").all()){
+    await target.click({force:true});
+    await complete.click();
+  }
+  await expectCurrentGameCompleted(page);
+  await expect.poll(() => page.evaluate(() => {
+    const raw=window.localStorage.getItem("conventional-vol-1-progress");
+    return raw ? JSON.parse(raw).games?.["prima-dopo"]?.state : null;
+  })).toBe("completed");
+  await page.getByRole("button",{name:"Torna alla rivista"}).click();
+  await expect(page.locator(".card-grid")).toBeVisible();
+  expect(errors).toEqual([]);
+});
+
 test("one real complete flow for all twelve games persists 12/12",async({page},testInfo)=>{
   test.setTimeout(90_000);
   test.skip(testInfo.project.name!=="desktop");
   await page.goto("/?gioco=fuori-traccia");
-  await mouseStroke(page,page.getByTestId("maze-canvas"),[[.067,.055],[.3,.3],[.6,.62],[.933,.945]]);
+  await mouseStroke(page,page.getByTestId("maze-canvas"),mazeRoute);
   await expectCurrentGameCompleted(page);
 
   await page.goto("/?gioco=intruso");
   await page.getByRole("button",{name:"Figura 10"}).click();
+  await page.getByRole("button",{name:"Conferma"}).click();
   await expectCurrentGameCompleted(page);
 
   await page.goto("/?gioco=cassetto");
-  const targetText=(await page.locator(".game-status").innerText()).match(/CERCA:\s*([A-Z]+)/)?.[1]?.toLowerCase();
+  const targetText=(await page.locator(".drawer-target-name").innerText()).toLowerCase();
   if(!targetText)throw new Error("Drawer target missing");
   const drawer=page.locator(".drawer");
   const drawerBox=await drawer.boundingBox();
@@ -161,10 +279,12 @@ test("one real complete flow for all twelve games persists 12/12",async({page},t
     if(box)await object.dragTo(drawer,{targetPosition:destination});
   }
   await targetObject.click();
+  await page.getByRole("button",{name:"Trovato!"}).click();
   await expectCurrentGameCompleted(page);
 
   await page.goto("/?gioco=collega-punti");
   await mouseStroke(page,page.locator(".dots-board"),dots.map(([x,y]):[number,number]=>[x/100,y/100]));
+  await page.getByRole("button",{name:"Completa"}).click();
   await expectCurrentGameCompleted(page);
 
   await page.goto("/?gioco=polvere");
@@ -173,9 +293,15 @@ test("one real complete flow for all twelve games persists 12/12",async({page},t
   await expectCurrentGameCompleted(page);
 
   await page.goto("/?gioco=prima-dopo");
-  await page.getByRole("button",{name:"DOPO",exact:true}).click();
-  const targets=page.locator('svg[aria-label="Stanza dopo"] .difference-target');
-  for(const target of await targets.all())await target.click({force:true});
+  const targets=page.locator('svg[aria-label="Stanza prima"] .difference-target');
+  for(const [index,target] of (await targets.all()).entries()){
+    await target.focus();
+    await page.keyboard.press("Enter");
+    const complete=page.getByRole("button",{name:"Completa"});
+    await expect(complete).toBeEnabled();
+    await complete.click();
+    await expect(page.locator(".difference-info-grid")).toContainText(`${index+1}/7`);
+  }
   await expectCurrentGameCompleted(page);
 
   await page.goto("/?gioco=caso-piatti");

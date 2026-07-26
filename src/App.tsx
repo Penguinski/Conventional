@@ -105,6 +105,18 @@ export default function App() {
     return item;
   });
 
+  if ((activeGame?.id === "fuori-traccia" || activeGame?.id === "intruso" || activeGame?.id === "cassetto" || activeGame?.id === "collega-punti" || activeGame?.id === "prima-dopo") && ActiveComponent && store) {
+    return (
+      <ErrorBoundary scope="game" onBack={closeGame} resetKey={activeGame.id}>
+        <ActiveComponent
+          saved={store.games[activeGame.id]}
+          onProgress={(result) => updateGame(activeGame.id, "in-progress", result)}
+          onComplete={(result) => updateGame(activeGame.id, "completed", result)}
+        />
+      </ErrorBoundary>
+    );
+  }
+
   return (
     <div className="magazine">
       <header className="masthead">

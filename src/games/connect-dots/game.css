@@ -1,7 +1,182 @@
-.dots-board { position:relative; width:min(100%, 580px); aspect-ratio:1; margin:0 auto; background:var(--blue); border:var(--line); touch-action:none; }
-.dots-board svg { position:absolute; inset:0; width:100%; height:100%; overflow:visible; }
-.dots-board polyline { fill:none; stroke:var(--ink); stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round; }
-.dots-board polyline.echo { stroke:var(--paper); stroke-width:.7; opacity:.75; }
-.dots-board button { position:absolute; translate:-50% -50%; width:44px; height:44px; border-radius:50%; font:10px var(--mono); cursor:pointer; }
-.dots-board button::before { content:""; position:absolute; inset:14px; background:var(--ink); border-radius:50%; }
-.dots-board button.done::before { background:var(--terracotta); }.dots-board button.current { outline:2px dashed var(--ink); outline-offset:0; }
+.dots-game {
+  width:100%;
+  user-select:none;
+  -webkit-user-select:none;
+}
+.dots-board {
+  position:relative;
+  width:100%;
+  aspect-ratio:1;
+  overflow:hidden;
+  border:var(--line);
+  background:
+    radial-gradient(circle at 17% 23%,rgba(247,243,234,.27) 0 .7px,transparent .9px),
+    radial-gradient(circle at 72% 61%,rgba(38,54,39,.1) 0 .65px,transparent .9px),
+    var(--blue);
+  background-size:11px 13px,17px 19px,auto;
+  touch-action:none;
+  overscroll-behavior:contain;
+}
+.dots-board svg {
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  overflow:hidden;
+  pointer-events:none;
+}
+.dots-board polyline {
+  fill:none;
+  stroke:var(--ink);
+  stroke-width:1.45;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+}
+.dots-board polyline.echo {
+  stroke:var(--paper);
+  stroke-width:.55;
+  opacity:.72;
+}
+.dots-board button {
+  position:absolute;
+  translate:-50% -50%;
+  width:52px;
+  height:52px;
+  padding:0;
+  border:1px solid transparent;
+  color:var(--ink);
+  cursor:pointer;
+  touch-action:none;
+}
+.dots-board button span {
+  position:absolute;
+  left:50%;
+  top:2px;
+  translate:-50% 0;
+  font:700 15px/1 var(--serif-display);
+}
+.dots-board button::before {
+  content:"";
+  position:absolute;
+  left:50%;
+  top:27px;
+  width:13px;
+  height:13px;
+  translate:-50% -50%;
+  border:2px solid var(--ink);
+  border-radius:50%;
+  background:var(--ink);
+}
+.dots-board button.current {
+  border:1px dashed var(--ink);
+  background:rgba(247,243,234,.22);
+}
+.dots-board button.connected::before {
+  background:var(--paper);
+  box-shadow:inset 0 0 0 3px var(--ink);
+}
+.dots-board button.connected::after {
+  content:"✓";
+  position:absolute;
+  right:1px;
+  bottom:1px;
+  width:16px;
+  height:16px;
+  display:grid;
+  place-items:center;
+  border:1px solid var(--ink);
+  background:var(--paper);
+  font:700 10px/1 var(--mono);
+}
+.dots-feedback {
+  padding:7px 11px 8px;
+  border:var(--line);
+  border-top:0;
+  background:rgba(247,243,234,.88);
+}
+.dots-feedback p {
+  margin:0;
+  font:400 14px/1.18 var(--serif-text);
+}
+.dots-feedback.game-tools.result-panel {
+  margin:0;
+  padding:7px 11px 8px;
+  display:grid;
+  justify-content:stretch;
+  gap:3px;
+  border:var(--line);
+  border-top:0;
+  background:rgba(144,181,221,.3);
+}
+.dots-complete-state {
+  font:400 9px/1 var(--mono);
+  letter-spacing:.04em;
+}
+.dots-info-grid {
+  grid-column:1/-1;
+  width:100%;
+  display:grid;
+  grid-template-columns:.8fr 1.4fr;
+}
+.dots-info-cell {
+  min-width:0;
+  min-height:66px;
+  padding:8px 10px;
+  display:grid;
+  place-items:center;
+  align-content:center;
+  gap:7px;
+  text-align:center;
+}
+.dots-info-cell + .dots-info-cell {
+  border-left:var(--line);
+}
+.dots-info-cell > span {
+  font:400 8px/1 var(--mono);
+}
+.dots-info-cell > strong {
+  font:400 clamp(17px,4.7vw,24px)/1.05 var(--serif-text);
+}
+.dots-info-cell > strong em {
+  color:#477cc0;
+  font:700 clamp(26px,7vw,36px)/.8 var(--serif-display);
+  font-style:normal;
+}
+.dots-objective > strong {
+  font-size:clamp(15px,4.2vw,21px);
+}
+.dots-complete-action {
+  background:var(--blue);
+}
+.game-page-action > .dots-eraser {
+  position:relative;
+  width:29px;
+  height:18px;
+  flex:0 0 auto;
+  border:2px solid var(--ink);
+  border-radius:3px;
+  rotate:-45deg;
+}
+.game-page-action > .dots-eraser::after {
+  content:"";
+  position:absolute;
+  top:-2px;
+  bottom:-2px;
+  left:9px;
+  border-left:2px solid var(--ink);
+}
+.dots-complete-action:disabled {
+  color:var(--ink);
+  opacity:.48;
+  cursor:not-allowed;
+}
+
+@media (max-width:374px) {
+  .dots-board button {
+    width:50px;
+    height:50px;
+  }
+  .dots-info-cell {
+    padding-inline:7px;
+  }
+}

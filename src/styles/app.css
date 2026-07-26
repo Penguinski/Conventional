@@ -14,6 +14,158 @@ html::before {
 
 body.overlay-open { overflow: hidden; }
 button { background: none; border: 0; }
+
+.game-page-shell {
+  min-height: 100svh;
+  width: 100%;
+  overflow-x: clip;
+  background: var(--paper);
+  color: var(--ink);
+}
+.game-page-shell.game-overlay {
+  position: relative;
+  inset: auto;
+  z-index: auto;
+  overflow: visible;
+  background: var(--paper);
+}
+.game-page-masthead {
+  width: min(100% - 36px, 900px);
+  min-height: 72px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 48px minmax(0, 1fr);
+  align-items: center;
+  column-gap: 14px;
+  border-bottom: var(--line);
+}
+.game-page-back {
+  width: 48px;
+  min-height: 48px;
+  padding: 0;
+  color: var(--ink);
+  cursor: pointer;
+  text-align: left;
+  font: 400 43px/.8 var(--serif-text);
+}
+.game-page-wordmark {
+  min-width: 0;
+  display: flex;
+  align-items: baseline;
+  gap: 9px;
+  white-space: nowrap;
+}
+.game-page-wordmark strong {
+  overflow: hidden;
+  text-overflow: clip;
+  font: 700 clamp(27px, 8vw, 39px)/1 var(--serif-display);
+  letter-spacing: -1.1px;
+}
+.game-page-wordmark i {
+  font: 400 17px/1 var(--mono);
+  font-style: normal;
+}
+.game-page-wordmark span {
+  font: 400 clamp(11px, 3.2vw, 15px)/1 var(--mono);
+}
+.game-page-main {
+  width: min(100% - 36px, 900px);
+  margin: 0 auto;
+  padding: 27px 0 22px;
+}
+.game-page-intro {
+  margin-bottom: 22px;
+}
+.game-page-intro h1 {
+  margin: 0 0 10px;
+  font: 700 clamp(40px, 11vw, 62px)/.94 var(--serif-display);
+  letter-spacing: -1.5px;
+}
+.game-page-intro p {
+  max-width: 580px;
+  margin: 0;
+  font: 400 clamp(19px, 5.2vw, 25px)/1.16 var(--serif-text);
+}
+.game-page-stage {
+  width: 100%;
+}
+.game-page-info {
+  min-height: 60px;
+  margin-top: 14px;
+  padding: 10px 14px;
+  display: grid;
+  grid-template-columns: 42px minmax(0, 1fr);
+  align-items: center;
+  gap: 13px;
+  border: var(--line);
+}
+.game-page-info p {
+  margin: 0;
+  font: 400 15px/1.22 var(--serif-text);
+}
+.maze-legend-copy {
+  min-width: 0;
+}
+.game-page-info .game-tools.result-panel {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  display: grid;
+  justify-content: stretch;
+  gap: 3px;
+}
+.maze-complete-state {
+  font: 400 9px/1 var(--mono);
+  letter-spacing: .04em;
+}
+.maze-legend-swatch {
+  width: 38px;
+  height: 38px;
+  display: block;
+  background: var(--lilac);
+}
+.game-page-actions {
+  margin-top: 18px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 10px;
+}
+.game-page-action {
+  min-width: 0;
+  min-height: 64px;
+  padding: 9px 14px;
+  border: var(--line);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  cursor: pointer;
+  font-family: var(--serif-display);
+}
+.game-page-action strong {
+  font: 700 clamp(20px, 5.6vw, 28px)/1 var(--serif-display);
+}
+.game-page-action > span {
+  font: 400 35px/1 var(--serif-text);
+}
+.game-page-action-primary {
+  background: var(--lilac);
+}
+.game-page-action:active {
+  background: var(--ink);
+  color: var(--paper);
+}
+.game-page-shell .desire-game {
+  width: 100%;
+}
+.game-page-shell .desire-game canvas {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  border: var(--line);
+}
+
 .magazine { min-height: 100vh; padding: 20px 17px 50px; }
 .masthead {
   position: relative;
@@ -224,6 +376,10 @@ button { background: none; border: 0; }
 .error-game { min-height: 360px; padding: 24px; border: var(--line); align-content: center; }
 
 @media (min-width: 600px) {
+  .game-page-masthead,
+  .game-page-main { width: min(100% - 64px, 900px); }
+  .game-page-main { padding-top: 38px; }
+  .game-page-actions { gap: 16px; }
   .magazine { padding: 24px 25px 70px; }
   .issue-card { min-height: 390px; padding: 12px; }
   .art { height: 245px; flex-basis: 245px; }
@@ -237,6 +393,13 @@ button { background: none; border: 0; }
   .game-sheet { width: min(1060px, calc(100% - 64px)); min-height: calc(100% - 48px); margin: 24px auto; padding: 28px 40px; box-shadow: 14px 14px 0 rgba(0,0,0,.22); }
 }
 @media (max-width: 374px) {
+  .game-page-masthead,
+  .game-page-main { width: min(100% - 28px, 900px); }
+  .game-page-masthead { grid-template-columns: 43px minmax(0, 1fr); column-gap: 8px; }
+  .game-page-wordmark { gap: 6px; }
+  .game-page-main { padding-top: 23px; }
+  .game-page-info { padding-inline: 11px; }
+  .game-page-action { padding-inline: 8px; }
   .magazine { padding-inline: 14px; }
   .card-grid { gap: 10px; }
   .issue-card { min-height: 288px; padding: 8px; }

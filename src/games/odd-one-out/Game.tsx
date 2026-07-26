@@ -1,21 +1,16 @@
-import { useRef, useState } from "react";
+import { useState } from "react";
+import GamePageShell from "../../components/GamePageShell";
 import type { GameProps } from "../types";
 import { useActiveTimer } from "../../lib/game-utils";
 import "./game.css";
 
 interface Actor {
   id: string;
-  x: number;
-  y: number;
-  color: string;
   traceDirection: "left" | "right";
 }
 
 export const actors: Actor[] = Array.from({ length: 16 }, (_, index) => ({
   id: `figura-${index + 1}`,
-  x: 90 + (index % 4) * 185 + (index % 2) * 16,
-  y: 90 + Math.floor(index / 4) * 128,
-  color: ["#c96243", "#9f9720", "#90b5dd", "#b7aacb"][index % 4],
   traceDirection: index === 9 ? "right" : "left",
 }));
 const TARGET = 9;
@@ -23,71 +18,136 @@ const TARGET = 9;
 export default function OddOneOut({ onProgress, onComplete }: GameProps) {
   const [errors, setErrors] = useState(0);
   const [done, setDone] = useState(false);
-  const [zoom, setZoom] = useState(1);
-  const [miss, setMiss] = useState<{ x: number; y: number; id: number } | null>(null);
-  const missIdRef = useRef(0);
+  const [selected, setSelected] = useState<number | null>(null);
+  const [lastWrong, setLastWrong] = useState<number | null>(null);
+  const [feedback, setFeedback] = useState("");
   const seconds = useActiveTimer(!done);
+  const score = seconds + errors * 8;
+  const time = `${String(Math.floor(seconds / 60)).padStart(2, "0")}:${String(seconds % 60).padStart(2, "0")}`;
 
   const pick = (index: number) => {
     if (done) return;
-    if (index === TARGET) {
+    setSelected(index);
+    setLastWrong(null);
+    setFeedback("");
+  };
+
+  const confirm = () => {
+    if (done) return;
+    if (selected === null) {
+      setFeedback("Seleziona una figura prima di confermare.");
+      return;
+    }
+    if (selected === TARGET) {
       setDone(true);
       onComplete({ errori: errors, secondi: seconds, punteggio: seconds + errors * 8 });
+      setFeedback("La figura 10 procede verso destra, ma i segni sono davanti al passo anziché dietro: è l’unica traccia che non può provenire dal movimento mostrato.");
       navigator.vibrate?.(25);
       return;
     }
-    const actor = actors[index];
-    missIdRef.current += 1;
-    const missId = missIdRef.current;
-    setErrors((value) => value + 1);
-    setMiss({ x: actor.x, y: actor.y, id: missId });
-    window.setTimeout(() => setMiss((current) => current?.id === missId ? null : current), 450);
-    onProgress({ errori: errors + 1 });
+    const nextErrors = errors + 1;
+    setErrors(nextErrors);
+    setLastWrong(selected);
+    setFeedback("Non è questa. Puoi cambiare scelta e confermare di nuovo.");
+    onProgress({ errori: nextErrors });
+    navigator.vibrate?.(18);
   };
 
   const reset = () => {
     setErrors(0);
     setDone(false);
-    setMiss(null);
-    setZoom(1);
+    setSelected(null);
+    setLastWrong(null);
+    setFeedback("");
+  };
+
+  const goHome = () => {
+    const url = new URL(window.location.href);
+    url.searchParams.delete("gioco");
+    window.history.replaceState({ scroll: 0 }, "", url);
+    window.dispatchEvent(new PopStateEvent("popstate", { state: { scroll: 0 } }));
   };
 
   return (
-    <div className="game-panel odd-game">
-      <div className="game-status">
-        <label>ZOOM <input type="range" min="1" max="1.8" step=".1" value={zoom} onChange={(event) => setZoom(Number(event.target.value))} /></label>
-        <span>{seconds}s · {errors} errori</span>
-        <button onClick={reset}>RIPROVA</button>
-      </div>
-      <p className="compact-instruction">Trova la figura la cui traccia indica una direzione diversa dal suo movimento.</p>
-      <div className="odd-viewport" aria-label="Scena esplorabile con pan e zoom">
-        <div className="odd-scene" style={{ transform: `scale(${zoom})` }}>
-          <svg viewBox="0 0 760 520" role="img" aria-label="Sedici figure geometriche e le tracce lasciate">
-            <rect width="760" height="520" fill="#90b5dd" />
-            {actors.map((actor) => {
-              const sign = actor.traceDirection === "left" ? -1 : 1;
+    <GamePageShell
+      title="Trova l’intruso"
+      subtitle="Tra tutte queste figure ce n’è una che non appartiene al gruppo. Riesci a trovarla?"
+      onBack={goHome}
+      info={(
+        <div className="odd-metrics" aria-label="Stato della partita">
+          <div>
+            <span>TROVATI</span>
+            <strong>{done ? "1/1" : "0/1"}</strong>
+          </div>
+          <div>
+            <span>PUNTEGGIO</span>
+            <strong>{String(score).padStart(4, "0")}</strong>
+          </div>
+          <div>
+            <span>TEMPO</span>
+            <strong>{time}</strong>
+          </div>
+        </div>
+      )}
+      secondaryAction={(
+        <button className="game-page-action game-page-action-secondary" type="button" onClick={reset}>
+          <span aria-hidden="true">↻</span>
+          <strong>Ricomincia</strong>
+        </button>
+      )}
+      primaryAction={(
+        <button className="game-page-action odd-confirm-action" type="button" onClick={confirm} disabled={selected === null || done}>
+          <strong>Conferma</strong>
+          <span aria-hidden="true">→</span>
+        </button>
+      )}
+    >
+      <div className="odd-game">
+        <div className="odd-grid-panel">
+          <div className="odd-grid" role="group" aria-label="Sedici figure, scegline una">
+            {actors.map((actor, index) => {
+              const selectedActor = selected === index;
+              const wrongActor = lastWrong === index;
+              const foundActor = done && index === TARGET;
+              const traceX = actor.traceDirection === "left" ? 13 : 67;
               return (
-                <g key={actor.id}>
-                  <line x1={actor.x + sign * 22} y1={actor.y + 28} x2={actor.x + sign * 67} y2={actor.y + 28} stroke="#263627" strokeWidth="4" strokeDasharray="5 9" />
-                  <circle cx={actor.x} cy={actor.y} r="19" fill={actor.color} stroke="#263627" strokeWidth="3" />
-                  <path d={`M ${actor.x} ${actor.y + 19} l ${sign * 18} 32 l ${sign * -9} 34 M ${actor.x + sign * 18} ${actor.y + 51} l ${sign * 25} 20`} fill="none" stroke="#263627" strokeWidth="5" strokeLinecap="round" />
-                </g>
-              );
-            })}
-            {miss && <circle className="miss-mark" cx={miss.x} cy={miss.y} r="31" fill="none" stroke="#c96243" strokeWidth="5" />}
-          </svg>
-          {actors.map((actor, index) => (
             <button
               key={actor.id}
-              className={done && index === TARGET ? "found" : ""}
-              style={{ left: actor.x, top: actor.y }}
+                  className={[
+                    "odd-figure",
+                    selectedActor ? "selected" : "",
+                    wrongActor ? "wrong" : "",
+                    foundActor ? "found" : "",
+                  ].filter(Boolean).join(" ")}
               onClick={() => pick(index)}
               aria-label={`Figura ${index + 1}`}
-            />
-          ))}
+                  aria-pressed={selectedActor}
+                  disabled={done}
+                >
+                  <svg viewBox="0 0 80 92" aria-hidden="true">
+                    <g className="odd-trace">
+                      <circle cx={traceX} cy="52" r="2.2" />
+                      <circle cx={traceX + (actor.traceDirection === "left" ? 7 : -7)} cy="58" r="1.8" />
+                      <circle cx={traceX + (actor.traceDirection === "left" ? 13 : -13)} cy="64" r="1.4" />
+                    </g>
+                    <path className="odd-body" d="M40 12 C28 12 24 24 26 36 C20 47 20 67 28 77 C34 84 46 84 52 77 C60 67 60 47 54 36 C56 24 52 12 40 12 Z" />
+                    <path className="odd-arm" d="M27 42 C22 49 21 58 24 65 M53 42 C58 49 59 58 56 65" />
+                    <path className="odd-feet" d="M33 80 V86 H28 M47 80 V86 H52" />
+                    <circle className="odd-eye" cx="36" cy="31" r="1.6" />
+                    <circle className="odd-eye" cx="45" cy="31" r="1.6" />
+                  </svg>
+                </button>
+              );
+            })}
+          </div>
+          {feedback && (
+            <div className={`odd-feedback ${done ? "game-tools result-panel" : ""}`} aria-live="polite">
+              {done && <span className="odd-complete-state">COMPLETATO</span>}
+              <p>{feedback}</p>
+            </div>
+          )}
         </div>
       </div>
-      {done && <div className="result-panel"><h2>Relazione contraddittoria</h2><p>La figura 10 procede verso destra, ma i segni sono davanti al passo anziché dietro: è l'unica traccia che non può provenire dal movimento mostrato.</p></div>}
-    </div>
+    </GamePageShell>
   );
 }
