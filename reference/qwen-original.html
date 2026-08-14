@@ -1,0 +1,1311 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>CONVENTIONAL · Volume 1 — Bozza visiva</title>
+
+<!-- ============================================================
+CONVENTIONAL · VOL.1 — BOZZA VISIVA INTERATTIVA (UX + Art Direction)
+
+STRUTTURA DELLE 4 SCENE
+ 1. ANDRONE (piano 0) ─ portone, cassette postali, citofono,
+    bacheca, porta dell'ascensore, pianta, bicicletta, ombrelli.
+ 2. CABINA ASCENSORE ─ pulsantiera 4·3·2·1·0·-1 (funziona solo 1),
+    porte che si chiudono, corsa vibrata, riapertura sul pianerottolo.
+ 3. PIANEROTTOLO (piano 1) ─ porte A/B, zerbini diversi, pacco,
+    pianta, scarpe, numero del piano, luce scale, scale di scorcio.
+ 4. APPARTAMENTO A ─ soggiorno/cucina con divano, tavolo, sedia con
+    vestiti, frigo, finestra, mobiletto. Interattivi: frigo, sedia, soffitto.
+
+PALETTE (piatta, nessuna sfumatura)
+  inchiostro #23201c · carta #f6efe1 · sabbia #e9dcc2
+  terracotta #d9694b · senape #e9b44c · verde scala #3f6358
+  foglia #7e9e6b · legno #c08a52 · cielo #9fb9c6
+
+REGOLE D'ILLUSTRAZIONE
+  - campiture piene + contorno nero uniforme (~3px, non-scaling)
+  - geometrie semplici, leggermente storte (rotate -2°/+2°)
+  - ombre solo come ellipse piatte al 10% d'inchiostro
+  - ogni oggetto è un piccolo SVG indipendente appoggiato nella scena
+
+PATTERN CLICCABILE vs DECORATIVO
+  - cliccabile (.hit): al hover si solleva di pochi px, proietta
+    un'ombra piatta, appare una piccola etichetta contestuale;
+    il senape segnala gli snodi funzionali (ascensore, pulsante 1).
+  - decorativo: fermo, cursore normale, al massimo un dondolio d'ambiente.
+============================================================ -->
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/fontsource/css/archivo@latest/latin-400-normal.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/fontsource/css/archivo@latest/latin-700-normal.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/fontsource/css/archivo@latest/latin-800-normal.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/fontsource/css/fraunces@latest/latin-600-italic.css">
+
+<style>
+/* ============ BASE ============ */
+:root{
+  --ink:#23201c; --paper:#f6efe1; --sand:#e9dcc2; --sand-d:#dccaa8;
+  --clay:#d9694b; --clay-d:#c05539; --mustard:#e9b44c; --mustard-d:#d9a13a;
+  --teal:#3f6358; --leaf:#7e9e6b; --wood:#c08a52; --sky:#9fb9c6;
+  --cab:#e3cfa4; --charcoal:#4d4740;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{
+  overflow:hidden; background:var(--paper); color:var(--ink);
+  font-family:'Archivo',system-ui,sans-serif;
+  -webkit-user-select:none; user-select:none;
+}
+svg{display:block}
+svg text{font-family:'Archivo',sans-serif; user-select:none}
+button{font-family:inherit;color:inherit;background:none;border:none;cursor:pointer}
+
+.st{stroke:var(--ink);stroke-width:3;vector-effect:non-scaling-stroke;stroke-linejoin:round;stroke-linecap:round}
+.thin{stroke-width:2}
+.fat{stroke-width:6}
+.txt{font-weight:800;fill:var(--ink)}
+
+/* ============ TOPBAR ============ */
+#topbar{
+  position:fixed;top:0;left:0;right:0;z-index:50;
+  display:flex;justify-content:space-between;align-items:center;
+  padding:16px clamp(14px,2.4vw,28px);pointer-events:none;
+}
+#topbar > *{pointer-events:auto}
+#logoBtn{display:flex;align-items:center;gap:10px;letter-spacing:.2em;font-weight:800;font-size:clamp(13px,1.5vw,17px)}
+#logoBtn .sq{width:12px;height:12px;background:var(--clay);border:3px solid var(--ink);transform:rotate(6deg);transition:transform .3s}
+#logoBtn:hover .sq{transform:rotate(96deg)}
+#logoBtn .chip{font-size:.62em;letter-spacing:.14em;background:var(--ink);color:var(--paper);padding:3px 7px;transform:rotate(-2deg)}
+.hud-right{display:flex;align-items:center;gap:10px}
+#btnLift{
+  font-size:12px;font-weight:700;letter-spacing:.1em;
+  border:3px solid var(--ink);background:var(--paper);padding:6px 11px;
+  box-shadow:3px 4px 0 rgba(35,32,28,.15);
+  opacity:0;pointer-events:none;transform:translateY(-4px);transition:.3s;
+}
+#btnLift.show{opacity:1;pointer-events:auto;transform:none}
+#btnLift:hover{background:var(--mustard)}
+#floorTag{
+  border:3px solid var(--ink);background:var(--paper);
+  padding:6px 12px;font-size:12px;font-weight:700;letter-spacing:.16em;
+  box-shadow:3px 4px 0 rgba(35,32,28,.15);transition:opacity .18s, transform .18s;
+}
+#floorTag.sw{opacity:0;transform:translateY(-5px)}
+
+/* ============ STAGE / SCENE ============ */
+#stage{position:fixed;inset:0}
+.scene{
+  position:absolute;inset:0;overflow:hidden;
+  opacity:0;visibility:hidden;pointer-events:none;
+  transform:scale(.985);
+  transition:opacity .5s ease,transform .5s ease,visibility 0s linear .5s;
+}
+.scene.is-active{opacity:1;visibility:visible;pointer-events:auto;transform:scale(1);transition:opacity .5s ease,transform .5s ease}
+.room{position:absolute;inset:0}
+.wall{position:absolute;inset:0}
+.floorband{position:absolute;left:0;right:0;bottom:0;height:16%;border-top:3.5px solid var(--ink)}
+.baseboard{position:absolute;left:0;right:0;bottom:16%;height:9px;background:var(--sand-d);border-top:3px solid var(--ink);z-index:0}
+
+.obj{position:absolute}
+.obj svg{width:100%;height:auto;overflow:visible}
+
+.hit{cursor:pointer;--hov:-4px;transition:transform .28s cubic-bezier(.2,.9,.3,1.4),filter .28s}
+.hit:hover,.hit:focus-visible{transform:translateY(var(--hov));filter:drop-shadow(6px 8px 0 rgba(35,32,28,.16))}
+.hit:focus-visible{outline:3px dashed var(--ink);outline-offset:5px}
+.doorhit{--hov:-2px}
+
+/* etichetta contestuale */
+#tag{
+  position:fixed;z-index:60;pointer-events:none;
+  background:var(--paper);border:3px solid var(--ink);
+  padding:.4em .75em;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  transform:translate(-50%,-112%) rotate(-2deg) scale(.85);opacity:0;
+  transition:opacity .2s,transform .2s;white-space:nowrap;
+  box-shadow:3px 4px 0 rgba(35,32,28,.16);
+}
+#tag.show{opacity:1;transform:translate(-50%,-112%) rotate(-2deg) scale(1)}
+
+/* hint iniziale */
+#hint{
+  position:fixed;left:50%;bottom:22px;transform:translateX(-50%);z-index:45;
+  font-size:12px;letter-spacing:.14em;font-weight:600;opacity:.55;
+  animation:hintpulse 3s ease-in-out infinite;transition:opacity .6s;pointer-events:none;
+}
+#hint.gone{opacity:0}
+@keyframes hintpulse{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(-4px)}}
+
+/* ============ ANIMAZIONI D'AMBIENTE ============ */
+.sway{animation:sway 5.5s ease-in-out infinite alternate;transform-origin:50% 100%}
+@keyframes sway{from{transform:rotate(-1.6deg)}to{transform:rotate(1.6deg)}}
+.lampswing{animation:lampswing 4.5s ease-in-out infinite alternate;transform-origin:50% 0}
+@keyframes lampswing{from{transform:rotate(-1.2deg)}to{transform:rotate(1.2deg)}}
+@keyframes nudge{0%,100%{transform:rotate(0)}25%{transform:rotate(-2deg)}75%{transform:rotate(2deg)}}
+.nudge{animation:nudge .4s ease}
+@keyframes shakeX{0%,100%{transform:translateX(0)}25%{transform:translateX(-3px)}75%{transform:translateX(3px)}}
+.shake{animation:shakeX .3s ease 2}
+
+/* =================================================
+   SCENA 1 · ANDRONE
+================================================= */
+#scene-androne .wall{background:var(--sand)}
+#scene-androne .floorband{background:var(--sand-d)}
+#scene-androne .floorband::after{content:'';position:absolute;top:0;bottom:0;left:0;right:0;
+  background:repeating-linear-gradient(90deg,transparent 0 118px,rgba(35,32,28,.10) 118px 121px)}
+.o-door{left:2.5%;bottom:11.5%;width:clamp(148px,15vw,222px);z-index:2}
+.o-mat0{left:3.5%;bottom:6%;width:clamp(88px,9vw,138px);z-index:3;transform:rotate(1deg)}
+.o-umb{left:19%;bottom:11.5%;width:clamp(52px,5.4vw,78px);z-index:2}
+.o-cito{left:25.5%;bottom:42%;width:clamp(46px,4.8vw,70px);z-index:2}
+.o-mail{left:31.5%;bottom:36%;width:clamp(168px,19vw,258px);z-index:2}
+.o-board{left:54%;bottom:46%;width:clamp(108px,12vw,162px);z-index:2;transform:rotate(.6deg)}
+.o-lift{right:14.5%;bottom:10.5%;width:clamp(168px,19vw,266px);height:clamp(252px,56vh,420px);z-index:2}
+.o-plant{right:1.2%;bottom:9.5%;width:clamp(108px,12vw,168px);z-index:3}
+.o-bike{left:36%;bottom:6.5%;width:clamp(148px,17vw,232px);z-index:4;transform:rotate(-4deg)}
+.o-lamp0{left:46.5%;top:-6px;width:clamp(44px,4.6vw,60px);z-index:2}
+
+/* bacheca: fogli */
+.pp{transform-box:fill-box;transform-origin:50% 8%;transition:transform .5s cubic-bezier(.3,1.4,.4,1)}
+.o-board.shuffle .pp:nth-child(odd){transform:rotate(4deg)}
+.o-board.shuffle .pp:nth-child(even){transform:rotate(-4deg) translateY(2px)}
+/* posta */
+.letter{transform-box:fill-box;transition:transform .45s cubic-bezier(.3,1.6,.4,1)}
+.o-mail.pop .letter{transform:translateY(-11px) rotate(-9deg)}
+
+/* ============ ASCENSORE (componente androne/landing) ============ */
+.lift{position:absolute}
+.lift .arch{position:absolute;inset:-16px -14px 0;background:var(--mustard);border:3.5px solid var(--ink)}
+.lift-frame{
+  position:absolute;inset:0;border:4px solid var(--ink);background:var(--cab);overflow:hidden;
+}
+.lift-peek,.lift-peek svg{position:absolute;inset:0;width:100%;height:100%}
+.lift-leaf{position:absolute;top:0;bottom:0;width:50.6%;transition:transform .85s cubic-bezier(.72,.03,.24,1)}
+.lift-leaf.ll{left:0}
+.lift-leaf.lr{right:0}
+.lift-leaf.lr svg{transform:scaleX(-1)}
+.lift-leaf svg{width:100%;height:100%}
+.lift.open .ll{transform:translateX(-102%)}
+.lift.open .lr{transform:translateX(102%)}
+.lift-sign{
+  position:absolute;top:-44px;left:50%;transform:translateX(-50%);z-index:3;
+  width:36px;height:36px;border:3.5px solid var(--ink);border-radius:50%;
+  background:var(--paper);display:grid;place-items:center;font-weight:800;font-size:16px;
+}
+.lift-call{position:absolute;right:-32px;top:42%;width:27px;z-index:3}
+
+/* =================================================
+   SCENA 2 · CABINA
+================================================= */
+#scene-cabin .wall{background:var(--cab)}
+#scene-cabin .floorband{background:var(--charcoal);height:13%}
+.cab-ceil{position:absolute;top:0;left:0;right:0;height:9%;background:#d8c49a;border-bottom:3.5px solid var(--ink)}
+.cab-seam{position:absolute;top:9%;bottom:13%;width:3px;background:rgba(35,32,28,.12)}
+.rail{position:absolute;top:56%;height:11px;background:var(--ink);border-radius:8px}
+.rail.rl{left:3%;width:22%}
+.rail.rr{right:3%;width:22%}
+.cab-mirror{left:6%;top:19%;width:clamp(56px,6.5vw,92px);z-index:1}
+
+.doorway{
+  position:absolute;left:50%;top:13.5%;transform:translateX(-50%);
+  width:clamp(220px,30vw,396px);height:69%;
+  border:4px solid var(--ink);background:var(--cab);overflow:hidden;z-index:2;
+}
+.doorway .arch2{position:absolute;inset:-18px -16px 0;background:var(--mustard);border:3.5px solid var(--ink);z-index:-1}
+.dpeek,.dpeek svg{position:absolute;inset:0;width:100%;height:100%}
+.dpeek svg{opacity:0;transition:opacity .35s}
+.dpeek[data-show="lobby"] .pk-lobby{opacity:1}
+.dpeek[data-show="land"] .pk-land{opacity:1}
+.dleaf{position:absolute;top:0;bottom:0;width:50.6%;transition:transform .95s cubic-bezier(.72,.03,.24,1)}
+.dleaf.dl{left:0}.dleaf.dr{right:0}
+.dleaf.dr svg{transform:scaleX(-1)}
+.dleaf svg{width:100%;height:100%}
+.doorway.open .dl{transform:translateX(-102%)}
+.doorway.open .dr{transform:translateX(102%)}
+
+.cab-ind{
+  position:absolute;top:4.5%;left:50%;transform:translateX(-50%);z-index:3;
+  display:flex;align-items:center;gap:7px;
+  background:var(--ink);color:var(--mustard);border:3px solid var(--ink);
+  padding:5px 12px;font-weight:800;font-size:clamp(15px,1.8vw,20px);letter-spacing:.1em;
+}
+.cab-arrow{width:13px;height:13px;fill:var(--mustard);opacity:0}
+#scene-cabin.run .cab-arrow{opacity:1;animation:blink .5s steps(2) infinite}
+@keyframes blink{50%{opacity:0}}
+.cab-lamp{left:50%;top:-4px;transform:translateX(-50%);width:clamp(52px,5.5vw,72px);z-index:2}
+.cab-lamp .bulb{transition:fill .2s}
+#scene-cabin.ding .cab-lamp .bulb{fill:#fff6d8}
+#scene-cabin.run .room{animation:vibr .28s linear infinite}
+@keyframes vibr{0%,100%{transform:translateY(0)}30%{transform:translateY(2.5px)}65%{transform:translateY(-2px)}}
+#scene-cabin.run .cab-lamp svg{animation:lampswing .5s ease-in-out infinite alternate}
+
+.panel-wrap{right:5%;top:50%;transform:translateY(-50%);width:clamp(84px,9vw,118px);z-index:3}
+.btn{cursor:pointer}
+.btn circle{transform-box:fill-box;transform-origin:center;transition:transform .18s cubic-bezier(.3,1.6,.4,1),fill .18s}
+.btn:hover circle{transform:scale(1.09)}
+.btn.pressed circle{fill:var(--mustard);transform:scale(.94)}
+.btn.deny circle{animation:shakeX .3s ease 2}
+#panelBell.deny path{animation:shakeX .3s ease 2}
+
+/* =================================================
+   SCENA 3 · PIANEROTTOLO
+================================================= */
+#scene-landing .wall{background:#efe4cd;transition:background .5s}
+#scene-landing .floorband{background:var(--sand-d)}
+#scene-landing.lights-off .wall{background:#c9bb9c}
+#scene-landing.lights-off .glow{opacity:0}
+#scene-landing.lights-off .lift-sign{background:var(--sand-d)}
+.l-lift{left:3.5%;bottom:10.5%;width:clamp(160px,18vw,250px);height:clamp(248px,54vh,408px);z-index:2}
+.l-stairs{right:-1.5%;bottom:13%;width:clamp(140px,15vw,208px);z-index:1}
+.l-plate{left:26.5%;bottom:55%;width:clamp(56px,6vw,84px);z-index:2;transform:rotate(-2deg)}
+.l-doorA{left:33%;bottom:11.5%;width:clamp(150px,16vw,220px);z-index:2}
+.l-doorB{left:56%;bottom:11.5%;width:clamp(150px,16vw,220px);z-index:2}
+.l-matA{left:34.5%;bottom:5.5%;width:clamp(88px,10vw,138px);z-index:3}
+.l-matB{left:57.5%;bottom:5.5%;width:clamp(88px,10vw,138px);z-index:3;transform:rotate(-1.4deg)}
+.l-pacco{left:52.7%;bottom:8.5%;width:clamp(70px,7.6vw,106px);z-index:4;transform:rotate(3deg)}
+.l-shoes{left:30%;bottom:6.5%;width:clamp(58px,6.4vw,88px);z-index:3}
+.l-plant{left:76%;bottom:10.5%;width:clamp(78px,8.6vw,118px);z-index:3}
+.l-lampC{left:46.8%;top:-4px;width:clamp(46px,4.8vw,64px);z-index:2}
+.l-win{left:25.5%;bottom:63%;width:clamp(64px,7vw,96px);z-index:1;transform:rotate(1deg)}
+
+/* porta A: apertura */
+.leafA,.glowin{transform-box:fill-box}
+.glowin{opacity:0;transition:opacity .4s}
+.l-doorA.open .glowin{opacity:1}
+.leafA{transform-origin:left center;transition:transform .55s cubic-bezier(.4,0,.3,1)}
+.l-doorA.open .leafA{transform:translateX(-5%) scaleX(.6) skewY(-3deg)}
+
+/* =================================================
+   SCENA 4 · APPARTAMENTO
+================================================= */
+#scene-apartment .wall{background:#f2e3cf}
+#scene-apartment .floorband{background:var(--wood);height:17%}
+#scene-apartment .floorband::after{content:'';position:absolute;top:0;bottom:0;left:0;right:0;
+  background:repeating-linear-gradient(90deg,transparent 0 96px,rgba(35,32,28,.12) 96px 99px)}
+#scene-apartment .ceilband{position:absolute;top:0;left:0;right:0;height:8%;background:#eadbc0;border-bottom:3px solid var(--ink)}
+#scene-apartment.rumore .room{animation:quake .55s ease}
+@keyframes quake{0%,100%{transform:translateY(0)}20%{transform:translateY(3px)}45%{transform:translateY(-3px)}70%{transform:translateY(2px)}}
+.a-window{left:5%;bottom:42%;width:clamp(168px,19vw,258px);z-index:1}
+.a-frame{left:27.5%;bottom:58%;width:clamp(50px,5.4vw,74px);z-index:1;transform:rotate(-1.6deg)}
+.a-rug{left:27%;bottom:5%;width:clamp(228px,27vw,384px);z-index:1}
+.a-sofa{left:10%;bottom:10.5%;width:clamp(208px,23vw,328px);z-index:3}
+.a-table{left:42%;bottom:11.5%;width:clamp(118px,13vw,178px);z-index:3}
+.a-chair{left:56.5%;bottom:11%;width:clamp(96px,10.6vw,142px);z-index:4}
+.a-cab{left:69%;bottom:11.5%;width:clamp(126px,14vw,188px);z-index:2}
+.a-fridge{right:2%;bottom:11.5%;width:clamp(118px,13vw,178px);z-index:3}
+.a-lamp{left:47.5%;top:-4px;width:clamp(46px,4.8vw,64px);z-index:2}
+#ceilHit{position:absolute;top:0;left:0;right:0;height:16%;z-index:6}
+
+.pile{transform-box:fill-box;transform-origin:50% 90%}
+.a-chair.wob .pile{animation:nudge .5s ease 2}
+.fdoor,.fin{transform-box:fill-box}
+.fdoor{transform-origin:left center;transition:transform .5s cubic-bezier(.4,0,.3,1)}
+.a-fridge.open .fdoor{transform:translateX(-5%) scaleX(.62) skewY(-2.5deg)}
+.fin{opacity:0;transition:opacity .35s}
+.a-fridge.open .fin{opacity:1}
+
+/* fumetto sedia */
+#bubble{
+  position:absolute;left:51%;bottom:52%;z-index:7;max-width:238px;
+  background:var(--paper);border:3px solid var(--ink);border-radius:14px;
+  padding:12px 15px;font-weight:600;font-size:clamp(12px,1.3vw,14.5px);line-height:1.4;
+  opacity:0;transform:translateY(10px) scale(.94);transition:.3s cubic-bezier(.3,1.3,.4,1);
+  pointer-events:none;box-shadow:5px 6px 0 rgba(35,32,28,.15);
+}
+#bubble.show{opacity:1;transform:translateY(0) scale(1)}
+#bubble::after{content:'';position:absolute;left:26px;bottom:-9px;width:14px;height:14px;
+  background:var(--paper);border-right:3px solid var(--ink);border-bottom:3px solid var(--ink);transform:rotate(45deg)}
+
+/* rumori del soffitto */
+#thuds{position:absolute;inset:0;z-index:6;pointer-events:none}
+.tw{position:absolute;font-weight:800;font-size:clamp(14px,1.7vw,21px);letter-spacing:.05em;animation:tw 1.35s ease forwards}
+@keyframes tw{0%{opacity:0;transform:translateY(8px) rotate(-3deg)}18%{opacity:1}100%{opacity:0;transform:translateY(-18px) rotate(2deg)}}
+.dust{position:absolute;width:5px;height:5px;background:var(--ink);border-radius:50%;opacity:.7;animation:fall 1.1s ease-in forwards}
+@keyframes fall{to{transform:translateY(70px);opacity:0}}
+#ceilNote{
+  position:absolute;top:17%;left:50%;transform:translateX(-50%) rotate(-1deg);z-index:6;
+  font-family:'Fraunces',serif;font-style:italic;font-weight:600;font-size:clamp(13px,1.5vw,17px);
+  background:var(--paper);border:3px solid var(--ink);padding:7px 14px;
+  opacity:0;transition:opacity .4s;pointer-events:none;box-shadow:4px 5px 0 rgba(35,32,28,.14);white-space:nowrap;
+}
+#ceilNote.show{opacity:1}
+
+/* ============ CARD EDITORIALE (frigo) ============ */
+#card{
+  position:fixed;z-index:55;right:clamp(14px,4vw,56px);top:50%;
+  width:min(322px,86vw);background:var(--paper);border:3.5px solid var(--ink);
+  box-shadow:9px 10px 0 rgba(35,32,28,.16);padding:20px 22px 22px;
+  opacity:0;pointer-events:none;
+  transform:translateY(-46%) rotate(-1.2deg) scale(.96);
+  transition:opacity .35s,transform .35s cubic-bezier(.3,1.3,.4,1);
+}
+#card.show{opacity:1;pointer-events:auto;transform:translateY(-50%) rotate(-1.2deg) scale(1)}
+#card .kicker{font-size:10.5px;font-weight:700;letter-spacing:.22em;margin-bottom:10px}
+#card h3{font-family:'Fraunces',serif;font-style:italic;font-weight:600;font-size:clamp(21px,2.2vw,26px);line-height:1.2;margin:10px 0 14px}
+#card .foot{font-size:11px;letter-spacing:.14em;font-weight:700;opacity:.55}
+#cardClose{
+  position:absolute;top:-14px;right:-14px;width:34px;height:34px;border-radius:50%;
+  border:3px solid var(--ink);background:var(--clay);color:var(--paper);
+  font-size:17px;font-weight:800;line-height:1;display:grid;place-items:center;
+  transition:transform .2s;box-shadow:2px 3px 0 rgba(35,32,28,.2);
+}
+#cardClose:hover{transform:rotate(90deg)}
+
+/* ============ RESPONSIVE ============ */
+@media (max-width:820px){
+  #topbar{padding:12px 12px}
+  #logoBtn{letter-spacing:.14em}
+  /* androne */
+  .o-door{left:1.5%;width:33vw}
+  .o-mat0{left:3%;width:24vw}
+  .o-umb{left:36%;width:11vw}
+  .o-cito{left:26%;bottom:56%;width:10vw}
+  .o-mail{left:44%;bottom:44%;width:44vw}
+  .o-board{left:6%;bottom:60%;width:24vw}
+  .o-lift{right:2%;width:35vw;height:50vh}
+  .o-plant{right:0;bottom:5%;width:18vw;z-index:5}
+  .o-bike{display:none}
+  .o-lamp0{left:38%}
+  .lift-call{right:-20px;width:20px}
+  /* landing */
+  .l-lift{left:2%;width:31vw;height:46vh}
+  .l-stairs{display:none}
+  .l-plate{left:34%;bottom:60%;width:12vw}
+  .l-win{display:none}
+  .l-doorA{left:36%;width:29vw}
+  .l-doorB{left:67%;width:29vw}
+  .l-matA{left:37%;width:20vw}
+  .l-matB{left:68%;width:20vw}
+  .l-pacco{left:62%;width:14vw}
+  .l-shoes{left:31%;width:11vw}
+  .l-plant{display:none}
+  /* appartamento */
+  .a-window{left:2%;width:31vw}
+  .a-frame{display:none}
+  .a-sofa{left:1%;width:41vw}
+  .a-rug{left:14%;width:52vw}
+  .a-table{left:44%;width:21vw}
+  .a-chair{left:63%;width:17vw}
+  .a-cab{display:none}
+  .a-fridge{right:1%;width:26vw}
+  /* cabina */
+  .doorway{width:54vw;height:66%}
+  .cab-mirror{display:none}
+  .rail.rr{width:12%}
+  .panel-wrap{right:2.5%;width:clamp(86px,17vw,110px)}
+  #bubble{left:44%;max-width:200px}
+  #card{right:7vw}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation-duration:.01s!important;transition-duration:.15s!important}
+}
+</style>
+</head>
+<body>
+
+<!-- ============ UI MINIMA ============ -->
+<header id="topbar">
+  <button id="logoBtn" aria-label="Conventional — torna all'androne">
+    <span class="sq"></span>CONVENTIONAL<span class="chip">VOL.1</span>
+  </button>
+  <div class="hud-right">
+    <button id="btnLift">← ASCENSORE</button>
+    <div id="floorTag" aria-live="polite">PIANO 0</div>
+  </div>
+</header>
+
+<div id="tag" aria-hidden="true"></div>
+<div id="hint">· si esplora passando sugli oggetti vivi ·</div>
+
+<main id="stage">
+
+<!-- =================================================
+     SCENA · ANDRONE (PIANO 0)
+================================================== -->
+<section class="scene is-active" id="scene-androne">
+  <div class="room">
+    <div class="wall"></div>
+    <div class="baseboard"></div>
+    <div class="floorband"></div>
+
+    <!-- lampada a soffitto -->
+    <div class="obj o-lamp0"><div class="lampswing">
+      <svg viewBox="0 0 60 96">
+        <line x1="30" y1="0" x2="30" y2="42" class="st"/>
+        <path d="M10 62 A20 20 0 0 1 50 62 Z" fill="var(--mustard)" class="st"/>
+        <circle class="bulb" cx="30" cy="66" r="7" fill="#f7e9b8" stroke="none"/>
+      </svg>
+    </div></div>
+
+    <!-- portone -->
+    <div class="obj o-door doorhit hit" data-tag="portone" id="portone">
+      <svg viewBox="0 0 210 340">
+        <ellipse cx="105" cy="332" rx="86" ry="7" fill="rgba(35,32,28,.10)"/>
+        <rect x="72" y="0" width="66" height="26" rx="5" fill="var(--mustard)" class="st"/>
+        <text x="105" y="14" class="txt" text-anchor="middle" dy=".35em" font-size="14">N°12</text>
+        <rect x="14" y="30" width="182" height="304" rx="6" fill="#d9c9a6" class="st"/>
+        <rect x="30" y="46" width="150" height="288" fill="var(--clay)" class="st"/>
+        <rect x="46" y="64" width="118" height="86" fill="var(--paper)" class="st"/>
+        <line x1="105" y1="64" x2="105" y2="150" class="st thin"/>
+        <line x1="46" y1="107" x2="164" y2="107" class="st thin"/>
+        <rect x="46" y="170" width="118" height="66" fill="var(--clay-d)" class="st thin"/>
+        <rect x="46" y="252" width="118" height="62" fill="var(--clay-d)" class="st thin"/>
+        <circle cx="160" cy="216" r="7" fill="var(--mustard)" class="st"/>
+      </svg>
+    </div>
+
+    <!-- zerbino portone -->
+    <div class="obj o-mat0">
+      <svg viewBox="0 0 150 32">
+        <rect x="3" y="4" width="144" height="24" rx="4" fill="#cbb794" class="st"/>
+        <line x1="34" y1="8" x2="34" y2="24" class="st thin"/>
+        <line x1="75" y1="8" x2="75" y2="24" class="st thin"/>
+        <line x1="116" y1="8" x2="116" y2="24" class="st thin"/>
+      </svg>
+    </div>
+
+    <!-- ombrelli -->
+    <div class="obj o-umb">
+      <svg viewBox="0 0 90 132">
+        <ellipse cx="46" cy="126" rx="34" ry="5" fill="rgba(35,32,28,.10)"/>
+        <path d="M30 12 L40 10 L46 70 L36 72 Z" fill="var(--clay)" class="st"/>
+        <circle cx="35" cy="8" r="3.5" fill="var(--paper)" class="st thin"/>
+        <path d="M56 20 L64 22 L60 72 L52 70 Z" fill="var(--teal)" class="st"/>
+        <path d="M60 20 q2 -10 -5 -12" fill="none" class="st thin"/>
+        <path d="M20 72 L72 72 L65 124 L27 124 Z" fill="var(--teal)" class="st"/>
+        <line x1="26" y1="86" x2="66" y2="86" class="st thin"/>
+      </svg>
+    </div>
+
+    <!-- citofono -->
+    <div class="obj o-cito hit" data-tag="citofono" id="cito">
+      <svg viewBox="0 0 84 134">
+        <rect x="6" y="6" width="72" height="122" rx="10" fill="var(--paper)" class="st"/>
+        <rect x="16" y="16" width="52" height="16" rx="4" fill="var(--sand)" class="st thin"/>
+        <rect x="16" y="40" width="52" height="7" rx="2" fill="var(--sand-d)" stroke="none"/>
+        <rect x="16" y="52" width="52" height="7" rx="2" fill="var(--sand-d)" stroke="none"/>
+        <g id="citoBtns">
+          <circle cx="28" cy="76" r="6" fill="var(--sand)" class="st thin"/>
+          <circle cx="56" cy="76" r="6" fill="var(--sand)" class="st thin"/>
+          <circle cx="28" cy="94" r="6" fill="var(--sand)" class="st thin"/>
+          <circle cx="56" cy="94" r="6" fill="var(--sand)" class="st thin"/>
+        </g>
+        <line x1="22" y1="112" x2="62" y2="112" class="st thin"/>
+        <line x1="22" y1="118" x2="62" y2="118" class="st thin"/>
+      </svg>
+    </div>
+
+    <!-- cassette postali -->
+    <div class="obj o-mail hit" data-tag="cassette postali" id="mail">
+      <svg viewBox="0 0 270 200">
+        <rect x="6" y="8" width="258" height="184" rx="8" fill="#d9c9a6" class="st"/>
+        <g>
+          <rect x="20" y="24" width="72" height="74" rx="4" fill="var(--paper)" class="st"/>
+          <line x1="32" y1="44" x2="80" y2="44" class="st thin"/><circle cx="56" cy="66" r="3" fill="var(--ink)"/>
+          <text x="28" y="36" class="txt" font-size="11">1</text>
+        </g>
+        <g>
+          <rect x="99" y="24" width="72" height="74" rx="4" fill="var(--mustard)" class="st"/>
+          <line x1="111" y1="44" x2="159" y2="44" class="st thin"/><circle cx="135" cy="66" r="3" fill="var(--ink)"/>
+          <text x="107" y="36" class="txt" font-size="11">2</text>
+          <g class="letter">
+            <rect x="112" y="28" width="44" height="22" rx="2" fill="var(--paper)" class="st thin" transform="rotate(-7 134 39)"/>
+            <path d="M114 32 L134 45 L154 28" fill="none" class="st thin" transform="rotate(-7 134 39)"/>
+          </g>
+        </g>
+        <g>
+          <rect x="178" y="24" width="72" height="74" rx="4" fill="var(--paper)" class="st"/>
+          <line x1="190" y1="44" x2="238" y2="44" class="st thin"/><circle cx="214" cy="66" r="3" fill="var(--ink)"/>
+          <text x="186" y="36" class="txt" font-size="11">3</text>
+        </g>
+        <g>
+          <rect x="20" y="106" width="72" height="74" rx="4" fill="var(--paper)" class="st"/>
+          <line x1="32" y1="126" x2="80" y2="126" class="st thin"/><circle cx="56" cy="148" r="3" fill="var(--ink)"/>
+          <text x="28" y="118" class="txt" font-size="11">4</text>
+        </g>
+        <g>
+          <rect x="99" y="106" width="72" height="74" rx="4" fill="var(--paper)" class="st"/>
+          <line x1="111" y1="126" x2="159" y2="126" class="st thin"/><circle cx="135" cy="148" r="3" fill="var(--ink)"/>
+          <text x="107" y="118" class="txt" font-size="11">5</text>
+        </g>
+        <g>
+          <rect x="178" y="106" width="72" height="74" rx="4" fill="var(--sand)" class="st"/>
+          <line x1="190" y1="126" x2="238" y2="126" class="st thin"/><circle cx="214" cy="148" r="3" fill="var(--ink)"/>
+          <text x="186" y="118" class="txt" font-size="11">6</text>
+        </g>
+      </svg>
+    </div>
+
+    <!-- bacheca -->
+    <div class="obj o-board hit" data-tag="bacheca" id="board">
+      <svg viewBox="0 0 180 152">
+        <rect x="6" y="6" width="168" height="140" rx="6" fill="var(--mustard)" class="st"/>
+        <rect x="18" y="18" width="144" height="116" fill="#efe2c6" class="st thin"/>
+        <g class="pp">
+          <rect x="30" y="30" width="46" height="58" fill="var(--paper)" class="st thin" transform="rotate(-3 53 59)"/>
+          <line x1="38" y1="44" x2="68" y2="42" class="st thin"/><line x1="38" y1="54" x2="68" y2="52" class="st thin"/><line x1="38" y1="64" x2="60" y2="62" class="st thin"/>
+          <circle cx="53" cy="33" r="4" fill="var(--clay)" class="st thin"/>
+        </g>
+        <g class="pp">
+          <rect x="88" y="36" width="52" height="44" fill="var(--sand)" class="st thin" transform="rotate(2 114 58)"/>
+          <circle cx="104" cy="56" r="8" fill="none" class="st thin"/><path d="M114 62 l12 10" fill="none" class="st thin"/>
+          <circle cx="114" cy="40" r="4" fill="var(--teal)" class="st thin"/>
+        </g>
+        <g class="pp">
+          <rect x="52" y="96" width="60" height="30" fill="var(--paper)" class="st thin" transform="rotate(-1 82 111)"/>
+          <path d="M60 118 q8 -12 16 0 q8 -12 16 0 q8 -12 16 0" fill="none" class="st thin"/>
+          <circle cx="82" cy="99" r="3.6" fill="var(--clay)" class="st thin"/>
+        </g>
+      </svg>
+    </div>
+
+    <!-- ASCENSORE (chiamata dal piano terra) -->
+    <div class="lift o-lift hit" data-tag="ascensore" id="liftLobby">
+      <div class="lift-sign">0</div>
+      <div class="arch"></div>
+      <div class="lift-frame">
+        <div class="lift-peek">
+          <svg viewBox="0 0 240 320" preserveAspectRatio="xMidYMax slice">
+            <rect x="0" y="0" width="240" height="320" fill="var(--cab)"/>
+            <rect x="0" y="268" width="240" height="52" fill="var(--charcoal)"/>
+            <line x1="14" y1="188" x2="226" y2="188" class="st"/>
+            <circle cx="120" cy="34" r="15" fill="#f7e9b8" class="st thin"/>
+            <rect x="176" y="80" width="34" height="70" rx="4" fill="var(--paper)" class="st thin"/>
+          </svg>
+        </div>
+        <div class="lift-leaf ll">
+          <svg viewBox="0 0 100 300" preserveAspectRatio="none">
+            <rect x="1.5" y="1.5" width="97" height="297" fill="var(--mustard)" class="st"/>
+            <rect x="18" y="26" width="19" height="248" fill="var(--mustard-d)" class="st thin"/>
+            <rect x="63" y="26" width="19" height="248" fill="var(--mustard-d)" class="st thin"/>
+          </svg>
+        </div>
+        <div class="lift-leaf lr">
+          <svg viewBox="0 0 100 300" preserveAspectRatio="none">
+            <rect x="1.5" y="1.5" width="97" height="297" fill="var(--mustard)" class="st"/>
+            <rect x="18" y="26" width="19" height="248" fill="var(--mustard-d)" class="st thin"/>
+            <rect x="63" y="26" width="19" height="248" fill="var(--mustard-d)" class="st thin"/>
+          </svg>
+        </div>
+      </div>
+      <svg class="lift-call" viewBox="0 0 36 36">
+        <circle cx="18" cy="18" r="15" fill="var(--paper)" class="st"/>
+        <path d="M18 10 L25 22 L11 22 Z" fill="var(--ink)"/>
+      </svg>
+    </div>
+
+    <!-- pianta -->
+    <div class="obj o-plant"><div class="sway">
+      <svg viewBox="0 0 170 232">
+        <ellipse cx="86" cy="224" rx="52" ry="6" fill="rgba(35,32,28,.10)"/>
+        <path d="M85 170 C 82 120 60 108 44 82" fill="none" class="st"/>
+        <path d="M85 170 C 88 116 112 104 128 76" fill="none" class="st"/>
+        <path d="M85 170 C 85 128 85 100 85 66" fill="none" class="st"/>
+        <ellipse cx="40" cy="74" rx="17" ry="26" fill="var(--leaf)" class="st" transform="rotate(-28 40 74)"/>
+        <ellipse cx="132" cy="68" rx="17" ry="27" fill="var(--leaf)" class="st" transform="rotate(26 132 68)"/>
+        <ellipse cx="85" cy="52" rx="16" ry="28" fill="var(--leaf)" class="st"/>
+        <ellipse cx="62" cy="112" rx="13" ry="20" fill="var(--leaf)" class="st" transform="rotate(-20 62 112)"/>
+        <ellipse cx="110" cy="110" rx="13" ry="20" fill="var(--leaf)" class="st" transform="rotate(18 110 110)"/>
+        <path d="M52 168 L120 168 L110 222 L62 222 Z" fill="var(--clay)" class="st"/>
+        <rect x="46" y="160" width="80" height="14" rx="4" fill="var(--clay-d)" class="st"/>
+      </svg>
+    </div></div>
+
+    <!-- bicicletta -->
+    <div class="obj o-bike">
+      <svg viewBox="0 0 262 178">
+        <ellipse cx="130" cy="168" rx="104" ry="6" fill="rgba(35,32,28,.10)"/>
+        <circle cx="64" cy="126" r="42" fill="none" class="st fat"/>
+        <circle cx="64" cy="126" r="30" fill="none" class="st thin"/>
+        <circle cx="64" cy="126" r="4" fill="var(--ink)"/>
+        <line x1="64" y1="96" x2="64" y2="156" class="st thin"/><line x1="34" y1="126" x2="94" y2="126" class="st thin"/>
+        <circle cx="198" cy="126" r="42" fill="none" class="st fat"/>
+        <circle cx="198" cy="126" r="30" fill="none" class="st thin"/>
+        <circle cx="198" cy="126" r="4" fill="var(--ink)"/>
+        <line x1="198" y1="96" x2="198" y2="156" class="st thin"/><line x1="168" y1="126" x2="228" y2="126" class="st thin"/>
+        <path d="M64 126 L128 126 L110 64 L64 126 M128 126 L110 64 M110 64 L182 70 L198 126 M128 126 L182 70" fill="none" class="st fat"/>
+        <path d="M182 70 L176 50 M166 48 L188 46" fill="none" class="st fat"/>
+        <rect x="96" y="52" width="30" height="9" rx="4.5" fill="var(--clay)" class="st"/>
+        <circle cx="128" cy="126" r="8" fill="var(--mustard)" class="st"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- =================================================
+     SCENA · CABINA ASCENSORE
+================================================== -->
+<section class="scene" id="scene-cabin">
+  <div class="room">
+    <div class="wall"></div>
+    <div class="cab-ceil"></div>
+    <div class="floorband"></div>
+    <div class="cab-seam" style="left:14%"></div>
+    <div class="cab-seam" style="left:86%"></div>
+    <div class="rail rl"></div>
+    <div class="rail rr"></div>
+
+    <!-- lampada cabina -->
+    <div class="obj cab-lamp"><div class="lampswing">
+      <svg viewBox="0 0 70 100">
+        <line x1="35" y1="0" x2="35" y2="40" class="st"/>
+        <path d="M13 62 L57 62 L45 40 L25 40 Z" fill="var(--mustard)" class="st"/>
+        <circle class="bulb" cx="35" cy="70" r="9" fill="#f7e9b8" stroke="none"/>
+      </svg>
+    </div></div>
+
+    <!-- indicatore di piano -->
+    <div class="cab-ind"><span id="cabNum">0</span>
+      <svg class="cab-arrow" viewBox="0 0 12 12"><path d="M6 1 L11 10 L1 10 Z"/></svg>
+    </div>
+
+    <!-- specchio -->
+    <div class="obj cab-mirror">
+      <svg viewBox="0 0 90 210">
+        <rect x="6" y="6" width="78" height="198" rx="8" fill="#efe6cf" class="st"/>
+        <rect x="16" y="16" width="58" height="178" rx="4" fill="#f9f4e6" class="st thin"/>
+        <line x1="58" y1="30" x2="30" y2="86" stroke="var(--paper)" stroke-width="7" stroke-linecap="round" opacity=".9"/>
+      </svg>
+    </div>
+
+    <!-- porte della cabina + scorci -->
+    <div class="doorway" id="cabDoor">
+      <div class="arch2"></div>
+      <div class="dpeek" id="cabPeek" data-show="lobby">
+        <svg class="pk-lobby" viewBox="0 0 240 320" preserveAspectRatio="xMidYMax slice">
+          <rect width="240" height="320" fill="var(--sand)"/>
+          <rect y="262" width="240" height="58" fill="var(--sand-d)"/>
+          <line x1="0" y1="262" x2="240" y2="262" class="st"/>
+          <path d="M168 210 L212 210 L206 258 L174 258 Z" fill="var(--clay)" class="st"/>
+          <ellipse cx="176" cy="178" rx="12" ry="20" fill="var(--leaf)" class="st" transform="rotate(-24 176 178)"/>
+          <ellipse cx="204" cy="172" rx="12" ry="21" fill="var(--leaf)" class="st" transform="rotate(22 204 172)"/>
+          <ellipse cx="190" cy="160" rx="11" ry="20" fill="var(--leaf)" class="st"/>
+          <rect x="26" y="88" width="86" height="62" rx="5" fill="#d9c9a6" class="st"/>
+          <rect x="36" y="98" width="28" height="20" fill="var(--paper)" class="st thin"/>
+          <rect x="72" y="98" width="28" height="20" fill="var(--mustard)" class="st thin"/>
+          <rect x="36" y="122" width="28" height="20" fill="var(--paper)" class="st thin"/>
+          <rect x="72" y="122" width="28" height="20" fill="var(--paper)" class="st thin"/>
+          <circle cx="120" cy="34" r="13" fill="#f7e9b8" class="st thin"/>
+        </svg>
+        <svg class="pk-land" viewBox="0 0 240 320" preserveAspectRatio="xMidYMax slice">
+          <rect width="240" height="320" fill="#efe4cd"/>
+          <rect y="262" width="240" height="58" fill="var(--sand-d)"/>
+          <line x1="0" y1="262" x2="240" y2="262" class="st"/>
+          <rect x="0" y="40" width="74" height="222" fill="var(--teal)" class="st"/>
+          <rect x="12" y="60" width="36" height="24" rx="3" fill="var(--paper)" class="st thin"/>
+          <text x="30" y="72" class="txt" text-anchor="middle" dy=".35em" font-size="15">B</text>
+          <rect x="130" y="238" width="70" height="22" rx="4" fill="#cbb794" class="st"/>
+          <g transform="rotate(4 176 218)">
+            <rect x="146" y="196" width="60" height="44" fill="#dfc59b" class="st"/>
+            <line x1="176" y1="196" x2="176" y2="240" class="st thin"/>
+            <line x1="146" y1="218" x2="206" y2="218" class="st thin"/>
+          </g>
+          <circle cx="196" cy="70" r="22" fill="var(--mustard)" class="st"/>
+          <text x="196" y="70" class="txt" text-anchor="middle" dy=".35em" font-size="24">1</text>
+        </svg>
+      </div>
+      <div class="dleaf dl">
+        <svg viewBox="0 0 100 300" preserveAspectRatio="none">
+          <rect x="1.5" y="1.5" width="97" height="297" fill="var(--mustard)" class="st"/>
+          <rect x="18" y="26" width="19" height="248" fill="var(--mustard-d)" class="st thin"/>
+          <rect x="63" y="26" width="19" height="248" fill="var(--mustard-d)" class="st thin"/>
+        </svg>
+      </div>
+      <div class="dleaf dr">
+        <svg viewBox="0 0 100 300" preserveAspectRatio="none">
+          <rect x="1.5" y="1.5" width="97" height="297" fill="var(--mustard)" class="st"/>
+          <rect x="18" y="26" width="19" height="248" fill="var(--mustard-d)" class="st thin"/>
+          <rect x="63" y="26" width="19" height="248" fill="var(--mustard-d)" class="st thin"/>
+        </svg>
+      </div>
+    </div>
+
+    <!-- pulsantiera -->
+    <div class="obj panel-wrap">
+      <svg viewBox="0 0 120 452" id="panelSvg">
+        <rect x="8" y="8" width="104" height="436" rx="14" fill="var(--paper)" class="st"/>
+        <rect x="24" y="22" width="72" height="26" rx="6" fill="var(--sand)" class="st thin"/>
+        <g class="btn hit" data-n="4"><circle cx="60" cy="86" r="18" fill="var(--sand)" class="st"/><text x="60" y="86" class="txt" text-anchor="middle" dy=".35em" font-size="15">4</text></g>
+        <g class="btn hit" data-n="3"><circle cx="60" cy="140" r="18" fill="var(--sand)" class="st"/><text x="60" y="140" class="txt" text-anchor="middle" dy=".35em" font-size="15">3</text></g>
+        <g class="btn hit" data-n="2"><circle cx="60" cy="194" r="18" fill="var(--sand)" class="st"/><text x="60" y="194" class="txt" text-anchor="middle" dy=".35em" font-size="15">2</text></g>
+        <g class="btn hit" data-n="1" id="btn1"><circle cx="60" cy="248" r="18" fill="var(--mustard)" class="st"/><text x="60" y="248" class="txt" text-anchor="middle" dy=".35em" font-size="15">1</text></g>
+        <g class="btn hit" data-n="0"><circle cx="60" cy="302" r="18" fill="var(--sand)" class="st"/><text x="60" y="302" class="txt" text-anchor="middle" dy=".35em" font-size="15">0</text></g>
+        <g class="btn hit" data-n="-1"><circle cx="60" cy="356" r="18" fill="var(--sand)" class="st"/><text x="60" y="356" class="txt" text-anchor="middle" dy=".35em" font-size="13">-1</text></g>
+        <g class="btn hit" id="panelBell">
+          <circle cx="60" cy="408" r="13" fill="var(--clay)" class="st"/>
+          <path d="M55 410 a5 5 0 0 1 10 0 v2 h-10 z" fill="var(--paper)" stroke="var(--ink)" stroke-width="1.6"/>
+          <circle cx="60" cy="414.5" r="1.6" fill="var(--ink)"/>
+        </g>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- =================================================
+     SCENA · PIANEROTTOLO (PIANO 1)
+================================================== -->
+<section class="scene" id="scene-landing">
+  <div class="room">
+    <div class="wall"></div>
+    <div class="baseboard"></div>
+    <div class="floorband"></div>
+
+    <!-- luce scale con cordicella -->
+    <div class="obj l-lampC hit" data-tag="luce scale" id="landLamp"><div class="lampswing">
+      <svg viewBox="0 0 70 150">
+        <line x1="35" y1="0" x2="35" y2="40" class="st"/>
+        <path d="M13 62 L57 62 L45 40 L25 40 Z" fill="var(--mustard)" class="st"/>
+        <circle class="glow" cx="35" cy="72" r="10" fill="#f7e9b8" stroke="none"/>
+        <line x1="35" y1="62" x2="35" y2="112" class="st thin"/>
+        <circle cx="35" cy="117" r="5" fill="var(--paper)" class="st thin"/>
+      </svg>
+    </div></div>
+
+    <!-- finestrino -->
+    <div class="obj l-win">
+      <svg viewBox="0 0 100 110">
+        <rect x="6" y="6" width="88" height="88" rx="6" fill="var(--mustard)" class="st"/>
+        <rect x="16" y="16" width="68" height="68" fill="var(--sky)" class="st thin"/>
+        <line x1="50" y1="16" x2="50" y2="84" class="st thin"/><line x1="16" y1="50" x2="84" y2="50" class="st thin"/>
+        <circle cx="66" cy="32" r="9" fill="var(--paper)" class="st thin"/>
+        <rect x="0" y="94" width="100" height="12" rx="3" fill="var(--sand-d)" class="st"/>
+      </svg>
+    </div>
+
+    <!-- ASCENSORE al piano 1 -->
+    <div class="lift l-lift hit" data-tag="ascensore" id="liftLand">
+      <div class="lift-sign">1</div>
+      <div class="arch"></div>
+      <div class="lift-frame">
+        <div class="lift-peek">
+          <svg viewBox="0 0 240 320" preserveAspectRatio="xMidYMax slice">
+            <rect width="240" height="320" fill="var(--cab)"/>
+            <rect y="268" width="240" height="52" fill="var(--charcoal)"/>
+            <line x1="14" y1="188" x2="226" y2="188" class="st"/>
+            <circle cx="120" cy="34" r="15" fill="#f7e9b8" class="st thin"/>
+            <rect x="176" y="80" width="34" height="70" rx="4" fill="var(--paper)" class="st thin"/>
+          </svg>
+        </div>
+        <div class="lift-leaf ll">
+          <svg viewBox="0 0 100 300" preserveAspectRatio="none">
+            <rect x="1.5" y="1.5" width="97" height="297" fill="var(--mustard)" class="st"/>
+            <rect x="18" y="26" width="19" height="248" fill="var(--mustard-d)" class="st thin"/>
+            <rect x="63" y="26" width="19" height="248" fill="var(--mustard-d)" class="st thin"/>
+          </svg>
+        </div>
+        <div class="lift-leaf lr">
+          <svg viewBox="0 0 100 300" preserveAspectRatio="none">
+            <rect x="1.5" y="1.5" width="97" height="297" fill="var(--mustard)" class="st"/>
+            <rect x="18" y="26" width="19" height="248" fill="var(--mustard-d)" class="st thin"/>
+            <rect x="63" y="26" width="19" height="248" fill="var(--mustard-d)" class="st thin"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <!-- scale di scorcio -->
+    <div class="obj l-stairs">
+      <svg viewBox="0 0 170 232">
+        <rect x="8" y="14" width="154" height="210" fill="#cbbb98" class="st"/>
+        <rect x="22" y="52" width="126" height="30" fill="var(--sand-d)" class="st"/>
+        <rect x="22" y="82" width="100" height="30" fill="var(--sand-d)" class="st"/>
+        <rect x="22" y="112" width="74" height="30" fill="var(--sand-d)" class="st"/>
+        <rect x="22" y="142" width="48" height="30" fill="var(--sand-d)" class="st"/>
+        <line x1="148" y1="20" x2="40" y2="150" class="st fat"/>
+        <line x1="130" y1="42" x2="130" y2="58" class="st"/><line x1="96" y1="84" x2="96" y2="98" class="st"/>
+      </svg>
+    </div>
+
+    <!-- numero del piano -->
+    <div class="obj l-plate">
+      <svg viewBox="0 0 90 90">
+        <circle cx="45" cy="45" r="40" fill="var(--mustard)" class="st"/>
+        <circle cx="45" cy="45" r="31" fill="none" class="st thin"/>
+        <text x="45" y="45" class="txt" text-anchor="middle" dy=".35em" font-size="38">1</text>
+      </svg>
+    </div>
+
+    <!-- PORTA A (esplorabile) -->
+    <div class="obj l-doorA doorhit hit" data-tag="appartamento A" id="doorA">
+      <svg viewBox="0 0 190 320">
+        <ellipse cx="95" cy="314" rx="80" ry="6" fill="rgba(35,32,28,.10)"/>
+        <rect x="12" y="6" width="166" height="308" rx="6" fill="#d9c9a6" class="st"/>
+        <g class="glowin">
+          <rect x="26" y="18" width="138" height="296" fill="#f7e8c4"/>
+          <circle cx="95" cy="66" r="15" fill="#f3d98a" class="st thin"/>
+          <rect x="112" y="200" width="44" height="114" fill="var(--wood)" class="st thin"/>
+        </g>
+        <g class="leafA">
+          <rect x="26" y="18" width="138" height="296" fill="var(--clay)" class="st"/>
+          <rect x="42" y="112" width="106" height="80" fill="var(--clay-d)" class="st thin"/>
+          <rect x="42" y="208" width="106" height="86" fill="var(--clay-d)" class="st thin"/>
+          <rect x="74" y="38" width="42" height="28" rx="4" fill="var(--paper)" class="st"/>
+          <text x="95" y="52" class="txt" text-anchor="middle" dy=".35em" font-size="17">A</text>
+          <circle cx="95" cy="92" r="5" fill="var(--ink)"/>
+          <rect x="70" y="300" width="50" height="0" fill="none"/>
+          <circle cx="146" cy="168" r="6.5" fill="var(--mustard)" class="st"/>
+          <rect x="70" y="182" width="50" height="8" rx="3" fill="var(--ink)" opacity=".85"/>
+        </g>
+      </svg>
+    </div>
+
+    <!-- PORTA B (decorativa) -->
+    <div class="obj l-doorB" id="doorB">
+      <svg viewBox="0 0 190 320">
+        <ellipse cx="95" cy="314" rx="80" ry="6" fill="rgba(35,32,28,.10)"/>
+        <rect x="12" y="6" width="166" height="308" rx="6" fill="#d9c9a6" class="st"/>
+        <rect x="26" y="18" width="138" height="296" fill="var(--teal)" class="st"/>
+        <line x1="60" y1="30" x2="60" y2="302" class="st thin"/>
+        <line x1="95" y1="30" x2="95" y2="302" class="st thin"/>
+        <line x1="130" y1="30" x2="130" y2="302" class="st thin"/>
+        <rect x="74" y="40" width="42" height="28" rx="4" fill="var(--paper)" class="st"/>
+        <text x="95" y="54" class="txt" text-anchor="middle" dy=".35em" font-size="17">B</text>
+        <circle cx="146" cy="170" r="6.5" fill="var(--paper)" class="st"/>
+      </svg>
+    </div>
+
+    <!-- zerbini -->
+    <div class="obj l-matA">
+      <svg viewBox="0 0 150 32">
+        <rect x="3" y="4" width="144" height="24" rx="4" fill="var(--clay)" class="st"/>
+        <line x1="30" y1="8" x2="30" y2="24" stroke="var(--paper)" stroke-width="4" stroke-linecap="round"/>
+        <line x1="60" y1="8" x2="60" y2="24" stroke="var(--paper)" stroke-width="4" stroke-linecap="round"/>
+        <line x1="90" y1="8" x2="90" y2="24" stroke="var(--paper)" stroke-width="4" stroke-linecap="round"/>
+        <line x1="120" y1="8" x2="120" y2="24" stroke="var(--paper)" stroke-width="4" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <div class="obj l-matB">
+      <svg viewBox="0 0 150 32">
+        <rect x="3" y="4" width="144" height="24" rx="4" fill="var(--teal)" class="st"/>
+        <circle cx="34" cy="16" r="4.5" fill="var(--paper)"/><circle cx="62" cy="16" r="4.5" fill="var(--paper)"/>
+        <circle cx="90" cy="16" r="4.5" fill="var(--paper)"/><circle cx="118" cy="16" r="4.5" fill="var(--paper)"/>
+      </svg>
+    </div>
+
+    <!-- pacco -->
+    <div class="obj l-pacco">
+      <svg viewBox="0 0 120 104">
+        <ellipse cx="60" cy="98" rx="50" ry="5" fill="rgba(35,32,28,.10)"/>
+        <rect x="12" y="30" width="96" height="66" fill="#dfc59b" class="st"/>
+        <path d="M12 30 L24 14 L108 14 L108 30" fill="#d3b78a" class="st"/>
+        <line x1="60" y1="14" x2="60" y2="96" class="st thin"/>
+        <line x1="12" y1="58" x2="108" y2="58" class="st thin"/>
+        <rect x="70" y="66" width="28" height="18" fill="var(--paper)" class="st thin" transform="rotate(-4 84 75)"/>
+      </svg>
+    </div>
+
+    <!-- scarpe -->
+    <div class="obj l-shoes">
+      <svg viewBox="0 0 120 52">
+        <ellipse cx="60" cy="48" rx="50" ry="4" fill="rgba(35,32,28,.10)"/>
+        <path d="M14 40 L14 26 q0 -8 9 -8 l10 0 q6 0 10 5 l9 11 q8 4 8 6 l-46 0 z" fill="var(--paper)" class="st"/>
+        <line x1="24" y1="28" x2="38" y2="28" class="st thin"/><line x1="24" y1="33" x2="42" y2="33" class="st thin"/>
+        <path d="M106 40 L106 26 q0 -8 -9 -8 l-10 0 q-6 0 -10 5 l-9 11 q-8 4 -8 6 l46 0 z" fill="var(--clay)" class="st" transform="translate(0 -2)"/>
+      </svg>
+    </div>
+
+    <!-- pianta di pianerottolo -->
+    <div class="obj l-plant"><div class="sway">
+      <svg viewBox="0 0 120 170">
+        <ellipse cx="60" cy="164" rx="38" ry="5" fill="rgba(35,32,28,.10)"/>
+        <path d="M60 122 C 58 92 44 84 34 62" fill="none" class="st"/>
+        <path d="M60 122 C 63 88 78 80 88 58" fill="none" class="st"/>
+        <ellipse cx="32" cy="56" rx="12" ry="19" fill="var(--leaf)" class="st" transform="rotate(-26 32 56)"/>
+        <ellipse cx="90" cy="52" rx="12" ry="19" fill="var(--leaf)" class="st" transform="rotate(24 90 52)"/>
+        <ellipse cx="60" cy="44" rx="11" ry="19" fill="var(--leaf)" class="st"/>
+        <path d="M38 120 L82 120 L76 162 L44 162 Z" fill="var(--mustard)" class="st"/>
+      </svg>
+    </div></div>
+  </div>
+</section>
+
+<!-- =================================================
+     SCENA · APPARTAMENTO A
+================================================== -->
+<section class="scene" id="scene-apartment">
+  <div class="room">
+    <div class="wall"></div>
+    <div class="ceilband"></div>
+    <div class="floorband"></div>
+
+    <!-- lampada / punto rumore -->
+    <div class="obj a-lamp" id="aptLamp"><div class="lampswing">
+      <svg viewBox="0 0 70 120">
+        <line x1="35" y1="0" x2="35" y2="46" class="st"/>
+        <path d="M13 68 L57 68 L45 46 L25 46 Z" fill="var(--clay)" class="st"/>
+        <circle cx="35" cy="78" r="9" fill="#f7e9b8" stroke="none"/>
+      </svg>
+    </div></div>
+
+    <!-- finestra -->
+    <div class="obj a-window">
+      <svg viewBox="0 0 240 212">
+        <rect x="8" y="8" width="224" height="170" rx="6" fill="var(--mustard)" class="st"/>
+        <rect x="24" y="24" width="192" height="138" fill="var(--sky)" class="st thin"/>
+        <circle cx="182" cy="56" r="16" fill="var(--paper)" class="st thin"/>
+        <path d="M46 96 q10 -12 24 -4 q8 -10 22 -2 q12 -6 18 4" fill="none" class="st thin"/>
+        <line x1="120" y1="24" x2="120" y2="162" class="st thin"/>
+        <line x1="24" y1="93" x2="216" y2="93" class="st thin"/>
+        <rect x="0" y="178" width="240" height="18" rx="4" fill="var(--sand-d)" class="st"/>
+        <path d="M176 164 L200 164 L196 178 L180 178 Z" fill="var(--clay)" class="st thin"/>
+        <ellipse cx="182" cy="152" rx="7" ry="11" fill="var(--leaf)" class="st thin" transform="rotate(-20 182 152)"/>
+        <ellipse cx="195" cy="150" rx="7" ry="11" fill="var(--leaf)" class="st thin" transform="rotate(18 195 150)"/>
+      </svg>
+    </div>
+
+    <!-- quadretto -->
+    <div class="obj a-frame">
+      <svg viewBox="0 0 74 88">
+        <rect x="6" y="6" width="62" height="76" fill="var(--wood)" class="st"/>
+        <rect x="14" y="14" width="46" height="60" fill="var(--paper)" class="st thin"/>
+        <path d="M18 62 L32 40 L42 54 L50 34 L56 62" fill="none" class="st thin"/>
+        <circle cx="26" cy="26" r="5" fill="var(--mustard)" class="st thin"/>
+      </svg>
+    </div>
+
+    <!-- tappeto -->
+    <div class="obj a-rug">
+      <svg viewBox="0 0 380 92">
+        <ellipse cx="190" cy="46" rx="182" ry="38" fill="#e5d3b3" class="st"/>
+        <ellipse cx="190" cy="46" rx="140" ry="26" fill="none" class="st thin"/>
+      </svg>
+    </div>
+
+    <!-- divano -->
+    <div class="obj a-sofa">
+      <svg viewBox="0 0 300 172">
+        <ellipse cx="150" cy="164" rx="128" ry="6" fill="rgba(35,32,28,.10)"/>
+        <rect x="16" y="20" width="268" height="64" rx="16" fill="var(--teal)" class="st"/>
+        <rect x="16" y="70" width="268" height="66" rx="14" fill="var(--teal)" class="st"/>
+        <rect x="56" y="62" width="90" height="36" rx="10" fill="var(--paper)" class="st"/>
+        <rect x="154" y="62" width="90" height="36" rx="10" fill="var(--paper)" class="st"/>
+        <rect x="2" y="42" width="40" height="96" rx="18" fill="var(--teal)" class="st"/>
+        <rect x="258" y="42" width="40" height="96" rx="18" fill="var(--teal)" class="st"/>
+        <rect x="216" y="40" width="34" height="34" rx="8" fill="var(--mustard)" class="st" transform="rotate(9 233 57)"/>
+        <rect x="60" y="44" width="32" height="32" rx="8" fill="var(--clay)" class="st" transform="rotate(-8 76 60)"/>
+        <rect x="34" y="136" width="12" height="24" fill="var(--ink)"/>
+        <rect x="254" y="136" width="12" height="24" fill="var(--ink)"/>
+      </svg>
+    </div>
+
+    <!-- tavolo -->
+    <div class="obj a-table">
+      <svg viewBox="0 0 190 152">
+        <ellipse cx="95" cy="146" rx="76" ry="5" fill="rgba(35,32,28,.10)"/>
+        <rect x="40" y="52" width="12" height="92" fill="var(--wood)" class="st"/>
+        <rect x="138" y="52" width="12" height="92" fill="var(--wood)" class="st"/>
+        <line x1="46" y1="104" x2="144" y2="104" class="st"/>
+        <ellipse cx="95" cy="42" rx="88" ry="19" fill="var(--wood)" class="st"/>
+        <path d="M71 34 a24 12 0 0 0 48 0 z" fill="var(--paper)" class="st thin"/>
+        <circle cx="85" cy="28" r="7" fill="var(--clay)" class="st thin"/>
+        <circle cx="101" cy="26" r="7" fill="var(--mustard)" class="st thin"/>
+        <circle cx="93" cy="20" r="6.5" fill="var(--leaf)" class="st thin"/>
+      </svg>
+    </div>
+
+    <!-- sedia con i vestiti -->
+    <div class="obj a-chair hit" data-tag="la sedia dei vestiti" id="chairHit">
+      <svg viewBox="0 0 140 192">
+        <ellipse cx="70" cy="186" rx="52" ry="5" fill="rgba(35,32,28,.10)"/>
+        <rect x="30" y="8" width="80" height="14" rx="6" fill="var(--wood)" class="st"/>
+        <rect x="34" y="20" width="12" height="72" fill="var(--wood)" class="st"/>
+        <rect x="94" y="20" width="12" height="72" fill="var(--wood)" class="st"/>
+        <rect x="24" y="90" width="92" height="15" rx="4" fill="var(--wood)" class="st"/>
+        <rect x="28" y="105" width="10" height="80" fill="var(--wood)" class="st"/>
+        <rect x="102" y="105" width="10" height="80" fill="var(--wood)" class="st"/>
+        <line x1="38" y1="146" x2="102" y2="146" class="st"/>
+        <g class="pile">
+          <rect x="42" y="72" width="48" height="17" rx="5" fill="var(--teal)" class="st"/>
+          <rect x="48" y="58" width="36" height="15" rx="6" fill="var(--paper)" class="st"/>
+          <path d="M86 68 q20 4 17 28 q-2 15 -15 13 q-11 -2 -7 -17 z" fill="var(--clay)" class="st"/>
+          <path d="M40 92 q-8 14 -2 26" fill="none" class="st thin"/>
+        </g>
+      </svg>
+    </div>
+
+    <!-- mobiletto -->
+    <div class="obj a-cab">
+      <svg viewBox="0 0 190 152">
+        <ellipse cx="95" cy="146" rx="80" ry="5" fill="rgba(35,32,28,.10)"/>
+        <rect x="12" y="46" width="166" height="84" rx="8" fill="var(--teal)" class="st"/>
+        <line x1="95" y1="50" x2="95" y2="126" class="st thin"/>
+        <circle cx="84" cy="88" r="4" fill="var(--paper)"/><circle cx="106" cy="88" r="4" fill="var(--paper)"/>
+        <rect x="24" y="130" width="10" height="16" fill="var(--ink)"/><rect x="156" y="130" width="10" height="16" fill="var(--ink)"/>
+        <path d="M34 30 L52 30 L48 46 L38 46 Z" fill="var(--mustard)" class="st thin"/>
+        <path d="M43 30 C 40 18 30 16 26 8 M43 30 C 46 16 54 14 58 6" fill="none" class="st thin"/>
+        <rect x="112" y="18" width="10" height="28" fill="var(--clay)" class="st thin"/>
+        <rect x="124" y="12" width="10" height="34" fill="var(--paper)" class="st thin"/>
+        <rect x="136" y="22" width="10" height="24" fill="var(--sand-d)" class="st thin" transform="rotate(6 141 34)"/>
+      </svg>
+    </div>
+
+    <!-- frigorifero -->
+    <div class="obj a-fridge hit" data-tag="frigo" id="fridgeWrap">
+      <svg viewBox="0 0 170 302">
+        <ellipse cx="85" cy="296" rx="70" ry="6" fill="rgba(35,32,28,.10)"/>
+        <rect x="14" y="8" width="142" height="284" rx="10" fill="#efe6cf" class="st"/>
+        <g class="fin">
+          <rect x="22" y="16" width="126" height="268" rx="6" fill="#f7f0dd" class="st thin"/>
+          <line x1="26" y1="106" x2="144" y2="106" class="st thin"/>
+          <line x1="26" y1="182" x2="144" y2="182" class="st thin"/>
+          <rect x="34" y="76" width="22" height="30" fill="var(--teal)" class="st thin"/><line x1="34" y1="84" x2="56" y2="84" class="st thin"/>
+          <rect x="64" y="70" width="15" height="36" rx="3" fill="var(--clay)" class="st thin"/>
+          <rect x="92" y="82" width="30" height="24" fill="var(--paper)" class="st thin"/>
+          <rect x="40" y="150" width="34" height="30" fill="var(--paper)" class="st thin" stroke-dasharray="5 4"/>
+          <circle cx="98" cy="164" r="10" fill="var(--mustard)" class="st thin"/>
+          <rect x="34" y="230" width="26" height="40" rx="4" fill="var(--sky)" class="st thin"/>
+          <rect x="70" y="238" width="40" height="32" fill="var(--sand)" class="st thin"/>
+        </g>
+        <g class="fdoor">
+          <rect x="14" y="8" width="142" height="284" rx="10" fill="var(--paper)" class="st"/>
+          <line x1="14" y1="98" x2="156" y2="98" class="st"/>
+          <rect x="140" y="34" width="9" height="42" rx="4" fill="var(--mustard)" class="st thin"/>
+          <rect x="140" y="120" width="9" height="84" rx="4" fill="var(--mustard)" class="st thin"/>
+          <circle cx="58" cy="146" r="7" fill="var(--clay)" class="st thin"/>
+          <rect x="80" y="172" width="14" height="14" fill="var(--teal)" class="st thin" transform="rotate(9 87 179)"/>
+          <path d="M48 208 L64 208 L56 222 Z" fill="var(--mustard)" class="st thin"/>
+          <rect x="88" y="124" width="34" height="38" fill="var(--paper)" class="st thin" transform="rotate(-4 105 143)"/>
+          <path d="M94 152 l8 -10 l6 7 l6 -9 l8 12" fill="none" class="st thin" transform="rotate(-4 105 143)"/>
+          <circle cx="105" cy="127" r="3.4" fill="var(--clay)" class="st thin"/>
+        </g>
+      </svg>
+    </div>
+
+    <!-- zona soffitto cliccabile -->
+    <div id="ceilHit" class="hit" data-tag="soffitto" aria-label="soffitto"></div>
+    <div id="thuds"></div>
+    <div id="ceilNote">(qualcuno cammina al piano di sopra)</div>
+
+    <!-- fumetto sedia -->
+    <div id="bubble"><p>Troppo puliti per la lavatrice.<br>Troppo sporchi per l'armadio.</p></div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============ CARD EDITORIALE (placeholder) ============ -->
+<aside id="card" role="dialog" aria-label="appunto del frigo">
+  <button id="cardClose" aria-label="chiudi">×</button>
+  <p class="kicker">APPUNTI DI CONDOMINIO · CUCINA</p>
+  <svg viewBox="0 0 120 34" style="width:96px">
+    <line x1="6" y1="8" x2="114" y2="8" class="st thin"/>
+    <rect x="18" y="12" width="16" height="16" fill="var(--teal)" class="st thin" transform="translate(0 4)"/>
+    <rect x="44" y="10" width="20" height="20" fill="none" class="st thin" stroke-dasharray="4 3" transform="translate(0 4)"/>
+    <circle cx="86" cy="24" r="8" fill="var(--mustard)" class="st thin"/>
+  </svg>
+  <h3>Il ripiano che nessuno vuole reclamare.</h3>
+  <p class="foot">VOL.1 · BOZZA · TESTO PLACEHOLDER</p>
+</aside>
+
+<script>
+/* ============ STATO ============ */
+let current='androne', busy=false, cabFloor=0, thudBusy=false, bubbleTimer=null;
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+
+const floorTag=$('#floorTag'), btnLift=$('#btnLift'), tagEl=$('#tag'), hint=$('#hint');
+const liftLobby=$('#liftLobby'), liftLand=$('#liftLand');
+const cab=$('#scene-cabin'), cabDoor=$('#cabDoor'), cabNum=$('#cabNum'), cabPeek=$('#cabPeek');
+const landing=$('#scene-landing'), apt=$('#scene-apartment');
+const doorA=$('#doorA'), fridgeWrap=$('#fridgeWrap'), card=$('#card');
+const bubble=$('#bubble'), thuds=$('#thuds'), ceilNote=$('#ceilNote');
+
+/* ============ AIUTO ============ */
+function go(name){
+  if(current===name) return;
+  document.getElementById('scene-'+current).classList.remove('is-active');
+  current=name;
+  document.getElementById('scene-'+name).classList.add('is-active');
+  hideTag();
+}
+function setTag(t){
+  floorTag.classList.add('sw');
+  setTimeout(()=>{ floorTag.textContent=t; floorTag.classList.remove('sw'); },190);
+}
+function setPeek(v){ cabPeek.dataset.show=v; }
+function hideTag(){ tagEl.classList.remove('show'); }
+function dismissHint(){ hint.classList.add('gone'); }
+setTimeout(dismissHint,7000);
+addEventListener('pointerdown',dismissHint,{once:true});
+
+/* ============ ETICHETTE AL HOVER ============ */
+document.addEventListener('mouseover',e=>{
+  const h=e.target.closest('.hit');
+  if(h && h.dataset.tag && !busy){
+    const r=h.getBoundingClientRect();
+    tagEl.textContent=h.dataset.tag;
+    tagEl.style.left=(r.left+r.width/2)+'px';
+    tagEl.style.top=Math.max(46,r.top-4)+'px';
+    tagEl.classList.add('show');
+  }
+});
+document.addEventListener('mouseout',e=>{ if(e.target.closest('.hit')) hideTag(); });
+
+/* ============ TASTIERA SUI PUNTI VIVI ============ */
+$$('.hit').forEach(el=>{
+  el.tabIndex=0; el.setAttribute('role','button');
+  el.addEventListener('keydown',e=>{
+    if(e.key==='Enter'||e.key===' '){ e.preventDefault(); el.click(); }
+  });
+});
+
+/* ============ ANDRONE → ASCENSORE ============ */
+function enterCabin(from){
+  if(busy) return; busy=true; hideTag();
+  const lift=(from==='androne')?liftLobby:liftLand;
+  lift.classList.add('open');
+  setTimeout(()=>{
+    cabFloor=(from==='androne')?0:1;
+    cabNum.textContent=cabFloor;
+    setPeek(from==='androne'?'lobby':'land');
+    cabDoor.classList.add('open');
+    go('cabin');
+    setTag(cabFloor===0?'PIANO 0':'PIANO 1');
+    setTimeout(()=>cabDoor.classList.remove('open'),750);   // le porte si chiudono alle spalle
+    setTimeout(()=>{ busy=false; },1950);
+  },820);
+}
+liftLobby.addEventListener('click',()=>enterCabin('androne'));
+liftLand.addEventListener('click',()=>enterCabin('landing'));
+
+/* ============ PULSANTIERA ============ */
+function deny(btn){
+  btn.classList.add('deny');
+  setTimeout(()=>btn.classList.remove('deny'),620);
+  const prev=cabNum.textContent;
+  cabNum.textContent='—';
+  setTimeout(()=>{ cabNum.textContent=(busy?'· · ·':prev); },480);
+}
+$$('.btn[data-n]').forEach(b=>{
+  b.addEventListener('click',ev=>{
+    ev.stopPropagation();
+    if(busy) return;
+    if(b.dataset.n==='1'){ travel(b); } else { deny(b); }
+  });
+});
+$('#panelBell').addEventListener('click',ev=>{ ev.stopPropagation(); if(!busy) deny($('#panelBell')); });
+
+/* ============ CORSA DELL'ASCENSORE ============ */
+function travel(btn1){
+  busy=true; hideTag();
+  btn1.classList.add('pressed');
+  cab.classList.add('run');
+  setTag('· · ·');
+  if(cabFloor===0){ setTimeout(()=>{ if(busy) cabNum.textContent='↑'; },430); }
+  setTimeout(()=>{
+    cab.classList.remove('run');
+    cabNum.textContent='1';
+    cab.classList.add('ding');
+    setTimeout(()=>cab.classList.remove('ding'),420);
+  },1900);
+  setTimeout(()=>{ setPeek('land'); cabDoor.classList.add('open'); },2380);
+  setTimeout(()=>{
+    go('landing'); setTag('PIANO 1');
+    liftLand.classList.add('open');                 // le porte si riaprono sul pianerottolo
+    setTimeout(()=>liftLand.classList.remove('open'),950);
+    setTimeout(()=>{ liftLand.classList.remove('open'); btn1.classList.remove('pressed'); busy=false; },1900);
+  },3520);
+}
+
+/* ============ PIANEROTTOLO → APPARTAMENTO ============ */
+doorA.addEventListener('click',()=>{
+  if(busy) return; busy=true; hideTag();
+  doorA.classList.add('open');
+  setTimeout(()=>{
+    go('apartment');
+    setTag('PIANO 1 · INT. A');
+    btnLift.classList.add('show');
+    setTimeout(()=>{ doorA.classList.remove('open'); busy=false; },650);
+  },600);
+});
+$('#doorB').addEventListener('click',function(){
+  this.classList.remove('nudge'); void this.offsetWidth; this.classList.add('nudge');
+});
+btnLift.addEventListener('click',()=>{
+  if(busy) return;
+  closeCard(); fridgeWrap.classList.remove('open'); hideBubble();
+  btnLift.classList.remove('show');
+  go('landing'); setTag('PIANO 1');
+});
+
+/* ============ MICRO-INTERAZIONI ANDRONE ============ */
+$('#mail').addEventListener('click',function(){
+  this.classList.toggle('pop');
+});
+$('#cito').addEventListener('click',function(){
+  this.classList.remove('shake'); void this.offsetWidth; this.classList.add('shake');
+  const dots=$('#citoBtns').children;
+  const d=dots[Math.floor(Math.random()*dots.length)];
+  d.setAttribute('fill','var(--mustard)');
+  setTimeout(()=>d.setAttribute('fill','var(--sand)'),700);
+});
+$('#board').addEventListener('click',function(){
+  this.classList.add('shuffle');
+  setTimeout(()=>this.classList.remove('shuffle'),700);
+});
+$('#portone').addEventListener('click',function(){
+  this.classList.remove('nudge'); void this.offsetWidth; this.classList.add('nudge');
+});
+/* luce scale */
+$('#landLamp').addEventListener('click',()=>landing.classList.toggle('lights-off'));
+
+/* ============ APPARTAMENTO · FRIGO ============ */
+fridgeWrap.addEventListener('click',()=>{
+  const open=fridgeWrap.classList.toggle('open');
+  if(open){ card.classList.add('show'); } else { closeCard(); }
+});
+$('#cardClose').addEventListener('click',e=>{ e.stopPropagation(); closeCard(); fridgeWrap.classList.remove('open'); });
+function closeCard(){ card.classList.remove('show'); }
+
+/* ============ APPARTAMENTO · SEDIA ============ */
+$('#chairHit').addEventListener('click',function(){
+  this.classList.remove('wob'); void this.offsetWidth; this.classList.add('wob');
+  const on=bubble.classList.toggle('show');
+  clearTimeout(bubbleTimer);
+  if(on) bubbleTimer=setTimeout(hideBubble,4600);
+});
+function hideBubble(){ bubble.classList.remove('show'); }
+
+/* ============ APPARTAMENTO · SOFFITTO (rumore del vicino) ============ */
+$('#ceilHit').addEventListener('click',()=>{
+  if(thudBusy || current!=='apartment') return;
+  thudBusy=true; hideTag();
+  apt.classList.add('rumore');
+  const lampArt=$('#aptLamp svg');
+  lampArt.style.animation='lampswing .32s ease-in-out 5 alternate';
+  setTimeout(()=>{ lampArt.style.animation=''; apt.classList.remove('rumore'); },1000);
+  ['tump','tump','tump.'].forEach((w,i)=>setTimeout(()=>spawnWord(w),i*430));
+  for(let i=0;i<3;i++) setTimeout(spawnDust,200+i*260);
+  setTimeout(()=>ceilNote.classList.add('show'),1450);
+  setTimeout(()=>{ ceilNote.classList.remove('show'); thudBusy=false; },3900);
+});
+function spawnWord(w){
+  const s=document.createElement('span');
+  s.className='tw'; s.textContent=w;
+  s.style.left=(16+Math.random()*52)+'%';
+  s.style.top=(5+Math.random()*8)+'%';
+  thuds.appendChild(s);
+  setTimeout(()=>s.remove(),1450);
+}
+function spawnDust(){
+  const d=document.createElement('span');
+  d.className='dust';
+  d.style.left=(44+Math.random()*10)+'%';
+  d.style.top='12%';
+  thuds.appendChild(d);
+  setTimeout(()=>d.remove(),1200);
+}
+
+/* ============ LOGO = RITORNO ALL'ANDRONE ============ */
+$('#logoBtn').addEventListener('click',()=>{
+  if(busy) return;
+  [liftLobby,liftLand].forEach(l=>l.classList.remove('open'));
+  cabDoor.classList.remove('open');
+  cab.classList.remove('run','ding');
+  cabNum.textContent='0'; cabFloor=0; setPeek('lobby');
+  doorA.classList.remove('open');
+  landing.classList.remove('lights-off');
+  fridgeWrap.classList.remove('open');
+  closeCard(); hideBubble();
+  btnLift.classList.remove('show');
+  go('androne'); setTag('PIANO 0');
+});
+</script>
+</body>
+</html>
