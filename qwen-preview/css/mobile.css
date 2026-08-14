@@ -1,0 +1,181 @@
+/* ============ MOBILE RESPONSIVE ============ */
+
+/* Mobile Small: 375×812 */
+@media (max-width: 375px) {
+  .o-doorA,
+  .o-doorB {
+    width: clamp(90px, 20vw, 160px);
+    bottom: 15%;
+  }
+
+  .apt-nav {
+    bottom: 16px;
+  }
+
+  .back-btn {
+    top: 16px;
+    left: 16px;
+    padding: 6px 12px;
+    font-size: 13px;
+  }
+}
+
+/* Mobile: 390×844 */
+@media (max-width: 390px) {
+  #topbar {
+    padding: 10px 16px;
+  }
+
+  #logoBtn span:not(.sq):not(.chip) {
+    display: none;
+  }
+
+  .hud-right {
+    gap: 6px;
+  }
+
+  #floorTag {
+    padding: 5px 10px;
+    font-size: 11px;
+  }
+
+  .scene-androne-mobile .o-lift {
+    right: 10%;
+    width: clamp(140px, 22vw, 240px);
+  }
+}
+
+/* Mobile Large: 430×932 */
+@media (min-width: 431px) and (max-width: 767px) {
+  .o-doorA {
+    left: 10%;
+  }
+
+  .o-doorB {
+    right: 10%;
+  }
+}
+
+/* Tablet: 768×1024 */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .o-doorA {
+    left: 20%;
+  }
+
+  .o-doorB {
+    right: 20%;
+  }
+
+  .reader-content {
+    max-width: 600px;
+  }
+}
+
+/* Desktop */
+@media (min-width: 1024px) {
+  .reader-content {
+    max-width: 680px;
+  }
+
+  .experience-body {
+    max-width: 700px;
+    margin: 0 auto;
+  }
+}
+
+/* Safe area insets for mobile devices with notches */
+@supports (padding: max(0px)) {
+  #topbar {
+    padding-top: max(12px, env(safe-area-inset-top));
+    padding-left: max(14px, env(safe-area-inset-left));
+    padding-right: max(14px, env(safe-area-inset-right));
+  }
+
+  .bottom-sheet-content {
+    padding-bottom: max(32px, env(safe-area-inset-bottom));
+  }
+
+  .apt-nav {
+    bottom: max(20px, env(safe-area-inset-bottom));
+  }
+
+  .back-btn {
+    top: max(20px, env(safe-area-inset-top));
+    left: max(20px, env(safe-area-inset-left));
+  }
+}
+
+/* Landscape orientation adjustments */
+@media (orientation: landscape) and (max-height: 500px) {
+  .quiz-header h2 {
+    font-size: 16px;
+  }
+
+  .quiz-body {
+    padding: 16px;
+  }
+
+  .answers {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .answer {
+    padding: 12px;
+    font-size: 14px;
+  }
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .sway,
+  .lampswing {
+    animation: none;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  :root {
+    --ink: #000000;
+    --paper: #ffffff;
+  }
+
+  .hit:focus-visible {
+    outline-width: 4px;
+  }
+}
+
+/* Touch-friendly targets on mobile */
+@media (pointer: coarse) {
+  .hit {
+    min-width: 44px;
+    min-height: 44px;
+  }
+
+  .answer {
+    min-height: 52px;
+    padding: 18px 20px;
+  }
+
+  .elevator-choice-btn {
+    min-height: 52px;
+  }
+
+  .close-btn {
+    width: 44px;
+    height: 44px;
+  }
+
+  .apt-nav-btn {
+    width: 20px;
+    height: 20px;
+  }
+}

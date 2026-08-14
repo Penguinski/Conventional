@@ -1,0 +1,664 @@
+/* ============ TOPBAR ============ */
+#topbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px clamp(14px, 2.4vw, 28px);
+  pointer-events: none;
+}
+
+#topbar > * {
+  pointer-events: auto;
+}
+
+#logoBtn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  letter-spacing: 0.2em;
+  font-weight: 800;
+  font-size: clamp(13px, 1.5vw, 17px);
+}
+
+#logoBtn .sq {
+  width: 12px;
+  height: 12px;
+  background: var(--clay);
+  border: 3px solid var(--ink);
+  transform: rotate(6deg);
+  transition: transform 0.3s;
+}
+
+#logoBtn:hover .sq {
+  transform: rotate(96deg);
+}
+
+#logoBtn .chip {
+  font-size: 0.62em;
+  letter-spacing: 0.14em;
+  background: var(--ink);
+  color: var(--paper);
+  padding: 3px 7px;
+  transform: rotate(-2deg);
+}
+
+.hud-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+#btnLift {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  border: 3px solid var(--ink);
+  background: var(--paper);
+  padding: 6px 11px;
+  box-shadow: 3px 4px 0 rgba(35, 32, 28, 0.15);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-4px);
+  transition: 0.3s;
+}
+
+#btnLift.show {
+  opacity: 1;
+  pointer-events: auto;
+  transform: none;
+}
+
+#btnLift:hover {
+  background: var(--mustard);
+}
+
+#floorTag {
+  border: 3px solid var(--ink);
+  background: var(--paper);
+  padding: 6px 12px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  box-shadow: 3px 4px 0 rgba(35, 32, 28, 0.15);
+  transition: opacity 0.18s, transform 0.18s;
+}
+
+#floorTag.sw {
+  opacity: 0;
+  transform: translateY(-5px);
+}
+
+/* ============ STAGE / SCENE ============ */
+#stage {
+  position: fixed;
+  inset: 0;
+}
+
+.scene {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: scale(0.985);
+  transition: opacity 0.5s ease, transform 0.5s ease, visibility 0s linear 0.5s;
+}
+
+.scene.is-active {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: scale(1);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.room {
+  position: absolute;
+  inset: 0;
+}
+
+.wall {
+  position: absolute;
+  inset: 0;
+}
+
+.floorband {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 16%;
+  border-top: 3.5px solid var(--ink);
+}
+
+.baseboard {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 16%;
+  height: 9px;
+  background: var(--sand-d);
+  border-top: 3px solid var(--ink);
+  z-index: 0;
+}
+
+/* Objects */
+.obj {
+  position: absolute;
+}
+
+.obj svg {
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+/* Hit areas - interactive objects */
+.hit {
+  cursor: pointer;
+  --hov: -4px;
+  transition: transform 0.28s cubic-bezier(0.2, 0.9, 0.3, 1.4), filter 0.28s;
+}
+
+.hit:hover,
+.hit:focus-visible {
+  transform: translateY(var(--hov));
+  filter: drop-shadow(6px 8px 0 rgba(35, 32, 28, 0.16));
+}
+
+.hit:focus-visible {
+  outline: 3px dashed var(--ink);
+  outline-offset: 5px;
+}
+
+.doorhit {
+  --hov: -2px;
+}
+
+/* Context tag */
+#tag {
+  position: fixed;
+  z-index: 60;
+  pointer-events: none;
+  background: var(--paper);
+  border: 3px solid var(--ink);
+  padding: 0.4em 0.75em;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  transform: translate(-50%, -112%) rotate(-2deg) scale(0.85);
+  opacity: 0;
+  transition: opacity 0.2s, transform 0.2s;
+  white-space: nowrap;
+  box-shadow: 3px 4px 0 rgba(35, 32, 28, 0.16);
+}
+
+#tag.show {
+  opacity: 1;
+  transform: translate(-50%, -112%) rotate(-2deg) scale(1);
+}
+
+/* Hint */
+#hint {
+  position: fixed;
+  left: 50%;
+  bottom: 22px;
+  transform: translateX(-50%);
+  z-index: 45;
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  font-weight: 600;
+  opacity: 0.55;
+  animation: hintpulse 3s ease-in-out infinite;
+  transition: opacity 0.6s;
+  pointer-events: none;
+}
+
+#hint.gone {
+  opacity: 0;
+}
+
+@keyframes hintpulse {
+  0%, 100% {
+    transform: translateX(-50%) translateY(0);
+  }
+  50% {
+    transform: translateX(-50%) translateY(-4px);
+  }
+}
+
+/* Ambient animations */
+.sway {
+  animation: sway 5.5s ease-in-out infinite alternate;
+  transform-origin: 50% 100%;
+}
+
+@keyframes sway {
+  from { transform: rotate(-1.6deg); }
+  to { transform: rotate(1.6deg); }
+}
+
+.lampswing {
+  animation: lampswing 4.5s ease-in-out infinite alternate;
+  transform-origin: 50% 0;
+}
+
+@keyframes lampswing {
+  from { transform: rotate(-1.2deg); }
+  to { transform: rotate(1.2deg); }
+}
+
+/* ============ SCENE SPECIFIC ============ */
+
+/* ANDRONE */
+#scene-androne .wall {
+  background: var(--sand);
+}
+
+#scene-androne .floorband {
+  background: var(--sand-d);
+}
+
+#scene-androne .floorband::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: repeating-linear-gradient(
+    90deg,
+    transparent 0 118px,
+    rgba(35, 32, 28, 0.10) 118px 121px
+  );
+}
+
+.o-door {
+  left: 2.5%;
+  bottom: 11.5%;
+  width: clamp(148px, 15vw, 222px);
+  z-index: 2;
+}
+
+.o-mat0 {
+  left: 3.5%;
+  bottom: 6%;
+  width: clamp(88px, 9vw, 138px);
+  z-index: 3;
+  transform: rotate(1deg);
+}
+
+.o-umb {
+  left: 19%;
+  bottom: 11.5%;
+  width: clamp(52px, 5.4vw, 78px);
+  z-index: 2;
+}
+
+.o-cito {
+  left: 25.5%;
+  bottom: 42%;
+  width: clamp(46px, 4.8vw, 70px);
+  z-index: 2;
+}
+
+.o-mail {
+  left: 31.5%;
+  bottom: 36%;
+  width: clamp(168px, 19vw, 258px);
+  z-index: 2;
+}
+
+.o-board {
+  left: 54%;
+  bottom: 46%;
+  width: clamp(108px, 12vw, 162px);
+  z-index: 2;
+  transform: rotate(0.6deg);
+}
+
+.o-lift {
+  right: 14.5%;
+  bottom: 10.5%;
+  width: clamp(168px, 19vw, 266px);
+  height: clamp(252px, 56vh, 420px);
+  z-index: 2;
+}
+
+.o-plant {
+  right: 1.2%;
+  bottom: 9.5%;
+  width: clamp(108px, 12vw, 168px);
+  z-index: 3;
+}
+
+.o-bike {
+  left: 36%;
+  bottom: 6.5%;
+  width: clamp(148px, 17vw, 232px);
+  z-index: 4;
+  transform: rotate(-4deg);
+}
+
+.o-lamp0 {
+  left: 46.5%;
+  top: -6px;
+  width: clamp(44px, 4.6vw, 60px);
+  z-index: 2;
+}
+
+/* Bachecca fogli */
+.pp {
+  transform-box: fill-box;
+  transform-origin: 50% 8%;
+  transition: transform 0.5s cubic-bezier(0.3, 1.4, 0.4, 1);
+}
+
+.o-board.shuffle .pp:nth-child(odd) {
+  transform: rotate(4deg);
+}
+
+.o-board.shuffle .pp:nth-child(even) {
+  transform: rotate(-4deg) translateY(2px);
+}
+
+/* Posta */
+.letter {
+  transform-box: fill-box;
+  transition: transform 0.45s cubic-bezier(0.3, 1.6, 0.4, 1);
+}
+
+.o-mail.pop .letter {
+  transform: translateY(-11px) rotate(-9deg);
+}
+
+/* ASCENSORE componente */
+.lift {
+  position: absolute;
+}
+
+.lift-sign {
+  position: absolute;
+  top: -44px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+  width: 36px;
+  height: 36px;
+  border: 3.5px solid var(--ink);
+  border-radius: 50%;
+  background: var(--paper);
+  display: grid;
+  place-items: center;
+  font-weight: 800;
+  font-size: 16px;
+}
+
+.lift-call {
+  position: absolute;
+  right: -32px;
+  top: 42%;
+  width: 27px;
+  z-index: 3;
+}
+
+.lift-frame {
+  position: absolute;
+  inset: 0;
+  border: 4px solid var(--ink);
+  background: var(--cab);
+  overflow: hidden;
+}
+
+.lift-leaf {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 50.6%;
+  transition: transform 0.85s cubic-bezier(0.72, 0.03, 0.24, 1);
+}
+
+.lift-leaf.ll {
+  left: 0;
+}
+
+.lift-leaf.lr {
+  right: 0;
+}
+
+.lift-leaf.lr svg {
+  transform: scaleX(-1);
+}
+
+.lift.open .ll {
+  transform: translateX(-102%);
+}
+
+.lift.open .lr {
+  transform: translateX(102%);
+}
+
+/* CABINA */
+#scene-cabin .wall {
+  background: var(--cab);
+}
+
+#scene-cabin .floorband {
+  background: var(--charcoal);
+  height: 13%;
+}
+
+.cab-ceil {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 9%;
+  background: #d8c49a;
+  border-bottom: 3.5px solid var(--ink);
+}
+
+.cab-seam {
+  position: absolute;
+  top: 9%;
+  bottom: 13%;
+  width: 3px;
+  background: rgba(35, 32, 28, 0.12);
+}
+
+.o-panel {
+  right: 15%;
+  top: 25%;
+  width: clamp(60px, 8vw, 90px);
+}
+
+.o-display {
+  left: 15%;
+  top: 15%;
+  width: clamp(50px, 7vw, 80px);
+}
+
+/* PIANEROTTOLO */
+#scene-landing1 .wall {
+  background: var(--sand);
+}
+
+#scene-landing1 .floorband {
+  background: var(--sand-d);
+}
+
+.o-floor-num {
+  left: 50%;
+  top: 10%;
+  transform: translateX(-50%);
+  width: clamp(50px, 8vw, 80px);
+}
+
+.o-doorA {
+  left: 15%;
+  bottom: 12%;
+  width: clamp(100px, 18vw, 180px);
+  z-index: 2;
+}
+
+.o-doorB {
+  right: 15%;
+  bottom: 12%;
+  width: clamp(100px, 18vw, 180px);
+  z-index: 2;
+}
+
+.o-mat1 {
+  left: 50%;
+  bottom: 6%;
+  transform: translateX(-50%);
+  width: clamp(60px, 10vw, 100px);
+}
+
+.o-package {
+  left: 5%;
+  bottom: 15%;
+  width: clamp(40px, 7vw, 65px);
+}
+
+.o-shoes {
+  right: 5%;
+  bottom: 8%;
+  width: clamp(55px, 9vw, 85px);
+}
+
+.o-plant1 {
+  left: 2%;
+  bottom: 10%;
+  width: clamp(50px, 8vw, 75px);
+}
+
+.o-switch {
+  right: 2%;
+  top: 30%;
+  width: clamp(25px, 4vw, 40px);
+}
+
+.o-stairs {
+  left: -5%;
+  bottom: 0;
+  width: clamp(80px, 14vw, 130px);
+}
+
+/* APPARTAMENTO 1A */
+#scene-apt1A .wall {
+  background: var(--paper);
+}
+
+#scene-apt1A .floorband {
+  background: var(--wood);
+}
+
+.o-window {
+  left: 5%;
+  top: 15%;
+  width: clamp(100px, 16vw, 180px);
+}
+
+.o-sofa {
+  left: 10%;
+  bottom: 12%;
+  width: clamp(120px, 20vw, 220px);
+}
+
+.o-desk {
+  right: 10%;
+  bottom: 15%;
+  width: clamp(90px, 15vw, 160px);
+}
+
+.o-robot {
+  left: 30%;
+  bottom: 8%;
+  width: clamp(45px, 7vw, 75px);
+}
+
+.o-dog {
+  left: 45%;
+  bottom: 10%;
+  width: clamp(60px, 9vw, 95px);
+}
+
+.o-slippers {
+  right: 25%;
+  bottom: 6%;
+  width: clamp(50px, 8vw, 80px);
+}
+
+.o-minigolf {
+  left: 15%;
+  bottom: 5%;
+  width: clamp(75px, 12vw, 120px);
+}
+
+.o-chair {
+  right: 5%;
+  bottom: 20%;
+  width: clamp(50px, 8vw, 80px);
+}
+
+.o-fridge {
+  right: 2%;
+  bottom: 12%;
+  width: clamp(55px, 9vw, 90px);
+}
+
+.o-lamp1 {
+  left: 2%;
+  top: 5%;
+  width: clamp(40px, 6vw, 65px);
+}
+
+/* Navigazione apartment */
+.apt-nav {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 12px;
+  z-index: 40;
+}
+
+.apt-nav-btn {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--ink);
+  opacity: 0.3;
+  transition: opacity 0.3s;
+}
+
+.apt-nav-btn.active {
+  opacity: 1;
+}
+
+.back-btn {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 45;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  border: 3px solid var(--ink);
+  background: var(--paper);
+  padding: 8px 14px;
+  box-shadow: 3px 4px 0 rgba(35, 32, 28, 0.15);
+}
+
+.back-btn:hover {
+  background: var(--mustard);
+}
