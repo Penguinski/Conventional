@@ -1,0 +1,77 @@
+/* ============ BASE ============ */
+:root {
+  --ink: #23201c;
+  --paper: #f6efe1;
+  --sand: #e9dcc2;
+  --sand-d: #dccaa8;
+  --clay: #d9694b;
+  --clay-d: #c05539;
+  --mustard: #e9b44c;
+  --mustard-d: #d9a13a;
+  --teal: #3f6358;
+  --leaf: #7e9e6b;
+  --wood: #c08a52;
+  --sky: #9fb9c6;
+  --cab: #e3cfa4;
+  --charcoal: #4d4740;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: 'Archivo', system-ui, -apple-system, sans-serif;
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Font import */
+@import url('https://cdn.jsdelivr.net/fontsource/css/archivo@latest/latin-400-normal.css');
+@import url('https://cdn.jsdelivr.net/fontsource/css/archivo@latest/latin-700-normal.css');
+@import url('https://cdn.jsdelivr.net/fontsource/css/archivo@latest/latin-800-normal.css');
+
+svg {
+  display: block;
+}
+
+svg text {
+  font-family: 'Archivo', sans-serif;
+  user-select: none;
+}
+
+button {
+  font-family: inherit;
+  color: inherit;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+/* Stroke utility */
+.st {
+  stroke: var(--ink);
+  stroke-width: 3;
+  vector-effect: non-scaling-stroke;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+
+.thin {
+  stroke-width: 2;
+}
+
+.txt {
+  font-weight: 800;
+  fill: var(--ink);
+}
