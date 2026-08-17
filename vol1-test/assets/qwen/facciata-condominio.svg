@@ -74,16 +74,22 @@
         <path d="M772,825 V865 M828,825 V865" fill="none" stroke-width="4"/>
         <!-- ante -->
         <g id="door-leaves">
-          <rect x="715" y="875" width="82" height="205" fill="#4E6B5C" stroke-width="5"/>
-          <rect x="803" y="875" width="82" height="205" fill="#4E6B5C" stroke-width="5"/>
-          <g fill="none" stroke="#3E574B" stroke-width="4">
-            <rect x="727" y="893" width="58" height="70" rx="5"/>
-            <rect x="727" y="978" width="58" height="82" rx="5"/>
-            <rect x="815" y="893" width="58" height="70" rx="5"/>
-            <rect x="815" y="978" width="58" height="82" rx="5"/>
+          <g id="door-left-leaf">
+            <rect x="715" y="875" width="82" height="205" fill="#4E6B5C" stroke-width="5"/>
+            <g fill="none" stroke="#3E574B" stroke-width="4">
+              <rect x="727" y="893" width="58" height="70" rx="5"/>
+              <rect x="727" y="978" width="58" height="82" rx="5"/>
+            </g>
+            <circle cx="791" cy="960" r="5" fill="#D9A654" stroke-width="4"/>
           </g>
-          <circle cx="791" cy="960" r="5" fill="#D9A654" stroke-width="4"/>
-          <circle cx="809" cy="960" r="5" fill="#D9A654" stroke-width="4"/>
+          <g id="door-right-leaf">
+            <rect x="803" y="875" width="82" height="205" fill="#4E6B5C" stroke-width="5"/>
+            <g fill="none" stroke="#3E574B" stroke-width="4">
+              <rect x="815" y="893" width="58" height="70" rx="5"/>
+              <rect x="815" y="978" width="58" height="82" rx="5"/>
+            </g>
+            <circle cx="809" cy="960" r="5" fill="#D9A654" stroke-width="4"/>
+          </g>
         </g>
       </g>
 
