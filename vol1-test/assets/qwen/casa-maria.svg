@@ -1,0 +1,272 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2400 900" width="2400" height="900">
+  <title id="cm-title">Casa di Maria — Conventional Vol.1</title>
+  <desc id="cm-desc">Cucina di Maria: porta d'ingresso, finestra con tendine domestiche e binocolo, cassetto delle cianfrusaglie aperto, ricettario sulla credenza, frigo apribile. Vista frontale, sfondo trasparente, bleed laterale ampio.</desc>
+
+  <g id="maria-room" stroke="#2A211C" stroke-linecap="round" stroke-linejoin="round">
+
+    <!-- ============ PARETE ============ -->
+    <g id="wall">
+      <rect x="0" y="0" width="2400" height="740" fill="#F0E1CB" stroke="none"/>
+      <rect id="wall-dado" x="0" y="568" width="2400" height="172" fill="#E2B49E" stroke="none"/>
+      <rect id="wall-rail" x="0" y="556" width="2400" height="14" fill="#F4E7D3" stroke-width="4"/>
+    </g>
+
+    <!-- ============ PAVIMENTO IN LEGNO ============ -->
+    <g id="floor">
+      <rect x="0" y="740" width="2400" height="160" fill="#C89B66" stroke="none"/>
+      <path d="M160,740 V900 M320,740 V900 M480,740 V900 M640,740 V900 M800,740 V900 M960,740 V900 M1120,740 V900 M1280,740 V900 M1440,740 V900 M1600,740 V900 M1760,740 V900 M1920,740 V900 M2080,740 V900 M2240,740 V900" fill="none" stroke-width="3" opacity="0.35"/>
+      <path d="M0,740 H2400" fill="none" stroke-width="5"/>
+    </g>
+
+    <rect id="baseboard" x="0" y="722" width="2400" height="20" fill="#F4E7D3" stroke-width="4"/>
+
+    <!-- ombre morbide a terra -->
+    <g id="soft-shadows" fill="#2A211C" stroke="none" opacity="0.07">
+      <ellipse cx="1080" cy="750" rx="120" ry="12"/>
+      <ellipse cx="1370" cy="750" rx="120" ry="12"/>
+      <ellipse cx="1660" cy="750" rx="140" ry="12"/>
+      <ellipse cx="1960" cy="750" rx="110" ry="12"/>
+    </g>
+
+    <!-- tappetino ovale davanti alla porta -->
+    <g id="door-rug">
+      <ellipse cx="490" cy="800" rx="95" ry="24" fill="#A97F8F" stroke-width="5"/>
+      <ellipse cx="490" cy="800" rx="62" ry="14" fill="none" stroke="#F4E7D3" stroke-width="3"/>
+    </g>
+
+    <!-- ============ PORTA D'INGRESSO (interno) ============ -->
+    <g id="maria-entry-door">
+      <rect x="380" y="240" width="220" height="500" rx="6" fill="#F4E7D3" stroke-width="6"/>
+      <rect x="396" y="256" width="188" height="484" fill="#4E6B5C" stroke-width="5"/>
+      <g fill="none" stroke="#3E574B" stroke-width="4">
+        <rect x="412" y="470" width="156" height="100" rx="5"/>
+        <rect x="412" y="590" width="156" height="130" rx="5"/>
+      </g>
+      <g id="door-hanging-bag" transform="rotate(-2 490 360)">
+        <circle cx="490" cy="318" r="3" fill="#2A211C" stroke="none"/>
+        <path d="M470,344 q20,-26 40,0" fill="none" stroke-width="4"/>
+        <rect x="462" y="344" width="56" height="64" rx="8" fill="#F4E7D3" stroke-width="4"/>
+        <circle cx="480" cy="368" r="3" fill="#A97F8F" stroke="none"/>
+        <circle cx="500" cy="384" r="3" fill="#A97F8F" stroke="none"/>
+      </g>
+      <circle cx="566" cy="500" r="6" fill="#D9A654" stroke-width="4"/>
+    </g>
+
+    <!-- ============ QUADRETTI ============ -->
+    <g id="wall-frames">
+      <g id="frame-portrait" transform="rotate(-1 740 305)">
+        <rect x="695" y="250" width="90" height="110" rx="6" fill="#D9A654" stroke-width="5"/>
+        <rect x="707" y="262" width="66" height="86" fill="#FBF6EA" stroke-width="3"/>
+        <circle cx="740" cy="292" r="13" fill="none" stroke-width="3"/>
+        <path d="M720,332 q20,-18 40,0" fill="none" stroke-width="3"/>
+      </g>
+      <g id="frame-heart" transform="rotate(1.5 740 440)">
+        <rect x="705" y="400" width="70" height="80" rx="6" fill="#F4E7D3" stroke-width="5"/>
+        <path d="M740,452 q-16,-14 -8,-24 q6,-7 8,0 q2,-7 8,0 q8,10 -8,24 Z" fill="#A97F8F" stroke-width="3"/>
+      </g>
+    </g>
+
+    <!-- ============ FINESTRA CON TENDE LEGGIBILI ============ -->
+    <g id="maria-window" transform="translate(50,0)">
+      <rect x="880" y="200" width="300" height="260" rx="10" fill="#D9A654" stroke-width="6"/>
+      <rect x="898" y="218" width="264" height="224" fill="#A9C1CE" stroke-width="4"/>
+      <path d="M1030,218 V442 M898,330 H1162" fill="none" stroke-width="4"/>
+      <circle cx="1075" cy="260" r="12" fill="#F4E7D3" stroke-width="3"/>
+      <path d="M985,300 q10,-8 20,0 q10,-8 20,0" fill="none" stroke-width="3"/>
+      <!-- tendina café: astina, anelli, pannello con pieghe e orlo dritto -->
+      <g id="window-cafe-curtain">
+        <path d="M898,340 H1162" fill="none" stroke-width="4"/>
+        <g fill="none" stroke-width="3">
+          <circle cx="912" cy="340" r="4"/>
+          <circle cx="952" cy="340" r="4"/>
+          <circle cx="992" cy="340" r="4"/>
+          <circle cx="1032" cy="340" r="4"/>
+          <circle cx="1072" cy="340" r="4"/>
+          <circle cx="1112" cy="340" r="4"/>
+          <circle cx="1152" cy="340" r="4"/>
+        </g>
+        <path d="M898,346 H1162 V432 H898 Z" fill="#F4E7D3" stroke-width="4"/>
+        <path d="M931,346 V432 M964,346 V432 M997,346 V432 M1030,346 V432 M1063,346 V432 M1096,346 V432 M1129,346 V432" fill="none" stroke-width="3"/>
+        <path d="M898,420 H1162" fill="none" stroke-width="3"/>
+      </g>
+      <!-- tende laterali con pieghe -->
+      <g id="window-side-curtains">
+        <path d="M898,206 H954 C960,280 950,360 958,440 Q928,452 898,446 Z" fill="#F4E7D3" stroke-width="4"/>
+        <path d="M916,214 C920,290 912,370 918,436 M936,214 C940,290 932,370 938,436" fill="none" stroke-width="3"/>
+        <path d="M1162,206 H1106 C1100,280 1110,360 1102,440 Q1132,452 1162,446 Z" fill="#F4E7D3" stroke-width="4"/>
+        <path d="M1144,214 C1140,290 1148,370 1142,436 M1124,214 C1120,290 1128,370 1122,436" fill="none" stroke-width="3"/>
+      </g>
+      <!-- asta con pomi -->
+      <g id="curtain-rod">
+        <path d="M862,206 H1198" fill="none" stroke-width="5"/>
+        <circle cx="856" cy="206" r="6" fill="#B98A52" stroke-width="4"/>
+        <circle cx="1204" cy="206" r="6" fill="#B98A52" stroke-width="4"/>
+      </g>
+      <!-- davanzale con basilico e barattolo -->
+      <rect x="866" y="460" width="328" height="16" rx="6" fill="#F4E7D3" stroke-width="5"/>
+      <g id="windowsill-basil">
+        <ellipse cx="938" cy="424" rx="6" ry="10" fill="#7FA37A" stroke-width="3"/>
+        <ellipse cx="928" cy="430" rx="5" ry="8" fill="#7FA37A" stroke-width="3" transform="rotate(-20 928 430)"/>
+        <ellipse cx="948" cy="430" rx="5" ry="8" fill="#7FA37A" stroke-width="3" transform="rotate(20 948 430)"/>
+        <path d="M922,436 h32 l-5,24 h-22 Z" fill="#C4674C" stroke-width="4"/>
+      </g>
+      <g id="windowsill-jar">
+        <rect x="1092" y="430" width="32" height="30" rx="6" fill="#FBF6EA" stroke-width="4"/>
+        <rect x="1094" y="444" width="28" height="12" fill="#A97F8F" stroke-width="3"/>
+        <rect x="1096" y="422" width="24" height="8" rx="3" fill="#D9A654" stroke-width="3"/>
+      </g>
+    </g>
+
+    <!-- ============ TAVOLINO + BINOCOLO ============ -->
+    <g id="console-table" transform="translate(50,0)">
+      <rect x="920" y="560" width="220" height="16" rx="6" fill="#B98A52" stroke-width="5"/>
+      <rect x="936" y="576" width="12" height="164" fill="#B98A52" stroke-width="5"/>
+      <rect x="1112" y="576" width="12" height="164" fill="#B98A52" stroke-width="5"/>
+    </g>
+    <g id="binoculars" transform="translate(50,0)">
+      <path d="M978,516 C950,540 950,560 962,560" fill="none" stroke="#C4674C" stroke-width="4"/>
+      <path d="M1044,516 C1072,540 1072,560 1060,560" fill="none" stroke="#C4674C" stroke-width="4"/>
+      <rect x="984" y="496" width="18" height="14" rx="4" fill="#3B2E27" stroke-width="3"/>
+      <rect x="1018" y="496" width="18" height="14" rx="4" fill="#3B2E27" stroke-width="3"/>
+      <rect x="978" y="506" width="30" height="54" rx="10" fill="#7A8B7F" stroke-width="4"/>
+      <rect x="1014" y="506" width="30" height="54" rx="10" fill="#7A8B7F" stroke-width="4"/>
+      <rect x="1004" y="524" width="14" height="12" fill="#7A8B7F" stroke-width="4"/>
+    </g>
+
+    <!-- ============ MENSOLA CON BARATTOLI ============ -->
+    <g id="shelf-jars" transform="translate(20,0)">
+      <rect x="1250" y="340" width="200" height="12" rx="6" fill="#B98A52" stroke-width="4"/>
+      <g id="jar-1">
+        <rect x="1270" y="300" width="36" height="40" rx="6" fill="#FBF6EA" stroke-width="4"/>
+        <rect x="1272" y="316" width="32" height="20" fill="#D9A654" stroke-width="3"/>
+        <rect x="1274" y="292" width="28" height="8" rx="3" fill="#D9A654" stroke-width="3"/>
+      </g>
+      <g id="jar-2">
+        <rect x="1316" y="296" width="36" height="44" rx="6" fill="#FBF6EA" stroke-width="4"/>
+        <rect x="1318" y="314" width="32" height="22" fill="#A97F8F" stroke-width="3"/>
+        <rect x="1320" y="288" width="28" height="8" rx="3" fill="#D9A654" stroke-width="3"/>
+      </g>
+      <g id="jar-3">
+        <rect x="1362" y="304" width="36" height="36" rx="6" fill="#FBF6EA" stroke-width="4"/>
+        <rect x="1364" y="318" width="32" height="18" fill="#7FA37A" stroke-width="3"/>
+        <rect x="1366" y="296" width="28" height="8" rx="3" fill="#D9A654" stroke-width="3"/>
+      </g>
+    </g>
+
+    <!-- ============ CASSETTIERA: cassetto delle cianfrusaglie evidente ============ -->
+    <g id="drawer-unit" transform="translate(20,0)">
+      <rect x="1240" y="470" width="220" height="270" rx="8" fill="#B98A52" stroke-width="6"/>
+      <rect x="1232" y="462" width="236" height="14" rx="6" fill="#B98A52" stroke-width="5"/>
+      <g id="drawer-top">
+        <rect x="1256" y="486" width="188" height="64" rx="6" fill="#F4E7D3" stroke-width="4"/>
+        <circle cx="1300" cy="518" r="5" fill="#B98A52" stroke-width="3"/>
+        <circle cx="1400" cy="518" r="5" fill="#B98A52" stroke-width="3"/>
+      </g>
+      <!-- cassetto aperto: cavità scura + oggetti che spuntano + frontale abbassato -->
+      <g id="junk-drawer">
+        <rect x="1256" y="566" width="188" height="26" fill="#3B2E27" stroke="none" opacity="0.35"/>
+        <circle cx="1296" cy="576" r="8" fill="#A97F8F" stroke-width="3"/>
+        <path d="M1304,576 q10,4 16,10" fill="none" stroke-width="3"/>
+        <circle cx="1344" cy="576" r="4" fill="none" stroke-width="3"/>
+        <path d="M1348,576 h14 m-4,0 v5 m-6,-5 v4" fill="none" stroke-width="3"/>
+        <rect x="1374" y="566" width="14" height="16" rx="3" fill="#D9A654" stroke-width="3"/>
+        <rect x="1256" y="592" width="188" height="64" rx="6" fill="#F4E7D3" stroke-width="4"/>
+        <circle cx="1300" cy="624" r="5" fill="#B98A52" stroke-width="3"/>
+        <circle cx="1400" cy="624" r="5" fill="#B98A52" stroke-width="3"/>
+      </g>
+      <g id="drawer-bottom">
+        <rect x="1256" y="668" width="188" height="64" rx="6" fill="#F4E7D3" stroke-width="4"/>
+        <circle cx="1300" cy="700" r="5" fill="#B98A52" stroke-width="3"/>
+        <circle cx="1400" cy="700" r="5" fill="#B98A52" stroke-width="3"/>
+      </g>
+      <!-- barattolo con mestoli sopra -->
+      <g id="utensil-jar">
+        <path d="M1292,414 L1286,392" fill="none" stroke-width="4"/>
+        <ellipse cx="1284" cy="386" rx="6" ry="9" fill="#B98A52" stroke-width="3" transform="rotate(-15 1284 386)"/>
+        <path d="M1306,414 L1312,390" fill="none" stroke-width="4"/>
+        <rect x="1280" y="414" width="40" height="48" rx="6" fill="#A9C1CE" stroke-width="4"/>
+      </g>
+    </g>
+
+    <!-- ============ LAMPADA ============ -->
+    <g id="hanging-lamp" transform="translate(-10,0)">
+      <path d="M1670,0 V120" fill="none" stroke-width="4"/>
+      <path d="M1642,120 H1698 L1688,154 H1652 Z" fill="#D9A654" stroke-width="5"/>
+      <circle cx="1670" cy="162" r="7" fill="#F7D489" stroke="none"/>
+    </g>
+
+    <!-- ============ CREDENZA ============ -->
+    <g id="sideboard" transform="translate(-10,0)">
+      <rect x="1540" y="520" width="260" height="220" rx="8" fill="#4E6B5C" stroke-width="6"/>
+      <rect x="1532" y="512" width="276" height="14" rx="6" fill="#F4E7D3" stroke-width="5"/>
+      <g fill="none" stroke="#3E574B" stroke-width="4">
+        <rect x="1556" y="540" width="110" height="180" rx="6"/>
+        <rect x="1674" y="540" width="110" height="180" rx="6"/>
+      </g>
+      <circle cx="1660" cy="630" r="5" fill="#F4E7D3" stroke-width="3"/>
+      <circle cx="1680" cy="630" r="5" fill="#F4E7D3" stroke-width="3"/>
+    </g>
+
+    <!-- ricettario appoggiato in modo naturale sul piano -->
+    <g id="recipe-book" transform="translate(-10,0)">
+      <ellipse cx="1670" cy="514" rx="70" ry="6" fill="#2A211C" stroke="none" opacity="0.07"/>
+      <path d="M1606,506 h132 l6,8 H1600 Z" fill="#C4674C" stroke-width="4"/>
+      <path d="M1672,500 C1650,482 1626,482 1616,490 L1616,506 H1672 Z" fill="#FBF6EA" stroke-width="4"/>
+      <path d="M1672,500 C1694,482 1718,482 1728,490 L1728,506 H1672 Z" fill="#FBF6EA" stroke-width="4"/>
+      <path d="M1628,496 q10,-6 20,-2 M1684,494 q10,-4 20,0" fill="none" stroke-width="3"/>
+      <path d="M1672,500 l6,20" fill="none" stroke="#A97F8F" stroke-width="3"/>
+    </g>
+    <g id="tea-cup" transform="translate(-10,0)">
+      <path d="M1764,480 q4,-8 0,-14" fill="none" stroke-width="3" opacity="0.6"/>
+      <rect x="1752" y="494" width="28" height="20" rx="6" fill="#F4E7D3" stroke-width="4"/>
+      <path d="M1780,498 q10,6 0,12" fill="none" stroke-width="4"/>
+    </g>
+
+    <!-- ============ FRIGO (ante separate) ============ -->
+    <g id="fridge" transform="translate(-10,0)">
+      <rect x="1870" y="260" width="200" height="480" rx="10" fill="#F4E7D3" stroke-width="6"/>
+      <g id="fridge-freezer-door">
+        <rect x="1886" y="276" width="168" height="120" rx="6" fill="#F4E7D3" stroke-width="5"/>
+        <rect x="1898" y="300" width="10" height="70" rx="5" fill="#D9A654" stroke-width="4"/>
+      </g>
+      <g id="fridge-door">
+        <rect x="1886" y="404" width="168" height="320" rx="6" fill="#F4E7D3" stroke-width="5"/>
+        <rect x="1898" y="430" width="10" height="110" rx="5" fill="#D9A654" stroke-width="4"/>
+        <circle cx="1960" cy="470" r="8" fill="#C4674C" stroke-width="3"/>
+        <rect x="1996" y="516" width="18" height="18" fill="#7FA37A" stroke-width="3" transform="rotate(10 2005 525)"/>
+        <path d="M1952,556 l14,0 -7,-12 Z" fill="#A97F8F" stroke-width="3"/>
+        <g transform="rotate(-3 1996 628)">
+          <rect x="1972" y="600" width="48" height="58" fill="#FBF6EA" stroke-width="3"/>
+          <path d="M1982,622 H2010 M1982,636 H2004" fill="none" stroke-width="3"/>
+          <circle cx="1996" cy="608" r="4" fill="#D9A654" stroke-width="3"/>
+        </g>
+      </g>
+      <g id="bread-basket">
+        <path d="M1910,236 h80 l-8,24 h-64 Z" fill="#C9A171" stroke-width="4"/>
+        <path d="M1926,240 l4,16 M1950,240 v16 M1974,240 l-4,16" fill="none" stroke="#B98A52" stroke-width="3"/>
+      </g>
+    </g>
+
+    <!-- ============ BLEED SINISTRO: appendiabiti con grembiule ============ -->
+    <g id="coat-stand">
+      <path d="M200,240 V726" fill="none" stroke-width="6"/>
+      <circle cx="200" cy="236" r="6" fill="#B98A52" stroke-width="4"/>
+      <path d="M200,280 q-18,4 -22,18 M200,280 q18,4 22,18" fill="none" stroke-width="4"/>
+      <rect x="172" y="726" width="56" height="14" rx="6" fill="#B98A52" stroke-width="4"/>
+      <g id="apron">
+        <path d="M222,298 q-16,4 -16,22 M222,298 q16,4 16,22" fill="none" stroke-width="4"/>
+        <path d="M190,320 h64 l10,118 q-42,14 -84,0 Z" fill="#A97F8F" stroke-width="5"/>
+        <rect x="208" y="378" width="28" height="22" rx="4" fill="#F4E7D3" stroke-width="3"/>
+      </g>
+    </g>
+
+    <!-- ============ BLEED DESTRO: scopa appoggiata ============ -->
+    <g id="broom">
+      <circle cx="2272" cy="316" r="3" fill="#2A211C" stroke="none"/>
+      <path d="M2270,320 L2246,690" fill="none" stroke="#B98A52" stroke-width="5"/>
+      <path d="M2226,690 h44 l6,44 h-56 Z" fill="#C9A171" stroke-width="4"/>
+      <path d="M2238,694 l-2,36 M2252,694 v36 M2266,694 l2,36" fill="none" stroke="#B98A52" stroke-width="3"/>
+    </g>
+
+  </g>
+</svg>
