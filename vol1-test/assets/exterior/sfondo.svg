@@ -1,0 +1,101 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2560 1160" width="2560" height="1160">
+  <title id="bg-title">Sfondo esterno — Conventional Vol.1</title>
+  <desc id="bg-desc">Quartiere residenziale ordinario: cielo con nuvole soffici, edifici lontani e laterali con finestre animabili, albero, marciapiede, strada, lampione, bicicletta. La zona centrale è libera per il condominio.</desc>
+  <g id="scene" stroke="#2A211C" stroke-linecap="round" stroke-linejoin="round">
+    <g id="background-sky">
+      <rect x="0" y="0" width="2560" height="1160" fill="#8E86A9" stroke="none"/>
+      <rect x="0" y="860" width="2560" height="175" fill="#F4E7D3" stroke="none" opacity="0.05"/>
+      <rect x="0" y="955" width="2560" height="80" fill="#F4E7D3" stroke="none" opacity="0.06"/>
+    </g>
+    <g id="background-clouds" fill="#9B93B3" stroke-width="3">
+      <path id="cloud-1" transform="translate(210,320)" d="M18,0 Q-12,-6 -8,-34 Q-4,-58 26,-56 Q30,-88 68,-84 Q86,-112 124,-100 Q156,-114 178,-86 Q212,-92 220,-60 Q252,-58 256,-30 Q260,-4 232,0 Z"/>
+      <path id="cloud-2" transform="translate(2140,470) scale(1.1)" d="M16,0 Q-10,-4 -6,-28 Q-2,-50 24,-48 Q30,-76 62,-70 Q78,-94 112,-84 Q142,-92 156,-66 Q184,-66 188,-40 Q192,-4 166,0 Z"/>
+      <path id="cloud-3" transform="translate(560,150) scale(0.62)" d="M16,0 Q-10,-4 -6,-28 Q-2,-50 24,-48 Q30,-76 62,-70 Q78,-94 112,-84 Q142,-92 156,-66 Q184,-66 188,-40 Q192,-4 166,0 Z"/>
+      <path id="cloud-4" transform="translate(1900,210) scale(0.5)" d="M18,0 Q-12,-6 -8,-34 Q-4,-58 26,-56 Q30,-88 68,-84 Q86,-112 124,-100 Q156,-114 178,-86 Q212,-92 220,-60 Q252,-58 256,-30 Q260,-4 232,0 Z"/>
+    </g>
+    <g id="sky-birds" fill="none" stroke-width="3" opacity="0.7">
+      <path d="M620,240 q6,-6 12,0 q6,-6 12,0"/>
+      <path d="M688,268 q5,-5 10,0 q5,-5 10,0"/>
+    </g>
+    <g id="background-distant-buildings">
+      <g id="distant-left">
+        <rect x="120" y="668" width="26" height="40" fill="#A79FB9" stroke-width="4"/>
+        <rect x="60" y="700" width="240" height="340" fill="#A79FB9" stroke-width="4"/>
+        <path d="M410,780 V720 M396,738 H424 M400,754 H420" fill="none" stroke-width="4"/>
+        <rect x="300" y="780" width="220" height="260" fill="#ADA5C0" stroke-width="4"/>
+      </g>
+      <g id="distant-right">
+        <rect x="2020" y="728" width="26" height="40" fill="#ADA5C0" stroke-width="4"/>
+        <rect x="1850" y="760" width="230" height="280" fill="#ADA5C0" stroke-width="4"/>
+        <rect x="2072" y="682" width="276" height="12" fill="#A79FB9" stroke-width="4"/>
+        <path d="M2200,682 V620 M2182,640 H2218 M2188,658 H2212" fill="none" stroke-width="4"/>
+        <rect x="2080" y="690" width="260" height="350" fill="#A79FB9" stroke-width="4"/>
+        <rect x="2340" y="800" width="220" height="240" fill="#B0A8C2" stroke-width="4"/>
+      </g>
+    </g>
+    <g id="background-street">
+      <rect x="0" y="1035" width="2560" height="93" fill="#B7AC9C" stroke="none"/>
+      <path d="M0,1035 H2560" fill="none" stroke-width="5"/>
+      <path d="M320,1035 V1128 M640,1035 V1128 M960,1035 V1128 M1280,1035 V1128 M1600,1035 V1128 M1920,1035 V1128 M2240,1035 V1128" fill="none" stroke-width="3" opacity="0.35"/>
+      <rect x="0" y="1128" width="2560" height="12" fill="#C9BFAE" stroke-width="4"/>
+      <rect x="0" y="1140" width="2560" height="20" fill="#6E6878" stroke="none"/>
+    </g>
+    <g id="background-side-buildings">
+      <g id="side-building-left">
+        <rect x="-48" y="332" width="436" height="20" fill="#7E7290" stroke-width="5"/>
+        <rect x="-40" y="352" width="420" height="738" fill="#978BA4" stroke-width="6"/>
+        <rect x="120" y="300" width="30" height="34" fill="#7E7290" stroke-width="4"/>
+        <rect x="30" y="685" width="90" height="12" rx="4" fill="#8A7E99" stroke-width="4"/>
+        <path d="M42,697 V712 M62,697 V712 M82,697 V712 M102,697 V712" fill="none" stroke-width="3"/>
+      </g>
+      <g id="side-building-right">
+        <path d="M2440,292 V210 M2420,232 H2460 M2426,252 H2454" fill="none" stroke-width="4"/>
+        <rect x="2192" y="292" width="416" height="20" fill="#7C8498" stroke-width="5"/>
+        <rect x="2200" y="312" width="400" height="778" fill="#8C93A8" stroke-width="6"/>
+        <rect x="2250" y="655" width="90" height="12" rx="4" fill="#7C8498" stroke-width="4"/>
+        <path d="M2262,667 V682 M2282,667 V682 M2302,667 V682 M2322,667 V682" fill="none" stroke-width="3"/>
+      </g>
+    </g>
+    <g id="background-windows" fill="#7B7490" stroke-width="4">
+      <rect id="sbw-1" x="40" y="430" width="70" height="95"/><rect id="sbw-2" x="180" y="430" width="70" height="95"/>
+      <rect id="sbw-3" x="40" y="590" width="70" height="95"/><rect id="sbw-4" x="180" y="590" width="70" height="95"/>
+      <rect id="sbw-5" x="40" y="750" width="70" height="95"/><rect id="sbw-6" x="180" y="750" width="70" height="95"/>
+      <rect id="sbw-7" x="2260" y="400" width="70" height="95"/><rect id="sbw-8" x="2400" y="400" width="70" height="95"/>
+      <rect id="sbw-9" x="2260" y="560" width="70" height="95"/><rect id="sbw-10" x="2400" y="560" width="70" height="95"/>
+      <rect id="sbw-11" x="2260" y="720" width="70" height="95"/><rect id="sbw-12" x="2400" y="720" width="70" height="95"/>
+    </g>
+    <g id="background-vegetation">
+      <g id="tree-right">
+        <path d="M1985,1090 C1980,980 1988,900 1982,830 M1984,920 C1960,890 1950,880 1936,862" fill="none" stroke="#6B5F4F" stroke-width="10"/>
+        <g fill="#7C8F7E" stroke-width="5">
+          <ellipse cx="1915" cy="830" rx="60" ry="48"/><ellipse cx="2055" cy="830" rx="60" ry="48"/>
+          <ellipse cx="1985" cy="860" rx="70" ry="50"/><ellipse cx="1985" cy="780" rx="95" ry="70"/>
+        </g>
+        <g fill="#8CA08D" stroke="none" opacity="0.7">
+          <ellipse cx="1955" cy="800" rx="26" ry="18"/><ellipse cx="2020" cy="845" rx="22" ry="15"/>
+        </g>
+      </g>
+      <g id="bush-left" fill="#7C8F7E" stroke-width="5">
+        <ellipse cx="350" cy="1030" rx="40" ry="30"/><ellipse cx="395" cy="1010" rx="55" ry="40"/>
+      </g>
+    </g>
+    <g id="background-details">
+      <g id="street-lamp">
+        <rect x="2140" y="1108" width="26" height="14" rx="4" fill="#3B2E27" stroke-width="4"/>
+        <rect x="2148" y="640" width="10" height="478" fill="#3B2E27" stroke-width="4"/>
+        <path d="M2128,640 H2178 L2168,606 H2138 Z" fill="#3B2E27" stroke-width="4"/>
+        <circle id="street-lamp-bulb" cx="2153" cy="650" r="8" fill="#F7D489" stroke="none"/>
+      </g>
+      <g id="street-bicycle" fill="none" stroke-width="5">
+        <circle cx="300" cy="1088" r="30"/><circle cx="392" cy="1088" r="30"/>
+        <path d="M300,1088 L330,1030 L372,1032 L392,1088 M330,1030 L346,1088 M300,1088 H346"/>
+        <path d="M372,1032 L366,1008 M356,1006 H380 M330,1030 L326,1012"/>
+        <rect x="314" y="1004" width="26" height="8" rx="4" fill="#C4674C" stroke-width="4"/>
+      </g>
+      <g id="sidewalk-grate">
+        <rect x="520" y="1112" width="64" height="12" rx="4" fill="#6E6878" stroke-width="4"/>
+        <path d="M534,1115 V1121 M550,1115 V1121 M566,1115 V1121" fill="none" stroke-width="3"/>
+      </g>
+    </g>
+  </g>
+</svg>
