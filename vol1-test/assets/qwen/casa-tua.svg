@@ -15,7 +15,7 @@
     <g id="floor">
       <rect x="0" y="740" width="2400" height="160" fill="#C89B66" stroke="none"/>
       <path d="M160,740 V900 M320,740 V900 M480,740 V900 M640,740 V900 M800,740 V900 M960,740 V900 M1120,740 V900 M1280,740 V900 M1440,740 V900 M1600,740 V900 M1760,740 V900 M1920,740 V900 M2080,740 V900 M2240,740 V900" fill="none" stroke-width="3" opacity="0.35"/>
-      <path d="M0,740 H2400" fill="none" stroke-width="5"/>
+      <path id="physics-floor" d="M0,740 H2400" fill="none" stroke-width="5"/>
     </g>
 
     <rect id="baseboard" x="0" y="722" width="2400" height="20" fill="#F4E7D3" stroke-width="4"/>
