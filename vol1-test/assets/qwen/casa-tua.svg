@@ -139,7 +139,6 @@
         <path d="M1333,540 V640" fill="none" stroke="#F4E7D3" stroke-width="4"/>
       </g>
     </g>
-    <rect id="complaint-file-hit" x="1268" y="438" width="136" height="124" fill="transparent" stroke="none"/>
     <g id="complaint-file" transform="rotate(-6 1335 510)">
       <rect x="1290" y="452" width="86" height="26" fill="#FBF6EA" stroke-width="3"/>
       <rect x="1298" y="444" width="70" height="16" fill="#FBF6EA" stroke-width="3" transform="rotate(4 1333 452)"/>
