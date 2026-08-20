@@ -7,6 +7,10 @@
       <rect x="0" y="860" width="2560" height="175" fill="#F4E7D3" stroke="none" opacity="0.05"/>
       <rect x="0" y="955" width="2560" height="80" fill="#F4E7D3" stroke="none" opacity="0.06"/>
     </g>
+    <text id="background-stars" x="720" y="150" fill="#F0E6C7" stroke="none" font-family="Georgia, serif" font-size="42" letter-spacing="95">· ✦ · · ✦ ·</text>
+    <g id="background-orb" stroke="#2A211C" stroke-width="3">
+      <circle id="sky-orb-disc" cx="2316" cy="139" r="65" fill="#F4CF7F"/>
+    </g>
     <g id="background-clouds" fill="#9B93B3" stroke-width="3">
       <path id="cloud-1" transform="translate(210,320)" d="M18,0 Q-12,-6 -8,-34 Q-4,-58 26,-56 Q30,-88 68,-84 Q86,-112 124,-100 Q156,-114 178,-86 Q212,-92 220,-60 Q252,-58 256,-30 Q260,-4 232,0 Z"/>
       <path id="cloud-2" transform="translate(2140,470) scale(1.1)" d="M16,0 Q-10,-4 -6,-28 Q-2,-50 24,-48 Q30,-76 62,-70 Q78,-94 112,-84 Q142,-92 156,-66 Q184,-66 188,-40 Q192,-4 166,0 Z"/>
