@@ -122,6 +122,20 @@
 <g id="fridge-interior">
 <path d="M2038 278H1882V716H2038V278Z" fill="#B7CFCC" stroke="#2A211C" stroke-width="4"/>
 <path d="M1884 390H2036M1884 515H2036M1884 630H2036" stroke="#F4E7D3" stroke-width="7"/>
+<path d="M1902 337V382H1932V337L1927 329H1907L1902 337Z" fill="#7FA37A" stroke="#2A211C" stroke-width="3" stroke-linejoin="round"/>
+<path d="M1909 321H1925V330H1909Z" fill="#D9A654" stroke="#2A211C" stroke-width="3"/>
+<path d="M1951 345C1951 338.373 1956.37 333 1963 333H1991C1997.63 333 2003 338.373 2003 345V382H1951V345Z" fill="#F4E7D3" stroke="#2A211C" stroke-width="3"/>
+<path d="M1951 352H2003" stroke="#C4674C" stroke-width="7"/>
+<path d="M1899 450H1963V505H1899Z" fill="#E9C778" stroke="#2A211C" stroke-width="3"/>
+<path d="M1907 442H1955L1963 450H1899L1907 442Z" fill="#F4E7D3" stroke="#2A211C" stroke-width="3"/>
+<path d="M1982 468C1982 453.641 1993.64 442 2008 442C2022.36 442 2034 453.641 2034 468V505H1982V468Z" fill="#A97F8F" stroke="#2A211C" stroke-width="3"/>
+<circle cx="1914" cy="591" r="18" fill="#C4674C" stroke="#2A211C" stroke-width="3"/>
+<path d="M1914 573C1916 565 1922 562 1928 564" fill="none" stroke="#55705F" stroke-width="4" stroke-linecap="round"/>
+<path d="M1954 568H2017V619H1954Z" fill="#F4E7D3" stroke="#2A211C" stroke-width="3"/>
+<path d="M1964 580H2007M1964 593H1996" stroke="#6E8B94" stroke-width="3" stroke-linecap="round"/>
+<path d="M1897 659H1941V704H1897Z" fill="#6E8B94" stroke="#2A211C" stroke-width="3"/>
+<path d="M1905 648H1933L1941 659H1897L1905 648Z" fill="#F4E7D3" stroke="#2A211C" stroke-width="3"/>
+<path d="M1973 676C1973 660.536 1985.54 648 2001 648C2016.46 648 2029 660.536 2029 676C2029 691.464 2016.46 704 2001 704C1985.54 704 1973 691.464 1973 676Z" fill="#D9A654" stroke="#2A211C" stroke-width="3"/>
 </g>
 <g id="fridge-upper-door">
 <path d="M2038 276H1882C1878.69 276 1876 278.686 1876 282V390C1876 393.314 1878.69 396 1882 396H2038C2041.31 396 2044 393.314 2044 390V282C2044 278.686 2041.31 276 2038 276Z" fill="#F4E7D3" stroke="#2A211C" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
