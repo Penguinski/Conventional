@@ -65,6 +65,7 @@
 <path d="M1184 560H976C972.686 560 970 562.686 970 566V570C970 573.314 972.686 576 976 576H1184C1187.31 576 1190 573.314 1190 570V566C1190 562.686 1187.31 560 1184 560Z" fill="#B98A52" stroke="#2A211C" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
 <path d="M998 576H986V740H998V576Z" fill="#B98A52" stroke="#2A211C" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
 <path d="M1174 576H1162V740H1174V576Z" fill="#B98A52" stroke="#2A211C" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+<g id="maria-binoculars">
 <path d="M1028 516C1000 540 1000 560 1012 560" stroke="#C4674C" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
 <path d="M1094 516C1122 540 1122 560 1110 560" stroke="#C4674C" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
 <path d="M1048 496H1038C1035.79 496 1034 497.791 1034 500V506C1034 508.209 1035.79 510 1038 510H1048C1050.21 510 1052 508.209 1052 506V500C1052 497.791 1050.21 496 1048 496Z" fill="#3B2E27" stroke="#2A211C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
@@ -72,6 +73,7 @@
 <path d="M1048 506H1038C1032.48 506 1028 510.477 1028 516V550C1028 555.523 1032.48 560 1038 560H1048C1053.52 560 1058 555.523 1058 550V516C1058 510.477 1053.52 506 1048 506Z" fill="#7A8B7F" stroke="#2A211C" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
 <path d="M1084 506H1074C1068.48 506 1064 510.477 1064 516V550C1064 555.523 1068.48 560 1074 560H1084C1089.52 560 1094 555.523 1094 550V516C1094 510.477 1089.52 506 1084 506Z" fill="#7A8B7F" stroke="#2A211C" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
 <path d="M1068 524H1054V536H1068V524Z" fill="#7A8B7F" stroke="#2A211C" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
 <path d="M1464 340H1276C1272.69 340 1270 342.686 1270 346C1270 349.314 1272.69 352 1276 352H1464C1467.31 352 1470 349.314 1470 346C1470 342.686 1467.31 340 1464 340Z" fill="#B98A52" stroke="#2A211C" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
 <path d="M1320 300H1296C1292.69 300 1290 302.686 1290 306V334C1290 337.314 1292.69 340 1296 340H1320C1323.31 340 1326 337.314 1326 334V306C1326 302.686 1323.31 300 1320 300Z" fill="#FBF6EA" stroke="#2A211C" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
 <path d="M1324 316H1292V336H1324V316Z" fill="#D9A654" stroke="#2A211C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
@@ -115,9 +117,17 @@
 <path opacity="0.6" d="M1754 480C1756.67 474.667 1756.67 470 1754 466" stroke="#2A211C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
 <path d="M1764 494H1748C1744.69 494 1742 496.686 1742 500V508C1742 511.314 1744.69 514 1748 514H1764C1767.31 514 1770 511.314 1770 508V500C1770 496.686 1767.31 494 1764 494Z" fill="#F4E7D3" stroke="#2A211C" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
 <path d="M1770 498C1776.67 502 1776.67 506 1770 510" stroke="#2A211C" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+<g id="maria-fridge">
 <path d="M2050 260H1870C1864.48 260 1860 264.477 1860 270V730C1860 735.523 1864.48 740 1870 740H2050C2055.52 740 2060 735.523 2060 730V270C2060 264.477 2055.52 260 2050 260Z" fill="#F4E7D3" stroke="#2A211C" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+<g id="fridge-interior">
+<path d="M2038 278H1882V716H2038V278Z" fill="#B7CFCC" stroke="#2A211C" stroke-width="4"/>
+<path d="M1884 390H2036M1884 515H2036M1884 630H2036" stroke="#F4E7D3" stroke-width="7"/>
+</g>
+<g id="fridge-upper-door">
 <path d="M2038 276H1882C1878.69 276 1876 278.686 1876 282V390C1876 393.314 1878.69 396 1882 396H2038C2041.31 396 2044 393.314 2044 390V282C2044 278.686 2041.31 276 2038 276Z" fill="#F4E7D3" stroke="#2A211C" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
 <path d="M1898 305C1898 302.239 1895.76 300 1893 300C1890.24 300 1888 302.239 1888 305V365C1888 367.761 1890.24 370 1893 370C1895.76 370 1898 367.761 1898 365V305Z" fill="#D9A654" stroke="#2A211C" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<g id="fridge-lower-door">
 <path d="M2038 404H1882C1878.69 404 1876 406.686 1876 410V718C1876 721.314 1878.69 724 1882 724H2038C2041.31 724 2044 721.314 2044 718V410C2044 406.686 2041.31 404 2038 404Z" fill="#F4E7D3" stroke="#2A211C" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
 <path d="M1898 435C1898 432.239 1895.76 430 1893 430C1890.24 430 1888 432.239 1888 435V535C1888 537.761 1890.24 540 1893 540C1895.76 540 1898 537.761 1898 535V435Z" fill="#D9A654" stroke="#2A211C" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
 <path d="M1950 478C1954.42 478 1958 474.418 1958 470C1958 465.582 1954.42 462 1950 462C1945.58 462 1942 465.582 1942 470C1942 474.418 1945.58 478 1950 478Z" fill="#C4674C" stroke="#2A211C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
@@ -126,8 +136,10 @@
 <path d="M2008.5 598.782L1960.57 601.294L1963.6 659.215L2011.54 656.703L2008.5 598.782Z" fill="#FBF6EA" stroke="#2A211C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
 <path d="M1971.71 622.741L1999.67 621.276M1972.44 636.722L1994.41 635.57" stroke="#2A211C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
 <path d="M1985.16 612.022C1987.37 611.906 1989.06 610.024 1988.95 607.818C1988.83 605.612 1986.95 603.917 1984.74 604.033C1982.54 604.148 1980.84 606.031 1980.96 608.237C1981.07 610.443 1982.96 612.137 1985.16 612.022Z" fill="#D9A654" stroke="#2A211C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
 <path d="M1900 236H1980L1972 260H1908L1900 236Z" fill="#C9A171" stroke="#2A211C" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
 <path d="M1916 240L1920 256M1940 240V256M1964 240L1960 256" stroke="#B98A52" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
 <path d="M200 240V726" stroke="#2A211C" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
 <path d="M200 242C203.314 242 206 239.314 206 236C206 232.686 203.314 230 200 230C196.686 230 194 232.686 194 236C194 239.314 196.686 242 200 242Z" fill="#B98A52" stroke="#2A211C" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
 <path d="M178 298C180.667 288.667 188 282.667 200 280C212 282.667 219.333 288.667 222 298" stroke="#2A211C" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
