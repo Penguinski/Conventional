@@ -1,4 +1,4 @@
-const t=`# 🟢 Racconto, POV vicino
+const e=`# 🟢 Racconto, POV vicino
 
 Il condominio, di notte, ha un respiro tutto suo. È fatto dello scricchiolio assestante dei tubi, del ronzio lontano del frigorifero, del respiro pesante della città che dorme. Ma quando l'orologio supera le due del mattino, il silenzio cambia consistenza. Diventa denso, asfissiante. E io, steso nel mio letto, so perfettamente perché: al terzo piano, all'interno 8, *Lui* si è svegliato.
 
@@ -1000,4 +1000,4 @@ Si comunica che, a seguito di misurazioni ripetute, il rumore d'impatto provenie
 
 The board's proposed amendment to prohibit outdoor clotheslines and drying racks, submitted following complaints against unit owner \\[Nuovo Inquilino\\], has been declared void and unenforceable pursuant to s. 4 of the Electricity Act (clothesline provisions). The clothesline may remain in place.
 
-`;function r(a){return a.trim().replace(/\\([.\[\]])/g,"$1")}function s(a){const n=a.split(/\r?\n/).map(r),o={title:n.shift(),description:[],ingredients:[],steps:[],notes:[]};let i="description";for(const e of n)if(e){if(e==="INGREDIENTS"){i="ingredients";continue}if(e==="STEPS"){i="steps";continue}if(e==="NOTES"){i="notes";continue}i==="ingredients"?o.ingredients.push(e.replace(/^•\s*/,"")):i==="steps"?o.steps.push(e.replace(/^\d+\.\s*/,"")):o[i].push(e)}return o}const l=t.match(/# 🟢 Ricettario\s*([\s\S]*?)(?=\n# 🟢 )/)?.[1]??"",c=l.split(/(?=^Ricetta [^\r\n]+$)/gm).filter(a=>/^Ricetta /m.test(a)),d="Ricette suddivise in base all’impatto che avranno sui vicini",p=c.map(s);export{d as mariaRecipeIntro,p as mariaRecipes};
+`;export{e as s};
