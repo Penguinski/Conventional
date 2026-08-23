@@ -1,4 +1,4 @@
-import{a as J,b as ee}from"./index-CpHT_YjQ.js";import{s as L}from"./Numero 1-DVF5_NGP.js";const D=t=>t.replace(/\\([.!\[\]])/g,"$1").replace(/^>\s*/gm,"").replace(/\*\*/g,"").replace(/\*/g,"").trim();function C(t,r="# 🟢 "){const o=L.indexOf(t);if(o<0)return"";const n=L.indexOf(`
+import{a as J,b as ee}from"./index-DCw-pdUL.js";import{s as L}from"./Numero 1-DVF5_NGP.js";const D=t=>t.replace(/\\([.!\[\]])/g,"$1").replace(/^>\s*/gm,"").replace(/\*\*/g,"").replace(/\*/g,"").trim();function C(t,r="# 🟢 "){const o=L.indexOf(t);if(o<0)return"";const n=L.indexOf(`
 `,o)+1,e=L.indexOf(`
 ${r}`,n);return D(L.slice(n,e<0?L.length:e))}function O(t){return t.split(/\n\s*\n/).map(D).filter(r=>r&&!/^Materiale$/i.test(r))}function R(t,r,o){const n=O(t);let e=0;return o.map((i,l)=>{const f=n.slice(e,e+i.count).join(`
 
