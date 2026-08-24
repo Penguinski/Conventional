@@ -1,0 +1,258 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2400 900" width="2400" height="900">
+  <title id="cr-title">Casa Rossi — Conventional Vol.1</title>
+  <desc id="cr-desc">Cameretta dei bambini Rossi: letto a castello, album di figurine con bustine sul tavolino, scaffale disordinato, scarabocchio sul muro, ghirlanda di bandierine. Vista frontale, sfondo trasparente, bleed laterale ampio.</desc>
+
+  <g id="rossi-room" stroke="#2A211C" stroke-linecap="round" stroke-linejoin="round">
+
+    <!-- ============ PARETE con pois discreti ============ -->
+    <g id="wall">
+      <rect x="0" y="0" width="2400" height="740" fill="#F5DCC6" stroke="none"/>
+      <defs>
+        <pattern id="rossi-dots" patternUnits="userSpaceOnUse" width="120" height="120">
+          <circle cx="30" cy="30" r="4" fill="#E2B49E" opacity="0.6"/>
+          <circle cx="90" cy="90" r="4" fill="#E2B49E" opacity="0.6"/>
+        </pattern>
+      </defs>
+      <rect x="0" y="0" width="2400" height="556" fill="url(#rossi-dots)" stroke="none"/>
+      <rect id="wall-dado" x="0" y="568" width="2400" height="172" fill="#6E8B94" stroke="none"/>
+      <rect id="wall-rail" x="0" y="556" width="2400" height="14" fill="#F4E7D3" stroke-width="4"/>
+    </g>
+
+    <!-- ============ PAVIMENTO ============ -->
+    <g id="floor">
+      <rect x="0" y="740" width="2400" height="160" fill="#C89B66" stroke="none"/>
+      <path d="M160,740 V900 M320,740 V900 M480,740 V900 M640,740 V900 M800,740 V900 M960,740 V900 M1120,740 V900 M1280,740 V900 M1440,740 V900 M1600,740 V900 M1760,740 V900 M1920,740 V900 M2080,740 V900 M2240,740 V900" fill="none" stroke-width="3" opacity="0.35"/>
+      <path d="M0,740 H2400" fill="none" stroke-width="5"/>
+    </g>
+
+    <rect id="baseboard" x="0" y="722" width="2400" height="20" fill="#F4E7D3" stroke-width="4"/>
+
+    <!-- tappeto rotondo -->
+    <g id="rug">
+      <ellipse cx="1350" cy="810" rx="280" ry="40" fill="#A97F8F" stroke-width="5"/>
+      <ellipse cx="1350" cy="810" rx="190" ry="26" fill="none" stroke="#F4E7D3" stroke-width="3"/>
+      <ellipse cx="1350" cy="810" rx="100" ry="13" fill="none" stroke="#D9A654" stroke-width="3"/>
+    </g>
+
+    <!-- ombre morbide -->
+    <g id="soft-shadows" fill="#2A211C" stroke="none" opacity="0.07">
+      <ellipse cx="1200" cy="752" rx="160" ry="12"/>
+      <ellipse cx="1530" cy="752" rx="120" ry="10"/>
+      <ellipse cx="1825" cy="752" rx="140" ry="12"/>
+      <ellipse cx="250" cy="752" rx="110" ry="10"/>
+      <ellipse cx="2150" cy="752" rx="80" ry="9"/>
+    </g>
+
+    <!-- ============ BLEED SINISTRO: baule dei giochi ============ -->
+    <g id="toy-chest">
+      <rect x="150" y="600" width="200" height="140" rx="8" fill="#7FA37A" stroke-width="6"/>
+      <rect x="142" y="588" width="216" height="20" rx="8" fill="#B98A52" stroke-width="5"/>
+      <path d="M250,646 l8,16 18,2 -13,13 3,18 -16,-9 -16,9 3,-18 -13,-13 18,-2 Z" fill="#F4E7D3" stroke-width="3"/>
+    </g>
+
+    <!-- ============ PORTA D'INGRESSO ============ -->
+    <g id="rossi-entry-door">
+      <rect x="430" y="240" width="220" height="500" rx="6" fill="#F4E7D3" stroke-width="6"/>
+      <rect x="446" y="256" width="188" height="484" fill="#C4674C" stroke-width="5"/>
+      <g fill="none" stroke="#A8563F" stroke-width="4">
+        <rect x="462" y="470" width="156" height="110" rx="5"/>
+        <rect x="462" y="600" width="156" height="120" rx="5"/>
+      </g>
+      <circle cx="616" cy="500" r="6" fill="#D9A654" stroke-width="4"/>
+      <!-- zainetto appeso -->
+      <g id="rossi-backpack">
+        <circle cx="540" cy="318" r="3" fill="#2A211C" stroke="none"/>
+        <path d="M528,340 q12,-24 24,0" fill="none" stroke-width="5"/>
+        <rect x="512" y="340" width="64" height="74" rx="10" fill="#D9A654" stroke-width="5"/>
+        <rect x="526" y="376" width="36" height="30" rx="8" fill="#C58F3E" stroke-width="4"/>
+        <circle cx="544" cy="358" r="3" fill="#2A211C" stroke="none"/>
+      </g>
+    </g>
+
+    <!-- ============ FINESTRA ============ -->
+    <g id="rossi-window">
+      <rect x="760" y="200" width="240" height="220" rx="10" fill="#D9A654" stroke-width="6"/>
+      <rect x="776" y="216" width="208" height="188" fill="#A9C1CE" stroke-width="4"/>
+      <path d="M880,216 V404 M776,310 H984" fill="none" stroke-width="4"/>
+      <path d="M806,380 L900,250" fill="none" stroke="#F4E7D3" stroke-width="5" opacity="0.7"/>
+      <rect x="746" y="420" width="268" height="14" rx="6" fill="#F4E7D3" stroke-width="5"/>
+      <!-- costruzioni sul davanzale -->
+      <rect x="800" y="392" width="20" height="20" rx="3" fill="#D9A654" stroke-width="3" transform="rotate(-4 810 402)"/>
+      <rect x="826" y="396" width="16" height="16" rx="3" fill="#6E8B94" stroke-width="3" transform="rotate(6 834 404)"/>
+    </g>
+
+    <!-- ============ GHIRLANDA DI BANDIERINE ============ -->
+    <g id="bunting-garland">
+      <path d="M700,180 Q1000,260 1300,190" fill="none" stroke-width="4"/>
+      <path d="M774,201 h32 l-16,34 Z" fill="#C4674C" stroke-width="4"/>
+      <path d="M864,215 h32 l-16,34 Z" fill="#D9A654" stroke-width="4"/>
+      <path d="M954,222 h32 l-16,34 Z" fill="#A97F8F" stroke-width="4"/>
+      <path d="M1044,222 h32 l-16,34 Z" fill="#7FA37A" stroke-width="4"/>
+      <path d="M1134,216 h32 l-16,34 Z" fill="#6E8B94" stroke-width="4"/>
+      <path d="M1224,203 h32 l-16,34 Z" fill="#C4674C" stroke-width="4"/>
+    </g>
+
+    <!-- ============ SCARABOCCHIO SUL MURO ============ -->
+    <g id="wall-scribble" fill="none" stroke-width="5" opacity="0.9">
+      <path d="M1060,450 v-50 h60 v50" stroke="#C4674C"/>
+      <path d="M1060,400 l30,-28 l30,28" stroke="#C4674C"/>
+      <circle cx="1160" cy="392" r="12" stroke="#A97F8F"/>
+      <path d="M1040,468 q20,14 40,0 q20,-14 40,0 q20,14 40,0" stroke="#A97F8F"/>
+    </g>
+
+    <!-- ============ SCAFFALE DISORDINATO ============ -->
+    <g id="messy-shelf">
+      <rect x="1050" y="540" width="300" height="200" rx="8" fill="#B98A52" stroke-width="6"/>
+      <g fill="#A87F4C" stroke-width="4">
+        <rect x="1062" y="552" width="88" height="88" rx="4"/>
+        <rect x="1158" y="552" width="88" height="88" rx="4"/>
+        <rect x="1254" y="552" width="88" height="88" rx="4"/>
+        <rect x="1062" y="648" width="88" height="88" rx="4"/>
+        <rect x="1158" y="648" width="88" height="88" rx="4"/>
+        <rect x="1254" y="648" width="88" height="88" rx="4"/>
+      </g>
+      <!-- libri storti -->
+      <rect x="1074" y="568" width="14" height="64" fill="#6E8B94" stroke-width="3" transform="rotate(-6 1081 600)"/>
+      <rect x="1092" y="566" width="14" height="66" fill="#A97F8F" stroke-width="3" transform="rotate(3 1099 599)"/>
+      <rect x="1110" y="570" width="14" height="62" fill="#D9A654" stroke-width="3" transform="rotate(-2 1117 601)"/>
+      <!-- peluche -->
+      <g id="shelf-plush">
+        <circle cx="1190" cy="580" r="5" fill="#C9A171" stroke-width="3"/>
+        <circle cx="1212" cy="580" r="5" fill="#C9A171" stroke-width="3"/>
+        <circle cx="1201" cy="592" r="14" fill="#C9A171" stroke-width="4"/>
+        <ellipse cx="1201" cy="618" rx="16" ry="14" fill="#C9A171" stroke-width="4"/>
+        <circle cx="1201" cy="594" r="2" fill="#2A211C" stroke="none"/>
+      </g>
+      <!-- giochi ammucchiati -->
+      <circle cx="1284" cy="616" r="12" fill="#C4674C" stroke-width="4"/>
+      <rect x="1302" y="600" width="22" height="22" rx="3" fill="#A97F8F" stroke-width="3" transform="rotate(12 1313 611)"/>
+      <!-- libri impilati -->
+      <rect x="1074" y="716" width="60" height="10" rx="3" fill="#7FA37A" stroke-width="3"/>
+      <rect x="1078" y="704" width="56" height="10" rx="3" fill="#C4674C" stroke-width="3"/>
+      <rect x="1082" y="692" width="52" height="10" rx="3" fill="#6E8B94" stroke-width="3"/>
+      <!-- scatola di pastelli -->
+      <g id="crayon-box">
+        <rect x="1180" y="676" width="8" height="20" rx="3" fill="#C4674C" stroke-width="3" transform="rotate(-10 1184 686)"/>
+        <rect x="1196" y="672" width="8" height="24" rx="3" fill="#6E8B94" stroke-width="3"/>
+        <rect x="1212" y="676" width="8" height="20" rx="3" fill="#D9A654" stroke-width="3" transform="rotate(10 1216 686)"/>
+        <rect x="1170" y="692" width="60" height="40" rx="4" fill="#FBF6EA" stroke-width="4"/>
+      </g>
+      <!-- macchinina -->
+      <g id="toy-car">
+        <rect x="1268" y="704" width="44" height="16" rx="6" fill="#D9A654" stroke-width="4"/>
+        <rect x="1280" y="694" width="20" height="12" rx="4" fill="#D9A654" stroke-width="3"/>
+        <circle cx="1278" cy="722" r="6" fill="#3B2E27" stroke-width="3"/>
+        <circle cx="1302" cy="722" r="6" fill="#3B2E27" stroke-width="3"/>
+      </g>
+    </g>
+
+    <!-- ============ SEGGIOLINA ============ -->
+    <g id="kids-chair">
+      <rect x="1362" y="576" width="10" height="76" rx="4" fill="#C4674C" stroke-width="4"/>
+      <rect x="1362" y="644" width="54" height="12" rx="4" fill="#C4674C" stroke-width="4"/>
+      <path d="M1368,656 V740 M1410,656 V740" fill="none" stroke-width="4"/>
+    </g>
+
+    <!-- ============ TAVOLINO + ALBUM DI FIGURINE ============ -->
+    <g id="sticker-table">
+      <rect x="1420" y="600" width="220" height="14" rx="6" fill="#D9A654" stroke-width="5"/>
+      <rect x="1432" y="614" width="12" height="126" fill="#B98A52" stroke-width="5"/>
+      <rect x="1616" y="614" width="12" height="126" fill="#B98A52" stroke-width="5"/>
+    </g>
+    <g id="sticker-album">
+      <rect x="1448" y="598" width="152" height="8" rx="4" fill="#C4674C" stroke-width="4"/>
+      <g transform="rotate(-2 1487 582)">
+        <rect x="1452" y="560" width="70" height="44" rx="4" fill="#FBF6EA" stroke-width="4"/>
+        <g stroke-width="2">
+          <rect x="1460" y="568" width="12" height="14" fill="#6E8B94"/>
+          <rect x="1478" y="568" width="12" height="14" fill="#D9A654"/>
+          <rect x="1496" y="568" width="12" height="14" fill="#A97F8F"/>
+          <rect x="1460" y="586" width="12" height="14" fill="#7FA37A"/>
+          <rect x="1478" y="586" width="12" height="14" fill="#C4674C"/>
+          <rect x="1496" y="586" width="12" height="14" fill="none" stroke-dasharray="3 3"/>
+        </g>
+      </g>
+      <g transform="rotate(2 1561 582)">
+        <rect x="1526" y="560" width="70" height="44" rx="4" fill="#FBF6EA" stroke-width="4"/>
+        <g stroke-width="2">
+          <rect x="1534" y="568" width="12" height="14" fill="#C4674C"/>
+          <rect x="1552" y="568" width="12" height="14" fill="none" stroke-dasharray="3 3"/>
+          <rect x="1570" y="568" width="12" height="14" fill="#6E8B94"/>
+          <rect x="1534" y="586" width="12" height="14" fill="#D9A654"/>
+          <rect x="1552" y="586" width="12" height="14" fill="#7FA37A"/>
+          <rect x="1570" y="586" width="12" height="14" fill="none" stroke-dasharray="3 3"/>
+        </g>
+      </g>
+    </g>
+    <!-- bustine di figurine -->
+    <g id="sticker-packs">
+      <g transform="rotate(-10 1613 593)">
+        <rect x="1600" y="584" width="26" height="18" rx="2" fill="#D9A654" stroke-width="3"/>
+        <path d="M1600,584 l4,-4 l4,4 l5,-4 l4,4 l5,-4 l4,4" fill="none" stroke-width="2"/>
+        <circle cx="1613" cy="594" r="4" fill="#FBF6EA" stroke-width="2"/>
+      </g>
+      <g transform="rotate(8 1665 733)">
+        <rect x="1652" y="724" width="26" height="18" rx="2" fill="#6E8B94" stroke-width="3"/>
+        <path d="M1652,724 l4,-4 l4,4 l5,-4 l4,4 l5,-4 l4,4" fill="none" stroke-width="2"/>
+        <circle cx="1665" cy="734" r="4" fill="#FBF6EA" stroke-width="2"/>
+      </g>
+    </g>
+
+    <!-- palloni a terra -->
+    <g id="floor-balls">
+      <circle cx="1470" cy="772" r="16" fill="#C4674C" stroke-width="4"/>
+      <path d="M1458,768 q12,8 24,0" fill="none" stroke="#F4E7D3" stroke-width="3"/>
+      <circle cx="1510" cy="780" r="10" fill="#A97F8F" stroke-width="4"/>
+    </g>
+
+    <!-- ============ LETTO A CASTELLO ============ -->
+    <g id="bunk-bed">
+      <rect x="1700" y="300" width="18" height="440" rx="6" fill="#B98A52" stroke-width="5"/>
+      <rect x="1930" y="300" width="18" height="440" rx="6" fill="#B98A52" stroke-width="5"/>
+      <g id="upper-bed">
+        <rect x="1718" y="388" width="212" height="10" fill="#B98A52" stroke-width="4"/>
+        <path d="M1750,398 V420 M1800,398 V420 M1850,398 V420 M1900,398 V420" fill="none" stroke-width="3"/>
+        <rect x="1730" y="404" width="60" height="26" rx="8" fill="#F4E7D3" stroke-width="4"/>
+        <rect x="1718" y="420" width="212" height="40" rx="8" fill="#F4E7D3" stroke-width="5"/>
+        <rect x="1718" y="444" width="212" height="46" rx="8" fill="#7FA37A" stroke-width="5"/>
+        <path d="M1780,444 V490 M1850,444 V490" fill="none" stroke="#55705F" stroke-width="3"/>
+      </g>
+      <g id="lower-bed">
+        <rect x="1730" y="584" width="60" height="26" rx="8" fill="#F4E7D3" stroke-width="4"/>
+        <rect x="1718" y="600" width="212" height="40" rx="8" fill="#F4E7D3" stroke-width="5"/>
+        <rect x="1718" y="624" width="212" height="46" rx="8" fill="#C4674C" stroke-width="5"/>
+        <path d="M1780,624 V670 M1850,624 V670" fill="none" stroke="#A8563F" stroke-width="3"/>
+        <rect x="1718" y="670" width="212" height="70" rx="6" fill="#B98A52" stroke-width="5"/>
+        <!-- peluche sul letto -->
+        <g id="bed-plush">
+          <circle cx="1862" cy="566" r="5" fill="#C9A171" stroke-width="3"/>
+          <circle cx="1882" cy="566" r="5" fill="#C9A171" stroke-width="3"/>
+          <circle cx="1872" cy="578" r="12" fill="#C9A171" stroke-width="4"/>
+          <ellipse cx="1872" cy="600" rx="14" ry="12" fill="#C9A171" stroke-width="4"/>
+        </g>
+      </g>
+      <g id="bed-ladder">
+        <rect x="1952" y="380" width="10" height="360" rx="4" fill="#B98A52" stroke-width="4"/>
+        <rect x="1984" y="380" width="10" height="360" rx="4" fill="#B98A52" stroke-width="4"/>
+        <path d="M1952,430 H1994 M1952,490 H1994 M1952,550 H1994 M1952,610 H1994 M1952,670 H1994" fill="none" stroke-width="4"/>
+      </g>
+    </g>
+
+    <!-- poster razzo appeso storto -->
+    <g id="rossi-poster" transform="rotate(2 1825 265)">
+      <rect x="1775" y="200" width="100" height="130" rx="4" fill="#FBF6EA" stroke-width="4"/>
+      <path d="M1825,230 l14,26 v40 l-14,12 l-14,-12 v-40 Z" fill="#6E8B94" stroke-width="4"/>
+      <circle cx="1825" cy="262" r="7" fill="#F4E7D3" stroke-width="3"/>
+      <path d="M1811,286 l-10,16 M1839,286 l10,16" fill="none" stroke="#C4674C" stroke-width="4"/>
+      <path d="M1783,204 l12,-6 M1867,204 l-12,-6" fill="none" stroke="#D9C9B2" stroke-width="5"/>
+    </g>
+
+    <!-- ============ BLEED DESTRO: cuscino da terra ============ -->
+    <g id="floor-cushion">
+      <rect x="2080" y="660" width="140" height="80" rx="40" fill="#A97F8F" stroke-width="5"/>
+      <path d="M2092,700 H2208" fill="none" stroke="#F4E7D3" stroke-width="3"/>
+      <circle cx="2150" cy="700" r="4" fill="#F4E7D3" stroke-width="3"/>
+    </g>
+
+  </g>
+</svg>

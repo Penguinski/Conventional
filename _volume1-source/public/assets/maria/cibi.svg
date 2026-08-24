@@ -1,0 +1,141 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 720" width="1000" height="720">
+  <title id="rc-title">Ricettario di Maria — asset piatti</title>
+  <desc id="rc-desc">Sei illustrazioni flat per il ricettario: ciambellone allo yogurt, bagna cauda, biscotti al burro, cavolfiore gratinato, fritto misto, ragù della domenica, più tre livelli di odore. Sfondo trasparente.</desc>
+
+  <g stroke="#2A211C" stroke-linecap="round" stroke-linejoin="round">
+
+    <!-- ============ CIAMBELLONE ALLO YOGURT (delicato) ============ -->
+    <g id="recipe-ciambellone-allo-yogurt" transform="translate(180,190)">
+      <ellipse cx="0" cy="54" rx="92" ry="24" fill="#F4E7D3" stroke-width="6"/>
+      <ellipse cx="0" cy="54" rx="66" ry="14" fill="none" stroke="#D9C9B2" stroke-width="4"/>
+      <ellipse cx="0" cy="-8" rx="66" ry="44" fill="#D9A654" stroke-width="6"/>
+      <path d="M-58,-16 A60,38 0 0 1 58,-16 Q58,-4 50,-8 Q48,4 40,-2 Q36,8 28,0 Q24,10 16,2 Q12,12 4,4 Q0,14 -8,4 Q-14,12 -20,2 Q-26,10 -32,0 Q-38,8 -42,-2 Q-50,4 -52,-8 Q-58,-4 -58,-16 Z" fill="#F4E7D3" stroke-width="5"/>
+      <ellipse cx="0" cy="-20" rx="18" ry="9" fill="#C58F3E" stroke-width="5"/>
+    </g>
+
+    <!-- ============ BAGNA CAUDA (forte) ============ -->
+    <g id="recipe-bagna-cauda" transform="translate(500,190)">
+      <g fill="none" stroke-width="5" opacity="0.5">
+        <path d="M-18,-44 q8,-12 0,-24 q-8,-12 0,-22"/>
+        <path d="M2,-50 q8,-12 0,-24 q-8,-12 0,-22"/>
+        <path d="M22,-44 q8,-12 0,-24 q-8,-12 0,-22"/>
+      </g>
+      <g id="bagna-garlic">
+        <path d="M-92,18 q-2,-10 0,-14" fill="none" stroke-width="5"/>
+        <path d="M-92,18 q-16,2 -16,18 q0,16 16,16 q16,0 16,-16 q0,-16 -16,-18 Z" fill="#FBF6EA" stroke-width="5"/>
+        <path d="M-98,28 q-2,10 0,20 M-86,28 q2,10 0,20" fill="none" stroke-width="4"/>
+      </g>
+      <g transform="translate(34,-4) rotate(14)">
+        <rect x="-7" y="-56" width="14" height="56" rx="7" fill="#C4674C" stroke-width="5"/>
+      </g>
+      <g transform="translate(58,0) rotate(-10)">
+        <rect x="-6" y="-50" width="12" height="50" rx="6" fill="#7FA37A" stroke-width="5"/>
+      </g>
+      <path d="M-52,8 h104 q-4,46 -52,46 q-48,0 -52,-46 Z" fill="#C4674C" stroke-width="6"/>
+      <rect x="-70" y="0" width="12" height="10" rx="4" fill="#A8563F" stroke-width="4"/>
+      <rect x="58" y="0" width="12" height="10" rx="4" fill="#A8563F" stroke-width="4"/>
+      <rect x="-58" y="-6" width="116" height="16" rx="8" fill="#A8563F" stroke-width="6"/>
+      <ellipse cx="0" cy="0" rx="44" ry="9" fill="#D9A654" stroke-width="5"/>
+    </g>
+
+    <!-- ============ BISCOTTI AL BURRO (medio) ============ -->
+    <g id="recipe-biscotti-al-burro" transform="translate(820,190)">
+      <ellipse cx="0" cy="34" rx="84" ry="22" fill="#F4E7D3" stroke-width="6"/>
+      <ellipse cx="0" cy="34" rx="58" ry="13" fill="none" stroke="#D9C9B2" stroke-width="4"/>
+      <circle cx="0" cy="-18" r="30" fill="#D9A654" stroke-width="6"/>
+      <circle cx="0" cy="-18" r="18" fill="none" stroke="#C58F3E" stroke-width="4"/>
+      <circle cx="-34" cy="14" r="32" fill="#D9A654" stroke-width="6"/>
+      <g fill="#C58F3E" stroke="none">
+        <circle cx="-34" cy="4" r="3.5"/>
+        <circle cx="-24" cy="14" r="3.5"/>
+        <circle cx="-44" cy="14" r="3.5"/>
+        <circle cx="-34" cy="24" r="3.5"/>
+      </g>
+      <circle cx="36" cy="12" r="32" fill="#D9A654" stroke-width="6"/>
+      <path d="M36,20 q-9,-9 -4,-15 q3,-4 4,0 q1,-4 4,0 q5,6 -4,15 Z" fill="#C4674C" stroke-width="4"/>
+    </g>
+
+    <!-- ============ CAVOLFIORE GRATINATO (medio) ============ -->
+    <g id="recipe-cavolfiore-gratinato" transform="translate(180,470)">
+      <g fill="none" stroke-width="5" opacity="0.5">
+        <path d="M-14,-52 q8,-12 0,-24 q-8,-12 0,-22"/>
+        <path d="M14,-52 q8,-12 0,-24 q-8,-12 0,-22"/>
+      </g>
+      <rect x="-102" y="10" width="16" height="14" rx="6" fill="#6E8B94" stroke-width="5"/>
+      <rect x="86" y="10" width="16" height="14" rx="6" fill="#6E8B94" stroke-width="5"/>
+      <rect x="-88" y="-4" width="176" height="60" rx="18" fill="#6E8B94" stroke-width="6"/>
+      <rect x="-72" y="-12" width="144" height="34" rx="12" fill="#D9A654" stroke-width="5"/>
+      <g fill="#F4E7D3" stroke-width="4">
+        <path d="M-64,-8 q0,-12 10,-12 q4,-9 12,-7 q9,-2 11,7 q9,0 9,12 Z"/>
+        <path d="M-20,-12 q0,-12 10,-12 q4,-9 12,-7 q9,-2 11,7 q9,0 9,12 Z"/>
+        <path d="M24,-8 q0,-12 10,-12 q4,-9 12,-7 q9,-2 11,7 q9,0 9,12 Z"/>
+      </g>
+      <g fill="#C58F3E" stroke="none">
+        <circle cx="-30" cy="12" r="3"/>
+        <circle cx="6" cy="8" r="3"/>
+        <circle cx="38" cy="14" r="3"/>
+      </g>
+    </g>
+
+    <!-- ============ FRITTO MISTO (forte) ============ -->
+    <g id="recipe-fritto-misto" transform="translate(500,470)">
+      <g fill="none" stroke-width="5" opacity="0.5">
+        <path d="M-18,-46 q8,-12 0,-24 q-8,-12 0,-22"/>
+        <path d="M2,-52 q8,-12 0,-24 q-8,-12 0,-22"/>
+        <path d="M22,-46 q8,-12 0,-24 q-8,-12 0,-22"/>
+      </g>
+      <ellipse cx="0" cy="40" rx="92" ry="24" fill="#F4E7D3" stroke-width="6"/>
+      <ellipse cx="0" cy="40" rx="66" ry="14" fill="none" stroke="#D9C9B2" stroke-width="4"/>
+      <path d="M-72,22 a26,26 0 0 1 52,0 Z" fill="#F7D489" stroke-width="5"/>
+      <path d="M-64,20 a18,18 0 0 1 36,0" fill="none" stroke="#D9A654" stroke-width="4"/>
+      <g transform="translate(16,-4) rotate(8)">
+        <rect x="-6" y="-34" width="12" height="44" rx="6" fill="#D9A654" stroke-width="5"/>
+      </g>
+      <g transform="translate(34,0) rotate(-10)">
+        <rect x="-6" y="-32" width="12" height="42" rx="6" fill="#C9A171" stroke-width="5"/>
+      </g>
+      <circle cx="-16" cy="8" r="17" fill="#D9A654" stroke-width="6"/>
+      <circle cx="-16" cy="8" r="7" fill="#F4E7D3" stroke-width="5"/>
+      <circle cx="46" cy="18" r="13" fill="#C9A171" stroke-width="5"/>
+      <circle cx="43" cy="15" r="2.5" fill="#A87F4C" stroke="none"/>
+    </g>
+
+    <!-- ============ RAGÙ DELLA DOMENICA (forte) ============ -->
+    <g id="recipe-ragu-della-domenica" transform="translate(820,470)">
+      <g fill="none" stroke-width="5" opacity="0.5">
+        <path d="M-18,-48 q8,-12 0,-24 q-8,-12 0,-22"/>
+        <path d="M2,-54 q8,-12 0,-24 q-8,-12 0,-22"/>
+        <path d="M22,-48 q8,-12 0,-24 q-8,-12 0,-22"/>
+      </g>
+      <ellipse cx="0" cy="44" rx="90" ry="22" fill="#F4E7D3" stroke-width="6"/>
+      <path d="M-58,40 q-4,-34 58,-34 q62,0 58,34 Z" fill="#F0D492" stroke-width="6"/>
+      <path d="M-40,28 q10,8 20,0 q10,8 20,0 q10,8 20,0 q10,8 20,0" fill="none" stroke="#C58F3E" stroke-width="4"/>
+      <path d="M-40,16 q6,-18 40,-18 q34,0 40,18 q-6,10 -14,4 q-4,10 -12,4 q-6,10 -14,2 q-8,8 -14,0 q-8,8 -14,0 q-8,6 -12,-10 Z" fill="#C4674C" stroke-width="5"/>
+      <g fill="#A8563F" stroke="none">
+        <circle cx="-16" cy="4" r="4"/>
+        <circle cx="8" cy="0" r="4"/>
+        <circle cx="24" cy="8" r="4"/>
+      </g>
+      <ellipse cx="0" cy="-10" rx="8" ry="5" fill="#7FA37A" stroke-width="3" transform="rotate(-20 0 -10)"/>
+    </g>
+
+    <!-- ============ LIVELLI DI ODORE (opzionali) ============ -->
+    <g id="odor-delicato" transform="translate(180,665)">
+      <path d="M0,0 q8,-12 0,-24 q-8,-12 0,-22" fill="none" stroke-width="5" opacity="0.45"/>
+    </g>
+    <g id="odor-medio" transform="translate(500,665)">
+      <g fill="none" stroke-width="5" opacity="0.5">
+        <path d="M-12,0 q8,-12 0,-24 q-8,-12 0,-22"/>
+        <path d="M12,0 q8,-12 0,-24 q-8,-12 0,-22"/>
+      </g>
+    </g>
+    <g id="odor-forte" transform="translate(820,665)">
+      <g fill="none" stroke-width="5" opacity="0.6">
+        <path d="M-18,0 q8,-12 0,-24 q-8,-12 0,-22"/>
+        <path d="M0,-6 q8,-12 0,-24 q-8,-12 0,-22"/>
+        <path d="M18,0 q8,-12 0,-24 q-8,-12 0,-22"/>
+      </g>
+    </g>
+
+  </g>
+</svg>

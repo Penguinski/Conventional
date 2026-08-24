@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 340">
+<title>Citofono da interno</title>
+<g id="intercom" stroke="#2A211C" stroke-linecap="round" stroke-linejoin="round">
+<g id="body">
+<rect x="40" y="30" width="140" height="280" rx="18" fill="#F4E7D3" stroke-width="8"/>
+<rect x="58" y="48" width="104" height="244" rx="10" fill="none" stroke="#D9C9B2" stroke-width="4"/>
+</g>
+<g id="speaker">
+<path d="M78,84 H142 M78,104 H142 M78,124 H142" fill="none" stroke-width="6"/>
+</g>
+<g id="buttons">
+<circle cx="110" cy="182" r="24" fill="#D9A654" stroke-width="8"/>
+<circle cx="110" cy="182" r="6" fill="#F4E7D3" stroke="none"/>
+<circle cx="110" cy="236" r="12" fill="#C4674C" stroke-width="7"/>
+</g>
+<g id="nameplate">
+<rect x="84" y="266" width="52" height="18" rx="5" fill="#FBF6EA" stroke-width="5"/>
+<path d="M94,275 H126" fill="none" stroke="#C9B190" stroke-width="4"/>
+</g>
+</g>
+</svg>

@@ -1,0 +1,72 @@
+.jannel-tarot-overlay { position: fixed; z-index: 82; inset: 0; display: grid; place-items: center; min-width: 0; min-height: 0; overflow: hidden; box-sizing: border-box; padding: max(12px, env(safe-area-inset-top)) max(12px, env(safe-area-inset-right)) max(12px, env(safe-area-inset-bottom)) max(12px, env(safe-area-inset-left)); background: rgba(42, 33, 28, .72); backdrop-filter: blur(3px); opacity: 0; transition: opacity 180ms ease; }
+.jannel-tarot-overlay.is-open { opacity: 1; }
+.jannel-tarot-overlay.is-closing { opacity: 0; }
+.jannel-tarot-panel { position: relative; display: grid; width: min(1060px, 94vw); max-width: 100%; height: min(720px, 90dvh); max-height: 100%; min-width: 0; min-height: 0; overflow: hidden; box-sizing: border-box; border: 4px solid var(--ink); background: #f2ead9; box-shadow: 10px 12px 0 rgba(42, 33, 28, .35); font-family: Georgia, serif; }
+.jannel-tarot-panel > .jannel-tarot-close { --overlay-close-size: 46px; top: 14px; right: 14px; }
+.jannel-tarot-panel--intro { grid-template-columns: minmax(0, 1.12fr) minmax(240px, .88fr); align-items: center; padding: clamp(38px, 6vw, 84px); }
+.jannel-tarot-intro-copy { min-width: 0; max-width: 620px; }
+.jannel-tarot-kicker { margin: 0 0 18px; color: var(--clay); font: 700 11px/1 Arial, sans-serif; letter-spacing: .18em; }
+.jannel-tarot-panel h1 { color: var(--ink); }
+.jannel-tarot-intro-copy h1 { max-width: 9ch; margin: 0 0 24px; font: 700 clamp(50px, 6vw, 86px)/.9 Georgia, serif; }
+.jannel-tarot-rule { display: flex; align-items: center; gap: 12px; max-width: 370px; margin: 0 0 28px; color: var(--clay); }
+.jannel-tarot-rule::before, .jannel-tarot-rule::after { flex: 1 1 auto; height: 2px; background: #cba77b; content: ''; }
+.jannel-tarot-rule span { flex: 0 0 auto; width: 11px; height: 11px; background: var(--clay); transform: rotate(45deg); }
+.jannel-tarot-lead { max-width: 35ch; margin: 0 0 34px; font: clamp(18px, 1.8vw, 25px)/1.38 Georgia, serif; }
+.jannel-tarot-cta { display: grid; justify-items: start; gap: 13px; }
+.jannel-tarot-cta button { min-height: 52px; padding: 11px 18px; border: 3px solid var(--ink); color: #fff2db; background: var(--clay); box-shadow: 4px 4px 0 var(--ink); font: 700 clamp(15px, 1.4vw, 20px)/1 Georgia, serif; cursor: pointer; }
+.jannel-tarot-cta button span { margin-left: 8px; font-size: 1.2em; }
+.jannel-tarot-cta p { margin: 0; color: #755b45; font: italic 13px/1.3 Georgia, serif; }
+.jannel-tarot-intro-mark { position: relative; display: grid; width: min(270px, 80%); aspect-ratio: .64; place-items: center; justify-self: center; rotate: 5deg; border: 3px solid var(--ink); background: #e7d5b6; box-shadow: 8px 9px 0 rgba(42, 33, 28, .18); color: var(--ink); }
+.jannel-tarot-intro-mark::before { position: absolute; inset: 12px; border: 2px solid var(--ink); content: ''; }
+.jannel-tarot-intro-mark span { position: absolute; top: 24px; left: 25px; font: 24px/1 Georgia, serif; }
+.jannel-tarot-intro-mark b { color: var(--clay); font: 58px/1 Georgia, serif; }
+.jannel-tarot-intro-mark i { position: absolute; right: 26px; bottom: 22px; font: 700 56px/1 Georgia, serif; }
+.jannel-tarot-panel--result { grid-template-columns: minmax(290px, .78fr) minmax(0, 1.22fr); }
+.jannel-tarot-card { display: grid; place-items: center; min-width: 0; min-height: 0; margin: 0; padding: clamp(22px, 3vw, 42px); background: #e7d5b6; border-right: 2px solid rgba(42, 33, 28, .24); }
+.jannel-tarot-card img { display: block; width: 100%; height: 100%; min-width: 0; min-height: 0; object-fit: contain; filter: drop-shadow(7px 8px 0 rgba(42, 33, 28, .2)); }
+.jannel-tarot-reading { display: flex; flex-direction: column; justify-content: center; min-width: 0; min-height: 0; max-width: 100%; overflow-y: auto; overflow-x: hidden; box-sizing: border-box; padding: clamp(34px, 5vw, 72px) clamp(34px, 6vw, 88px) clamp(30px, 4vw, 58px); }
+.jannel-tarot-reading .jannel-tarot-kicker { margin-bottom: 24px; }
+.jannel-tarot-reading h1 { width: 100%; max-width: 100%; min-width: 0; margin: 0 0 clamp(16px, 2vw, 22px); font: 700 clamp(30px, 3.8vw, 52px)/.98 Georgia, serif; overflow-wrap: break-word; }
+.jannel-tarot-reading h1 span { color: var(--clay); }
+.jannel-tarot-reading .jannel-tarot-rule { margin-bottom: 29px; }
+.jannel-tarot-reading-copy { max-width: 38ch; margin: 0; font: clamp(18px, 1.8vw, 25px)/1.43 Georgia, serif; }
+.jannel-tarot-footer { margin: 34px 0 0; color: #755b45; font: italic 14px/1.35 Georgia, serif; }
+
+@media (orientation: landscape) and (max-width: 960px) {
+  .jannel-tarot-panel { width: 100%; height: 100%; max-width: 100%; max-height: 100%; border-width: 3px; }
+  .jannel-tarot-panel > .jannel-tarot-close { --overlay-close-size: 40px; top: 9px; right: 9px; width: var(--overlay-close-size); height: var(--overlay-close-size); font-size: 24px; }
+  .jannel-tarot-panel--intro { grid-template-columns: minmax(0, 1.2fr) minmax(150px, .8fr); padding: 28px 64px 22px 28px; }
+  .jannel-tarot-kicker { margin-bottom: 10px; font-size: 9px; }
+  .jannel-tarot-intro-copy h1 { margin-bottom: 13px; font-size: clamp(38px, 6vw, 58px); }
+  .jannel-tarot-rule { margin-bottom: 15px; }
+  .jannel-tarot-lead { margin-bottom: 18px; font-size: clamp(15px, 2vw, 19px); }
+  .jannel-tarot-cta { gap: 7px; }
+  .jannel-tarot-cta button { min-height: 42px; padding: 7px 13px; border-width: 2px; box-shadow: 3px 3px 0 var(--ink); font-size: clamp(13px, 1.7vw, 17px); }
+  .jannel-tarot-cta p { font-size: 10px; }
+  .jannel-tarot-intro-mark { width: min(170px, 70%); }
+  .jannel-tarot-intro-mark span { top: 16px; left: 17px; font-size: 16px; }
+  .jannel-tarot-intro-mark b { font-size: 38px; }
+  .jannel-tarot-intro-mark i { right: 17px; bottom: 14px; font-size: 38px; }
+  .jannel-tarot-card { padding: 16px 22px; }
+  .jannel-tarot-reading { padding: 28px 54px 20px 28px; }
+  .jannel-tarot-reading .jannel-tarot-kicker { margin-bottom: 11px; }
+  .jannel-tarot-reading h1 { margin-bottom: 10px; font-size: clamp(22px, 4vw, 32px); line-height: 1; }
+  .jannel-tarot-reading .jannel-tarot-rule { margin-bottom: 16px; }
+  .jannel-tarot-reading-copy { font-size: clamp(15px, 2.15vw, 19px); line-height: 1.33; }
+  .jannel-tarot-footer { margin-top: 16px; font-size: 11px; }
+}
+
+@media (orientation: portrait) and (max-width: 700px) {
+  .jannel-tarot-overlay { place-items: start center; overflow: auto; }
+  .jannel-tarot-panel { width: 100%; height: auto; max-height: none; min-height: 100%; border-width: 3px; }
+  .jannel-tarot-panel--intro, .jannel-tarot-panel--result { grid-template-columns: 1fr; }
+  .jannel-tarot-panel--intro { align-content: center; gap: 28px; padding: 58px 26px 34px; }
+  .jannel-tarot-intro-copy h1 { font-size: clamp(42px, 12vw, 62px); }
+  .jannel-tarot-intro-mark { width: min(190px, 58vw); }
+  .jannel-tarot-card { height: min(64dvh, 600px); padding: 58px 26px 22px; border-right: 0; border-bottom: 2px solid rgba(42, 33, 28, .24); }
+  .jannel-tarot-reading { padding: 28px 26px 48px; overflow: visible; }
+  .jannel-tarot-reading h1 { font-size: clamp(28px, 8vw, 42px); line-height: 1; }
+  .jannel-tarot-reading-copy { font-size: 18px; }
+}
+
+@media (prefers-reduced-motion: reduce) { .jannel-tarot-overlay { transition: none; } }

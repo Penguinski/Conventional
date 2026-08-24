@@ -1,0 +1,186 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2400 900" width="2400" height="900">
+  <title id="p1-title">Pianerottolo piano 1 — Conventional Vol.1</title>
+  <desc id="p1-desc">Pianerottolo del primo piano: porta del nuovo inquilino con scatoloni, porta di Maria con dettagli domestici, ascensore con indicatore su 1. Vista frontale, sfondo trasparente, bleed laterale ampio.</desc>
+
+  <g id="floor-1" stroke="#2A211C" stroke-linecap="round" stroke-linejoin="round">
+
+    <!-- ============ PARETE (corre per tutta la larghezza) ============ -->
+    <g id="wall">
+      <rect x="0" y="0" width="2400" height="740" fill="#F0E1CB" stroke="none"/>
+      <rect id="wall-dado" x="0" y="568" width="2400" height="172" fill="#E2B49E" stroke="none"/>
+      <rect id="wall-rail" x="0" y="556" width="2400" height="14" fill="#F4E7D3" stroke-width="4"/>
+    </g>
+
+    <!-- ============ PAVIMENTO (corre per tutta la larghezza) ============ -->
+    <g id="floor">
+      <defs>
+        <pattern id="p1b-tiles" patternUnits="userSpaceOnUse" x="0" y="740" width="200" height="160">
+          <rect x="0" y="0" width="200" height="160" fill="#D8C3A4"/>
+          <rect x="0" y="0" width="100" height="80" fill="#C9B190"/>
+          <rect x="100" y="80" width="100" height="80" fill="#C9B190"/>
+        </pattern>
+      </defs>
+      <rect x="0" y="740" width="2400" height="160" fill="url(#p1b-tiles)" stroke="none"/>
+      <path d="M100,740 V900 M200,740 V900 M300,740 V900 M400,740 V900 M500,740 V900 M600,740 V900 M700,740 V900 M800,740 V900 M900,740 V900 M1000,740 V900 M1100,740 V900 M1200,740 V900 M1300,740 V900 M1400,740 V900 M1500,740 V900 M1600,740 V900 M1700,740 V900 M1800,740 V900 M1900,740 V900 M2000,740 V900 M2100,740 V900 M2200,740 V900 M2300,740 V900 M0,820 H2400" fill="none" stroke-width="3" opacity="0.35"/>
+      <path d="M0,740 H2400" fill="none" stroke-width="5"/>
+    </g>
+
+    <rect id="baseboard" x="0" y="722" width="2400" height="20" fill="#F4E7D3" stroke-width="4"/>
+
+    <!-- ombre morbide a terra -->
+    <g id="soft-shadows" fill="#2A211C" stroke="none" opacity="0.07">
+      <ellipse cx="530" cy="750" rx="110" ry="12"/>
+      <ellipse cx="760" cy="792" rx="105" ry="10"/>
+      <ellipse cx="1342" cy="748" rx="40" ry="8"/>
+      <ellipse cx="1180" cy="794" rx="100" ry="10"/>
+    </g>
+
+    <!-- ============ BLEED SINISTRO: pluviale ============ -->
+    <g id="downpipe">
+      <rect x="132" y="0" width="16" height="740" fill="#9AA79B" stroke-width="4"/>
+      <rect x="128" y="200" width="24" height="6" fill="#2A211C" stroke="none"/>
+      <rect x="128" y="480" width="24" height="6" fill="#2A211C" stroke="none"/>
+    </g>
+
+    <!-- ============ BLEED DESTRO: avviso in bacheca ============ -->
+    <g id="wall-notice" transform="rotate(1.5 2168 363)">
+      <rect x="2120" y="300" width="96" height="126" rx="6" fill="#FBF6EA" stroke-width="4"/>
+      <path d="M2136,332 H2200 M2136,350 H2200 M2136,368 H2184" fill="none" stroke-width="3"/>
+      <circle cx="2168" cy="312" r="5" fill="#C4674C" stroke-width="3"/>
+    </g>
+
+    <!-- ============ LAMPADA A SOSPENSIONE ============ -->
+    <g id="hanging-lamp">
+      <path d="M970,0 V96" fill="none" stroke-width="4"/>
+      <path d="M942,96 H998 L988,130 H952 Z" fill="#D9A654" stroke-width="5"/>
+      <circle cx="970" cy="138" r="7" fill="#F7D489" stroke="none"/>
+    </g>
+
+    <!-- ============ SCATOLONI DA TRASLOCO (fuori da casa tua) ============ -->
+    <g id="moving-boxes">
+      <g transform="rotate(-1 555 690)">
+        <rect x="500" y="640" width="110" height="100" rx="3" fill="#C9A171" stroke-width="5"/>
+        <path d="M555,640 V740" fill="none" stroke="#F4E7D3" stroke-width="4"/>
+      </g>
+      <g transform="rotate(2 556 600)">
+        <rect x="516" y="560" width="80" height="80" rx="3" fill="#B98A52" stroke-width="5"/>
+        <path d="M556,560 V640" fill="none" stroke="#F4E7D3" stroke-width="4"/>
+      </g>
+      <g transform="rotate(-3 468 715)">
+        <rect x="440" y="690" width="56" height="50" rx="3" fill="#C9A171" stroke-width="4"/>
+        <path d="M468,690 V740" fill="none" stroke="#F4E7D3" stroke-width="3"/>
+      </g>
+    </g>
+
+    <!-- ============ PORTA CASA TUA ============ -->
+    <g id="player-door">
+      <rect x="650" y="240" width="220" height="500" rx="6" fill="#F4E7D3" stroke-width="6"/>
+      <rect x="666" y="256" width="188" height="484" fill="#C4674C" stroke-width="5"/>
+      <g fill="none" stroke="#A8563F" stroke-width="4">
+        <rect x="682" y="470" width="156" height="110" rx="5"/>
+        <rect x="682" y="600" width="156" height="120" rx="5"/>
+      </g>
+      <!-- targhetta provvisoria: foglietto attaccato con lo scotch -->
+      <g id="player-temp-note" transform="rotate(-3 760 322)">
+        <rect x="730" y="300" width="60" height="44" fill="#FBF6EA" stroke-width="3"/>
+        <path d="M740,318 H780 M740,330 H770" fill="none" stroke-width="3"/>
+        <path d="M734,302 l16,-8 M786,302 l-16,-8" fill="none" stroke="#D9C9B2" stroke-width="6"/>
+      </g>
+      <circle cx="838" cy="500" r="6" fill="#D9A654" stroke-width="4"/>
+    </g>
+
+    <!-- zerbino di fortuna: cartone appiattito -->
+    <g id="player-mat" transform="rotate(-1 760 773)">
+      <rect x="670" y="760" width="180" height="26" rx="6" fill="#C9A171" stroke-width="4"/>
+      <path d="M730,764 V782 M790,764 V782" fill="none" stroke="#B98A52" stroke-width="3"/>
+    </g>
+
+    <!-- campanello di Maria -->
+    <g id="maria-doorbell">
+      <rect x="1015" y="470" width="40" height="56" rx="8" fill="#F4E7D3" stroke-width="5"/>
+      <circle cx="1035" cy="492" r="8" fill="#D9A654" stroke-width="4"/>
+      <path d="M1025,514 H1045" fill="none" stroke-width="3"/>
+    </g>
+
+    <!-- ============ PORTA DI MARIA ============ -->
+    <g id="maria-door">
+      <rect x="1070" y="240" width="220" height="500" rx="6" fill="#F4E7D3" stroke-width="6"/>
+      <rect x="1086" y="256" width="188" height="484" fill="#4E6B5C" stroke-width="5"/>
+      <!-- finestrino con tendina di pizzo -->
+      <rect x="1126" y="300" width="108" height="84" fill="#A9C1CE" stroke-width="4"/>
+      <path d="M1126,300 H1234 V318 Q1227,330 1207,318 Q1193,330 1180,318 Q1166,330 1153,318 Q1139,330 1126,318 Z" fill="#F4E7D3" stroke-width="3"/>
+      <g fill="none" stroke="#3E574B" stroke-width="4">
+        <rect x="1102" y="470" width="156" height="100" rx="5"/>
+        <rect x="1102" y="590" width="156" height="130" rx="5"/>
+      </g>
+      <!-- targhetta ovale con fiorellino -->
+      <g id="maria-plate">
+        <ellipse cx="1180" cy="280" rx="26" ry="12" fill="#FBF6EA" stroke-width="3"/>
+        <circle cx="1180" cy="280" r="4" fill="#C4674C" stroke-width="3"/>
+        <circle cx="1171" cy="278" r="2.5" fill="#A97F8F" stroke="none"/>
+        <circle cx="1189" cy="278" r="2.5" fill="#A97F8F" stroke="none"/>
+      </g>
+      <!-- mazzetto di lavanda appeso -->
+      <g id="maria-lavender">
+        <circle cx="1180" cy="398" r="2.5" fill="#2A211C" stroke="none"/>
+        <path d="M1180,400 C1176,420 1174,436 1172,452" fill="none" stroke="#B98A52" stroke-width="3"/>
+        <path d="M1180,400 C1180,422 1180,438 1180,456" fill="none" stroke="#B98A52" stroke-width="3"/>
+        <path d="M1180,400 C1184,420 1186,436 1188,452" fill="none" stroke="#B98A52" stroke-width="3"/>
+        <g fill="#A97F8F" stroke="none">
+          <circle cx="1172" cy="444" r="3"/>
+          <circle cx="1170" cy="452" r="3"/>
+          <circle cx="1180" cy="448" r="3"/>
+          <circle cx="1180" cy="456" r="3"/>
+          <circle cx="1188" cy="444" r="3"/>
+          <circle cx="1190" cy="452" r="3"/>
+        </g>
+        <circle cx="1180" cy="406" r="4" fill="#C4674C" stroke-width="3"/>
+      </g>
+      <circle cx="1104" cy="500" r="6" fill="#D9A654" stroke-width="4"/>
+    </g>
+
+    <!-- zerbino di Maria -->
+    <g id="maria-mat" transform="rotate(1 1180 775)">
+      <rect x="1090" y="760" width="180" height="30" rx="8" fill="#A97F8F" stroke-width="5"/>
+      <path d="M1140,766 V784 M1180,766 V784 M1220,766 V784" fill="none" stroke="#F4E7D3" stroke-width="4"/>
+    </g>
+
+    <!-- piantina di Maria -->
+    <g id="maria-plant">
+      <ellipse cx="1342" cy="676" rx="8" ry="13" fill="#7FA37A" stroke-width="3"/>
+      <ellipse cx="1330" cy="684" rx="6" ry="10" fill="#7FA37A" stroke-width="3" transform="rotate(-20 1330 684)"/>
+      <ellipse cx="1354" cy="684" rx="6" ry="10" fill="#7FA37A" stroke-width="3" transform="rotate(20 1354 684)"/>
+      <path d="M1320,700 h44 l-6,40 h-32 Z" fill="#C4674C" stroke-width="4"/>
+    </g>
+
+    <!-- ============ ASCENSORE ============ -->
+    <g id="elevator">
+      <g id="elevator-floor-indicator">
+        <rect x="1600" y="64" width="80" height="52" rx="8" fill="#3B2E27" stroke-width="5"/>
+        <text x="1640" y="101" text-anchor="middle" font-family="Verdana, sans-serif" font-size="30" font-weight="700" fill="#D9A654" stroke="none">1</text>
+      </g>
+      <g id="elevator-call-button">
+        <rect x="1360" y="406" width="36" height="56" rx="8" fill="#F4E7D3" stroke-width="5"/>
+        <circle cx="1378" cy="434" r="11" fill="#D9A654" stroke-width="4"/>
+        <path d="M1378,429 l-6,9 h12 Z" fill="#2A211C" stroke="none"/>
+      </g>
+      <g id="elevator-frame">
+      <rect x="1460" y="120" width="360" height="620" rx="8" ry="8" fill="#F4E7D3" stroke="#2A211C" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+      <rect x="1484" y="150" width="312" height="590" fill="#3B2E27" stroke="#2A211C" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+    <g id="elevator-left-door">
+      <rect x="1484" y="150" width="156" height="590" fill="#D9A654" stroke="#2A211C" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+      <rect x="1508.98" y="190" width="36" height="510" fill="#C58F3E" stroke="#2A211C" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+      <rect x="1574.72" y="190" width="36" height="510" fill="#C58F3E" stroke="#2A211C" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+    <g id="elevator-right-door">
+      <rect x="1640" y="150" width="156" height="590" fill="#D9A654" stroke="#2A211C" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+      <rect x="1668.04" y="190" width="36" height="510" fill="#C58F3E" stroke="#2A211C" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+      <rect x="1734.34" y="190" width="36" height="510" fill="#C58F3E" stroke="#2A211C" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+    <rect id="elevator-threshold" x="1476" y="736" width="328" height="10" fill="#B7A995" stroke="#2A211C" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+
+  </g>
+</svg>

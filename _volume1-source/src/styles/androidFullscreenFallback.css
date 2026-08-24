@@ -1,0 +1,26 @@
+.android-fullscreen-fallback {
+  position: fixed;
+  z-index: 50;
+  right: max(12px, env(safe-area-inset-right));
+  bottom: max(12px, env(safe-area-inset-bottom));
+  min-height: 44px;
+  padding: 9px 13px 8px;
+  border: 2px solid var(--ink);
+  border-radius: 3px;
+  color: var(--ink);
+  background: var(--paper);
+  box-shadow: 3px 3px 0 var(--ink);
+  font: 700 12px/1 'Courier New', monospace;
+  letter-spacing: .04em;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+
+.android-fullscreen-fallback:active {
+  translate: 2px 2px;
+  box-shadow: 1px 1px 0 var(--ink);
+}
+
+.android-fullscreen-fallback[hidden] {
+  display: none;
+}

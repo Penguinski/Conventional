@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Livello_1" data-name="Livello 1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 2520.17 900">
+  <defs>
+    <style>
+      .cls-1 {
+        opacity: .8;
+      }
+
+      .cls-1, .cls-2, .cls-3, .cls-4, .cls-5, .cls-6, .cls-7, .cls-8, .cls-9, .cls-10, .cls-11, .cls-12, .cls-13, .cls-14, .cls-15, .cls-16, .cls-17, .cls-18, .cls-19, .cls-20, .cls-21, .cls-22, .cls-23, .cls-24, .cls-25, .cls-26, .cls-27 {
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+
+      .cls-1, .cls-2, .cls-3, .cls-28, .cls-9, .cls-18, .cls-25, .cls-27 {
+        fill: none;
+      }
+
+      .cls-1, .cls-3 {
+        stroke: #f4e7d3;
+      }
+
+      .cls-1, .cls-3, .cls-29, .cls-25, .cls-30 {
+        isolation: isolate;
+      }
+
+      .cls-1, .cls-10, .cls-23 {
+        stroke-width: 6px;
+      }
+
+      .cls-31, .cls-6, .cls-19 {
+        fill: #d9c9b2;
+      }
+
+      .cls-32, .cls-15, .cls-20, .cls-22, .cls-23 {
+        fill: #f4e7d3;
+      }
+
+      .cls-2, .cls-4, .cls-5, .cls-6, .cls-7, .cls-8, .cls-9, .cls-10, .cls-11, .cls-12, .cls-13, .cls-14, .cls-15, .cls-16, .cls-17, .cls-18, .cls-19, .cls-20, .cls-21, .cls-22, .cls-23, .cls-24, .cls-25, .cls-26, .cls-27 {
+        stroke: #2a211c;
+      }
+
+      .cls-2, .cls-12 {
+        stroke-width: 3px;
+      }
+
+      .cls-3 {
+        opacity: .6;
+      }
+
+      .cls-3, .cls-4, .cls-5, .cls-7, .cls-15, .cls-16, .cls-18, .cls-19, .cls-24, .cls-26 {
+        stroke-width: 4px;
+      }
+
+      .cls-4 {
+        fill: #c58f3e;
+      }
+
+      .cls-5, .cls-10, .cls-13, .cls-29 {
+        fill: #d9a654;
+      }
+
+      .cls-6, .cls-11, .cls-13, .cls-20, .cls-21, .cls-27 {
+        stroke-width: 5px;
+      }
+
+      .cls-7, .cls-12 {
+        fill: #c4674c;
+      }
+
+      .cls-8 {
+        fill: #c9b190;
+      }
+
+      .cls-33 {
+        fill: url(#el-tiles);
+      }
+
+      .cls-9, .cls-22, .cls-25 {
+        stroke-width: 3px;
+      }
+
+      .cls-34 {
+        fill: url(#el-tiles-2);
+      }
+
+      .cls-35 {
+        fill: #f7d489;
+      }
+
+      .cls-11, .cls-24 {
+        fill: #3b2e27;
+      }
+
+      .cls-14 {
+        fill: #d8c3a4;
+      }
+
+      .cls-16 {
+        fill: #c9dbe2;
+      }
+
+      .cls-36 {
+        fill: #f0e1cb;
+      }
+
+      .cls-17 {
+        fill: #fbf6ea;
+        stroke-width: 4px;
+      }
+
+      .cls-29 {
+        font-size: 30px;
+      }
+
+      .cls-29, .cls-30 {
+        font-family: Verdana-Bold, Verdana;
+        font-weight: 700;
+      }
+
+      .cls-37 {
+        fill: url(#el-tiles-3);
+      }
+
+      .cls-21 {
+        fill: #b98a52;
+      }
+
+      .cls-25 {
+        opacity: .35;
+      }
+
+      .cls-26 {
+        fill: #b7a995;
+      }
+
+      .cls-30 {
+        font-size: 20px;
+      }
+
+      .cls-30, .cls-38 {
+        fill: #2a211c;
+      }
+
+      .cls-39 {
+        fill: #e2b49e;
+      }
+    </style>
+    <pattern id="el-tiles" x="0" y="0" width="160" height="120" patternTransform="translate(447.09 -15618.6) scale(1 -1)" patternUnits="userSpaceOnUse" viewBox="0 0 160 120">
+      <g>
+        <rect class="cls-28" width="160" height="120"/>
+        <rect class="cls-14" y="720" width="160" height="120"/>
+        <rect class="cls-8" y="780" width="80" height="60"/>
+        <rect class="cls-8" x="80" y="720" width="80" height="60"/>
+      </g>
+    </pattern>
+    <pattern id="el-tiles-2" data-name="el-tiles" patternTransform="translate(367.09 -15618.6) scale(1 -1)" xlink:href="#el-tiles"/>
+    <pattern id="el-tiles-3" data-name="el-tiles" patternTransform="translate(-14326.91 -15618.6) rotate(-180)" xlink:href="#el-tiles"/>
+  </defs>
+  <rect class="cls-31" y="692.33" width="2520.17" height="207.67"/>
+  <g>
+    <rect class="cls-36" x="60.09" y="720" width="80" height="60"/>
+    <rect class="cls-36" x="-19.91" y="780" width="80" height="60"/>
+    <rect class="cls-36" x="60.09" y="840" width="80" height="60"/>
+    <rect class="cls-36" x="220.09" y="720" width="80" height="60"/>
+    <rect class="cls-36" x="140.09" y="780" width="80" height="60"/>
+    <rect class="cls-36" x="220.09" y="840" width="80" height="60"/>
+    <rect class="cls-36" x="380.09" y="720" width="80" height="60"/>
+    <rect class="cls-36" x="300.09" y="780" width="80" height="60"/>
+    <rect class="cls-36" x="380.09" y="840" width="80" height="60"/>
+    <rect class="cls-36" x="540.09" y="720" width="80" height="60"/>
+    <rect class="cls-36" x="460.09" y="780" width="80" height="60"/>
+    <rect class="cls-36" x="540.09" y="840" width="80" height="60"/>
+    <rect class="cls-36" x="700.09" y="720" width="80" height="60"/>
+    <rect class="cls-36" x="620.09" y="780" width="80" height="60"/>
+    <rect class="cls-36" x="700.09" y="840" width="80" height="60"/>
+    <rect class="cls-36" x="860.09" y="720" width="80" height="60"/>
+    <rect class="cls-36" x="780.09" y="780" width="80" height="60"/>
+    <rect class="cls-36" x="860.09" y="840" width="80" height="60"/>
+    <rect class="cls-36" x="1020.09" y="720" width="80" height="60"/>
+    <rect class="cls-36" x="940.09" y="780" width="80" height="60"/>
+    <rect class="cls-36" x="1020.09" y="840" width="80" height="60"/>
+    <rect class="cls-36" x="1180.09" y="720" width="80" height="60"/>
+    <rect class="cls-36" x="1100.09" y="780" width="80" height="60"/>
+    <rect class="cls-36" x="1180.09" y="840" width="80" height="60"/>
+    <rect class="cls-36" x="1340.09" y="720" width="80" height="60"/>
+    <rect class="cls-36" x="1260.09" y="780" width="80" height="60"/>
+    <rect class="cls-36" x="1340.09" y="840" width="80" height="60"/>
+    <rect class="cls-36" x="1500.09" y="720" width="80" height="60"/>
+    <rect class="cls-36" x="1420.09" y="780" width="80" height="60"/>
+    <rect class="cls-36" x="1500.09" y="840" width="80" height="60"/>
+    <rect class="cls-36" x="1660.09" y="720" width="80" height="60"/>
+    <rect class="cls-36" x="1580.09" y="780" width="80" height="60"/>
+    <rect class="cls-36" x="1660.09" y="840" width="80" height="60"/>
+    <rect class="cls-36" x="1820.09" y="720" width="80" height="60"/>
+    <rect class="cls-36" x="1740.09" y="780" width="80" height="60"/>
+    <rect class="cls-36" x="1820.09" y="840" width="80" height="60"/>
+    <rect class="cls-36" x="1980.09" y="720" width="80" height="60"/>
+    <rect class="cls-36" x="1900.09" y="780" width="80" height="60"/>
+    <rect class="cls-36" x="1980.09" y="840" width="80" height="60"/>
+    <rect class="cls-36" x="2140.09" y="720" width="80" height="60"/>
+    <rect class="cls-36" x="2060.09" y="780" width="80" height="60"/>
+    <rect class="cls-36" x="2140.09" y="840" width="80" height="60"/>
+    <rect class="cls-36" x="2300.09" y="720" width="80" height="60"/>
+    <rect class="cls-36" x="2220.09" y="780" width="80" height="60"/>
+    <rect class="cls-36" x="2300.09" y="840" width="80" height="60"/>
+    <rect class="cls-36" x="2460.09" y="720" width="80" height="60"/>
+    <rect class="cls-36" x="2380.09" y="780" width="80" height="60"/>
+    <rect class="cls-36" x="2460.09" y="840" width="80" height="60"/>
+  </g>
+  <g id="elevator-interior">
+    <g id="back-wall">
+      <rect class="cls-36" y="60" width="2520.17" height="640"/>
+      <rect id="wall-dado" class="cls-39" y="560" width="2520.17" height="140"/>
+      <rect id="wall-rail" class="cls-15" y="548" width="2520.17" height="14"/>
+      <path id="wall-seams" class="cls-18" d="M980.09,60v640M1540.09,60v640"/>
+      <rect id="baseboard" class="cls-15" y="700" width="2520.17" height="20"/>
+    </g>
+    <rect id="ceiling" class="cls-15" y="0" width="2520.17" height="60"/>
+    <g id="ceiling-light">
+      <rect class="cls-20" x="1140.09" y="12" width="240" height="34" rx="14" ry="14"/>
+      <path class="cls-35" d="M1165.09,20h190c4.97,0,9,4.03,9,9h0c0,4.97-4.03,9-9,9h-190c-4.97,0-9-4.03-9-9h0c0-4.97,4.03-9,9-9Z"/>
+    </g>
+    <g id="floor">
+      <rect class="cls-33" x="460.09" y="720" width="1600" height="180"/>
+      <path class="cls-25" d="M540.09,720v180M620.09,720v180M700.09,720v180M780.09,720v180M860.09,720v180M940.09,720v180M1020.09,720v180M1100.09,720v180M1180.09,720v180M1260.09,720v180M1340.09,720v180M1420.09,720v180M1500.09,720v180M1580.09,720v180M1660.09,720v180M1740.09,720v180M1820.09,720v180M1900.09,720v180M1980.09,720v180M460.09,780h1600M460.09,840h1600"/>
+      <path class="cls-27" d="M460.09,720h1600"/>
+    </g>
+    <g id="floor-2" data-name="floor">
+      <rect class="cls-34" x="-1059.91" y="720" width="1600" height="180"/>
+      <path class="cls-25" d="M-979.91,720v180M-899.91,720v180M-819.91,720v180M-739.91,720v180M-659.91,720v180M-579.91,720v180M-499.91,720v180M-419.91,720v180M-339.91,720v180M-259.91,720v180M-179.91,720v180M-99.91,720v180M-19.91,720v180M60.09,720v180M140.09,720v180M220.09,720v180M300.09,720v180M380.09,720v180M460.09,720v180M-1059.91,780H460.09M-1059.91,840H460.09"/>
+      <path class="cls-27" d="M-1059.91,720H540.09"/>
+    </g>
+    <g id="floor-indicator">
+      <rect class="cls-11" x="1220.09" y="64" width="80" height="52" rx="8" ry="8"/>
+      <text class="cls-29" transform="translate(1249.42 101)"><tspan x="0" y="0">0</tspan></text>
+    </g>
+    <g id="elevator-doors">
+      <g id="elevator-frame">
+        <rect class="cls-23" x="1020.09" y="120" width="480" height="600" rx="8" ry="8"/>
+        <rect class="cls-24" x="1036.09" y="136" width="448" height="584"/>
+      </g>
+      <g id="elevator-left-door">
+        <rect class="cls-13" x="1036.09" y="136" width="224" height="584"/>
+        <rect class="cls-4" x="1066.09" y="176" width="44" height="504"/>
+        <rect class="cls-4" x="1166.09" y="176" width="44" height="504"/>
+      </g>
+      <g id="elevator-right-door">
+        <rect class="cls-13" x="1260.09" y="136" width="224" height="584"/>
+        <rect class="cls-4" x="1310.09" y="176" width="44" height="504"/>
+        <rect class="cls-4" x="1410.09" y="176" width="44" height="504"/>
+      </g>
+      <rect id="elevator-threshold" class="cls-26" x="1028.09" y="712" width="464" height="10"/>
+    </g>
+    <g id="mirror">
+      <rect class="cls-10" x="600.09" y="170" width="220" height="350" rx="14" ry="14"/>
+      <rect class="cls-16" x="618.09" y="188" width="184" height="314" rx="8" ry="8"/>
+      <path class="cls-1" d="M660.09,460l110-250"/>
+      <path class="cls-3" d="M690.09,478l100-238"/>
+    </g>
+    <g id="speaker-grille">
+      <rect class="cls-19" x="1732.09" y="132" width="56" height="44" rx="8" ry="8"/>
+      <path class="cls-9" d="M1742.09,146h36M1742.09,156h36M1742.09,166h36"/>
+    </g>
+    <g id="notice-frame">
+      <rect class="cls-17" x="1565.09" y="255" width="120" height="90" rx="6" ry="6" transform="translate(1282.65 1916.68) rotate(-88.5)"/>
+      <path class="cls-2" d="M1594.88,269.2l61.98,1.62M1594.41,287.19l61.98,1.62M1593.94,305.19l45.98,1.2"/>
+      <circle class="cls-12" cx="1647.13" cy="336.59" r="8"/>
+    </g>
+    <g id="button-panel">
+      <rect class="cls-6" x="1718.09" y="200" width="84" height="360" rx="12" ry="12"/>
+      <g id="button-3">
+        <circle class="cls-15" cx="1760.09" cy="236" r="24"/>
+        <text class="cls-30" transform="translate(1752.98 244)"><tspan x="0" y="0">3</tspan></text>
+      </g>
+      <g id="button-2">
+        <circle class="cls-15" cx="1760.09" cy="292" r="24"/>
+        <text class="cls-30" transform="translate(1752.98 300)"><tspan x="0" y="0">2</tspan></text>
+      </g>
+      <g id="button-1">
+        <circle class="cls-15" cx="1760.09" cy="348" r="24"/>
+        <text class="cls-30" transform="translate(1752.98 356)"><tspan x="0" y="0">1</tspan></text>
+      </g>
+      <g id="button-0">
+        <circle class="cls-5" cx="1760.09" cy="404" r="24"/>
+        <text class="cls-30" transform="translate(1752.98 412)"><tspan x="0" y="0">0</tspan></text>
+      </g>
+      <g id="button-c">
+        <circle class="cls-15" cx="1760.09" cy="460" r="24"/>
+        <text class="cls-30" transform="translate(1752.85 468)"><tspan x="0" y="0">C</tspan></text>
+      </g>
+      <g id="button-alarm">
+        <circle class="cls-7" cx="1760.09" cy="516" r="20"/>
+        <path class="cls-22" d="M1760.09,506c-7,0-11,7-11,12h22c0-5-4-12-12-12h1Z"/>
+        <circle class="cls-32" cx="1760.09" cy="521" r="2.5"/>
+      </g>
+    </g>
+    <g id="handrail">
+      <g id="handrail-left">
+        <path class="cls-21" d="M529.09,584h402c4.97,0,9,4.03,9,9h0c0,4.97-4.03,9-9,9h-402c-4.97,0-9-4.03-9-9h0c0-4.97,4.03-9,9-9Z"/>
+        <rect class="cls-38" x="550.09" y="602" width="12" height="14"/>
+        <rect class="cls-38" x="890.09" y="602" width="12" height="14"/>
+      </g>
+      <g id="handrail-right">
+        <path class="cls-21" d="M1589.09,584h402c4.97,0,9,4.03,9,9h0c0,4.97-4.03,9-9,9h-402c-4.97,0-9-4.03-9-9h0c0-4.97,4.03-9,9-9Z"/>
+        <rect class="cls-38" x="1610.09" y="602" width="12" height="14"/>
+        <rect class="cls-38" x="1950.09" y="602" width="12" height="14"/>
+      </g>
+    </g>
+  </g>
+  <g id="floor-3" data-name="floor">
+    <polygon class="cls-37" points="3580.09 900 1980.09 900 1980.09 720 3580.09 720 3580.09 900"/>
+    <path class="cls-25" d="M3500.09,900v-180M3420.09,900v-180M3340.09,900v-180M3260.09,900v-180M3180.09,900v-180M3100.09,900v-180M3020.09,900v-180M2940.09,900v-180M2860.09,900v-180M2780.09,900v-180M2700.09,900v-180M2620.09,900v-180M2540.09,900v-180M2460.09,900v-180M2380.09,900v-180M2300.09,900v-180M2220.09,900v-180M2140.09,900v-180M2060.09,900v-180M2060.09,780h1520M2060.09,840h1520"/>
+    <path class="cls-27" d="M1980.09,720h1600"/>
+  </g>
+</svg>

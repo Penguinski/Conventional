@@ -1,0 +1,70 @@
+name: Launch Volume 1 at root
+
+on:
+  schedule:
+    - cron: '0 15 24 8 *'
+  workflow_dispatch:
+
+concurrency:
+  group: volume-1-root-launch
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  launch:
+    if: github.event_name == 'workflow_dispatch' || startsWith(github.run_started_at, '2026-08-24')
+    runs-on: ubuntu-latest
+    env:
+      VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
+      VITE_SUPABASE_PUBLISHABLE_KEY: ${{ secrets.VITE_SUPABASE_PUBLISHABLE_KEY }}
+    steps:
+      - name: Checkout latest main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: _volume1-source/package-lock.json
+
+      - name: Install exact dependencies
+        working-directory: _volume1-source
+        run: npm ci
+
+      - name: Require an empty bulletin board
+        working-directory: _volume1-source
+        run: node scripts/verify-empty-board.mjs
+
+      - name: Test Volume 1
+        working-directory: _volume1-source
+        run: npm test
+
+      - name: Build Volume 1 for root
+        working-directory: _volume1-source
+        run: npm run build:root
+
+      - name: Refuse a stale main checkout
+        run: |
+          git fetch origin main
+          test "$(git rev-parse HEAD)" = "$(git rev-parse origin/main)"
+
+      - name: Publish root build without touching existing paths
+        run: |
+          rm -rf assets
+          cp -R _volume1-source/dist/assets ./assets
+          cp _volume1-source/dist/index.html ./index.html
+          git add index.html assets
+          if git diff --cached --quiet; then
+            echo "Root already matches the production build."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Launch Conventional Volume 1"
+          git push origin HEAD:main

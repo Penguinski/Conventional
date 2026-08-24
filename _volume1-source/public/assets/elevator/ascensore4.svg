@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 960" width="960" height="960">
+  <title id="et-title">Ascensore vuoto — vista dall'alto</title>
+  <desc id="et-desc">Cabina dell'ascensore vista dall'alto: pavimento ampio per personaggi e marker, pareti smussate clipate sulla sagoma arrotondata, porte sul lato inferiore, pulsantiera a destra, display in alto. Sfondo trasparente.</desc>
+
+  <defs>
+    <!-- sagoma esterna arrotondata: tutto ciò che sta nelle pareti viene clipato qui -->
+    <clipPath id="cabin-clip">
+      <rect x="150" y="110" width="660" height="740" rx="36"/>
+    </clipPath>
+  </defs>
+
+  <g id="asset-elevator" stroke="#2A211C" stroke-linecap="round" stroke-linejoin="round">
+
+    <!-- ombra portata piatta -->
+    <rect id="cabin-shadow" x="162" y="128" width="660" height="740" rx="36" fill="#2A211C" stroke="none" opacity="0.08"/>
+
+    <!-- ============ ANELLO DELLE PARETI (clipato sulla sagoma) ============ -->
+    <g id="cabin-walls">
+      <rect x="150" y="110" width="660" height="740" rx="36" fill="#F4E7D3" stroke="none"/>
+      <g clip-path="url(#cabin-clip)">
+        <polygon id="wall-top" points="150,110 810,110 750,210 210,210" fill="#F0E1CB" stroke="none"/>
+        <polygon id="wall-left" points="150,110 210,210 210,762 150,850" fill="#EAD9BF" stroke="none"/>
+        <polygon id="wall-right" points="810,110 750,210 750,762 810,850" fill="#E0CCAE" stroke="none"/>
+        <polygon id="wall-bottom" points="150,850 810,850 750,762 210,762" fill="#D9C9B2" stroke="none"/>
+        <!-- giunti d'angolo, ora tagliati dal bordo arrotondato -->
+        <path d="M150,110 L210,210 M810,110 L750,210 M810,850 L750,762 M150,850 L210,762" fill="none" stroke-width="4"/>
+        <!-- doghe decorative sulla parete di fondo -->
+        <path d="M330,120 V200 M630,120 V200" fill="none" stroke="#D9C9B2" stroke-width="3"/>
+      </g>
+    </g>
+
+    <!-- ============ PAVIMENTO ============ -->
+    <g id="cabin-floor">
+      <rect x="210" y="210" width="540" height="552" rx="18" fill="#E3D2B4" stroke-width="5"/>
+      <g id="floor-planks" stroke="#C9B190" stroke-width="3" fill="none">
+        <path d="M300,210 V762 M390,210 V762 M480,210 V762 M570,210 V762 M660,210 V762"/>
+        <path d="M244,332 H270 M232,648 H258 M328,470 H354 M318,262 H344 M416,300 H442 M404,690 H430 M508,560 H534 M520,356 H546 M598,430 H624 M610,712 H636 M688,520 H714 M676,272 H702"/>
+      </g>
+      <ellipse id="floor-light" cx="480" cy="470" rx="200" ry="150" fill="#F7D489" stroke="none" opacity="0.16"/>
+      <g id="floor-shadows" fill="#2A211C" stroke="none">
+        <rect x="210" y="210" width="540" height="18" opacity="0.08"/>
+        <rect x="210" y="210" width="14" height="552" opacity="0.06"/>
+        <rect x="736" y="210" width="14" height="552" opacity="0.06"/>
+        <rect x="210" y="744" width="540" height="18" opacity="0.05"/>
+      </g>
+      <rect id="floor-inlay" x="240" y="240" width="480" height="492" rx="14" fill="none" stroke="#C4674C" stroke-width="3" opacity="0.45"/>
+    </g>
+
+    <!-- ============ CORRIMANO ============ -->
+    <g id="handrail">
+      <rect x="300" y="170" width="10" height="16" rx="3" fill="#A87F4C" stroke-width="3"/>
+      <rect x="650" y="170" width="10" height="16" rx="3" fill="#A87F4C" stroke-width="3"/>
+      <rect x="244" y="180" width="472" height="12" rx="6" fill="#B98A52" stroke-width="4"/>
+    </g>
+
+    <!-- ============ DISPLAY DEL PIANO ============ -->
+    <g id="floor-display">
+      <rect x="428" y="126" width="104" height="48" rx="10" fill="#3B2E27" stroke-width="5"/>
+      <rect x="444" y="144" width="44" height="12" rx="6" fill="#D9A654" stroke="none"/>
+      <circle cx="506" cy="150" r="4" fill="#D9A654" stroke="none" opacity="0.8"/>
+    </g>
+
+    <!-- ============ PULSANTIERA ============ -->
+    <g id="control-panel">
+      <rect x="756" y="344" width="48" height="212" rx="12" fill="#F4E7D3" stroke-width="5"/>
+      <rect x="763" y="351" width="34" height="198" rx="8" fill="none" stroke="#D9C9B2" stroke-width="2"/>
+      <circle cx="780" cy="378" r="8" fill="#F4E7D3" stroke-width="4"/>
+      <circle cx="780" cy="410" r="8" fill="#F4E7D3" stroke-width="4"/>
+      <circle cx="780" cy="442" r="8" fill="#D9A654" stroke-width="4"/>
+      <circle cx="780" cy="474" r="8" fill="#F4E7D3" stroke-width="4"/>
+      <circle cx="780" cy="506" r="8" fill="#C4674C" stroke-width="4"/>
+      <rect x="770" y="528" width="20" height="7" rx="3.5" fill="#D9C9B2" stroke-width="3"/>
+    </g>
+
+    <!-- targhetta decorativa -->
+    <g id="wall-plaque">
+      <rect x="166" y="430" width="32" height="48" rx="6" fill="#F4E7D3" stroke-width="4"/>
+      <path d="M173,444 H191 M173,454 H191 M173,464 H187" fill="none" stroke="#B98A52" stroke-width="3"/>
+    </g>
+
+    <!-- ============ PORTE ============ -->
+    <g id="cabin-doors">
+      <rect x="304" y="766" width="352" height="80" rx="10" fill="#A87F4C" stroke-width="5"/>
+      <rect id="door-left" x="313" y="775" width="156" height="62" rx="6" fill="#F4E7D3" stroke-width="4"/>
+      <rect id="door-right" x="491" y="775" width="156" height="62" rx="6" fill="#F4E7D3" stroke-width="4"/>
+      <rect x="321" y="783" width="140" height="46" rx="4" fill="none" stroke="#FBF6EA" stroke-width="2" opacity="0.6"/>
+      <rect x="499" y="783" width="140" height="46" rx="4" fill="none" stroke="#FBF6EA" stroke-width="2" opacity="0.6"/>
+      <circle cx="461" cy="806" r="4" fill="#D9A654" stroke-width="3"/>
+      <circle cx="499" cy="806" r="4" fill="#D9A654" stroke-width="3"/>
+    </g>
+
+    <text id="doors-label" x="480" y="750" text-anchor="middle" font-family="Verdana, sans-serif" font-size="15" font-weight="600" letter-spacing="4" fill="#A87F4C" stroke="none" opacity="0.55">PORTE</text>
+
+    <!-- ============ BORDO ESTERNO IN SOVRIMPRESSIONE ============ -->
+    <!-- disegnato per ultimo: copre di netto i margini dei riempimenti clipati -->
+    <rect id="cabin-frame" x="150" y="110" width="660" height="740" rx="36" fill="none" stroke-width="5"/>
+
+  </g>
+</svg>
