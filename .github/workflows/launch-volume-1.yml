@@ -59,7 +59,8 @@ jobs:
           rm -rf assets
           cp -R _volume1-source/dist/assets ./assets
           cp _volume1-source/dist/index.html ./index.html
-          git add index.html assets
+          cp _volume1-source/dist/favicon-v1.ico ./favicon-v1.ico
+          git add index.html favicon-v1.ico assets
           if git diff --cached --quiet; then
             echo "Root already matches the production build."
             exit 0
