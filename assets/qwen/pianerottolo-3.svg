@@ -1,0 +1,175 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2400 900" width="2400" height="900">
+  <title id="p3-title">Pianerottolo piano 3 — Conventional Vol.1</title>
+  <desc id="p3-desc">Pianerottolo del terzo piano: porta di Arturo minimale e senza tracce, porta di Jannel con piante, gatta e ciondolo lunare, ascensore con indicatore su 3. Vista frontale, sfondo trasparente, bleed laterale ampio.</desc>
+
+  <g id="floor-3" stroke="#2A211C" stroke-linecap="round" stroke-linejoin="round">
+
+    <!-- ============ PARETE ============ -->
+    <g id="wall">
+      <rect x="0" y="0" width="2400" height="740" fill="#F0E1CB" stroke="none"/>
+      <rect id="wall-dado" x="0" y="568" width="2400" height="172" fill="#E2B49E" stroke="none"/>
+      <rect id="wall-rail" x="0" y="556" width="2400" height="14" fill="#F4E7D3" stroke-width="4"/>
+    </g>
+
+    <!-- ============ PAVIMENTO ============ -->
+    <g id="floor">
+      <defs>
+        <pattern id="p3-tiles" patternUnits="userSpaceOnUse" x="0" y="740" width="200" height="160">
+          <rect x="0" y="0" width="200" height="160" fill="#D8C3A4"/>
+          <rect x="0" y="0" width="100" height="80" fill="#C9B190"/>
+          <rect x="100" y="80" width="100" height="80" fill="#C9B190"/>
+        </pattern>
+      </defs>
+      <rect x="0" y="740" width="2400" height="160" fill="url(#p3-tiles)" stroke="none"/>
+      <path d="M100,740 V900 M200,740 V900 M300,740 V900 M400,740 V900 M500,740 V900 M600,740 V900 M700,740 V900 M800,740 V900 M900,740 V900 M1000,740 V900 M1100,740 V900 M1200,740 V900 M1300,740 V900 M1400,740 V900 M1500,740 V900 M1600,740 V900 M1700,740 V900 M1800,740 V900 M1900,740 V900 M2000,740 V900 M2100,740 V900 M2200,740 V900 M2300,740 V900 M0,820 H2400" fill="none" stroke-width="3" opacity="0.35"/>
+      <path d="M0,740 H2400" fill="none" stroke-width="5"/>
+    </g>
+
+    <rect id="baseboard" x="0" y="722" width="2400" height="20" fill="#F4E7D3" stroke-width="4"/>
+
+    <!-- ombre morbide a terra -->
+    <g id="soft-shadows" fill="#2A211C" stroke="none" opacity="0.07">
+      <ellipse cx="1018" cy="752" rx="45" ry="8"/>
+      <ellipse cx="1336" cy="750" rx="38" ry="7"/>
+      <ellipse cx="1398" cy="750" rx="24" ry="5"/>
+      <ellipse cx="1180" cy="794" rx="100" ry="10"/>
+    </g>
+
+    <!-- ============ BLEED SINISTRO: pluviale ============ -->
+    <g id="downpipe">
+      <rect x="132" y="0" width="16" height="740" fill="#9AA79B" stroke-width="4"/>
+      <rect x="128" y="200" width="24" height="6" fill="#2A211C" stroke="none"/>
+      <rect x="128" y="480" width="24" height="6" fill="#2A211C" stroke="none"/>
+    </g>
+
+    <!-- ============ BLEED DESTRO: avviso in bacheca ============ -->
+    <g id="wall-notice" transform="rotate(2 2168 363)">
+      <rect x="2120" y="300" width="96" height="126" rx="6" fill="#FBF6EA" stroke-width="4"/>
+      <path d="M2136,332 H2200 M2136,350 H2200 M2136,368 H2184" fill="none" stroke-width="3"/>
+      <circle cx="2168" cy="312" r="5" fill="#D9A654" stroke-width="3"/>
+    </g>
+
+    <!-- ============ LAMPADA (paralume a cupola, variante del piano) ============ -->
+    <g id="hanging-lamp">
+      <path d="M970,0 V100" fill="none" stroke-width="4"/>
+      <path d="M938,132 A32,32 0 0 1 1002,132 Z" fill="#D9A654" stroke-width="5"/>
+      <circle cx="970" cy="140" r="7" fill="#F7D489" stroke="none"/>
+    </g>
+
+    <!-- ============ PORTA DI ARTURO: quasi nessuna traccia ============ -->
+    <g id="arturo-door">
+      <rect x="650" y="240" width="220" height="500" rx="6" fill="#F4E7D3" stroke-width="6"/>
+      <rect x="666" y="256" width="188" height="484" fill="#9AA79B" stroke-width="5"/>
+      <g fill="none" stroke="#6F7F78" stroke-width="4">
+        <rect x="682" y="470" width="156" height="110" rx="5"/>
+        <rect x="682" y="600" width="156" height="120" rx="5"/>
+      </g>
+      <!-- targhetta minimale, senza nome -->
+      <g id="arturo-plate">
+        <rect x="738" y="282" width="44" height="16" rx="2" fill="#F4E7D3" stroke-width="3"/>
+      </g>
+      <!-- spioncino ben visibile -->
+      <g id="arturo-peephole">
+        <circle cx="760" cy="340" r="7" fill="#3B2E27" stroke-width="4"/>
+        <circle cx="758" cy="338" r="2" fill="#9AA79B" stroke="none"/>
+      </g>
+      <circle cx="838" cy="500" r="6" fill="#D9A654" stroke-width="4"/>
+    </g>
+    <!-- zerbino semplice, senza decorazioni -->
+    <g id="arturo-mat">
+      <rect x="670" y="760" width="180" height="30" rx="4" fill="#B7A995" stroke-width="5"/>
+    </g>
+    <g id="arturo-doorbell">
+      <rect x="596" y="470" width="40" height="56" rx="8" fill="#F4E7D3" stroke-width="5"/>
+      <circle cx="616" cy="498" r="6" fill="#D9A654" stroke-width="4"/>
+    </g>
+
+    <!-- ============ PORTA DI JANNEL ============ -->
+    <g id="jannel-door">
+      <rect x="1070" y="240" width="220" height="500" rx="6" fill="#F4E7D3" stroke-width="6"/>
+      <rect x="1086" y="256" width="188" height="484" fill="#A97F8F" stroke-width="5"/>
+      <g fill="none" stroke="#8C6478" stroke-width="4">
+        <rect x="1102" y="470" width="156" height="110" rx="5"/>
+        <rect x="1102" y="600" width="156" height="120" rx="5"/>
+      </g>
+      <!-- ciondolo lunare appeso -->
+      <g id="jannel-charm">
+        <path d="M1180,296 V318" fill="none" stroke-width="3"/>
+        <path d="M1186,318 A13,13 0 1 0 1186,344 A10,10 0 1 1 1186,318 Z" fill="#D9A654" stroke-width="4"/>
+        <circle cx="1198" cy="326" r="2.5" fill="#F4E7D3" stroke="none"/>
+      </g>
+      <circle cx="1104" cy="500" r="6" fill="#D9A654" stroke-width="4"/>
+    </g>
+    <!-- zerbino con impronta di gatto -->
+    <g id="jannel-mat" transform="rotate(-2 1180 775)">
+      <rect x="1090" y="760" width="180" height="30" rx="8" fill="#D9A654" stroke-width="5"/>
+      <ellipse cx="1180" cy="778" rx="9" ry="7" fill="#A97F8F" stroke-width="3"/>
+      <g fill="#A97F8F" stroke="none">
+        <circle cx="1168" cy="768" r="3"/>
+        <circle cx="1180" cy="765" r="3"/>
+        <circle cx="1192" cy="768" r="3"/>
+      </g>
+    </g>
+    <g id="jannel-doorbell">
+      <rect x="1015" y="470" width="40" height="56" rx="8" fill="#F4E7D3" stroke-width="5"/>
+      <circle cx="1035" cy="492" r="8" fill="#D9A654" stroke-width="4"/>
+      <path d="M1025,514 H1045" fill="none" stroke-width="3"/>
+    </g>
+
+    <!-- ============ PIANTE DI JANNEL ============ -->
+    <g id="jannel-plants">
+      <g id="jannel-plant-left">
+        <ellipse cx="1018" cy="640" rx="6" ry="12" fill="#7FA37A" stroke-width="3"/>
+        <ellipse cx="1018" cy="664" rx="8" ry="14" fill="#7FA37A" stroke-width="3"/>
+        <ellipse cx="1006" cy="672" rx="6" ry="10" fill="#7FA37A" stroke-width="3" transform="rotate(-22 1006 672)"/>
+        <ellipse cx="1030" cy="672" rx="6" ry="10" fill="#7FA37A" stroke-width="3" transform="rotate(22 1030 672)"/>
+        <path d="M996,700 h44 l-6,40 h-32 Z" fill="#C4674C" stroke-width="4"/>
+      </g>
+      <g id="jannel-plant-right">
+        <path d="M1336,706 V684 M1326,706 L1322,690 M1346,706 L1350,694" fill="none" stroke-width="3"/>
+        <circle cx="1322" cy="682" r="8" fill="#7FA37A" stroke-width="3"/>
+        <circle cx="1338" cy="674" r="9" fill="#7FA37A" stroke-width="3"/>
+        <circle cx="1352" cy="688" r="7" fill="#7FA37A" stroke-width="3"/>
+        <path d="M1318,706 h36 l-5,34 h-26 Z" fill="#C4674C" stroke-width="4"/>
+      </g>
+    </g>
+
+    <!-- ============ GATTA DI JANNEL ============ -->
+    <g id="cat-detail" fill="#2A211C" stroke-width="3">
+      <path d="M1412,742 q12,-4 10,-18" fill="none"/>
+      <path d="M1384,744 q0,-22 14,-22 q14,0 14,22 Z"/>
+      <circle cx="1398" cy="716" r="8"/>
+      <path d="M1392,710 l-3,-8 l7,3 Z"/>
+      <path d="M1404,710 l3,-8 l-7,3 Z"/>
+    </g>
+
+    <!-- ============ ASCENSORE ============ -->
+    <g id="elevator">
+      <g id="elevator-floor-indicator">
+        <rect x="1600" y="64" width="80" height="52" rx="8" fill="#3B2E27" stroke-width="5"/>
+        <text x="1640" y="101" text-anchor="middle" font-family="Verdana, sans-serif" font-size="30" font-weight="700" fill="#D9A654" stroke="none">3</text>
+      </g>
+      <g id="elevator-call-button">
+        <rect x="1360" y="406" width="36" height="56" rx="8" fill="#F4E7D3" stroke-width="5"/>
+        <circle cx="1378" cy="434" r="11" fill="#D9A654" stroke-width="4"/>
+        <path d="M1378,429 l-6,9 h12 Z" fill="#2A211C" stroke="none"/>
+      </g>
+      <g id="elevator-frame">
+        <rect x="1460" y="120" width="360" height="620" rx="8" fill="#F4E7D3" stroke-width="6"/>
+        <rect x="1484" y="150" width="312" height="590" fill="#3B2E27" stroke-width="4"/>
+      </g>
+      <g id="elevator-left-door">
+        <rect x="1484" y="150" width="156" height="590" fill="#D9A654" stroke-width="5"/>
+        <rect x="1504" y="190" width="36" height="510" fill="#C58F3E" stroke-width="4"/>
+        <rect x="1564" y="190" width="36" height="510" fill="#C58F3E" stroke-width="4"/>
+      </g>
+      <g id="elevator-right-door">
+        <rect x="1640" y="150" width="156" height="590" fill="#D9A654" stroke-width="5"/>
+        <rect x="1660" y="190" width="36" height="510" fill="#C58F3E" stroke-width="4"/>
+        <rect x="1720" y="190" width="36" height="510" fill="#C58F3E" stroke-width="4"/>
+      </g>
+      <rect id="elevator-threshold" x="1476" y="736" width="328" height="10" fill="#B7A995" stroke-width="4"/>
+    </g>
+
+  </g>
+</svg>

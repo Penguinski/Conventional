@@ -1,0 +1,244 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2400 1080" width="2400" height="1080">
+  <title id="pack-title">Conventional Vol.1 — Asset pack minigioco ascensore</title>
+  <desc id="pack-desc">Foglio di asset vettoriali: cabina ascensore top-down, dieci personaggi dall'alto, slot posizione, marker TU e variante attiva, cane e gatto. Sfondo trasparente, elementi separabili.</desc>
+
+  <g id="asset-pack" stroke="#2A211C" stroke-linecap="round" stroke-linejoin="round">
+
+    <!-- ========================================================== -->
+    <!-- ASSET 1 · ASCENSORE VUOTO (top-down)                       -->
+    <!-- ========================================================== -->
+    <g id="asset-elevator" transform="translate(40,40)">
+      <rect id="cabin-shadow" x="162" y="128" width="660" height="740" rx="36" fill="#2A211C" stroke="none" opacity="0.08"/>
+      <g id="cabin-walls">
+        <rect x="150" y="110" width="660" height="740" rx="36" fill="#F4E7D3" stroke-width="5"/>
+        <polygon id="wall-top" points="150,110 810,110 750,210 210,210" fill="#F0E1CB" stroke="none"/>
+        <polygon id="wall-left" points="150,110 210,210 210,762 150,850" fill="#EAD9BF" stroke="none"/>
+        <polygon id="wall-right" points="810,110 750,210 750,762 810,850" fill="#E0CCAE" stroke="none"/>
+        <polygon id="wall-bottom" points="150,850 810,850 750,762 210,762" fill="#D9C9B2" stroke="none"/>
+        <path d="M150,110 L210,210 M810,110 L750,210 M810,850 L750,762 M150,850 L210,762" fill="none" stroke-width="4"/>
+        <path d="M330,120 V200 M630,120 V200" fill="none" stroke="#D9C9B2" stroke-width="3"/>
+      </g>
+      <g id="cabin-floor">
+        <rect x="210" y="210" width="540" height="552" rx="18" fill="#E3D2B4" stroke-width="5"/>
+        <g stroke="#C9B190" stroke-width="3" fill="none">
+          <path d="M300,210 V762 M390,210 V762 M480,210 V762 M570,210 V762 M660,210 V762"/>
+          <path d="M244,332 H270 M232,648 H258 M328,470 H354 M318,262 H344 M416,300 H442 M404,690 H430 M508,560 H534 M520,356 H546 M598,430 H624 M610,712 H636 M688,520 H714 M676,272 H702"/>
+        </g>
+        <ellipse cx="480" cy="470" rx="200" ry="150" fill="#F7D489" stroke="none" opacity="0.16"/>
+        <g fill="#2A211C" stroke="none">
+          <rect x="210" y="210" width="540" height="18" opacity="0.08"/>
+          <rect x="210" y="210" width="14" height="552" opacity="0.06"/>
+          <rect x="736" y="210" width="14" height="552" opacity="0.06"/>
+          <rect x="210" y="744" width="540" height="18" opacity="0.05"/>
+        </g>
+        <rect x="240" y="240" width="480" height="492" rx="14" fill="none" stroke="#C4674C" stroke-width="3" opacity="0.45"/>
+      </g>
+      <g id="handrail">
+        <rect x="300" y="170" width="10" height="16" rx="3" fill="#A87F4C" stroke-width="3"/>
+        <rect x="650" y="170" width="10" height="16" rx="3" fill="#A87F4C" stroke-width="3"/>
+        <rect x="244" y="180" width="472" height="12" rx="6" fill="#B98A52" stroke-width="4"/>
+      </g>
+      <g id="floor-display">
+        <rect x="428" y="126" width="104" height="48" rx="10" fill="#3B2E27" stroke-width="5"/>
+        <rect x="444" y="144" width="44" height="12" rx="6" fill="#D9A654" stroke="none"/>
+        <circle cx="506" cy="150" r="4" fill="#D9A654" stroke="none" opacity="0.8"/>
+      </g>
+      <g id="control-panel">
+        <rect x="756" y="344" width="48" height="212" rx="12" fill="#F4E7D3" stroke-width="5"/>
+        <rect x="763" y="351" width="34" height="198" rx="8" fill="none" stroke="#D9C9B2" stroke-width="2"/>
+        <circle cx="780" cy="378" r="8" fill="#F4E7D3" stroke-width="4"/>
+        <circle cx="780" cy="410" r="8" fill="#F4E7D3" stroke-width="4"/>
+        <circle cx="780" cy="442" r="8" fill="#D9A654" stroke-width="4"/>
+        <circle cx="780" cy="474" r="8" fill="#F4E7D3" stroke-width="4"/>
+        <circle cx="780" cy="506" r="8" fill="#C4674C" stroke-width="4"/>
+        <rect x="770" y="528" width="20" height="7" rx="3.5" fill="#D9C9B2" stroke-width="3"/>
+      </g>
+      <g id="wall-plaque">
+        <rect x="166" y="430" width="32" height="48" rx="6" fill="#F4E7D3" stroke-width="4"/>
+        <path d="M173,444 H191 M173,454 H191 M173,464 H187" fill="none" stroke="#B98A52" stroke-width="3"/>
+      </g>
+      <g id="cabin-doors">
+        <rect x="304" y="766" width="352" height="80" rx="10" fill="#A87F4C" stroke-width="5"/>
+        <rect id="door-left" x="313" y="775" width="156" height="62" rx="6" fill="#F4E7D3" stroke-width="4"/>
+        <rect id="door-right" x="491" y="775" width="156" height="62" rx="6" fill="#F4E7D3" stroke-width="4"/>
+        <rect x="321" y="783" width="140" height="46" rx="4" fill="none" stroke="#FBF6EA" stroke-width="2" opacity="0.6"/>
+        <rect x="499" y="783" width="140" height="46" rx="4" fill="none" stroke="#FBF6EA" stroke-width="2" opacity="0.6"/>
+        <circle cx="461" cy="806" r="4" fill="#D9A654" stroke-width="3"/>
+        <circle cx="499" cy="806" r="4" fill="#D9A654" stroke-width="3"/>
+      </g>
+      <text id="doors-label" x="480" y="750" text-anchor="middle" font-family="Verdana, sans-serif" font-size="15" font-weight="600" letter-spacing="4" fill="#A87F4C" stroke="none" opacity="0.55">PORTE</text>
+    </g>
+
+    <!-- ========================================================== -->
+    <!-- ASSET 2-11 · PERSONAGGI (vista dall'alto, fronte in basso) -->
+    <!-- ========================================================== -->
+
+    <!-- TU / nuovo inquilino: con scatolone da trasloco -->
+    <g id="char-tu" transform="translate(1160,150)">
+      <ellipse cx="4" cy="12" rx="42" ry="30" fill="#2A211C" stroke="none" opacity="0.07"/>
+      <rect x="-36" y="-12" width="72" height="44" rx="22" fill="#6E8B94" stroke-width="4"/>
+      <circle cx="0" cy="-4" r="17" fill="#E8B08C" stroke-width="4"/>
+      <path d="M-16.5,-6 A17,17 0 1 1 16.5,-6 Q10,1 0,1 Q-10,1 -16.5,-6 Z" fill="#6B4A2F" stroke-width="4"/>
+      <path d="M-6,-20 l3,-6 M4,-21 l4,5" fill="none" stroke-width="3"/>
+      <circle cx="-14" cy="30" r="5" fill="#E8B08C" stroke-width="3"/>
+      <circle cx="14" cy="30" r="5" fill="#E8B08C" stroke-width="3"/>
+      <rect x="-14" y="24" width="28" height="20" rx="3" fill="#C9A171" stroke-width="4"/>
+      <path d="M0,24 V44" fill="none" stroke="#F4E7D3" stroke-width="3"/>
+    </g>
+
+    <!-- Maria: chignon grigio, borsa della spesa -->
+    <g id="char-maria" transform="translate(1390,150)">
+      <ellipse cx="4" cy="12" rx="42" ry="30" fill="#2A211C" stroke="none" opacity="0.07"/>
+      <rect x="-36" y="-12" width="72" height="44" rx="22" fill="#A97F8F" stroke-width="4"/>
+      <circle cx="0" cy="-4" r="17" fill="#EFCDB2" stroke-width="4"/>
+      <path d="M-16.5,-6 A17,17 0 1 1 16.5,-6 Q10,1 0,1 Q-10,1 -16.5,-6 Z" fill="#9AA79B" stroke-width="4"/>
+      <circle cx="0" cy="-24" r="7" fill="#9AA79B" stroke-width="4"/>
+      <circle cx="32" cy="16" r="5" fill="#EFCDB2" stroke-width="3"/>
+      <path d="M34,14 q5,-10 10,0" fill="none" stroke-width="3"/>
+      <rect x="30" y="18" width="18" height="20" rx="4" fill="#C4674C" stroke-width="4"/>
+    </g>
+
+    <!-- Paolo: riga laterale impeccabile -->
+    <g id="char-paolo" transform="translate(1620,150)">
+      <ellipse cx="4" cy="12" rx="42" ry="30" fill="#2A211C" stroke="none" opacity="0.07"/>
+      <rect x="-36" y="-12" width="72" height="44" rx="22" fill="#7A8B7F" stroke-width="4"/>
+      <circle cx="0" cy="-4" r="17" fill="#D9A179" stroke-width="4"/>
+      <path d="M-16.5,-6 A17,17 0 1 1 16.5,-6 Q10,1 0,1 Q-10,1 -16.5,-6 Z" fill="#2A211C" stroke-width="4"/>
+      <path d="M-4,-22 L2,-4" fill="none" stroke="#F4E7D3" stroke-width="2" opacity="0.7"/>
+    </g>
+
+    <!-- Rossi padre -->
+    <g id="char-rossi-padre" transform="translate(1850,150)">
+      <ellipse cx="4" cy="12" rx="42" ry="30" fill="#2A211C" stroke="none" opacity="0.07"/>
+      <rect x="-36" y="-12" width="72" height="44" rx="22" fill="#C4674C" stroke-width="4"/>
+      <circle cx="0" cy="-4" r="17" fill="#C98A62" stroke-width="4"/>
+      <path d="M-16.5,-6 A17,17 0 1 1 16.5,-6 Q10,1 0,1 Q-10,1 -16.5,-6 Z" fill="#6B4A2F" stroke-width="4"/>
+    </g>
+
+    <!-- Rossi madre: coda di cavallo -->
+    <g id="char-rossi-madre" transform="translate(2080,150)">
+      <ellipse cx="4" cy="12" rx="42" ry="30" fill="#2A211C" stroke="none" opacity="0.07"/>
+      <ellipse cx="0" cy="-26" rx="6" ry="11" fill="#6B4A2F" stroke-width="4"/>
+      <rect x="-36" y="-12" width="72" height="44" rx="22" fill="#D9A654" stroke-width="4"/>
+      <circle cx="0" cy="-4" r="17" fill="#E8B08C" stroke-width="4"/>
+      <path d="M-16.5,-6 A17,17 0 1 1 16.5,-6 Q10,1 0,1 Q-10,1 -16.5,-6 Z" fill="#6B4A2F" stroke-width="4"/>
+    </g>
+
+    <!-- Rossi bambino: più piccolo, con pallina -->
+    <g id="char-rossi-bambino" transform="translate(1160,390) scale(0.85)">
+      <ellipse cx="4" cy="12" rx="42" ry="30" fill="#2A211C" stroke="none" opacity="0.07"/>
+      <rect x="-36" y="-12" width="72" height="44" rx="22" fill="#7FA37A" stroke-width="4"/>
+      <circle cx="0" cy="-4" r="17" fill="#F0C9A6" stroke-width="4"/>
+      <path d="M-16.5,-6 A17,17 0 1 1 16.5,-6 Q10,1 0,1 Q-10,1 -16.5,-6 Z" fill="#2A211C" stroke-width="4"/>
+      <circle cx="-10" cy="-18" r="5" fill="#2A211C" stroke-width="3"/>
+      <circle cx="10" cy="-18" r="5" fill="#2A211C" stroke-width="3"/>
+      <circle cx="0" cy="32" r="8" fill="#C4674C" stroke-width="4"/>
+      <path d="M-6,30 q6,5 12,0" fill="none" stroke="#F4E7D3" stroke-width="3"/>
+    </g>
+
+    <!-- Arturo: stempiato grigio, con Ugo al guinzaglio -->
+    <g id="char-arturo" transform="translate(1390,390)">
+      <ellipse cx="4" cy="12" rx="42" ry="30" fill="#2A211C" stroke="none" opacity="0.07"/>
+      <rect x="-36" y="-12" width="72" height="44" rx="22" fill="#9AA79B" stroke-width="4"/>
+      <circle cx="0" cy="-4" r="17" fill="#D9A179" stroke-width="4"/>
+      <path d="M-17,-4 A17,17 0 0 0 -7,11 Q-13,8 -17,-4 Z" fill="#9AA79B" stroke-width="3"/>
+      <path d="M17,-4 A17,17 0 0 1 7,11 Q13,8 17,-4 Z" fill="#9AA79B" stroke-width="3"/>
+      <path d="M20,8 Q30,14 38,20" fill="none" stroke-width="3"/>
+      <g id="char-arturo-dog">
+        <path d="M22,28 q-8,-2 -8,-10" fill="none" stroke-width="4"/>
+        <ellipse cx="34" cy="28" rx="13" ry="9" fill="#B98A52" stroke-width="4"/>
+        <circle cx="45" cy="22" r="7" fill="#B98A52" stroke-width="4"/>
+        <path d="M41,16 l-2,-6 l6,2 Z M49,16 l2,-6 l-6,2 Z" fill="#B98A52" stroke-width="3"/>
+      </g>
+    </g>
+
+    <!-- Jannel: ricci eccentrici, gatta sulla spalla -->
+    <g id="char-jannel" transform="translate(1620,390)">
+      <ellipse cx="4" cy="12" rx="42" ry="30" fill="#2A211C" stroke="none" opacity="0.07"/>
+      <rect x="-36" y="-12" width="72" height="44" rx="22" fill="#C4674C" stroke-width="4"/>
+      <circle cx="0" cy="-4" r="17" fill="#C98A62" stroke-width="4"/>
+      <g fill="#A97F8F" stroke-width="4">
+        <circle cx="-11" cy="-14" r="8"/>
+        <circle cx="0" cy="-19" r="8"/>
+        <circle cx="11" cy="-14" r="8"/>
+        <circle cx="-16" cy="-4" r="7"/>
+        <circle cx="16" cy="-4" r="7"/>
+      </g>
+      <g id="char-jannel-cat" fill="#2A211C" stroke-width="3">
+        <path d="M-22,-4 q8,2 10,10" fill="none"/>
+        <ellipse cx="-30" cy="-8" rx="10" ry="7"/>
+        <circle cx="-38" cy="-12" r="6"/>
+        <path d="M-42,-16 l-2,-5 l5,2 Z M-34,-17 l2,-5 l-5,2 Z"/>
+      </g>
+    </g>
+
+    <!-- Vicina con hijab -->
+    <g id="char-hijab" transform="translate(1850,390)">
+      <ellipse cx="4" cy="12" rx="42" ry="30" fill="#2A211C" stroke="none" opacity="0.07"/>
+      <rect x="-36" y="-12" width="72" height="44" rx="22" fill="#B98A52" stroke-width="4"/>
+      <rect x="-24" y="-10" width="48" height="30" rx="12" fill="#A97F8F" stroke-width="4"/>
+      <circle cx="0" cy="-4" r="20" fill="#A97F8F" stroke-width="4"/>
+      <circle cx="0" cy="-1" r="11" fill="#A9714B" stroke-width="3"/>
+      <path d="M-8,-14 q8,-5 16,0" fill="none" stroke="#8C6478" stroke-width="3"/>
+    </g>
+
+    <!-- Vicino con cappello -->
+    <g id="char-cappello" transform="translate(2080,390)">
+      <ellipse cx="4" cy="12" rx="42" ry="30" fill="#2A211C" stroke="none" opacity="0.07"/>
+      <rect x="-36" y="-12" width="72" height="44" rx="22" fill="#6E8B94" stroke-width="4"/>
+      <ellipse cx="0" cy="-4" rx="21" ry="20" fill="#D9A654" stroke-width="4"/>
+      <circle cx="0" cy="-7" r="12" fill="#C58F3E" stroke-width="4"/>
+      <path d="M-11,-2 h22" fill="none" stroke-width="3"/>
+    </g>
+
+    <!-- ========================================================== -->
+    <!-- ASSET 12-13 · SLOT POSIZIONE                               -->
+    <!-- ========================================================== -->
+    <g id="asset-slot" transform="translate(1160,660)">
+      <circle cx="0" cy="0" r="46" fill="none" stroke="#8C7B62" stroke-width="3" stroke-dasharray="12 9" opacity="0.8"/>
+      <circle cx="0" cy="0" r="4" fill="#8C7B62" stroke="none" opacity="0.35"/>
+    </g>
+    <g id="asset-slot-active" transform="translate(1390,660)">
+      <circle cx="0" cy="0" r="46" fill="#C4674C" stroke="#C4674C" stroke-width="3" stroke-dasharray="12 9" fill-opacity="0.07"/>
+      <circle cx="0" cy="0" r="4" fill="#C4674C" stroke="none" opacity="0.5"/>
+    </g>
+
+    <!-- ========================================================== -->
+    <!-- ASSET 14-15 · MARKER "TU"                                  -->
+    <!-- ========================================================== -->
+    <g id="asset-marker-tu" transform="translate(1620,660)">
+      <circle cx="0" cy="0" r="50" fill="none" stroke="#C4674C" stroke-width="5"/>
+      <path d="M-6,-64 L0,-54 L6,-64 Z" fill="#C4674C" stroke-width="4"/>
+      <rect x="-26" y="-96" width="52" height="32" rx="9" fill="#C4674C" stroke-width="4"/>
+      <text x="0" y="-74" text-anchor="middle" font-family="Verdana, sans-serif" font-size="16" font-weight="700" letter-spacing="2" fill="#F4E7D3" stroke="none">TU</text>
+    </g>
+    <g id="asset-marker-tu-active" transform="translate(1900,660)">
+      <circle cx="0" cy="0" r="62" fill="#D9A654" stroke="none" opacity="0.18"/>
+      <circle cx="0" cy="0" r="58" fill="none" stroke="#D9A654" stroke-width="3" stroke-dasharray="4 8"/>
+      <circle cx="0" cy="0" r="50" fill="none" stroke="#C4674C" stroke-width="6"/>
+      <path d="M-6,-64 L0,-54 L6,-64 Z" fill="#C4674C" stroke-width="4"/>
+      <rect x="-26" y="-96" width="52" height="32" rx="9" fill="#C4674C" stroke-width="4"/>
+      <text x="0" y="-74" text-anchor="middle" font-family="Verdana, sans-serif" font-size="16" font-weight="700" letter-spacing="2" fill="#F4E7D3" stroke="none">TU</text>
+    </g>
+
+    <!-- ========================================================== -->
+    <!-- ASSET 16-17 · ANIMALI RIUTILIZZABILI                       -->
+    <!-- ========================================================== -->
+    <g id="asset-pet-dog" transform="translate(2140,660)">
+      <ellipse cx="2" cy="6" rx="20" ry="12" fill="#2A211C" stroke="none" opacity="0.07"/>
+      <path d="M-14,2 q-8,-2 -8,-10" fill="none" stroke-width="4"/>
+      <ellipse cx="0" cy="2" rx="14" ry="10" fill="#B98A52" stroke-width="4"/>
+      <circle cx="12" cy="-4" r="8" fill="#B98A52" stroke-width="4"/>
+      <path d="M7,-10 l-2,-7 l7,3 Z M17,-10 l2,-7 l-7,3 Z" fill="#B98A52" stroke-width="3"/>
+      <circle cx="12" cy="-2" r="2" fill="#2A211C" stroke="none"/>
+    </g>
+    <g id="asset-pet-cat" transform="translate(2260,660)">
+      <ellipse cx="2" cy="6" rx="16" ry="10" fill="#2A211C" stroke="none" opacity="0.07"/>
+      <path d="M10,2 q10,2 12,-8" fill="none" stroke-width="3"/>
+      <ellipse cx="0" cy="0" rx="12" ry="8" fill="#2A211C" stroke-width="3"/>
+      <circle cx="-10" cy="-5" r="7" fill="#2A211C" stroke-width="3"/>
+      <path d="M-14,-10 l-2,-6 l6,2 Z M-6,-11 l2,-6 l-6,2 Z" fill="#2A211C" stroke-width="3"/>
+    </g>
+
+  </g>
+</svg>

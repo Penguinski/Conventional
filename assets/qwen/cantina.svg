@@ -1,0 +1,248 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2400 900" width="2400" height="900">
+  <title id="cn-title">Cantina — Conventional Vol.1</title>
+  <desc id="cn-desc">Cantina condominiale: scaffale con scatole e barattoli, vecchio computer con monitor CRT, valigia-archivio Conventional, cassetta della posta con busta, telefono a rotella, porta di uscita verso il condominio. Vista frontale, sfondo trasparente, bleed laterale ampio.</desc>
+
+  <g id="basement" stroke="#2A211C" stroke-linecap="round" stroke-linejoin="round">
+
+    <!-- ============ SOFFITTO con tubatura ============ -->
+    <rect id="ceiling" x="0" y="0" width="2400" height="120" fill="#6B5F4F" stroke="none"/>
+    <g id="ceiling-pipe">
+      <rect x="0" y="100" width="2400" height="18" fill="#9AA79B" stroke-width="4"/>
+      <rect x="300" y="96" width="14" height="26" fill="#2A211C" stroke="none"/>
+      <rect x="900" y="96" width="14" height="26" fill="#2A211C" stroke="none"/>
+      <rect x="1500" y="96" width="14" height="26" fill="#2A211C" stroke="none"/>
+      <rect x="2100" y="96" width="14" height="26" fill="#2A211C" stroke="none"/>
+    </g>
+
+    <!-- ============ PARETE grezza ============ -->
+    <rect id="wall" x="0" y="120" width="2400" height="620" fill="#B3A48C" stroke="none"/>
+    <g id="brick-dado">
+      <rect x="0" y="568" width="2400" height="172" fill="#A08066" stroke="none"/>
+      <path d="M0,568 H2400" fill="none" stroke="#8A6F58" stroke-width="4"/>
+      <path d="M0,610 H2400 M0,652 H2400 M0,694 H2400" fill="none" stroke="#8A6F58" stroke-width="3" opacity="0.5"/>
+      <path d="M240,568 V610 M720,568 V610 M1200,568 V610 M1680,568 V610 M2160,568 V610 M480,610 V652 M960,610 V652 M1440,610 V652 M1920,610 V652 M240,652 V694 M720,652 V694 M1200,652 V694 M1680,652 V694 M2160,652 V694 M480,694 V740 M960,694 V740 M1440,694 V740 M1920,694 V740" fill="none" stroke="#8A6F58" stroke-width="3" opacity="0.5"/>
+    </g>
+
+    <!-- ============ PAVIMENTO in cemento ============ -->
+    <g id="floor">
+      <rect x="0" y="740" width="2400" height="160" fill="#A19B8F" stroke="none"/>
+      <path d="M0,740 H2400" fill="none" stroke-width="5"/>
+      <path d="M400,740 V900 M800,740 V900 M1200,740 V900 M1600,740 V900 M2000,740 V900" fill="none" stroke-width="3" opacity="0.3"/>
+      <path d="M980,800 l36,16 l-12,26 M1760,840 l30,-14 l18,20" fill="none" stroke-width="3" opacity="0.4"/>
+    </g>
+
+    <!-- ============ LAMPADINA sospesa + pulviscolo ============ -->
+    <g id="hanging-bulb">
+      <ellipse cx="1200" cy="320" rx="280" ry="150" fill="#F7D489" stroke="none" opacity="0.12"/>
+      <ellipse cx="1200" cy="300" rx="150" ry="90" fill="#F7D489" stroke="none" opacity="0.12"/>
+      <path d="M1200,120 V250" fill="none" stroke-width="4"/>
+      <rect x="1192" y="250" width="16" height="16" rx="4" fill="#3B2E27" stroke-width="3"/>
+      <circle cx="1200" cy="282" r="14" fill="#F7D489" stroke-width="4"/>
+    </g>
+    <g id="dust-motes" fill="#F4E7D3" stroke="none" opacity="0.25">
+      <circle cx="1120" cy="340" r="3"/>
+      <circle cx="1262" cy="380" r="2.5"/>
+      <circle cx="1180" cy="420" r="2"/>
+      <circle cx="1300" cy="320" r="2"/>
+    </g>
+
+    <!-- ============ FINESTRINO ALTO ============ -->
+    <g id="high-window">
+      <rect x="520" y="160" width="160" height="110" rx="8" fill="#D9C9B2" stroke-width="5"/>
+      <rect x="534" y="174" width="132" height="82" fill="#7C93A0" stroke-width="4"/>
+      <path d="M578,174 V256 M622,174 V256 M534,215 H666" fill="none" stroke-width="4"/>
+      <rect x="508" y="270" width="184" height="12" rx="6" fill="#D9C9B2" stroke-width="4"/>
+    </g>
+
+    <!-- ombre morbide, più presenti nella penombra -->
+    <g id="soft-shadows" fill="#2A211C" stroke="none" opacity="0.1">
+      <ellipse cx="255" cy="752" rx="110" ry="10"/>
+      <ellipse cx="940" cy="752" rx="190" ry="12"/>
+      <ellipse cx="910" cy="756" rx="90" ry="9"/>
+      <ellipse cx="1310" cy="752" rx="140" ry="11"/>
+      <ellipse cx="1655" cy="752" rx="85" ry="9"/>
+      <ellipse cx="2160" cy="752" rx="60" ry="8"/>
+    </g>
+
+    <!-- ============ BLEED SINISTRO: tubo, scatoloni, scala ============ -->
+    <g id="left-pipe">
+      <rect x="84" y="120" width="16" height="620" fill="#9AA79B" stroke-width="4"/>
+      <rect x="80" y="300" width="24" height="6" fill="#2A211C" stroke="none"/>
+      <rect x="80" y="560" width="24" height="6" fill="#2A211C" stroke="none"/>
+    </g>
+    <g id="box-stack-left">
+      <g transform="rotate(-1 225 680)">
+        <rect x="150" y="620" width="150" height="120" rx="3" fill="#C9A171" stroke-width="5"/>
+        <path d="M225,620 V740" fill="none" stroke="#F4E7D3" stroke-width="4"/>
+      </g>
+      <g transform="rotate(2 230 565)">
+        <rect x="170" y="510" width="120" height="110" rx="3" fill="#B98A52" stroke-width="5"/>
+        <path d="M230,510 V620" fill="none" stroke="#F4E7D3" stroke-width="4"/>
+      </g>
+      <g transform="rotate(-2 230 475)">
+        <rect x="190" y="440" width="80" height="70" rx="3" fill="#C9A171" stroke-width="4"/>
+        <path d="M230,440 V510" fill="none" stroke="#F4E7D3" stroke-width="3"/>
+      </g>
+    </g>
+    <g id="step-ladder">
+      <path d="M505,740 L570,390" fill="none" stroke="#B98A52" stroke-width="6"/>
+      <path d="M560,740 L618,400" fill="none" stroke="#B98A52" stroke-width="6"/>
+      <path d="M522,650 H576 M536,570 H590 M550,490 H604" fill="none" stroke="#B98A52" stroke-width="5"/>
+    </g>
+
+    <!-- ============ SCAFFALE DA CANTINA ============ -->
+    <g id="basement-shelf">
+      <rect x="768" y="300" width="14" height="440" fill="#B98A52" stroke-width="5"/>
+      <rect x="1100" y="300" width="14" height="440" fill="#B98A52" stroke-width="5"/>
+      <rect x="760" y="300" width="360" height="14" rx="6" fill="#B98A52" stroke-width="4"/>
+      <rect x="760" y="420" width="360" height="14" rx="6" fill="#B98A52" stroke-width="4"/>
+      <rect x="760" y="560" width="360" height="14" rx="6" fill="#B98A52" stroke-width="4"/>
+      <rect x="760" y="700" width="360" height="14" rx="6" fill="#B98A52" stroke-width="4"/>
+      <!-- ripiano alto: scatole e barattoli -->
+      <rect x="790" y="340" width="90" height="80" rx="3" fill="#C9A171" stroke-width="4"/>
+      <path d="M835,340 V420" fill="none" stroke="#F4E7D3" stroke-width="3"/>
+      <rect x="890" y="352" width="70" height="68" rx="3" fill="#B98A52" stroke-width="4"/>
+      <g id="shelf-jars">
+        <rect x="980" y="380" width="30" height="40" rx="5" fill="#D9C9B2" stroke-width="3"/>
+        <rect x="982" y="396" width="26" height="20" fill="#A97F8F" stroke-width="3"/>
+        <rect x="1018" y="372" width="30" height="48" rx="5" fill="#D9C9B2" stroke-width="3"/>
+        <rect x="1020" y="392" width="26" height="24" fill="#D9A654" stroke-width="3"/>
+        <rect x="1056" y="384" width="30" height="36" rx="5" fill="#D9C9B2" stroke-width="3"/>
+        <rect x="1058" y="398" width="26" height="18" fill="#7FA37A" stroke-width="3"/>
+      </g>
+      <!-- ripiano medio: riviste e bottiglie -->
+      <g id="shelf-magazines">
+        <rect x="790" y="536" width="110" height="12" rx="3" fill="#A97F8F" stroke-width="3"/>
+        <rect x="794" y="524" width="102" height="12" rx="3" fill="#6E8B94" stroke-width="3"/>
+        <rect x="798" y="512" width="96" height="12" rx="3" fill="#D9A654" stroke-width="3"/>
+      </g>
+      <g id="shelf-bottles">
+        <path d="M950,560 v-30 q0,-10 8,-14 v-10 h8 v10 q8,4 8,14 v30 Z" fill="#55705F" stroke-width="3"/>
+        <path d="M986,560 v-30 q0,-10 8,-14 v-10 h8 v10 q8,4 8,14 v30 Z" fill="#55705F" stroke-width="3"/>
+        <path d="M1022,560 v-24 q0,-10 8,-14 v-8 h8 v8 q8,4 8,14 v24 Z" fill="#8A6F58" stroke-width="3"/>
+      </g>
+      <!-- ripiano basso: cesta e barattolo di vernice -->
+      <g id="shelf-basket">
+        <path d="M800,700 h110 l-12,-52 h-86 Z" fill="#C9A171" stroke-width="4"/>
+        <path d="M812,662 l10,38 M850,660 v40 M888,662 l-10,38" fill="none" stroke="#B98A52" stroke-width="3"/>
+        <ellipse cx="830" cy="646" rx="14" ry="8" fill="#D9C9B2" stroke-width="3"/>
+        <ellipse cx="866" cy="642" rx="14" ry="8" fill="#A97F8F" stroke-width="3"/>
+      </g>
+      <g id="paint-can">
+        <rect x="960" y="652" width="60" height="48" rx="6" fill="#D9C9B2" stroke-width="4"/>
+        <rect x="960" y="646" width="60" height="10" rx="5" fill="#D9A654" stroke-width="3"/>
+        <path d="M972,668 h36" fill="none" stroke="#9AA79B" stroke-width="3"/>
+      </g>
+    </g>
+
+    <!-- ============ ARCHIVIO CONVENTIONAL: valigia aperta ============ -->
+    <g id="about-conventional">
+      <g transform="rotate(-1 910 700)">
+        <rect x="840" y="660" width="140" height="80" rx="3" fill="#C9A171" stroke-width="5"/>
+        <path d="M910,660 V740" fill="none" stroke="#F4E7D3" stroke-width="4"/>
+      </g>
+      <rect x="836" y="552" width="148" height="50" rx="8" fill="#8C6478" stroke-width="5"/>
+      <rect x="830" y="600" width="160" height="60" rx="8" fill="#A97F8F" stroke-width="5"/>
+      <!-- vecchi numeri / fascicoli -->
+      <g id="archive-issues">
+        <rect x="846" y="576" width="36" height="26" rx="3" fill="#FBF6EA" stroke-width="3"/>
+        <rect x="846" y="586" width="36" height="8" fill="#C4674C" stroke-width="2"/>
+        <rect x="888" y="576" width="36" height="26" rx="3" fill="#FBF6EA" stroke-width="3"/>
+        <rect x="888" y="586" width="36" height="8" fill="#6E8B94" stroke-width="2"/>
+        <rect x="930" y="576" width="36" height="26" rx="3" fill="#FBF6EA" stroke-width="3"/>
+        <rect x="930" y="586" width="36" height="8" fill="#D9A654" stroke-width="2"/>
+      </g>
+      <rect x="872" y="616" width="76" height="20" rx="3" fill="#FBF6EA" stroke-width="3"/>
+      <path d="M882,626 H938" fill="none" stroke-width="3"/>
+    </g>
+
+    <!-- ============ VECCHIO COMPUTER (Volume 0) ============ -->
+    <g id="work-table">
+      <rect x="1192" y="574" width="14" height="166" fill="#B98A52" stroke-width="5"/>
+      <rect x="1414" y="574" width="14" height="166" fill="#B98A52" stroke-width="5"/>
+      <rect x="1180" y="560" width="260" height="14" rx="6" fill="#B98A52" stroke-width="5"/>
+    </g>
+    <g id="volume-zero-object">
+      <!-- monitor CRT -->
+      <rect x="1230" y="440" width="160" height="120" rx="10" fill="#D9C9B2" stroke-width="5"/>
+      <rect x="1244" y="454" width="100" height="84" rx="8" fill="#3E574B" stroke-width="4"/>
+      <path d="M1258,522 L1310,470" fill="none" stroke="#F4E7D3" stroke-width="4" opacity="0.3"/>
+      <circle cx="1366" cy="474" r="5" fill="#D9A654" stroke-width="3"/>
+      <circle cx="1366" cy="496" r="5" fill="#D9A654" stroke-width="3"/>
+      <path d="M1356,520 H1378 M1356,530 H1378" fill="none" stroke-width="3"/>
+      <!-- telo impolverato sullo spigolo -->
+      <path d="M1230,440 h62 l-8,28 q-28,10 -54,0 Z" fill="#A97F8F" stroke-width="4"/>
+      <path d="M1252,444 l-4,20" fill="none" stroke="#8C6478" stroke-width="3"/>
+      <!-- tastiera appoggiata alla gamba -->
+      <g id="old-keyboard" transform="rotate(-14 1195 700)">
+        <rect x="1150" y="690" width="90" height="26" rx="6" fill="#D9C9B2" stroke-width="4"/>
+        <path d="M1162,700 h66 M1162,708 h66" fill="none" stroke-width="3"/>
+      </g>
+      <!-- tower a terra -->
+      <g id="old-tower">
+        <rect x="1452" y="600" width="58" height="140" rx="6" fill="#D9C9B2" stroke-width="5"/>
+        <path d="M1462,620 h38 M1462,634 h38" fill="none" stroke-width="3"/>
+        <circle cx="1481" cy="662" r="4" fill="#C4674C" stroke-width="3"/>
+      </g>
+    </g>
+
+    <!-- ============ CASETTA DELLA POSTA (newsletter) ============ -->
+    <g id="newsletter-object">
+      <g id="newsletter-envelope" transform="rotate(-6 1566 365)">
+        <rect x="1544" y="352" width="44" height="26" rx="2" fill="#FBF6EA" stroke-width="3"/>
+        <circle cx="1566" cy="365" r="4" fill="#A97F8F" stroke-width="2"/>
+      </g>
+      <rect x="1520" y="368" width="90" height="62" rx="8" fill="#7A8B7F" stroke-width="5"/>
+      <rect x="1536" y="380" width="58" height="10" rx="5" fill="#3B2E27" stroke-width="3"/>
+      <rect x="1608" y="352" width="8" height="20" rx="3" fill="#D9A654" stroke-width="3"/>
+    </g>
+
+    <!-- ============ CONTATTI: telefono a rotella su pile coperto ============ -->
+    <g id="contacts-object">
+      <rect x="1590" y="660" width="130" height="80" rx="3" fill="#B98A52" stroke-width="5"/>
+      <path d="M1584,660 h142 l-6,44 q-66,14 -130,0 Z" fill="#D9C9B2" stroke-width="4"/>
+      <path d="M1620,668 l-4,28 M1680,668 l4,28" fill="none" stroke="#B7A995" stroke-width="3"/>
+      <!-- biglietti da visita infilati nel telo -->
+      <rect x="1600" y="676" width="26" height="14" rx="2" fill="#FBF6EA" stroke-width="2" transform="rotate(-8 1613 683)"/>
+      <g id="rotary-phone">
+        <path d="M1694,650 q10,6 0,12 q-10,6 0,12 q-10,6 0,12" fill="none" stroke-width="3"/>
+        <path d="M1620,632 h70 l8,28 h-86 Z" fill="#C4674C" stroke-width="5"/>
+        <circle cx="1655" cy="646" r="10" fill="#F4E7D3" stroke-width="4"/>
+        <circle cx="1655" cy="640" r="2" fill="#2A211C" stroke="none"/>
+        <circle cx="1661" cy="648" r="2" fill="#2A211C" stroke="none"/>
+        <circle cx="1649" cy="648" r="2" fill="#2A211C" stroke="none"/>
+        <rect x="1622" y="616" width="66" height="12" rx="6" fill="#C4674C" stroke-width="4"/>
+        <circle cx="1622" cy="622" r="8" fill="#C4674C" stroke-width="4"/>
+        <circle cx="1688" cy="622" r="8" fill="#C4674C" stroke-width="4"/>
+      </g>
+    </g>
+
+    <!-- ============ PORTA / USCITA verso il condominio ============ -->
+    <g id="basement-exit">
+      <rect x="1760" y="220" width="220" height="520" rx="6" fill="#D9C9B2" stroke-width="6"/>
+      <!-- sopraluce: filtra la luce delle scale -->
+      <rect x="1776" y="236" width="188" height="50" fill="#F7D489" stroke-width="4" opacity="0.85"/>
+      <path d="M1838,236 V286 M1902,236 V286" fill="none" stroke-width="4"/>
+      <rect x="1776" y="296" width="188" height="444" fill="#7A8B7F" stroke-width="5"/>
+      <g fill="none" stroke="#55705F" stroke-width="4">
+        <rect x="1792" y="470" width="156" height="110" rx="5"/>
+        <rect x="1792" y="600" width="156" height="120" rx="5"/>
+      </g>
+      <circle cx="1794" cy="520" r="6" fill="#D9A654" stroke-width="4"/>
+      <rect x="1750" y="740" width="240" height="12" fill="#B7A995" stroke-width="4"/>
+    </g>
+
+    <!-- ============ BLEED DESTRO: secchio e cassetta di bottiglie ============ -->
+    <g id="bucket">
+      <path d="M2120,660 q40,-30 80,0" fill="none" stroke-width="4"/>
+      <path d="M2120,660 h80 l-10,80 h-60 Z" fill="#6E8B94" stroke-width="5"/>
+      <path d="M2132,676 h56" fill="none" stroke="#5E7A8A" stroke-width="3"/>
+    </g>
+    <g id="bottle-crate">
+      <path d="M2268,680 v-22 q0,-8 6,-12 v-8 h6 v8 q6,4 6,12 v22 M2298,680 v-22 q0,-8 6,-12 v-8 h6 v8 q6,4 6,12 v22 M2328,680 v-16 q0,-8 6,-12 v-6 h6 v6 q6,4 6,16" fill="none" stroke="#55705F" stroke-width="3"/>
+      <rect x="2256" y="680" width="112" height="60" rx="4" fill="#B98A52" stroke-width="5"/>
+      <path d="M2256,706 h112" fill="none" stroke="#A87F4C" stroke-width="3"/>
+    </g>
+
+  </g>
+</svg>

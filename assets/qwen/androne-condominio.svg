@@ -1,0 +1,418 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Livello_1" data-name="Livello 1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 2610.21 900">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: url(#an-tiles-2);
+      }
+
+      .cls-2, .cls-3, .cls-4, .cls-5, .cls-6, .cls-7, .cls-8, .cls-9, .cls-10, .cls-11, .cls-12, .cls-13, .cls-14, .cls-15, .cls-16, .cls-17, .cls-18, .cls-19, .cls-20, .cls-21, .cls-22, .cls-23, .cls-24, .cls-25, .cls-26, .cls-27, .cls-28, .cls-29, .cls-30, .cls-31, .cls-32, .cls-33, .cls-34, .cls-35, .cls-36, .cls-37, .cls-38, .cls-39, .cls-40, .cls-41, .cls-42, .cls-43, .cls-44, .cls-45, .cls-46 {
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+
+      .cls-2, .cls-3, .cls-4, .cls-5, .cls-6, .cls-7, .cls-8, .cls-9, .cls-11, .cls-12, .cls-13, .cls-14, .cls-15, .cls-16, .cls-17, .cls-18, .cls-19, .cls-20, .cls-21, .cls-23, .cls-24, .cls-25, .cls-26, .cls-27, .cls-28, .cls-29, .cls-30, .cls-31, .cls-32, .cls-33, .cls-34, .cls-35, .cls-36, .cls-37, .cls-38, .cls-39, .cls-40, .cls-41, .cls-42, .cls-43, .cls-44, .cls-46 {
+        stroke: #2a211c;
+      }
+
+      .cls-2, .cls-9, .cls-18, .cls-40 {
+        fill: #7fa37a;
+      }
+
+      .cls-2, .cls-34, .cls-38 {
+        stroke-width: 3px;
+      }
+
+      .cls-3 {
+        stroke-width: 4px;
+      }
+
+      .cls-3, .cls-5, .cls-6, .cls-12, .cls-17, .cls-34 {
+        fill: #c4674c;
+      }
+
+      .cls-4, .cls-15, .cls-39 {
+        stroke-width: 3px;
+      }
+
+      .cls-4, .cls-32 {
+        fill: #fbf6ea;
+      }
+
+      .cls-47, .cls-11 {
+        fill: #d9c9b2;
+      }
+
+      .cls-5 {
+        stroke-width: 5px;
+      }
+
+      .cls-6, .cls-37 {
+        stroke-width: 4px;
+      }
+
+      .cls-7 {
+        fill: #c58f3e;
+      }
+
+      .cls-7, .cls-8, .cls-10, .cls-12, .cls-20, .cls-26, .cls-28, .cls-31, .cls-36, .cls-40, .cls-43 {
+        stroke-width: 4px;
+      }
+
+      .cls-8, .cls-14, .cls-19, .cls-48, .cls-24, .cls-42 {
+        fill: #d9a654;
+      }
+
+      .cls-9 {
+        stroke-width: 4px;
+      }
+
+      .cls-10 {
+        stroke: #3e574b;
+      }
+
+      .cls-10, .cls-49, .cls-15, .cls-21, .cls-22, .cls-29, .cls-31, .cls-37, .cls-38, .cls-39, .cls-41, .cls-44, .cls-45 {
+        fill: none;
+      }
+
+      .cls-11, .cls-16, .cls-17, .cls-23, .cls-24, .cls-30, .cls-33, .cls-44 {
+        stroke-width: 5px;
+      }
+
+      .cls-50 {
+        fill: url(#an-tiles);
+      }
+
+      .cls-13 {
+        fill: #c9b190;
+      }
+
+      .cls-14 {
+        stroke-width: 4.11px;
+      }
+
+      .cls-16 {
+        fill: #7a8b7f;
+      }
+
+      .cls-18 {
+        stroke-width: 4px;
+      }
+
+      .cls-19, .cls-35, .cls-41 {
+        stroke-width: 6px;
+      }
+
+      .cls-20 {
+        fill: #a9c1ce;
+      }
+
+      .cls-21, .cls-46 {
+        stroke-width: 4px;
+      }
+
+      .cls-51 {
+        fill: #f7d489;
+      }
+
+      .cls-22 {
+        stroke-width: 4px;
+      }
+
+      .cls-22, .cls-45 {
+        stroke: #f4e7d3;
+      }
+
+      .cls-48 {
+        font-family: Verdana-Bold, Verdana;
+        font-size: 26px;
+        font-weight: 700;
+      }
+
+      .cls-48, .cls-39 {
+        isolation: isolate;
+      }
+
+      .cls-23, .cls-36 {
+        fill: #3b2e27;
+      }
+
+      .cls-25 {
+        fill: #d8c3a4;
+      }
+
+      .cls-26, .cls-27, .cls-33, .cls-35 {
+        fill: #f4e7d3;
+      }
+
+      .cls-52 {
+        fill: #f0e1cb;
+      }
+
+      .cls-27, .cls-45 {
+        stroke-width: 3px;
+      }
+
+      .cls-28 {
+        fill: #efdfc8;
+      }
+
+      .cls-29 {
+        stroke-width: 3px;
+      }
+
+      .cls-30, .cls-46 {
+        fill: #4e6b5c;
+      }
+
+      .cls-32 {
+        stroke-width: 4px;
+      }
+
+      .cls-39 {
+        opacity: .35;
+      }
+
+      .cls-53 {
+        fill: url(#an-tiles-3);
+      }
+
+      .cls-42 {
+        stroke-width: 4px;
+      }
+
+      .cls-43 {
+        fill: #b7a995;
+      }
+
+      .cls-54 {
+        fill: #e2b49e;
+      }
+
+      .cls-55 {
+        fill: #2a211c;
+      }
+    </style>
+    <pattern id="an-tiles" x="0" y="0" width="200" height="160" patternTransform="translate(372.11 -15678.6) scale(1 -1)" patternUnits="userSpaceOnUse" viewBox="0 0 200 160">
+      <g>
+        <rect class="cls-49" width="200" height="160"/>
+        <rect class="cls-25" y="740" width="200" height="160"/>
+        <rect class="cls-13" y="820" width="100" height="80"/>
+        <rect class="cls-13" x="100" y="740" width="100" height="80"/>
+      </g>
+    </pattern>
+    <pattern id="an-tiles-2" data-name="an-tiles" patternTransform="translate(-14261.89 -15518.6) rotate(-180)" xlink:href="#an-tiles"/>
+    <pattern id="an-tiles-3" data-name="an-tiles" patternTransform="translate(272.11 -15678.6) scale(1 -1)" xlink:href="#an-tiles"/>
+  </defs>
+  <rect class="cls-47" y="740.58" width="2609.23" height="159.42"/>
+  <rect class="cls-52" x="605.11" y="820" width="100" height="80"/>
+  <rect class="cls-52" x="705.11" y="740" width="100" height="80"/>
+  <rect class="cls-52" x="805.11" y="820" width="100" height="80"/>
+  <rect class="cls-52" x="905.11" y="740" width="100" height="80"/>
+  <rect class="cls-52" x="1005.11" y="820" width="100" height="80"/>
+  <rect class="cls-52" x="1105.11" y="740" width="100" height="80"/>
+  <rect class="cls-52" x="1205.11" y="820" width="100" height="80"/>
+  <rect class="cls-52" x="1305.11" y="740" width="100" height="80"/>
+  <rect class="cls-52" x="1405.11" y="820" width="100" height="80"/>
+  <rect class="cls-52" x="1505.11" y="740" width="100" height="80"/>
+  <rect class="cls-52" x="1605.11" y="820" width="100" height="80"/>
+  <rect class="cls-52" x="105.11" y="740" width="100" height="80"/>
+  <rect class="cls-52" x="1705.11" y="740" width="100" height="80"/>
+  <rect class="cls-52" x="305.11" y="740" width="100" height="80"/>
+  <rect class="cls-52" x="1805.11" y="820" width="100" height="80"/>
+  <rect class="cls-52" x="1905.11" y="740" width="100" height="80"/>
+  <rect class="cls-52" x="2105.11" y="740" width="100" height="80"/>
+  <g id="wall">
+    <rect class="cls-52" x=".98" y="0" width="2608.26" height="740"/>
+    <rect id="wall-dado" class="cls-54" y="568" width="2610.21" height="172"/>
+    <rect id="wall-rail" class="cls-26" x=".98" y="556" width="2608.26" height="14"/>
+    <rect id="ceiling-cornice" class="cls-26" x=".98" y="0" width="2608.26" height="26"/>
+  </g>
+  <rect class="cls-52" x="2305.11" y="740" width="100" height="80"/>
+  <rect class="cls-52" x="505.11" y="740" width="100" height="80"/>
+  <rect class="cls-52" x="2505.11" y="740" width="100" height="80"/>
+  <rect id="baseboard" class="cls-26" y="722" width="2610.21" height="20"/>
+  <g id="floor">
+    <rect class="cls-50" x="505.11" y="740" width="1600" height="160"/>
+    <path class="cls-39" d="M605.11,740v160M705.11,740v160M805.11,740v160M905.11,740v160M1005.11,740v160M1105.11,740v160M1205.11,740v160M1305.11,740v160M1405.11,740v160M1505.11,740v160M1605.11,740v160M1705.11,740v160M1805.11,740v160M1905.11,740v160M2005.11,740v160M505.11,820h1600"/>
+    <path class="cls-44" d="M505.11,740h1600"/>
+  </g>
+  <g id="ceiling-lamp">
+    <path class="cls-31" d="M1245.11,26v78"/>
+    <path class="cls-24" d="M1209.11,140c0-19.88,16.12-36,36-36s36,16.12,36,36h-72Z"/>
+    <circle class="cls-51" cx="1245.11" cy="146" r="8"/>
+  </g>
+  <g id="entrance-door">
+    <rect class="cls-35" x="595.11" y="180" width="240" height="560" rx="6" ry="6"/>
+    <rect id="entrance-transom" class="cls-20" x="611.11" y="196" width="208" height="64"/>
+    <path class="cls-31" d="M680.11,196v64M750.11,196v64"/>
+    <g id="entrance-leaves">
+      <rect class="cls-30" x="611.11" y="272" width="102" height="468"/>
+      <rect class="cls-30" x="717.11" y="272" width="102" height="468"/>
+      <g>
+        <rect class="cls-10" x="627.11" y="292" width="70" height="180" rx="6" ry="6"/>
+        <rect class="cls-10" x="627.11" y="498" width="70" height="210" rx="6" ry="6"/>
+        <rect class="cls-10" x="733.11" y="292" width="70" height="180" rx="6" ry="6"/>
+        <rect class="cls-10" x="733.11" y="498" width="70" height="210" rx="6" ry="6"/>
+      </g>
+      <path id="entrance-pushbar" class="cls-14" d="M659.04,482.55h36.56c.83,0,1.51,1.48,1.51,3.3h0c0,1.82-.67,3.3-1.51,3.3h-36.56c-.83,0-1.51-1.48-1.51-3.3h0c0-1.82.67-3.3,1.51-3.3Z"/>
+      <path id="entrance-pushbar-2" data-name="entrance-pushbar" class="cls-14" d="M734.61,482.55h36.56c.83,0,1.51,1.48,1.51,3.3h0c0,1.82-.67,3.3-1.51,3.3h-36.56c-.83,0-1.51-1.48-1.51-3.3h0c0-1.82.67-3.3,1.51-3.3Z"/>
+    </g>
+  </g>
+  <g id="mailboxes">
+    <rect class="cls-11" x="935.11" y="300" width="250" height="180" rx="10" ry="10"/>
+    <g id="mailbox-player">
+      <rect class="cls-26" x="947.11" y="316" width="70" height="70" rx="6" ry="6"/>
+      <rect class="cls-4" x="955.11" y="324" width="22" height="9" rx="2" ry="2"/>
+      <circle class="cls-55" cx="982.11" cy="366" r="4"/>
+    </g>
+    <g id="mailbox-maria">
+      <rect class="cls-26" x="1025.11" y="316" width="70" height="70" rx="6" ry="6"/>
+      <rect class="cls-4" x="1033.11" y="324" width="22" height="9" rx="2" ry="2"/>
+      <circle class="cls-55" cx="1060.11" cy="366" r="4"/>
+    </g>
+    <g id="mailbox-paolo">
+      <rect class="cls-26" x="1103.11" y="316" width="70" height="70" rx="6" ry="6"/>
+      <rect class="cls-4" x="1111.11" y="324" width="22" height="9" rx="2" ry="2"/>
+      <circle class="cls-55" cx="1138.11" cy="366" r="4"/>
+    </g>
+    <g id="mailbox-rossi">
+      <rect class="cls-26" x="947.11" y="394" width="70" height="70" rx="6" ry="6"/>
+      <rect class="cls-4" x="955.11" y="402" width="22" height="9" rx="2" ry="2"/>
+      <circle class="cls-55" cx="982.11" cy="444" r="4"/>
+    </g>
+    <g id="mailbox-arturo">
+      <rect class="cls-26" x="1025.11" y="394" width="70" height="70" rx="6" ry="6"/>
+      <rect class="cls-4" x="1033.11" y="402" width="22" height="9" rx="2" ry="2"/>
+      <circle class="cls-55" cx="1060.11" cy="444" r="4"/>
+    </g>
+    <g id="mailbox-jannel">
+      <rect class="cls-26" x="1103.11" y="394" width="70" height="70" rx="6" ry="6"/>
+      <rect class="cls-4" x="1111.11" y="402" width="22" height="9" rx="2" ry="2"/>
+      <circle class="cls-55" cx="1138.11" cy="444" r="4"/>
+    </g>
+  </g>
+  <rect class="cls-52" x="2205.11" y="820" width="100" height="80"/>
+  <rect class="cls-52" x="2405.11" y="820" width="100" height="80"/>
+  <g id="bulletin-board">
+    <rect class="cls-19" x="1265.11" y="170" width="320" height="250" rx="10" ry="10"/>
+    <rect class="cls-28" x="1281.11" y="186" width="288" height="218"/>
+    <g>
+      <rect class="cls-32" x="1305.11" y="210" width="80" height="100" transform="translate(-8.25 47.1) rotate(-2)"/>
+      <path class="cls-38" d="M1316.43,240.99l55.97-1.95M1317.05,258.98l55.97-1.95M1317.68,276.97l37.98-1.33"/>
+      <circle class="cls-34" cx="1343.71" cy="220.02" r="5"/>
+    </g>
+    <g>
+      <rect class="cls-32" x="1415.11" y="190" width="70" height="90" transform="translate(1164.64 1676.02) rotate(-88)"/>
+      <circle class="cls-38" cx="1430.36" cy="227.31" r="10"/>
+      <path class="cls-38" d="M1446.79,243.89l33.98,1.19M1446.38,255.88l25.98.91"/>
+      <circle class="cls-2" cx="1451.05" cy="208.02" r="5"/>
+    </g>
+    <g>
+      <rect class="cls-42" x="1495.11" y="300" width="60" height="60" transform="translate(-15.18 80.27) rotate(-3)"/>
+      <path class="cls-29" d="M1504.72,323.06c6.38-5.67,13.04-6.02,19.97-1.05,6.94,4.98,13.59,4.63,19.97-1.05"/>
+    </g>
+    <g>
+      <rect class="cls-3" x="1345.11" y="320" width="50" height="70" transform="translate(991.25 1718.7) rotate(-89)"/>
+      <path class="cls-45" d="M1347.2,349.6l45.99.8M1346.95,363.6l33.99.59"/>
+      <circle class="cls-27" cx="1370.4" cy="338" r="5"/>
+    </g>
+  </g>
+  <g id="floor-2" data-name="floor">
+    <polygon class="cls-1" points="3605.11 900 2005.11 900 2005.11 740 3605.11 740 3605.11 900"/>
+    <path class="cls-39" d="M3505.11,900v-160M3405.11,900v-160M3305.11,900v-160M3205.11,900v-160M3105.11,900v-160M3005.11,900v-160M2905.11,900v-160M2805.11,900v-160M2705.11,900v-160M2605.11,900v-160M2505.11,900v-160M2405.11,900v-160M2305.11,900v-160M2205.11,900v-160M2105.11,900v-160M2105.36,820h1499.74"/>
+    <path class="cls-44" d="M2005.11,740h1600"/>
+  </g>
+  <rect class="cls-52" x="5.11" y="820" width="100" height="80"/>
+  <rect class="cls-52" x="205.11" y="820" width="100" height="80"/>
+  <rect class="cls-52" x="405.11" y="820" width="100" height="80"/>
+  <rect class="cls-52" x="2005.11" y="820" width="100" height="80"/>
+  <g id="floor-3" data-name="floor">
+    <rect class="cls-53" x="-994.89" y="740" width="1600" height="160"/>
+    <path class="cls-39" d="M-894.89,740v160M-794.89,740v160M-694.89,740v160M-594.89,740v160M-494.89,740v160M-394.89,740v160M-294.89,740v160M-194.89,740v160M-94.89,740v160M5.11,740v160M105.11,740v160M205.11,740v160M305.11,740v160M405.11,740v160M505.11,740v160M-994.89,820H504.85"/>
+    <path class="cls-44" d="M-994.89,740H605.11"/>
+  </g>
+  <g id="bicycle">
+    <g>
+      <path class="cls-15" d="M1157.11,800h96M1181.11,758l48,84M1181.11,842l48-84"/>
+      <path class="cls-15" d="M1309.11,800h96M1333.11,758l48,84M1333.11,842l48-84"/>
+    </g>
+    <circle class="cls-44" cx="1205.11" cy="800" r="48"/>
+    <circle class="cls-44" cx="1357.11" cy="800" r="48"/>
+    <g>
+      <path class="cls-41" d="M1205.11,800l42-94,84,4-50,90h-76Z"/>
+      <path class="cls-41" d="M1247.11,706l34,94M1205.11,800h76M1331.11,710l26,90"/>
+      <path class="cls-41" d="M1331.11,710l-8-32M1309.11,676h28"/>
+      <path class="cls-41" d="M1247.11,706l-6-22"/>
+      <path class="cls-44" d="M1281.11,800l-16,48"/>
+    </g>
+    <path class="cls-12" d="M1230.11,676h26c2.76,0,5,2.24,5,5h0c0,2.76-2.24,5-5,5h-26c-2.76,0-5-2.24-5-5h0c0-2.76,2.24-5,5-5Z"/>
+    <circle class="cls-8" cx="1205.11" cy="800" r="7"/>
+    <circle class="cls-8" cx="1357.11" cy="800" r="7"/>
+    <circle class="cls-8" cx="1281.11" cy="800" r="6"/>
+  </g>
+  <g id="doormat">
+    <rect class="cls-5" x="625.11" y="760" width="200" height="36" rx="8" ry="8" transform="translate(-20.12 19.25) rotate(-1.5)"/>
+    <path class="cls-22" d="M674.81,767.31l.63,23.99M724.79,766l.63,23.99M774.78,764.7l.63,23.99"/>
+  </g>
+  <g id="newspaper">
+    <rect class="cls-32" x="975.11" y="780" width="70" height="14" rx="4" ry="4" transform="translate(-26.85 35.73) rotate(-2)"/>
+    <path class="cls-38" d="M985.12,787.87l39.98-1.4"/>
+  </g>
+  <g id="umbrella-stand">
+    <g>
+      <path class="cls-37" d="M896.17,556.4c.93-10.63-2.92-16.32-11.56-17.07"/>
+      <path class="cls-6" d="M890.19,555.87c-8.77,31.36-11.56,63.23-8.72,99.62l11.95,1.05c9.11-35.34,11.9-67.22,8.72-99.62l-11.95-1.05Z"/>
+    </g>
+    <g>
+      <path class="cls-21" d="M895.65,566.7c-1.3-10.59,2.35-16.41,10.95-17.47"/>
+      <path class="cls-46" d="M889.7,567.43c-2.3,30.51,1.36,60.28,11.21,91.31l11.91-1.46c2.06-32.49-1.6-62.27-11.21-91.31l-11.91,1.46Z"/>
+    </g>
+    <rect class="cls-16" x="861.11" y="660" width="56" height="100" rx="8" ry="8"/>
+  </g>
+  <g id="cat-bowl">
+    <path class="cls-12" d="M1745.11,780h56l-8,18h-40l-8-18Z"/>
+  </g>
+  <g id="elevator">
+    <g id="elevator-floor-indicator">
+      <rect class="cls-23" x="1857.11" y="64" width="56" height="44" rx="6" ry="6"/>
+      <text class="cls-48" transform="translate(1875.86 96)"><tspan x="0" y="0">0</tspan></text>
+    </g>
+    <g id="elevator-call-button">
+      <rect class="cls-33" x="1655.11" y="406" width="36" height="56" rx="8" ry="8"/>
+      <circle class="cls-8" cx="1673.11" cy="434" r="11"/>
+      <path class="cls-55" d="M1673.11,429l-6,9h12l-6-9Z"/>
+    </g>
+    <g id="elevator-frame">
+      <rect class="cls-35" x="1705.11" y="120" width="360" height="620" rx="8" ry="8"/>
+      <rect class="cls-36" x="1729.11" y="150" width="312" height="590"/>
+    </g>
+    <g id="elevator-left-door">
+      <rect class="cls-24" x="1729.11" y="150" width="156" height="590"/>
+      <rect class="cls-7" x="1754.09" y="190" width="36" height="510"/>
+      <rect class="cls-7" x="1819.83" y="190" width="36" height="510"/>
+    </g>
+    <g id="elevator-right-door">
+      <rect class="cls-24" x="1885.11" y="150" width="156" height="590"/>
+      <rect class="cls-7" x="1913.15" y="190" width="36" height="510"/>
+      <rect class="cls-7" x="1979.45" y="190" width="36" height="510"/>
+    </g>
+    <rect id="elevator-threshold" class="cls-43" x="1721.11" y="736" width="328" height="10"/>
+  </g>
+  <g id="plant">
+    <g>
+      <path class="cls-31" d="M1675.11,646c-10-46-30-66-42-84"/>
+      <path class="cls-31" d="M1675.11,646v-98"/>
+      <path class="cls-31" d="M1675.11,646c10-46,26-62,34-80"/>
+    </g>
+    <g>
+      <ellipse class="cls-9" cx="1629.11" cy="548" rx="15" ry="24" transform="translate(-89.18 590.24) rotate(-20)"/>
+      <ellipse class="cls-40" cx="1675.11" cy="532" rx="16" ry="26"/>
+      <ellipse class="cls-9" cx="1713.11" cy="552" rx="24" ry="15" transform="translate(608.48 1973) rotate(-70)"/>
+      <ellipse class="cls-18" cx="1651.11" cy="596" rx="12" ry="18" transform="translate(-98 447.65) rotate(-15)"/>
+      <ellipse class="cls-18" cx="1701.11" cy="600" rx="18" ry="12" transform="translate(681.27 2087.85) rotate(-75)"/>
+    </g>
+    <rect class="cls-17" x="1629.11" y="646" width="96" height="16" rx="6" ry="6"/>
+    <path class="cls-17" d="M1635.11,662h84l-12,102h-60l-12-102Z"/>
+  </g>
+</svg>

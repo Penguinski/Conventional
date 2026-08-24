@@ -1,0 +1,190 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2400 900" width="2400" height="900">
+  <title id="ct-title">Casa tua — Conventional Vol.1</title>
+  <desc id="ct-desc">Appartamento del nuovo inquilino in pieno trasloco: montagna di scatoloni, fascicolo delle denunce in evidenza, porta d'ingresso, finestra semplice, lampadina appesa. Vista frontale, sfondo trasparente, bleed laterale ampio.</desc>
+
+  <g id="player-room" stroke="#2A211C" stroke-linecap="round" stroke-linejoin="round">
+
+    <!-- ============ PARETE ============ -->
+    <g id="wall">
+      <rect x="0" y="0" width="2400" height="740" fill="#F0E1CB" stroke="none"/>
+      <rect id="wall-dado" x="0" y="568" width="2400" height="172" fill="#E2B49E" stroke="none"/>
+      <rect id="wall-rail" x="0" y="556" width="2400" height="14" fill="#F4E7D3" stroke-width="4"/>
+    </g>
+
+    <!-- ============ PAVIMENTO ============ -->
+    <g id="floor">
+      <rect x="0" y="740" width="2400" height="160" fill="#C89B66" stroke="none"/>
+      <path d="M160,740 V900 M320,740 V900 M480,740 V900 M640,740 V900 M800,740 V900 M960,740 V900 M1120,740 V900 M1280,740 V900 M1440,740 V900 M1600,740 V900 M1760,740 V900 M1920,740 V900 M2080,740 V900 M2240,740 V900" fill="none" stroke-width="3" opacity="0.35"/>
+      <path id="physics-floor" d="M0,740 H2400" fill="none" stroke-width="5"/>
+    </g>
+
+    <rect id="baseboard" x="0" y="722" width="2400" height="20" fill="#F4E7D3" stroke-width="4"/>
+
+    <!-- ombre morbide -->
+    <g id="soft-shadows" fill="#2A211C" stroke="none" opacity="0.07">
+      <ellipse cx="800" cy="752" rx="300" ry="16"/>
+      <ellipse cx="995" cy="758" rx="75" ry="9"/>
+      <ellipse cx="1330" cy="752" rx="115" ry="11"/>
+      <ellipse cx="200" cy="752" rx="95" ry="10"/>
+      <ellipse cx="2230" cy="754" rx="105" ry="9"/>
+      <ellipse cx="1620" cy="752" rx="75" ry="8"/>
+    </g>
+
+    <!-- ============ FINESTRA SEMPLICE ============ -->
+    <g id="player-window">
+      <rect x="640" y="150" width="300" height="260" rx="10" fill="#D9A654" stroke-width="6"/>
+      <rect x="658" y="168" width="264" height="224" fill="#A9C1CE" stroke-width="4"/>
+      <path d="M658,280 H922" fill="none" stroke-width="4"/>
+      <path d="M690,370 L830,190" fill="none" stroke="#F4E7D3" stroke-width="6" opacity="0.7"/>
+      <path d="M730,380 L860,210" fill="none" stroke="#F4E7D3" stroke-width="4" opacity="0.5"/>
+      <!-- tenda ancora arrotolata -->
+      <rect x="658" y="168" width="264" height="22" fill="#F4E7D3" stroke-width="4"/>
+      <rect x="626" y="410" width="328" height="16" rx="6" fill="#F4E7D3" stroke-width="5"/>
+    </g>
+
+    <!-- ============ LAMPADINA APPESA ============ -->
+    <g id="hanging-bulb">
+      <circle cx="1060" cy="330" r="22" fill="#F7D489" stroke="none" opacity="0.25"/>
+      <path d="M1060,0 V300" fill="none" stroke-width="4"/>
+      <rect x="1052" y="300" width="16" height="18" rx="4" fill="#3B2E27" stroke-width="3"/>
+      <circle cx="1060" cy="330" r="14" fill="#F7D489" stroke-width="4"/>
+    </g>
+
+    <!-- ============ SCATOLONI: pila secondaria sinistra (bleed) ============ -->
+    <g id="moving-boxes-left">
+      <g id="box-left-1" transform="rotate(-1 195 680)">
+        <rect x="120" y="620" width="150" height="120" rx="3" fill="#C9A171" stroke-width="5"/>
+        <path d="M195,620 V740" fill="none" stroke="#F4E7D3" stroke-width="4"/>
+      </g>
+      <g id="box-left-2" transform="rotate(2 200 565)">
+        <rect x="140" y="510" width="120" height="110" rx="3" fill="#B98A52" stroke-width="5"/>
+        <path d="M200,510 V620" fill="none" stroke="#F4E7D3" stroke-width="4"/>
+      </g>
+    </g>
+
+    <!-- ============ SCATOLONI: pila principale ============ -->
+    <g id="moving-boxes">
+      <!-- fila bassa -->
+      <g id="box-1" transform="rotate(-1 605 675)">
+        <rect x="520" y="610" width="170" height="130" rx="3" fill="#C9A171" stroke-width="5"/>
+        <path d="M605,610 V740" fill="none" stroke="#F4E7D3" stroke-width="4"/>
+        <path d="M520,636 H690" fill="none" stroke="#B98A52" stroke-width="3"/>
+      </g>
+      <g id="box-2" transform="rotate(1 790 680)">
+        <rect x="700" y="620" width="180" height="120" rx="3" fill="#B98A52" stroke-width="5"/>
+        <path d="M790,620 V740" fill="none" stroke="#F4E7D3" stroke-width="4"/>
+        <!-- frecce "alto" -->
+        <path d="M744,684 V656 M744,656 l-8,10 M744,656 l8,10 M772,684 V656 M772,656 l-8,10 M772,656 l8,10" fill="none" stroke-width="4"/>
+      </g>
+      <g id="box-3" transform="rotate(-2 975 675)">
+        <rect x="890" y="610" width="170" height="130" rx="3" fill="#C9A171" stroke-width="5"/>
+        <path d="M975,610 V740" fill="none" stroke="#F4E7D3" stroke-width="4"/>
+      </g>
+      <!-- seconda fila -->
+      <g id="box-4" transform="rotate(-2 640 545)">
+        <rect x="560" y="480" width="160" height="130" rx="3" fill="#B98A52" stroke-width="5"/>
+        <path d="M640,480 V610" fill="none" stroke="#F4E7D3" stroke-width="4"/>
+      </g>
+      <g id="box-5" transform="rotate(1.5 830 550)">
+        <rect x="735" y="490" width="190" height="120" rx="3" fill="#C9A171" stroke-width="5"/>
+        <path d="M830,490 V610" fill="none" stroke="#F4E7D3" stroke-width="4"/>
+        <path d="M735,540 H925" fill="none" stroke="#F4E7D3" stroke-width="3"/>
+      </g>
+      <!-- terza fila: box aperto con pianta -->
+      <g id="box-6" transform="rotate(-1 705 415)">
+        <path d="M622,352 L596,314 L630,308 Z" fill="#C9A171" stroke-width="4"/>
+        <path d="M788,352 L814,316 L780,308 Z" fill="#C9A171" stroke-width="4"/>
+        <g id="box-6-plant">
+          <path d="M705,350 V322" fill="none" stroke="#7FA37A" stroke-width="4"/>
+          <ellipse cx="705" cy="310" rx="8" ry="13" fill="#7FA37A" stroke-width="3"/>
+          <ellipse cx="690" cy="318" rx="6" ry="10" fill="#7FA37A" stroke-width="3" transform="rotate(-24 690 318)"/>
+          <ellipse cx="720" cy="318" rx="6" ry="10" fill="#7FA37A" stroke-width="3" transform="rotate(24 720 318)"/>
+        </g>
+        <rect x="620" y="350" width="170" height="130" rx="3" fill="#C9A171" stroke-width="5"/>
+        <path d="M705,350 V480" fill="none" stroke="#F4E7D3" stroke-width="4"/>
+      </g>
+      <!-- box inclinato appoggiato alla pila -->
+      <g id="box-7" transform="rotate(-14 1100 690)">
+        <rect x="1040" y="540" width="120" height="150" rx="3" fill="#B98A52" stroke-width="5"/>
+        <path d="M1100,540 V690" fill="none" stroke="#F4E7D3" stroke-width="4"/>
+      </g>
+      <!-- box aperto davanti con tubo portaposter -->
+      <g id="box-8" transform="rotate(-3 995 705)">
+        <g id="box-8-tube" transform="rotate(18 975 640)">
+          <rect x="962" y="596" width="26" height="90" rx="13" fill="#FBF6EA" stroke-width="4"/>
+          <path d="M968,606 a7,4 0 1 1 14,0" fill="none" stroke-width="3"/>
+        </g>
+        <path d="M932,662 L916,636 L942,632 Z" fill="#B98A52" stroke-width="4"/>
+        <path d="M1058,662 L1074,638 L1048,632 Z" fill="#B98A52" stroke-width="4"/>
+        <rect x="930" y="660" width="130" height="90" rx="3" fill="#B98A52" stroke-width="5"/>
+        <path d="M995,660 V750" fill="none" stroke="#F4E7D3" stroke-width="4"/>
+      </g>
+    </g>
+
+    <!-- rotolo di nastro a terra -->
+    <g id="tape-roll">
+      <circle cx="770" cy="724" r="12" fill="#F4E7D3" stroke-width="5"/>
+      <circle cx="770" cy="724" r="5" fill="#C89B66" stroke-width="3"/>
+      <path d="M782,724 h14" fill="none" stroke-width="3"/>
+    </g>
+
+    <!-- ============ PILA CON FASCICOLO DELLE DENUNCE ============ -->
+    <g id="moving-boxes-right">
+      <g id="box-9" transform="rotate(1 1330 690)">
+        <rect x="1250" y="640" width="160" height="100" rx="3" fill="#C9A171" stroke-width="5"/>
+        <path d="M1330,640 V740" fill="none" stroke="#F4E7D3" stroke-width="4"/>
+      </g>
+      <g id="box-10" transform="rotate(-2 1333 590)">
+        <rect x="1268" y="540" width="130" height="100" rx="3" fill="#B98A52" stroke-width="5"/>
+        <path d="M1333,540 V640" fill="none" stroke="#F4E7D3" stroke-width="4"/>
+      </g>
+    </g>
+    <g id="complaint-file" transform="translate(0 40) rotate(-6 1335 510)">
+      <rect x="1290" y="452" width="86" height="26" fill="#FBF6EA" stroke-width="3"/>
+      <rect x="1298" y="444" width="70" height="16" fill="#FBF6EA" stroke-width="3" transform="rotate(4 1333 452)"/>
+      <rect x="1280" y="470" width="110" height="84" rx="5" fill="#C4674C" stroke-width="6"/>
+      <path d="M1335,452 V554" fill="none" stroke="#A97F8F" stroke-width="5"/>
+      <rect x="1298" y="498" width="52" height="24" rx="4" fill="#FBF6EA" stroke-width="3"/>
+      <path d="M1306,508 H1342 M1306,515 H1332" fill="none" stroke-width="3"/>
+      <circle cx="1366" cy="536" r="9" fill="none" stroke="#A97F8F" stroke-width="3"/>
+    </g>
+
+    <!-- ============ QUADRO APPOGGIATO A TERRA ============ -->
+    <g id="leaning-frame" transform="rotate(-8 1620 740)">
+      <rect x="1560" y="560" width="120" height="180" rx="6" fill="#D9A654" stroke-width="5"/>
+      <rect x="1574" y="574" width="92" height="152" fill="#FBF6EA" stroke-width="3"/>
+      <circle cx="1600" cy="606" r="8" fill="#D9A654" stroke-width="3"/>
+      <path d="M1584,700 l22,-38 l14,22 l12,-20 l20,36" fill="none" stroke-width="3"/>
+    </g>
+
+    <!-- ============ INTERRUTTORE ============ -->
+    <g id="light-switch">
+      <rect x="1640" y="470" width="40" height="56" rx="8" fill="#F4E7D3" stroke-width="5"/>
+      <rect x="1652" y="490" width="16" height="20" rx="4" fill="#D9A654" stroke-width="3"/>
+    </g>
+
+    <!-- ============ PORTA D'INGRESSO ============ -->
+    <g id="player-entry-door">
+      <rect x="1720" y="240" width="220" height="500" rx="6" fill="#F4E7D3" stroke-width="6"/>
+      <rect x="1736" y="256" width="188" height="484" fill="#C4674C" stroke-width="5"/>
+      <g fill="none" stroke="#A8563F" stroke-width="4">
+        <rect x="1752" y="470" width="156" height="110" rx="5"/>
+        <rect x="1752" y="600" width="156" height="120" rx="5"/>
+      </g>
+      <circle cx="1754" cy="500" r="6" fill="#D9A654" stroke-width="4"/>
+    </g>
+
+    <!-- ============ BLEED DESTRO: scatole sdraiate ============ -->
+    <g id="moving-boxes-far-right">
+      <g id="box-right-1" transform="rotate(-1 2230 720)">
+        <rect x="2140" y="690" width="180" height="60" rx="3" fill="#C9A171" stroke-width="5"/>
+        <path d="M2230,690 V750" fill="none" stroke="#F4E7D3" stroke-width="4"/>
+      </g>
+      <g id="box-right-2" transform="rotate(2 2240 665)">
+        <rect x="2170" y="640" width="140" height="50" rx="3" fill="#B98A52" stroke-width="4"/>
+        <path d="M2240,640 V690" fill="none" stroke="#F4E7D3" stroke-width="3"/>
+      </g>
+    </g>
+
+  </g>
+</svg>
