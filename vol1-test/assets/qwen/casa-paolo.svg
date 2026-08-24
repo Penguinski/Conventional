@@ -104,7 +104,7 @@
     </g>
     <g id="paolo-lamp">
       <circle cx="1478" cy="494" r="3" fill="#2A211C" stroke="none"/>
-      <path d="M1448,540 H1508 L1500,500 H1456 Z" fill="#F4E7D3" stroke-width="5"/>
+      <path d="M1448,540 H1508 L1500,500 H1456 Z" fill="#D9A654" stroke-width="5"/>
       <path d="M1478,586 V540" fill="none" stroke-width="4"/>
       <rect x="1460" y="586" width="36" height="10" rx="4" fill="#3B2E27" stroke-width="3"/>
     </g>
