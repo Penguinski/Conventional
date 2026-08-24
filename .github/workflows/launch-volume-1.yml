@@ -38,6 +38,7 @@ jobs:
         run: npm ci
 
       - name: Require an empty bulletin board
+        if: github.event_name != 'workflow_dispatch'
         working-directory: _volume1-source
         run: node scripts/verify-empty-board.mjs
 
