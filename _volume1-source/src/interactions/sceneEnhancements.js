@@ -3,7 +3,7 @@ import { artworks } from '../content/artworks.js';
 const SVG_NS = 'http://www.w3.org/2000/svg';
 const paintingLayout = {
   'home-player': { x: 1080, y: 105, w: 225, h: 180, color: '#8eaa9e' },
-  'home-maria': { x: 1330, y: 102, w: 105, h: 210, color: '#b87868' },
+  'home-maria': { x: 1450, y: 102, w: 105, h: 210, color: '#b87868' },
   'home-paolo': { x: 460, y: 250, w: 260, h: 180, color: '#bca877' },
   'home-rossi': { x: 1045, y: 86, w: 145, h: 225, color: '#d2a455' },
   'home-jannel': { x: 1450, y: 78, w: 145, h: 235, color: '#8b7775' },

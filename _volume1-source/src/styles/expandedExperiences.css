@@ -20,6 +20,7 @@
 .feature-reader-page.is-changing { opacity: .2; }
 .feature-reader-section-title { width: 100%; min-width: 0; align-self: start; overflow: visible; padding-top: 2px; }
 .feature-reader-section-title h2 { width: 100%; max-width: 100%; min-width: 0; margin: 0; color: var(--clay); font: 700 clamp(34px, 4.2vw, 64px)/.93 Georgia,serif; hyphens: none; -webkit-hyphens: none; overflow-wrap: normal; word-break: normal; white-space: normal; text-wrap: balance; }
+.feature-reader--gossip .feature-reader-section-title h2 { font-size: clamp(28px, 3.4vw, 50px); overflow-wrap: anywhere; }
 .feature-reader-copy { min-width: 0; max-width: 70ch; }
 .feature-reader-copy p { margin: 0 0 1em; font: clamp(18px, 1.7vw, 25px)/1.45 Georgia,serif; }
 .feature-article-cover { min-width: 0; min-height: 0; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; padding: clamp(12px, 2vw, 28px); background: transparent; color: var(--ink); text-align: left; }
